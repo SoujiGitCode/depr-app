@@ -1,0 +1,37 @@
+@import "../../assets/styles";
+
+.image-banner {
+  background-image: url(../../assets/Asset_3.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: bottom;
+  height: 40vh;
+  width: 100%;
+
+  .text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    color: $white;
+
+    .title {
+      font-weight: $heavy;
+      font-family: $gotham;
+    }
+  }
+}
+
+.information-container {
+  .subtitle {
+    font-weight: bolder !important;
+    font-family: $gothamBlack;
+    color: $warning;
+  }
+
+  .description {
+    color: $secondary;
+    font-family: $gotham;
+  }
+}

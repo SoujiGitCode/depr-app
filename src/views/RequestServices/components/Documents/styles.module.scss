@@ -1,0 +1,54 @@
+@import "../../../../assets/styles/";
+
+
+.document-row-wrapper {
+    padding: 0.5rem;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    font-family: $gotham !important;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+
+}
+
+.update-column-wrapper {
+    text-align: center;
+    font-weight: bolder !important;
+    padding: 0.5rem;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    font-family: $gotham !important;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+
+}
+
+.document-actions-button {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    align-items: center !important;
+}
+
+.rounded-div,
+.rounded-div-disabled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+}
+
+.rounded-div {
+    background-color: $primary;
+}
+
+.rounded-div-disabled {
+    background-color: $gray2;
+}

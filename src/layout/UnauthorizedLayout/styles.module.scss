@@ -1,0 +1,33 @@
+@import "../../assets/styles";
+
+.column-wrapper {
+    display: flex;
+    flex: 1;
+    height: 100%;
+}
+
+.left-div,
+.right-div {
+    flex: 1;
+    height: 100%;
+}
+
+.header-container {
+    height: 5vh;
+    /* 5% of the viewport height */
+    /* Additional styles for header */
+}
+
+.outlet-container {
+    flex: 1;
+    /* Takes up the remaining space after the header and footer */
+    overflow: auto;
+    /* In case the content is too long */
+    /* Additional styles for the outlet */
+}
+
+.footer-container {
+    height: 10vh;
+    /* 10% of the viewport height */
+    /* Additional styles for footer */
+}

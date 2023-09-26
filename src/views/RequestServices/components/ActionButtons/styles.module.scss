@@ -1,0 +1,25 @@
+@import "../../../../assets/styles";
+
+.button-submit {
+  background-color: $primary !important;
+  padding-right: 6rem !important;
+  padding-left: 6rem !important;
+  font-family: $gothamBlack !important;
+  color: $tertiary-neutral !important;
+}
+
+.button-submit:disabled {
+  opacity: 0.6;
+}
+
+.button-save {
+  color: $tertiary-neutral !important;
+  background-color: $warning !important;
+  padding-right: 6rem !important;
+  padding-left: 6rem !important;
+  font-family: $gothamBlack !important;
+}
+
+.button-save:disabled {
+  opacity: 0.6;
+}
