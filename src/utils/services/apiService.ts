@@ -43,7 +43,7 @@ const errorParser = (err: any): { message: string, statusCode: number } => {
     // eslint-disable-next-line prefer-destructuring
 
     error = err.response.data || {};
-    console.log(typeof(err.response.status))
+    console.log(typeof (err.response.status))
     error.statusCode = err.response.status;
 
     console.log(error)

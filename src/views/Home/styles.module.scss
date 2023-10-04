@@ -1,9 +1,9 @@
 @import "../../assets/styles";
 
 .image-banner {
-  background-image: url(../../assets/Asset_3.png);
+  background-image: url(../../assets/images/dashboard-banner.png);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
   background-position-x: center;
   background-position-y: bottom;
   height: 40vh;
@@ -18,7 +18,7 @@
 
     .title {
       font-weight: $heavy;
-      font-family: $gotham;
+      font-family: $Montserrat;
     }
   }
 }
@@ -26,12 +26,12 @@
 .information-container {
   .subtitle {
     font-weight: bolder !important;
-    font-family: $gothamBlack;
+    font-family: $MontserratBlack;
     color: $warning;
   }
 
   .description {
     color: $secondary;
-    font-family: $gotham;
+    font-family: $Montserrat;
   }
 }

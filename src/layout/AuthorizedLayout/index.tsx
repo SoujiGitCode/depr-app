@@ -13,7 +13,11 @@ const AuthorizedLayout = () => {
       <Grid item xs={12} md={11} sx={{ display: 'flex', alignItems: 'center', minHeight: '90vh' }}>
         <Outlet />
       </Grid>
-      <Footer />
+
+      <Grid item xs={12}>
+        <Footer />
+      </Grid>
+
     </Grid>
   );
 };

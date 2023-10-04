@@ -32,17 +32,20 @@ const Sidebar = () => {
         children={
           <AppsIcon sx={{ color: "white", fontSize: "1.5rem !important" }} />
         }
-        text="Of Sense"
+        text="Dashboard"
+        redirect={PATH.DASHBOARD}
       />
       <Options
         children={<FeedIcon sx={{ color: "white", fontSize: "1.5rem" }} />}
-        text="Services Request"
-        redirect={PATH.REQUEST_SERVICES}
+        text="Solicitudes"
+        redirect={PATH.DASHBOARD}
+      // redirect={PATH.REQUEST_SERVICES}
       />
       <Options
         children={<PersonIcon sx={{ color: "white", fontSize: "1.5rem" }} />}
         text="Profile"
-        redirect={PATH.PROFILE}
+        redirect={PATH.DASHBOARD}
+      // redirect={PATH.PROFILE}
       />
 
       <Box onClick={handleLogout}>
@@ -50,7 +53,7 @@ const Sidebar = () => {
           children={
             <TransitEnterexitIcon sx={{ color: "white", fontSize: "1.5rem" }} />
           }
-          text="Sign Out"
+          text="Cerrar Sesión"
         />
       </Box>
     </Grid>

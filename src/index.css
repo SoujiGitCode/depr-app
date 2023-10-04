@@ -1,13 +1,13 @@
 @font-face {
-  font-family: "Gotham-Black";
-  src: url("./assets/fonts/Gotham-Black.otf") format("opentype");
+  font-family: "Montserrat-Black";
+  src: url("./assets/fonts/Montserrat-Black.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Gotham-Medium";
-  src: url("./assets/fonts/GothamMedium.otf") format("opentype");
+  font-family: "Montserrat-Medium";
+  src: url("./assets/fonts/Montserrat-Medium.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -25,11 +25,11 @@ body {
 }
 
 .p {
-  font-family: "Gotham-Medium" !important;
+  font-family: "Montserrat-Medium" !important;
 }
 
 h6 {
-  font-family: "Gotham-Medium" !important;
+  font-family: "Montserrat-Black" !important;
 }
 
 /* .css-11lq3yg-MuiGrid-root {
@@ -93,6 +93,30 @@ h6 {
 }
 
 
-/* .css-1dujxgu-MuiGrid-root {
-  width: 100% !important;
-} */
+.react-multiple-carousel__arrow {
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0px 10.42px 0px 11px !important;
+  border-radius: 50px !important;
+  background-color: #FFFFFF !important;
+}
+
+
+.react-multiple-carousel__arrow::before {
+  font-size: 20px;
+  font-weight: bolder !important;
+  color: #000000 !important;
+  display: block;
+  font-family: revicons;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.css-9m22tz-MuiFormHelperText-root.Mui-error {
+  margin-top: 1em !important;
+}
+
+.css-eke14m.Mui-error {
+  margin-top: 1em !important;
+}

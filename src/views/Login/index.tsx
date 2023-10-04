@@ -1,43 +1,124 @@
-import { Grid, Box, Typography } from "@mui/material";
-import { ListItem } from "@/components";
-import styles from "./login.module.scss";
+import { useState, useEffect } from 'react';
+
 import {
-  servicesList,
-  description,
-  welcomeTitle,
-  serviceTitle,
-} from "./constants";
+  Grid,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  FormHelperText,
+  FormControl,
+  InputLabel,
+} from '@mui/material';
+import loginImage from '../../assets/login.png';
+import { CustomLabel } from '@/components';
+import { PATH } from "@/routes/constants";
+import useAuthStore from '@/hooks/useAuthStore';
+import useAlert from '@/hooks/useAlert';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const setLogin = useAuthStore((state: any) => state.setLogin);
+  const { setAlert } = useAlert();
+  const navigate = useNavigate();
+
+  const authenticateUser = async () => {
+    try {
+      await setLogin(email, password);
+      navigate("/dashboard");
+    } catch (error: any) {
+      console.log(error)
+      setAlert('Error, Credenciales de accesso invalidas', "error")
+    }
+  }
+
+  useEffect(() => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isEmailValid = emailRegex.test(email);
+    const isPasswordValid = password.trim() !== '';
+
+    setIsFormValid(isEmailValid && isPasswordValid);
+  }, [email, password]);
+
+
   return (
-    <div className={styles["main-grid-container"]}>
-      <div className={styles["column-wrapper"]}>
-        <div className={styles["left-div"]}>
-          <Box className={styles["welcome-container"]}>
-            <Box className={styles["background-image"]}>
-              <Typography className={styles["text"]}>{welcomeTitle}</Typography>
-              <Typography className={styles["description"]}>{description}</Typography>
-            </Box>
-          </Box>
+    <Grid container style={{ width: '100%', margin: 0 }}>
+      <Grid item xs={6} style={{ overflow: 'hidden', height: '620px' }}>
+        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img src={loginImage} alt="login" style={{ width: '100%', height: '100%' }} />
         </div>
-        <div className={styles["right-div"]}>
-          <div className={styles["services-container"]}>
-            <Typography className={styles["upper-text-title"]}>{serviceTitle}</Typography>
-            {servicesList?.map((service) => (
-              <ListItem
-                key={service.number}
-                number={service.number}
-                listItem={service.listItem}
-                description={service.description}
-                url={service.url}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+      </Grid>
+      <Grid item xs={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2em' }}>
+        <form style={{ width: '70%' }}>
+          <Typography variant="body1" gutterBottom sx={{ color: '#807BB8', fontSize: '2.2em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
+            Inicio Sesión
+          </Typography>
+          <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+            <CustomLabel name="Correo Eléctronico" required={true} />
+            <TextField
+              id="email"
+              type="email"
+              variant="outlined"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </FormControl>
+          <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+            <CustomLabel name="Contraseña" required={true} />
+            <TextField
+              id="password"
+              type="password"
+              variant="outlined"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormControl>
+          <FormHelperText sx={{ textAlign: 'left', marginBottom: '3em !important', marginTop: '1.5em !important' }}>
+            <Typography variant="caption" component="a" href="#" sx={{ fontSize: '16px !important', color: '#807BB8' }}>
+              Olvidé mi contraseña
+            </Typography>
+          </FormHelperText>
+        </form>
+        <Box mt={2} sx={{ gap: 2, width: '70%', display: 'flex', justifyContent: 'center' }}>
+
+          <Button
+            variant="outlined"
+            color="primary"
+            style={{
+              width: '241.5px',
+              height: '48px',
+              padding: '8px 40px',
+              borderRadius: '4px',
+              border: '2px solid',
+              marginRight: '16px',
+            }}
+            href={PATH.REGISTER}
+          >
+            Registrarme
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={!isFormValid}
+            style={{
+              width: '241.5px',
+              height: '48px',
+              padding: '8px 40px',
+              borderRadius: '4px',
+              marginRight: '16px',
+            }}
+            onClick={() => authenticateUser()}
+          >
+            Iniciar Sesión
+          </Button>
+        </Box>
+      </Grid>
+    </Grid >
   );
 };
-
 
 export default Login;

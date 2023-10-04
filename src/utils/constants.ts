@@ -1,4 +1,4 @@
-export const DEV_URI = "https://apiphsu.lobsys.net/";
+export const DEV_URI = "https://apipepr.lobsys.net/";
 
 export const login = "/login";
 export const register = "/register";

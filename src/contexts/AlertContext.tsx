@@ -11,7 +11,7 @@ type AlertColor = "success" | "info" | "warning" | "error";
 
 const AlertContext = createContext({
   ...initialState,
-  setAlert: (text: string, type: string) => {},
+  setAlert: (text: string, type: string) => { },
 });
 
 export const AlertProvider = ({ children }: AlertProviderProps) => {

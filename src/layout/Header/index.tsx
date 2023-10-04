@@ -7,7 +7,7 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import Logo from "../../assets/images/logo-phsu.png";
+import Logo from "../../assets/images/logo.png";
 import styles from "./Header.module.scss";
 import PersonIcon from "@mui/icons-material/Person";
 import LockRounded from "@mui/icons-material/LockRounded";

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Grid, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box, Button } from "@mui/material";
 import styles from "./styles.module.scss";
-import BasicTable from "./components/table/index";
+
 import useAlert from "@/hooks/useAlert";
 import RequiredDocuments from "./components/RequiredDocuments";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -16,18 +16,10 @@ const Home = () => {
   const token = useAuthStore((state: any) => state.token);
   const navigate = useNavigate();
 
-  const [openModal, setOpenModal] = useState(false);
-  const [docTitle, setDocTitle] = useState("");
-  const [campusId, setCampusId] = useState("");
-  const [documentId, setDocumentId] = useState("");
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const handleModal = (prop: string) => {
-    setDocTitle(prop);
-    setOpenModal(true);
-  };
 
   const handleLogout = async () => {
     try {
@@ -52,8 +44,7 @@ const Home = () => {
       sx={{
         minHeight: "90vh",
         ...(isMobile && {
-          minHeight: "73vh",
-          paddingBottom: "30vh",
+          minHeight: "80vh",
         }),
       }}
     >
@@ -68,78 +59,42 @@ const Home = () => {
           }),
         }}
       >
-        <Box className={styles["text-container"]}></Box>
-      </Grid>
-      <Grid
-        item
-        xs={12}
-        py={4}
-        px={8}
-        className={styles["information-container"]}
-        sx={{
-          ...(isMobile && {
-            paddingLeft: "0rem",
-            paddingTop: "0rem",
-            paddingRight: "0rem",
-          }),
-        }}
-      >
-        <Grid item xs={12}>
-          <Typography
-            variant="h5"
-            className={styles["subtitle"]}
-            sx={{
-              marginTop: "2rem",
-              fontSize: "2rem",
-              paddingBottom: "0.7rem",
-              ...(isMobile && {
-                fontSize: "1.4rem",
-                paddingLeft: "1rem",
-                paddingTop: "2rem",
-              }),
-            }}
-          >
-            Requested Services
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography
-            variant="body1"
-            className={styles["description"]}
-            sx={{
-              marginTop: "2rem",
-              fontSize: "1rem",
-              ...(isMobile && {
-                fontSize: "0.9rem",
-                paddingTop: "1rem",
-                paddingLeft: "1rem",
-              }),
-            }}
-          >
-            Review your service request status and any pending actions.
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sx={{
-            padding: "2rem 0",
-          }}
-        >
-          <BasicTable
-            handleModal={(prop) => handleModal(prop)}
-            setDocumentId={(prop) => setDocumentId(prop)}
-            setCampusId={(prop) => setCampusId(prop)}
-          />
-          {openModal && (
-            <RequiredDocuments
-              title={docTitle}
-              open={openModal}
-              campusId={campusId}
-              documentId={documentId}
-              handleClose={() => setOpenModal(false)}
-            />
-          )}
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item xs={12} sm={8} md={6} lg={4}>
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              height="100%"
+              padding={5}
+              border={1}
+              gap={4}
+              borderRadius={2}
+              borderColor="divider"
+            >
+              <Typography variant="h6" gutterBottom style={{ color: '#FFFFFF', fontSize: '1.5em !important' }}>
+                Bienvenido
+              </Typography>
+              <Typography variant="body1" gutterBottom style={{ color: '#FFFFFF', fontSize: '1em !important' }}>
+                Al Portal de Certificaciones Académicas
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                sx={{
+                  height: 48,
+                  padding: '8px 40px',
+                  borderRadius: 4,
+                  gap: 2,
+                  fontSize: '1em !important'
+                }}
+              >
+                Crear Solicitud
+              </Button>
+            </Box>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

@@ -1,0 +1,80 @@
+@import "../../assets/styles";
+
+@mixin commonTextStyles {
+  color: $white;
+  font-weight: $heavy;
+  font-family: title;
+}
+
+.main-grid-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+
+.column-wrapper {
+  width: 100%; // 100% del ancho de la ventana del navegador
+  display: flex;
+  height: 90vh; // 100% de la altura de la ventana del navegador
+}
+
+.left-div,
+.right-div {
+  flex: 1;
+  height: 100%;
+}
+
+
+.welcome-container {
+  display: flex;
+  max-width: 100%;
+  height: 100%;
+  flex-grow: 1;
+
+  .background-image {
+    background: linear-gradient(to bottom,
+        rgba(0, 153, 153, 0.5),
+        rgba(0, 153, 153, 0.5)),
+      url("../../assets/Asset_1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: right;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; // Aseguramos que la imagen ocupe todo el espacio disponible.
+  }
+
+  .text {
+    @include commonTextStyles;
+    font-size: $bigTitle;
+    margin-bottom: 2rem;
+  }
+
+  .description {
+    @include commonTextStyles;
+    font-size: $bigDescription;
+    width: 60%;
+  }
+}
+
+.services-container {
+  height: 100% !important;
+  padding: 2rem 4rem 0 6rem;
+  flex-grow: 1; // Para que el contenedor de servicios ocupe todo el espacio disponible.
+}
+
+.upper-text-title {
+  color: $warning;
+  font-size: $mainTitle !important;
+  font-weight: bolder !important;
+  font-family: "Montserrat-Medium";
+  margin-bottom: 2rem !important;
+}

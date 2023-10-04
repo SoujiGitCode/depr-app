@@ -1,6 +1,7 @@
 export const PATH = {
   ROOT: "/",
   LOGIN: "/login",
+  DASHBOARD: "/dashboard",
   REGISTER: "/register",
   NOT_FOUND: "/not-found",
   REQUEST_SERVICES: "/request-services",

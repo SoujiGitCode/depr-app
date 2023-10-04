@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
+
 import {
-  Box,
   Grid,
-  TextField,
+  Box,
   Typography,
+  TextField,
   Button,
-  InputAdornment,
+  FormHelperText,
+  FormControl,
+  InputLabel,
+  MenuItem,
   IconButton,
-} from "@mui/material";
+  InputAdornment,
+} from '@mui/material';
+import registerImage from '../../assets/register.png';
+import Radio from '@mui/material/Radio';
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import WarningIcon from "@mui/icons-material/Warning";
 import CustomLabel from "@/components/CustomLabel";
 import { requestRegister } from "./functions";
 import { useFormik } from "formik";
@@ -17,93 +25,147 @@ import * as Yup from "yup";
 import styles from "./Register.module.scss";
 import useAlert from "@/hooks/useAlert";
 import useAuthStore from "@/hooks/useAuthStore";
-import { CustomTextField } from '../Profile/constants';
+import GroupLogo from '@/components/GroupLogoFixed';
+import { PATH } from '@/routes/constants';
+import { ConfirmationModal } from '@/components';
 
-export default function Registration() {
+
+
+const Register = () => {
   const { setAlert } = useAlert();
   const setLogin = useAuthStore((state: any) => state.setLogin);
 
+  const [openModal, setOpenModal] = useState(false);
+
   const [validate, setValidate] = useState(false);
+
+  const listId = [
+    {
+      value: 'licencia',
+      label: 'Licencia',
+    },
+    {
+      value: 'id',
+      label: 'Real Id',
+    },
+  ];
+
+  const listGenre = [
+    {
+      value: 'f',
+      label: 'Femenino',
+    },
+    {
+      value: 'm',
+      label: 'Masculino',
+    },
+    {
+      value: 'n',
+      label: 'No Indica',
+    },
+  ];
+
+
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showSocialSecurity, setShowSocialSecurity] = useState(false);
+  const [selectedValue, setSelectedValue] = useState<string | null>('No');
+
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      phoneNumber: "",
-      studentId: "",
+      docType: listId[0].value,
+      docNumber: "",
       firstName: "",
       middleName: "",
       lastName: "",
       secondLastName: "",
+      firstNameDepr: "",
+      middleNameDepr: "",
+      lastNameDepr: "",
+      secondLastNameDepr: "",
       birthdate: "",
-      addressLine1: "",
-      addressLine2: "",
-      addressState: "",
-      addressCity: "",
-      addressZipcode: "",
+      genre: listGenre[0].value,
+      phoneNumber: "",
+      socialSecurity: "",
+      email: "",
       password: "",
       repeatPassword: "",
     },
     validationSchema: Yup.object({
+      docNumber: Yup.string()
+        .required("Número de documento requerido")
+        .matches(/^[0-9]+$/, "solo debe contener números")
+        .max(20, "máximo 20 caracteres"),
+
       firstName: Yup.string()
-        .matches(/^[A-Za-z]+$/, "First Name should only contain letters")
-        .required("First Name is required")
-        .max(20, "First Name must be at most 20 characters"),
+        .matches(/^[A-Za-z]+$/, "El Primer Nombre solo debe contener letras")
+        .required("Primer Nombre requerido")
+        .max(20, "máximo 20 caracteres"),
+
+      middleName: Yup.string()
+        .matches(/^[A-Za-z]+$/, "El Segundo Nombre solo debe contener letras")
+        .max(20, "máximo 20 caracteres"),
 
       lastName: Yup.string()
-        .matches(/^[A-Za-z]+$/, "Last Name should only contain letters")
-        .required("Last Name is required")
-        .max(20, "Last Name must be at most 20 characters"),
+        .matches(/^[A-Za-z]+$/, "El Apellido solo debe contener letras")
+        .required("Apellido requerido")
+        .max(20, "máximo 20 caracteres"),
 
-      secondLastName: Yup.string().max(
-        20,
-        "Second Last Name must be at most 20 characters"
-      ),
+      secondLastName: Yup.string()
+        .matches(/^[A-Za-z]+$/, "El Segundo Apellido solo debe contener letras")
+        .max(20, "máximo 20 caracteres"
+        ),
+
+      firstNameDepr: Yup.string()
+        .matches(/^[A-Za-z]+$/, "El nombre solo debe contener letras")
+        .required("Primer nombre requerido")
+        .max(20, "máximo 20 caracteres"),
+
+      middleNameDepr: Yup.string()
+        .matches(/^[A-Za-z]+$/, "El Segundo Nombre solo debe contener letras")
+        .max(20, "máximo 20 caracteres"),
+
+      lastNameDepr: Yup.string()
+        .matches(/^[A-Za-z]+$/, "El Apellido solo debe contener letras")
+        .required("Apellido requerido")
+        .max(20, "máximo 20 caracteres"),
+
+      secondLastNameDepr: Yup.string()
+        .matches(/^[A-Za-z]+$/, "El Segundo Apellido solo debe contener letras")
+        .max(20, "máximo 20 caracteres"
+        ),
 
       email: Yup.string()
-        .email("Invalid email address")
-        .required("Email is required")
-        .max(100, "Email must be at most 100 characters"),
+        .email("Dirección de correo electrónico no válida")
+        .required("Correo electronico es requerido")
+        .max(100, "máximo 100 caracteres"),
 
       phoneNumber: Yup.string()
-        .required("Cell Phone is required")
-        .matches(/^[0-9]+$/, "Cell Phone should only contain numbers")
-        .max(20, "Cell Phone must be at most 20 characters"),
+        .required("Teléfono requerido")
+        .matches(/^[0-9]+$/, "solo debe contener números")
+        .max(20, "máximo 20 caracteres"),
 
-      studentId: Yup.number()
-        .required("Student ID is required")
-        .typeError("Student ID must be a number"),
+      socialSecurity: Yup.string()
+        .required("Seguro Social requerido")
+        .matches(/^[0-9]+$/, "solo debe contener números")
+        .max(20, "máximo 20 caracteres"),
 
-      middleName: Yup.string().max(
-        20,
-        "Middle Name must be at most 20 characters"
-      ),
-      birthdate: Yup.string().required("Birthdate is required"),
-      addressLine1: Yup.string()
-        .required("Address Line 1 is required")
-        .max(40, "Address Line 1 must be at most 40 characters"),
-      addressLine2: Yup.string()
-        .required("Address Line 2 is required")
-        .max(40, "Address Line 2 must be at most 40 characters"),
-      addressState: Yup.string()
-        .required("Address State is required")
-        .max(40, "Address State must be at most 40 characters"),
-      addressCity: Yup.string()
-        .required("Address City is required")
-        .max(25, "Address City must be at most 25 characters"),
-      addressZipcode: Yup.number()
-        .typeError("Address Zip Code must be a number")
-        .required("Address Zip Code is required"),
+      birthdate: Yup.string().required("Fecha de nacimiento requerida"),
+
       password: Yup.string()
-        .required("Password is required")
+        .required("Contraseña no puede estar vacío")
         .matches(
           /^(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\;])[a-zA-Z\d!@#$%^&*()\;]{8,}$/,
-          "Password must have at least 8 characters, a number, a capital letter and a symbol"
+          "La contraseña debe tener al menos 8 caracteres, un número, una letra mayúscula y un símbolo"
         )
-        .max(20, "Password must be at most 20 characters"),
+        .max(20, "máximo 20 caracteres"),
       repeatPassword: Yup.string()
-        .required("Confirm password is required")
-        .oneOf([Yup.ref('password')], 'Passwords must match')
-        .max(20, "Password must be at most 20 characters"),
+        .required("Confirmar Contraseña no puede estar vacío")
+        .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir')
+        .max(20, "máximo 20 caracteres"),
     }),
 
     onSubmit: () => {
@@ -114,86 +176,37 @@ export default function Registration() {
     validateOnBlur: true,
   });
 
-  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
+
   const onCancelRegister = () => {
     navigate("/");
   };
 
-  const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const OnChangeSelectedValue = (value: string) => {
+    setSelectedValue(value);
+
+    formik.setFieldValue("firstNameDepr", value === 'No' ? "" : formik.values.firstName);
+    formik.setFieldValue("middleNameDepr", value === 'No' ? "" : formik.values.middleName);
+    formik.setFieldValue("lastNameDepr", value === 'No' ? "" : formik.values.lastName);
+    formik.setFieldValue("secondLastNameDepr", value === 'No' ? "" : formik.values.secondLastName);
   };
 
-  const primaryColor = "#009999";
-  const placeholderColor = "rgba(51, 51, 51, 0.4)";
-
-  const customTextField = {
-    width: "90%",
-    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: primaryColor,
-      borderRadius: 0,
-      border: "2px solid " + primaryColor,
-    },
-    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: primaryColor,
-    },
-    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: primaryColor,
-    },
-    "& .MuiInputLabel-outlined": {
-      fontSize: "1rem",
-      color: placeholderColor,
-    },
-    "& .MuiInputLabel-outlined.Mui-focused": {
-      color: primaryColor,
-    },
-    "& .MuiOutlinedInput-input": {
-      padding: "0.7rem",
-    },
+  const customSubmit = () => {
+    setOpenModal(true)
   };
 
-  const Date = {
-    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#009999",
-      borderRadius: 0,
-      border: "2px solid " + "#009999",
-    },
-    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#009999",
-    },
-    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#009999",
-    },
-    "& .MuiInputLabel-outlined": {
-      fontSize: "1rem",
-      color: "#333333",
-    },
-    "& .MuiInputLabel-outlined.Mui-focused": {
-      color: "#009999",
-    },
-    "& .MuiOutlinedInput-input": {
-      padding: "0.7rem",
-    },
-  };
 
   // Send data user
   const senUserForRegister = async () => {
     try {
       await requestRegister({
         email: formik.values.email,
-        cell_phone: formik.values.phoneNumber,
-        student_id: formik.values.studentId,
         first_name: formik.values.firstName,
         middle_name: formik.values.middleName,
         last_name: formik.values.lastName,
         second_last_name: formik.values.secondLastName,
         birthdate: formik.values.birthdate,
-        address_line1: formik.values.addressLine1,
-        address_line2: formik.values.addressLine2,
-        address_state: formik.values.addressState,
-        address_city: formik.values.addressCity,
-        address_zipcode: formik.values.addressZipcode,
         password: formik.values.password,
       });
       setAlert("Register successfully!", "success");
@@ -208,358 +221,549 @@ export default function Registration() {
     senUserForRegister();
     setValidate(false);
   }
-
   return (
-    <Box className={styles.wrapper}>
-      <Typography variant="h4" gutterBottom className={styles.title}>
-        Registration
-      </Typography>
+    <Grid container style={{ width: '100%', margin: 0 }}>
+      <Grid item xs={6} style={{ overflow: 'hidden', height: 'auto' }}>
+        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img src={registerImage} alt="login" style={{ width: '100%', height: '100%' }} />
+        </div>
+      </Grid>
+      <Grid item xs={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2em' }}>
+        <form style={{ width: '80%' }} onSubmit={formik.handleSubmit}>
+          <Typography variant="body1" gutterBottom sx={{ color: '#807BB8', fontSize: '2.2em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
+            Registro
+          </Typography>
 
-      <form onSubmit={formik.handleSubmit}>
-        {/* Personal Information Section */}
-        <Grid container spacing={2} sx={{ py: 1 }}>
-          <Grid item xs={12}>
-            <Typography variant="h6" gutterBottom>
-              Personal Information
-            </Typography>
-          </Grid>
+          <Box>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sx={{ marginBottom: '-1em !important' }}>
+                <CustomLabel name="Documento de Identidad" required={true} />
+              </Grid>
+              <Grid item xs={6}>
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
+                  <TextField
+                    select
+                    name="docType"
+                    id="docType"
+                    type="text"
+                    variant="outlined"
+                    value={formik.values.docType}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.docType && Boolean(formik.errors.docType)}
+                    helperText={formik.touched.docType && formik.errors.docType}
 
-          {/* FistName */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="First Name" required={true} />
-            <TextField
-              id="firstName"
-              name="firstName"
-              placeholder="First Name"
-              type="text"
-              value={formik.values.firstName}
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              sx={customTextField}
-              error={
-                formik.touched.firstName && Boolean(formik.errors.firstName)
-              }
-              helperText={formik.touched.firstName && formik.errors.firstName}
-            />
-          </Grid>
+                  >
+                    {listId.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </FormControl>
+              </Grid>
 
-          {/* ---------------------------Middle Name---------------------------------------- */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Middle Name" required={false} />
-            <TextField
-              type="text"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              placeholder="Middle Name"
-              name="middleName"
-              value={formik.values.middleName}
-              sx={customTextField}
-              error={
-                formik.touched.middleName && Boolean(formik.errors.middleName)
-              }
-              helperText={formik.touched.middleName && formik.errors.middleName}
-            />
-          </Grid>
-
-          {/* ---------------------------LastName------------------------------------------ */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Last Name" required={true} />
-            <TextField
-              type="text"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              name="lastName"
-              placeholder="Last Name"
-              value={formik.values.lastName}
-              sx={customTextField}
-              error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-              helperText={formik.touched.lastName && formik.errors.lastName}
-            />
-          </Grid>
-          {/* ------------------------------Second LastName-------------------------------------- */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Second Last Name" required={false} />
-            <TextField
-              sx={customTextField}
-              name="secondLastName"
-              type="text"
-              placeholder="Second Last Name"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              value={formik.values.secondLastName}
-              error={
-                formik.touched.secondLastName &&
-                Boolean(formik.errors.secondLastName)
-              }
-              helperText={
-                formik.touched.secondLastName && formik.errors.secondLastName
-              }
-            />
-          </Grid>
-          {/* ------------------------------------------- Date of Birth --------------------------------------- */}
-
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Date of Birth" required={true} />
-            <TextField
-              id="birthdate"
-              name="birthdate"
-              value={formik.values.birthdate}
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              error={formik.touched.birthdate && !!formik.errors.birthdate}
-              helperText={formik.touched.birthdate && formik.errors.birthdate}
-              sx={{ ...CustomTextField, width: '90%' }}
-              type="date"
-            />
-          </Grid>
-
-          {/* --------------------------------Phone Number-------------------------------------------------- */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Phone Number" required={true} />
-            <TextField
-              sx={customTextField}
-              name="phoneNumber"
-              type="text"
-              placeholder="Phone Number"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              value={formik.values.phoneNumber}
-              error={
-                formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
-              }
-              helperText={
-                formik.touched.phoneNumber && formik.errors.phoneNumber
-              }
-            />
-          </Grid>
-
-          {/* ----------------------------------------Email ---------------------------------------- */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Email" required={true} />
-            <TextField
-              sx={customTextField}
-              name="email"
-              type="email"
-              placeholder="Email"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              value={formik.values.email}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-            />
-          </Grid>
-
-          {/*---------------------------Student Id--------------------------------------  */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Student Id" required={true} />
-            <TextField
-              sx={customTextField}
-              name="studentId"
-              placeholder="Student ID"
-              type="text"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              value={formik.values.studentId}
-              error={
-                formik.touched.studentId && Boolean(formik.errors.studentId)
-              }
-              helperText={formik.touched.studentId && formik.errors.studentId}
-            />
-          </Grid>
-        </Grid>
-
-        {/* Address Section */}
-        <Grid container spacing={2} sx={{ py: 1 }}>
-          <Grid item xs={12}>
-            <Typography variant="h6" gutterBottom>
-              Address
-            </Typography>
-          </Grid>
-          {/* --------------------------Adress Line 1----------------------------------------------- */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Adress Line 1" required={true} />
-            <TextField
-              type="text"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              placeholder="Address Line 1"
-              name="addressLine1"
-              value={formik.values.addressLine1}
-              sx={customTextField}
-              error={
-                formik.touched.addressLine1 &&
-                Boolean(formik.errors.addressLine1)
-              }
-              helperText={
-                formik.touched.addressLine1 && formik.errors.addressLine1
-              }
-            />
-          </Grid>
-          {/* ----------------------------"Adress Line 2----------------------------------------------- */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Adress Line 2" required={true} />
-            <TextField
-              type="text"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              placeholder="Address Line 2"
-              name="addressLine2"
-              value={formik.values.addressLine2}
-              sx={customTextField}
-              error={
-                formik.touched.addressLine2 &&
-                Boolean(formik.errors.addressLine2)
-              }
-              helperText={
-                formik.touched.addressLine2 && formik.errors.addressLine2
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="City" required={true} />
-            <TextField
-              type="text"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              placeholder="Address City"
-              name="addressCity"
-              value={formik.values.addressCity}
-              sx={customTextField}
-              error={
-                formik.touched.addressCity && Boolean(formik.errors.addressCity)
-              }
-              helperText={
-                formik.touched.addressCity && formik.errors.addressCity
-              }
-            />
-          </Grid>
-
-          {/* -----------------------------State --------------------------------------------------------  */}
-
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="State" required={true} />
-            <TextField
-              type="text"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              placeholder="State"
-              name="addressState"
-              value={formik.values.addressState}
-              sx={customTextField}
-              error={
-                formik.touched.addressState &&
-                Boolean(formik.errors.addressState)
-              }
-              helperText={
-                formik.touched.addressState && formik.errors.addressState
-              }
-            />
-          </Grid>
-
-          {/* ------------------------------------------------Zip Code----------------------------------- */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Zip Code" required={true} />
-            <TextField
-              type="text"
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              placeholder="Address Zipcode"
-              name="addressZipcode"
-              value={formik.values.addressZipcode}
-              sx={customTextField}
-              error={
-                formik.touched.addressZipcode &&
-                Boolean(formik.errors.addressZipcode)
-              }
-              helperText={
-                formik.touched.addressZipcode && formik.errors.addressZipcode
-              }
-            />
-          </Grid>
-        </Grid>
-
-        {/* Password Creation Section */}
-        <Grid container spacing={2} sx={{ py: 1 }}>
-          <Grid item xs={12}>
-            <Typography variant="h6" gutterBottom>
-              Creation of Password
-            </Typography>
-          </Grid>
-
-          {/* -------------------------------------------------Password -----------------------------------------*/}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Password" required={true} />
-            <TextField
-              sx={customTextField}
-              placeholder="Password"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              size="small"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={handleTogglePasswordVisibility}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
-            />
-          </Grid>
-
-          {/* --------------------------------------------Repeat Password -------------------------------------------------------- */}
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomLabel name="Confirm Password" required={true} />
-            <TextField
-              sx={customTextField}
-              placeholder="Confirm Password"
-              name="repeatPassword"
-              type={showPassword ? "text" : "password"}
-              value={formik.values.repeatPassword}
-              onChange={formik.handleChange} onBlur={formik.handleBlur}
-              size="small"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={handleTogglePasswordVisibility}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              error={
-                formik.touched.repeatPassword &&
-                Boolean(formik.errors.repeatPassword)
-              }
-              helperText={
-                formik.touched.repeatPassword && formik.errors.repeatPassword
-              }
-            />
-          </Grid>
-        </Grid>
-
-        <Box sx={{ marginBottom: "3rem !important" }}>
-          <Grid container spacing={2} justifyContent="start" sx={{ py: 4 }}>
-            <Grid item xs={12} sm={3}>
-              <Button
-                variant="outlined"
-                className={styles.cancelButton}
-                fullWidth
-                onClick={onCancelRegister}
-              >
-                Cancel
-              </Button>
+              <Grid item xs={6}>
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
+                  <TextField
+                    placeholder="Número de documento"
+                    name="docNumber"
+                    id="docNumber"
+                    type="text"
+                    variant="outlined"
+                    value={formik.values.docNumber}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.docNumber && Boolean(formik.errors.docNumber)}
+                    helperText={formik.touched.docNumber && formik.errors.docNumber}
+                  />
+                </FormControl>
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={3}>
-              <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                className={styles.submitButton}
-              >
-                Sign up
-              </Button>
+          </Box>
+
+          <Box>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <CustomLabel name="Primer Nombre" required={true} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='Primer Nombre'
+                    name="firstName"
+                    id="firstName"
+                    type="text"
+                    variant="outlined"
+                    value={formik.values.firstName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                    helperText={formik.touched.firstName && formik.errors.firstName}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={6}>
+                <CustomLabel name="Segundo Nombre" required={false} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='Segundo Nombre'
+                    name="middleName"
+                    id="middleName"
+                    type="text"
+                    variant="outlined"
+                    value={formik.values.middleName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.middleName && Boolean(formik.errors.middleName)}
+                    helperText={formik.touched.middleName && formik.errors.middleName}
+                  />
+                </FormControl>
+              </Grid>
+
             </Grid>
-          </Grid>
-        </Box>
-      </form>
-    </Box>
+          </Box>
+
+          <Box>
+            <Grid container spacing={2}>
+
+              <Grid item xs={6}>
+                <CustomLabel name="Primer Apellido" required={true} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='Primer Apellido'
+                    name="lastName"
+                    id="lastName"
+                    type="text"
+                    variant="outlined"
+                    value={formik.values.lastName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                    helperText={formik.touched.lastName && formik.errors.lastName}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={6}>
+                <CustomLabel name="Segundo Apellido" required={false} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='Segundo Apellido'
+                    name="secondLastName"
+                    id="secondLastName"
+                    type="text"
+                    variant="outlined"
+                    value={formik.values.secondLastName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.secondLastName && Boolean(formik.errors.secondLastName)}
+                    helperText={formik.touched.secondLastName && formik.errors.secondLastName}
+                  />
+                </FormControl>
+              </Grid>
+
+            </Grid>
+          </Box>
+
+
+          {/*--------------------WARNING Card------------------*/}
+          <Box display="flex" alignItems="center" mt={2} mb={2}
+            justifyContent="center"
+            sx={{
+              background: '#FFF4E5',
+              marginTop: '2em !important',
+              marginBottom: '2em !important',
+              width: 'calc(100% + 16px)'
+            }}>
+            <IconButton color="warning">
+              <WarningIcon fontSize="large" />
+            </IconButton>
+            <Typography variant="body1" color="textPrimary" flexGrow={1}
+              sx={{
+                padding: '1em'
+              }}>
+              ¿Los datos de la licencia de conducir o Real ID del solicitante (Nombre y Apellido) son diferentes a la información registrada en el Departamento de Educación (DEPR)?
+            </Typography>
+            <Box display="flex" alignItems="center" gap={1} sx={{ marginRight: '8px !important', }}>
+              <Radio
+                checked={selectedValue === 'Si'}
+                onChange={() => OnChangeSelectedValue('Si')}
+                value="Si"
+                name="unique-radio-buttons"
+                color="primary"
+                sx={{
+                  width: "24px",
+                  height: "24px",
+                  padding: "2px",
+                  '&.Mui-checked': {
+                    color: '#333333',
+                  }
+                }}
+              />
+              <Typography variant="body1" color="textPrimary">Sí</Typography>
+            </Box>
+            <Box display="flex" alignItems="center" ml={2} gap={1} sx={{ marginRight: '1em !important' }}>
+              <Radio
+                checked={selectedValue === 'No'}
+                onChange={() => OnChangeSelectedValue('No')}
+                value="No"
+                name="unique-radio-buttons"
+                color="primary"
+                sx={{
+                  width: "24px",
+                  height: "24px",
+                  padding: "2px",
+                  '&.Mui-checked': {
+                    color: '#333333',
+                  }
+                }}
+              />
+              <Typography variant="body1" color="textPrimary">No</Typography>
+            </Box>
+          </Box>
+
+          {/*--------------------DEPR personal data------------------*/}
+          {selectedValue === "Si" &&
+            <>
+              <Box>
+                <Grid item xs={12}>
+                  <Typography variant='body1' textAlign="center">Datos Personales en Educación (DEPR)</Typography>
+                </Grid>
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <CustomLabel name="Primer Nombre" required={true} />
+                    <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                      <TextField
+                        placeholder='Primer Nombre DEPR'
+                        name="firstNameDepr"
+                        id="firstNameDepr"
+                        type="text"
+                        variant="outlined"
+                        value={formik.values.firstNameDepr}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={formik.touched.firstNameDepr && Boolean(formik.errors.firstNameDepr)}
+                        helperText={formik.touched.firstNameDepr && formik.errors.firstNameDepr}
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <CustomLabel name="Segundo Nombre" required={false} />
+                    <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                      <TextField
+                        placeholder='Segundo Nombre DEPR'
+                        name="middleNameDepr"
+                        id="middleNameDepr"
+                        type="text"
+                        variant="outlined"
+                        value={formik.values.middleNameDepr}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={formik.touched.middleNameDepr && Boolean(formik.errors.middleNameDepr)}
+                        helperText={formik.touched.middleNameDepr && formik.errors.middleNameDepr}
+                      />
+                    </FormControl>
+                  </Grid>
+
+                </Grid>
+              </Box>
+
+              <Box>
+
+                <Grid container spacing={2}>
+
+                  <Grid item xs={6}>
+                    <CustomLabel name="Primer Apellido" required={true} />
+                    <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                      <TextField
+                        placeholder='Primer Apellido DEPR'
+                        name="lastNameDepr"
+                        id="lastNameDepr"
+                        type="text"
+                        variant="outlined"
+                        value={formik.values.lastNameDepr}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={formik.touched.lastNameDepr && Boolean(formik.errors.lastNameDepr)}
+                        helperText={formik.touched.lastNameDepr && formik.errors.lastNameDepr}
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <CustomLabel name="Segundo Apellido" required={false} />
+                    <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                      <TextField
+                        placeholder='Segundo Apellido DEPR'
+                        name="secondLastNameDepr"
+                        id="secondLastNameDepr"
+                        type="text"
+                        variant="outlined"
+                        value={formik.values.secondLastNameDepr}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={formik.touched.secondLastNameDepr && Boolean(formik.errors.secondLastNameDepr)}
+                        helperText={formik.touched.secondLastNameDepr && formik.errors.secondLastName}
+                      />
+                    </FormControl>
+                  </Grid>
+
+                </Grid>
+              </Box>
+            </>
+          }
+
+          {/*--------------------END DEPR personal data---------------*/}
+
+          <Box>
+            <Grid container spacing={2} sx={{ marginBottom: '1.5em !important' }}>
+
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <CustomLabel name="Fecha de Nacimiento" required={true} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='Fecha de Nacimiento'
+                    id="birthdate"
+                    name="birthdate"
+                    type="date"
+                    value={formik.values.birthdate}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.birthdate && Boolean(formik.errors.birthdate)}
+                    helperText={formik.touched.birthdate && formik.errors.birthdate}
+                    inputProps={{
+                      max: new Date().toISOString().split("T")[0],  // Limita la fecha a hoy
+                    }}
+                  />
+
+                </FormControl>
+              </Grid>
+              <Grid item xs={6}>
+                <CustomLabel name="Género" required={false} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    select
+                    name="genre"
+                    id="genre"
+                    type="text"
+                    variant="outlined"
+                    value={formik.values.genre}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.genre && Boolean(formik.errors.genre)}
+                    helperText={formik.touched.genre && formik.errors.genre}
+
+                  >
+                    {listGenre.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </FormControl>
+              </Grid>
+
+            </Grid>
+            <Grid container justifyContent="center" alignItems="center" spacing={0}>
+              <Grid item xs={12} sx={{ position: 'relative', marginBottom: '-1.5em !important' }}>
+                <GroupLogo bottom={80} />
+              </Grid>
+            </Grid>
+
+          </Box>
+
+          <Box>
+            <Grid container spacing={2}>
+
+              <Grid item xs={6}>
+                <CustomLabel name="Teléfono" required={true} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='Teléfono'
+                    name="phoneNumber"
+                    id="phoneNumber"
+                    type="text"
+                    variant="outlined"
+                    value={formik.values.phoneNumber}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
+                    helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={6}>
+                <CustomLabel name="Seguro Social" required={false} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='N° Seguro Social'
+                    name="socialSecurity"
+                    id="secondLastName"
+                    type={showSocialSecurity ? "text" : "password"}
+                    variant="outlined"
+                    value={formik.values.socialSecurity}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.socialSecurity && Boolean(formik.errors.socialSecurity)}
+                    helperText={formik.touched.socialSecurity && formik.errors.socialSecurity}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            edge="end"
+                            onClick={() => setShowSocialSecurity(!showSocialSecurity)}
+                          >
+                            {showSocialSecurity ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </FormControl>
+              </Grid>
+
+            </Grid>
+          </Box>
+
+
+          <Box>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <CustomLabel name="Correo Eléctronico" required={true} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='Correo Eléctronico'
+                    name="email"
+                    id="email"
+                    type="text"
+                    variant="outlined"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
+                  />
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12}>
+                <CustomLabel name="Contraseña" required={true} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='Contraseña'
+                    name="password"
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    variant="outlined"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.password && Boolean(formik.errors.password)}
+                    helperText={formik.touched.password && formik.errors.password}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            edge="end"
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <CustomLabel name="Confirmar Contraseña" required={false} />
+                <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+                  <TextField
+                    placeholder='Confirmar Contraseña'
+                    name="repeatPassword"
+                    id="repeatPassword"
+                    type={showPassword ? "text" : "password"}
+                    variant="outlined"
+                    value={formik.values.repeatPassword}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.repeatPassword && Boolean(formik.errors.repeatPassword)}
+                    helperText={formik.touched.repeatPassword && formik.errors.repeatPassword}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            edge="end"
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+
+                </FormControl>
+              </Grid>
+
+            </Grid>
+          </Box>
+
+          <Box display="flex" alignItems="center" sx={{ marginBottom: '2.5em !important', marginTop: '2.5em !important', padding: '1.5em' }}>
+            <IconButton color="warning">
+              <WarningIcon />
+            </IconButton>
+            <Typography variant="body1" ml={2}>
+              Al presionar el botón de continuar, confirma que ha leído las advertencias y acepta las Condiciones de Uso.
+            </Typography>
+          </Box>
+
+          <Box mt={2} sx={{ gap: 2, width: '100%', display: 'flex', justifyContent: 'center' }}>
+
+            <Button
+              variant="outlined"
+              color="primary"
+              style={{
+                width: '241.5px',
+                height: '48px',
+                padding: '8px 40px',
+                borderRadius: '4px',
+                border: '2px solid',
+                marginRight: '16px',
+                fontSize: '0.7em'
+              }}
+              href={PATH.LOGIN}
+            >
+              Ya Tengo una cuenta
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={!formik.isValid}
+              style={{
+                width: '241.5px',
+                height: '48px',
+                padding: '8px 40px',
+                borderRadius: '4px',
+                marginRight: '16px',
+                fontSize: '0.7em'
+              }}
+              onClick={() => customSubmit()}
+            >
+              Registrarme
+            </Button>
+          </Box>
+        </form>
+
+
+      </Grid>
+      <ConfirmationModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        type="error"
+      />
+    </Grid >
   );
-}
+};
+
+export default Register;

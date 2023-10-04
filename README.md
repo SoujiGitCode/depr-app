@@ -1,10 +1,8 @@
 # DEPR System
 
-WIP
 
 ## Description
 
-WIP
 
 ## Getting Started
 
