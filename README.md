@@ -1,4 +1,4 @@
-# DEPR System
+# DEPR Web System
 
 
 ## Description
@@ -8,7 +8,7 @@
 
 ### Dependencies
 
-- React Based
+- React - Typescript Based
 
 ### Installing
 
