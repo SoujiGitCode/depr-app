@@ -12,7 +12,6 @@ import { styled } from '@mui/system';
 
 import paper from "../../assets/images/icon-paper.png"
 import student from "../../assets/images/icon-student.png"
-import GroupLogo from "@/components/GroupLogoFixed"
 
 const cardData = [
   {
@@ -81,7 +80,6 @@ const Landing = () => {
               Conoce los Tipos de Certificaciones Académicas
             </Typography>
 
-            <GroupLogo />
           </Grid>
 
           {/* Contenido de Certificaciones */}

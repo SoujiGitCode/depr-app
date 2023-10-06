@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import { Sidebar, Footer } from "@/layout";
 import { Outlet } from "react-router-dom";
 import AlertPopup from "@/components/AlertPopup";
+import AccessibilityWidget from "@/components/AccessibilityWidget";
 
 const AuthorizedLayout = () => {
   return (
@@ -18,6 +19,7 @@ const AuthorizedLayout = () => {
         <Footer />
       </Grid>
 
+      <AccessibilityWidget />
     </Grid>
   );
 };

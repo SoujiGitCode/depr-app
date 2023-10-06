@@ -3,3 +3,4 @@ export { default as Alert } from "./AlertPopup";
 export { default as CustomLabel } from "./CustomLabel";
 export { default as Carousel } from "./Carousel";
 export { default as ConfirmationModal } from "./ConfirmationModal";
+export { default as AccessibilityWidget } from "./AccessibilityWidget";

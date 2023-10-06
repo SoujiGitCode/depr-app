@@ -25,7 +25,6 @@ import * as Yup from "yup";
 import styles from "./Register.module.scss";
 import useAlert from "@/hooks/useAlert";
 import useAuthStore from "@/hooks/useAuthStore";
-import GroupLogo from '@/components/GroupLogoFixed';
 import { PATH } from '@/routes/constants';
 import { ConfirmationModal } from '@/components';
 
@@ -563,12 +562,6 @@ const Register = () => {
               </Grid>
 
             </Grid>
-            <Grid container justifyContent="center" alignItems="center" spacing={0}>
-              <Grid item xs={12} sx={{ position: 'relative', marginBottom: '-1.5em !important' }}>
-                <GroupLogo bottom={80} />
-              </Grid>
-            </Grid>
-
           </Box>
 
           <Box>

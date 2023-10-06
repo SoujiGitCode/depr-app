@@ -2,11 +2,12 @@
 
 .footerContainer {
     display: flex;
-    background-color: #333333;
+    background-color: #272727;
     color: #fff;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Medium';
     justify-content: center;
-    font-size: 16px;
+    font-size: 15px;
+    transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
 }
 
 .footerTitle {
@@ -37,4 +38,10 @@
     font-size: 12px !important;
     font-family: 'Montserrat-Medium' !important;
     font-weight: light !important;
+}
+
+
+svg {
+
+    fill: #FFFFFF !important;
 }

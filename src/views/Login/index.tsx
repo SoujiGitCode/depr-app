@@ -49,7 +49,7 @@ const Login = () => {
     <Grid container style={{ width: '100%', margin: 0 }}>
       <Grid item xs={6} style={{ overflow: 'hidden', height: '620px' }}>
         <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src={loginImage} alt="login" style={{ width: '100%', height: '100%' }} />
+          <img src={loginImage} alt="login" style={{ width: 'auto', height: 'auto0' }} />
         </div>
       </Grid>
       <Grid item xs={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2em' }}>
