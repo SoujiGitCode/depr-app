@@ -364,60 +364,70 @@ const Register = () => {
 
 
           {/*--------------------WARNING Card------------------*/}
-          <Box display="flex" alignItems="center" mt={2} mb={2}
-            justifyContent="center"
+          <Box mt={2} mb={2} justifyContent="center"
             sx={{
               background: '#FFF4E5',
               marginTop: '2em !important',
               marginBottom: '2em !important',
               width: 'calc(100% + 16px)'
-            }}>
-            <IconButton color="warning">
-              <WarningIcon fontSize="large" />
-            </IconButton>
-            <Typography variant="body1" color="textPrimary" flexGrow={1}
-              sx={{
-                padding: '1em'
-              }}>
-              ¿Los datos de la licencia de conducir o Real ID del solicitante (Nombre y Apellido) son diferentes a la información registrada en el Departamento de Educación (DEPR)?
-            </Typography>
-            <Box display="flex" alignItems="center" gap={1} sx={{ marginRight: '8px !important', }}>
-              <Radio
-                checked={selectedValue === 'Si'}
-                onChange={() => OnChangeSelectedValue('Si')}
-                value="Si"
-                name="unique-radio-buttons"
-                color="primary"
-                sx={{
-                  width: "24px",
-                  height: "24px",
-                  padding: "2px",
-                  '&.Mui-checked': {
-                    color: '#333333',
-                  }
-                }}
-              />
-              <Typography variant="body1" color="textPrimary">Sí</Typography>
-            </Box>
-            <Box display="flex" alignItems="center" ml={2} gap={1} sx={{ marginRight: '1em !important' }}>
-              <Radio
-                checked={selectedValue === 'No'}
-                onChange={() => OnChangeSelectedValue('No')}
-                value="No"
-                name="unique-radio-buttons"
-                color="primary"
-                sx={{
-                  width: "24px",
-                  height: "24px",
-                  padding: "2px",
-                  '&.Mui-checked': {
-                    color: '#333333',
-                  }
-                }}
-              />
-              <Typography variant="body1" color="textPrimary">No</Typography>
-            </Box>
+            }}
+          >
+            <Grid container alignItems="center" spacing={3}>
+              <Grid item xs={1}>
+                <IconButton color="warning">
+                  <WarningIcon fontSize="large" />
+                </IconButton>
+              </Grid>
+
+              <Grid item xs={8}>
+                <Typography variant="body1" color="textPrimary">
+                  ¿Los datos de la licencia de conducir o Real ID del solicitante (Nombre y Apellido) son diferentes a la información registrada en el Departamento de Educación (DEPR)?
+                </Typography>
+              </Grid>
+
+              <Grid item xs={3}>
+                <Box display="flex" alignItems="center" justifyContent="left" width="100%" gap={2}>
+                  <Box display="flex" alignItems="center" gap={0}>
+                    <Radio
+                      checked={selectedValue === 'Si'}
+                      onChange={() => OnChangeSelectedValue('Si')}
+                      value="Si"
+                      name="unique-radio-buttons"
+                      color="primary"
+                      sx={{
+                        width: "24px",
+                        height: "24px",
+                        padding: "2px",
+                        '&.Mui-checked': {
+                          color: '#333333',
+                        }
+                      }}
+                    />
+                    <Typography variant="body1" color="textPrimary">Sí</Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center" gap={0}>
+                    <Radio
+                      checked={selectedValue === 'No'}
+                      onChange={() => OnChangeSelectedValue('No')}
+                      value="No"
+                      name="unique-radio-buttons"
+                      color="primary"
+                      sx={{
+                        width: "24px",
+                        height: "24px",
+                        padding: "2px",
+                        '&.Mui-checked': {
+                          color: '#333333',
+                        }
+                      }}
+                    />
+                    <Typography variant="body1" color="textPrimary">No</Typography>
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
           </Box>
+
 
           {/*--------------------DEPR personal data------------------*/}
           {selectedValue === "Si" &&
