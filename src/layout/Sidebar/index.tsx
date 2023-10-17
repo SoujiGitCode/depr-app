@@ -39,13 +39,13 @@ const Sidebar = () => {
         children={<FeedIcon sx={{ color: "white", fontSize: "1.5rem" }} />}
         text="Solicitudes"
         redirect={PATH.DASHBOARD}
-      // redirect={PATH.REQUEST_SERVICES}
+        // redirect={PATH.REQUEST_SERVICES}
       />
       <Options
         children={<PersonIcon sx={{ color: "white", fontSize: "1.5rem" }} />}
         text="Profile"
-        redirect={PATH.DASHBOARD}
-      // redirect={PATH.PROFILE}
+        redirect={PATH.PROFILE}
+        // redirect={PATH.PROFILE}
       />
 
       <Box onClick={handleLogout}>
