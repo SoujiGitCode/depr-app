@@ -1,13 +1,34 @@
-import { Grid, Button, Typography, Box, Divider, Paper } from "@mui/material";
+import { Grid, Button, Typography, Box, Divider } from "@mui/material";
 import { useState } from "react";
 import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { validationSchema } from "./validations";
 import styles from "./profile.module.scss";
 
 const Profile = () => {
+  const getFormattedDate = (dateString) => {
+    console.log(dateString);
+    if (!dateString) {
+      return ""; // Devuelve una cadena vacía si la fecha es nula o indefinida
+    }
+
+    const date = new Date(dateString);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString("es-ES", options);
+  };
+
   const [isEditMode, setIsEditMode] = useState(false);
+  const [formValues, setFormValues] = useState({
+    name: "",
+    social_security: "",
+    birth_date: "",
+    phone_number: "",
+    email: "",
+    school: "",
+    title1: "",
+    title2: "",
+    title3: "",
+  });
 
   const editMode = () => {
     setIsEditMode(!isEditMode);
@@ -49,6 +70,7 @@ const Profile = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            width: "100%",
           }}
           sm={5}
         >
@@ -66,87 +88,83 @@ const Profile = () => {
             </Typography>
           </Box>
 
-          <Grid
-            item
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              width: "70%",
-              paddingLeft: "1rem",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "space-between",
-                paddingLeft: "2rem",
-                height: "70%",
-              }}
-            >
-              <Button
-                variant="outlined"
-                type="submit"
-                onClick={editMode}
-                className={styles["buttons-profile"]}
-              >
-                Editar Perfil
-              </Button>
-            </div>
-          </Grid>
-
           {/*Aqui van los inputs */}
           <Box
             sx={{
               flexDirection: "row",
               width: isEditMode ? "100%" : "70%",
-              height: "70%",
-              paddingTop: "1.7rem",
-              paddingLeft: isEditMode ? "8rem" : "3rem",
+              height: "60%",
+              paddingLeft: isEditMode ? "7rem" : "2rem",
+              paddingTop: "1.5rem",
             }}
           >
-            <Box sx={{ height: isEditMode ? "80%" : "60%" }}>
+            <Box
+              sx={{
+                height: isEditMode ? "80%" : "60%",
+                width: isEditMode ? "124%" : "100%",
+              }}
+            >
               {!isEditMode ? (
                 <>
                   <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
+                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Nombre Completo: &nbsp;
                     </Typography>
-                    <Typography sx={{ lineBreak: "anywhere" }}>
+                    <Typography
+                      sx={{
+                        lineBreak: "anywhere",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       {formik.values.name}
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
+                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Seguro Social: &nbsp;
                     </Typography>
-                    <Typography sx={{ lineBreak: "anywhere" }}>
+                    <Typography
+                      sx={{
+                        lineBreak: "anywhere",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       {formik.values.social_security}
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
+                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Fecha de nacimiento: &nbsp;
                     </Typography>
-                    <Typography sx={{ lineBreak: "anywhere" }}>
-                      {formik.values.birth_date}
+                    <Typography
+                      sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}
+                    >
+                      {getFormattedDate(formik.values.birth_date)}
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
+                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Numero de Telefono: &nbsp;
                     </Typography>
-                    <Typography sx={{ lineBreak: "anywhere" }}>
+                    <Typography
+                      sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}
+                    >
                       {formik.values.phone_number}
                     </Typography>
                   </Box>
-                  <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      paddingBottom: "1.3rem",
+                      width: "140%",
+                    }}
+                  >
+                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Correo electronico: &nbsp;
                     </Typography>
-                    <Typography sx={{ lineBreak: "anywhere" }}>
+                    <Typography
+                      sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}
+                    >
                       {formik.values.email}
                     </Typography>
                   </Box>
@@ -161,9 +179,16 @@ const Profile = () => {
                       width: "90%",
                     }}
                   >
-                    <Typography sx={{ width: "49%", fontWeight: "bold" }}>
-                      Nombre completo: &nbsp;
+                    <Typography
+                      sx={{
+                        width: "49%",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
+                      Nombre completo:
                     </Typography>
+
                     <div>
                       <TextField
                         id="name"
@@ -190,7 +215,13 @@ const Profile = () => {
                       width: "90%",
                     }}
                   >
-                    <Typography sx={{ width: "49%", fontWeight: "bold" }}>
+                    <Typography
+                      sx={{
+                        width: "49%",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       Seguro Social: &nbsp;
                     </Typography>
                     <div>
@@ -219,15 +250,32 @@ const Profile = () => {
                       width: "90%",
                     }}
                   >
-                    <Typography sx={{ width: "85%", fontWeight: "bold" }}>
+                    <Typography
+                      sx={{
+                        width: "49%",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       fecha de Nacimiento: &nbsp;
                     </Typography>
-                    <TextField
-                      id=" birth_date"
-                      name=" birth_date"
-                      type="date"
-                      sx={customText}
-                    />
+                    <div>
+                      <TextField
+                        id=" birth_date"
+                        name=" birth_date"
+                        type="date"
+                        sx={{ ...customText, width: "127%" }}
+                        value={formik.values.birth_date}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
+                      {formik.touched.birth_date &&
+                        formik.errors.birth_date && (
+                          <Typography sx={{ color: "red" }}>
+                            {formik.errors.birth_date}
+                          </Typography>
+                        )}
+                    </div>
                   </Box>
 
                   {/*phone number */}
@@ -238,14 +286,32 @@ const Profile = () => {
                       width: "90%",
                     }}
                   >
-                    <Typography sx={{ width: "85%", fontWeight: "bold" }}>
+                    <Typography
+                      sx={{
+                        width: "49%",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       Numero de Telefono: &nbsp;
                     </Typography>
-                    <TextField
-                      id="phone_number"
-                      name="phone_number"
-                      sx={customText}
-                    />
+
+                    <div>
+                      <TextField
+                        id="phone_number"
+                        name="phone_number"
+                        sx={customText}
+                        value={formik.values.phone_number}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
+                      {formik.touched.phone_number &&
+                        formik.errors.phone_number && (
+                          <Typography sx={{ color: "red" }}>
+                            {formik.errors.phone_number}
+                          </Typography>
+                        )}
+                    </div>
                   </Box>
 
                   {/*Email */}
@@ -256,28 +322,86 @@ const Profile = () => {
                       width: "90%",
                     }}
                   >
-                    <Typography sx={{ width: "85%", fontWeight: "bold" }}>
+                    <Typography
+                      sx={{
+                        width: "49%",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       Correo Electronico: &nbsp;
                     </Typography>
-                    <TextField id="email" name="email" sx={customText} />
+                    <div>
+                      <TextField
+                        id="email"
+                        name="email"
+                        sx={customText}
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
+                      {formik.touched.email && formik.errors.email && (
+                        <Typography sx={{ color: "red" }}>
+                          {formik.errors.email}
+                        </Typography>
+                      )}
+                    </div>
                   </Box>
                 </>
               )}
             </Box>
+          </Box>
+          {/*Botones */}
+          <Box
+            sx={{
+              flexDirection: "row",
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-between",
+              paddingLeft: "5rem",
+            }}
+          >
+            <Button
+              variant="outlined"
+              type="submit"
+              className={styles["buttons-save"]}
+              sx={{ backgroundColor: "#697FAA", color: "white" }}
+              onClick={() => {
+                if (isEditMode) {
+                  // Si está en modo edición, guardar los valores
+                  setFormValues({
+                    school: formik.values.school,
+                    title1: formik.values.title1,
+                    title2: formik.values.title2,
+                    title3: formik.values.title3,
+                    name: formik.values.name,
+                    social_security: formik.values.social_security,
+                    birth_date: formik.values.birth_date,
+                    phone_number: formik.values.phone_number,
+                    email: formik.values.email,
+                  });
 
-            <Box>
-              <Button
-                variant="outlined"
-                type="submit"
-                className={styles["buttons-save"]}
-                sx={{ backgroundColor: "#697FAA", color: "white" }}
-              >
-                Guardar
-              </Button>
-            </Box>
+                  console.log(formik.values.birth_date);
+                  formik.handleSubmit();
+                }
+                setIsEditMode(false);
+              }}
+            >
+              Guardar
+            </Button>
+
+            <Button
+              variant="outlined"
+              type="submit"
+              onClick={editMode}
+              className={styles["buttons-save"]}
+            >
+              {isEditMode ? "Cancelar" : "Editar"}
+            </Button>
           </Box>
         </Grid>
 
+        {/*Second section */}
         <Grid
           item
           sx={{
@@ -303,15 +427,20 @@ const Profile = () => {
               flexDirection: "row",
               width: "70%",
               height: "40%",
-              paddingTop: "7rem",
+              paddingTop: "8rem",
               paddingLeft: "5rem",
             }}
           >
             <>
               {!isEditMode ? (
                 <>
-                  <Box sx={{ display: "flex", paddingBottom: "1rem" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      paddingBottom: "1rem",
+                    }}
+                  >
+                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Escuela: &nbsp;
                     </Typography>
                     <Typography sx={{ lineBreak: "anywhere" }}>
@@ -319,7 +448,7 @@ const Profile = () => {
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex", paddingBottom: "1rem" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
+                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Titulo: &nbsp;
                     </Typography>
                     <Typography sx={{ lineBreak: "anywhere" }}>
@@ -327,7 +456,7 @@ const Profile = () => {
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex", paddingBottom: "1rem" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
+                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Titulo: &nbsp;
                     </Typography>
                     <Typography sx={{ lineBreak: "anywhere" }}>
@@ -335,7 +464,7 @@ const Profile = () => {
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex", paddingBottom: "1rem" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
+                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Titulo: &nbsp;
                     </Typography>
                     <Typography sx={{ lineBreak: "anywhere" }}>
@@ -353,7 +482,13 @@ const Profile = () => {
                       width: "100%",
                     }}
                   >
-                    <Typography sx={{ width: "20%", fontWeight: "bold" }}>
+                    <Typography
+                      sx={{
+                        width: "20%",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       Escuela: &nbsp;
                     </Typography>
                     <div>
@@ -381,7 +516,13 @@ const Profile = () => {
                       width: "100%",
                     }}
                   >
-                    <Typography sx={{ width: "20%", fontWeight: "bold" }}>
+                    <Typography
+                      sx={{
+                        width: "20%",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       Titulo: &nbsp;
                     </Typography>
                     <div>
@@ -409,7 +550,13 @@ const Profile = () => {
                       width: "100%",
                     }}
                   >
-                    <Typography sx={{ width: "20%", fontWeight: "bold" }}>
+                    <Typography
+                      sx={{
+                        width: "20%",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       Titulo: &nbsp;
                     </Typography>
                     <div>
@@ -437,7 +584,13 @@ const Profile = () => {
                       width: "100%",
                     }}
                   >
-                    <Typography sx={{ width: "20%", fontWeight: "bold" }}>
+                    <Typography
+                      sx={{
+                        width: "20%",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       Titulo: &nbsp;
                     </Typography>
                     <div>

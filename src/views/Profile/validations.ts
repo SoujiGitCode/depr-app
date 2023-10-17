@@ -3,7 +3,7 @@ import * as yup from "yup";
 export const validationSchema = yup.object().shape({
   name: yup
     .string()
-    .matches(/^[a-zA-Z]+$/, "Debe contener solo letras")
+    .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
   social_security: yup.string(),
