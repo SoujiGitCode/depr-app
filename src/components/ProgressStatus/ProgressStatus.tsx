@@ -60,7 +60,7 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
             style={{
               minHeight: "1.5rem",
               minWidth: "1.5rem",
-              backgroundColor: activeStep >= step ? "orange" : "white",
+              backgroundColor: activeStep >= step + 1 ? "orange" : "white",
               borderRadius: "100%",
               border: "2px solid white",
             }}

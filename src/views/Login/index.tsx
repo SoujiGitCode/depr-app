@@ -47,6 +47,18 @@ const Login = () => {
 
   return (
     <Grid container style={{ width: "100%", margin: 0 }}>
+      <Grid item xs={6} style={{ overflow: "hidden", height: "420px" }}>
+        <ProgressStatus
+          activeStep={1}
+          // horizontal={true}
+          Steps={[
+            { Title: "Paso #1", SubTitle: "Correo electronico" },
+            { Title: "Paso #2", SubTitle: "Datos de la escuela" },
+            { Title: "Paso #3", SubTitle: "Datos personales" },
+          ]}
+        />
+      </Grid>
+
       <Grid item xs={6} style={{ overflow: "hidden", height: "620px" }}>
         <div
           style={{
