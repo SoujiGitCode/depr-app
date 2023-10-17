@@ -4,19 +4,9 @@ import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
 import { validationSchema } from "./validations";
 import styles from "./profile.module.scss";
+import { getFormattedDate } from "@/utils/helpers";
 
 const Profile = () => {
-  const getFormattedDate = (dateString) => {
-    console.log(dateString);
-    if (!dateString) {
-      return ""; // Devuelve una cadena vacía si la fecha es nula o indefinida
-    }
-
-    const date = new Date(dateString);
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return date.toLocaleDateString("es-ES", options);
-  };
-
   const [isEditMode, setIsEditMode] = useState(false);
   const [formValues, setFormValues] = useState({
     name: "",
@@ -32,7 +22,6 @@ const Profile = () => {
 
   const editMode = () => {
     setIsEditMode(!isEditMode);
-    console.log(isEditMode);
   };
 
   const formik = useFormik({
@@ -261,8 +250,8 @@ const Profile = () => {
                     </Typography>
                     <div>
                       <TextField
-                        id=" birth_date"
-                        name=" birth_date"
+                        id="birth_date"
+                        name="birth_date"
                         type="date"
                         sx={{ ...customText, width: "127%" }}
                         value={formik.values.birth_date}
@@ -381,7 +370,6 @@ const Profile = () => {
                     email: formik.values.email,
                   });
 
-                  console.log(formik.values.birth_date);
                   formik.handleSubmit();
                 }
                 setIsEditMode(false);
