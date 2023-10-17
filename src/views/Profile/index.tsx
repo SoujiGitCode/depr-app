@@ -1,4 +1,11 @@
-import { Grid, Button, Typography, Box, Divider } from "@mui/material";
+import {
+  Grid,
+  Button,
+  Typography,
+  Box,
+  Divider,
+  MenuItem,
+} from "@mui/material";
 import { useState } from "react";
 import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
@@ -8,6 +15,31 @@ import { getFormattedDate } from "@/utils/helpers";
 
 const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
+  const listId = [
+    {
+      value: "licencia",
+      label: "Lic",
+    },
+    {
+      value: "id",
+      label: "Real Id",
+    },
+  ];
+  const listGenre = [
+    {
+      value: "f",
+      label: "Femenino",
+    },
+    {
+      value: "m",
+      label: "Masculino",
+    },
+    {
+      value: "n",
+      label: "No Indica",
+    },
+  ];
+
   const [formValues, setFormValues] = useState({
     name: "",
     social_security: "",
@@ -15,9 +47,8 @@ const Profile = () => {
     phone_number: "",
     email: "",
     school: "",
-    title1: "",
-    title2: "",
-    title3: "",
+    genre: listGenre[0].value,
+    docType: listId[0].value,
   });
 
   const editMode = () => {
@@ -26,15 +57,15 @@ const Profile = () => {
 
   const formik = useFormik({
     initialValues: {
+      docType: listId[0].value,
       name: "",
       social_security: "",
       birth_date: "",
       phone_number: "",
       email: "",
       school: "",
-      title1: "",
-      title2: "",
-      title3: "",
+      genre: listGenre[0].value,
+      docNumber: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -48,6 +79,24 @@ const Profile = () => {
       borderRadius: 0,
       border: "2px solid " + "#a09c9c92",
     },
+    width: "100%",
+  };
+
+  const customTextSecond = {
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderRadius: 0,
+      border: "2px solid " + "#a09c9c92",
+    },
+    width: "40%",
+  };
+
+  const licTextField = {
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderRadius: 0,
+      border: "2px solid " + "#a09c9c92",
+    },
+    width: "4.6rem",
+    paddingRight: "1rem",
   };
 
   return (
@@ -82,7 +131,7 @@ const Profile = () => {
             sx={{
               flexDirection: "row",
               width: isEditMode ? "100%" : "70%",
-              height: "60%",
+              height: "70%",
               paddingLeft: isEditMode ? "7rem" : "2rem",
               paddingTop: "1.5rem",
             }}
@@ -90,7 +139,7 @@ const Profile = () => {
             <Box
               sx={{
                 height: isEditMode ? "80%" : "60%",
-                width: isEditMode ? "124%" : "100%",
+                width: isEditMode ? "130%" : "100%",
               }}
             >
               {!isEditMode ? (
@@ -178,7 +227,7 @@ const Profile = () => {
                       Nombre completo:
                     </Typography>
 
-                    <div>
+                    <div style={{ width: "50%" }}>
                       <TextField
                         id="name"
                         name="name"
@@ -189,7 +238,13 @@ const Profile = () => {
                         sx={customText}
                       />
                       {formik.touched.name && formik.errors.name && (
-                        <Typography sx={{ color: "red" }}>
+                        <Typography
+                          sx={{
+                            color: "red",
+                            fontSize: "0.8rem",
+                            paddingTop: "0.5rem",
+                          }}
+                        >
                           {formik.errors.name}
                         </Typography>
                       )}
@@ -213,7 +268,7 @@ const Profile = () => {
                     >
                       Seguro Social: &nbsp;
                     </Typography>
-                    <div>
+                    <div style={{ width: "50%" }}>
                       <TextField
                         id="social_security"
                         name="social_security"
@@ -224,7 +279,13 @@ const Profile = () => {
                       />
                       {formik.touched.social_security &&
                         formik.errors.social_security && (
-                          <Typography sx={{ color: "red" }}>
+                          <Typography
+                            sx={{
+                              color: "red",
+                              fontSize: "0.8rem",
+                              paddingTop: "0.5rem",
+                            }}
+                          >
                             {formik.errors.social_security}
                           </Typography>
                         )}
@@ -248,19 +309,25 @@ const Profile = () => {
                     >
                       fecha de Nacimiento: &nbsp;
                     </Typography>
-                    <div>
+                    <div style={{ width: "50%" }}>
                       <TextField
                         id="birth_date"
                         name="birth_date"
                         type="date"
-                        sx={{ ...customText, width: "127%" }}
+                        sx={customText}
                         value={formik.values.birth_date}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
                       {formik.touched.birth_date &&
                         formik.errors.birth_date && (
-                          <Typography sx={{ color: "red" }}>
+                          <Typography
+                            sx={{
+                              color: "red",
+                              fontSize: "0.8rem",
+                              paddingTop: "0.5rem",
+                            }}
+                          >
                             {formik.errors.birth_date}
                           </Typography>
                         )}
@@ -285,7 +352,7 @@ const Profile = () => {
                       Numero de Telefono: &nbsp;
                     </Typography>
 
-                    <div>
+                    <div style={{ width: "50%" }}>
                       <TextField
                         id="phone_number"
                         name="phone_number"
@@ -296,7 +363,13 @@ const Profile = () => {
                       />
                       {formik.touched.phone_number &&
                         formik.errors.phone_number && (
-                          <Typography sx={{ color: "red" }}>
+                          <Typography
+                            sx={{
+                              color: "red",
+                              fontSize: "0.8rem",
+                              paddingTop: "0.5rem",
+                            }}
+                          >
                             {formik.errors.phone_number}
                           </Typography>
                         )}
@@ -320,7 +393,7 @@ const Profile = () => {
                     >
                       Correo Electronico: &nbsp;
                     </Typography>
-                    <div>
+                    <div style={{ width: "50%" }}>
                       <TextField
                         id="email"
                         name="email"
@@ -330,7 +403,13 @@ const Profile = () => {
                         onBlur={formik.handleBlur}
                       />
                       {formik.touched.email && formik.errors.email && (
-                        <Typography sx={{ color: "red" }}>
+                        <Typography
+                          sx={{
+                            color: "red",
+                            fontSize: "0.8rem",
+                            paddingTop: "0.5rem",
+                          }}
+                        >
                           {formik.errors.email}
                         </Typography>
                       )}
@@ -354,25 +433,37 @@ const Profile = () => {
               variant="outlined"
               type="submit"
               className={styles["buttons-save"]}
-              sx={{ backgroundColor: "#697FAA", color: "white" }}
+              sx={{
+                backgroundColor: formik.isValid ? "#697FAA" : "#697faa62",
+                color: "white",
+              }}
               onClick={() => {
                 if (isEditMode) {
-                  // Si está en modo edición, guardar los valores
-                  setFormValues({
-                    school: formik.values.school,
-                    title1: formik.values.title1,
-                    title2: formik.values.title2,
-                    title3: formik.values.title3,
-                    name: formik.values.name,
-                    social_security: formik.values.social_security,
-                    birth_date: formik.values.birth_date,
-                    phone_number: formik.values.phone_number,
-                    email: formik.values.email,
-                  });
+                  // Valida los campos antes de guardar
+                  if (formik.isValid) {
+                    // Si está en modo edición y los campos son válidos, guarda los valores
+                    setFormValues({
+                      school: formik.values.school,
+                      name: formik.values.name,
+                      social_security: formik.values.social_security,
+                      birth_date: formik.values.birth_date,
+                      phone_number: formik.values.phone_number,
+                      email: formik.values.email,
+                      docType: formik.values.docType,
+                      genre: formik.values.genre,
+                    });
 
-                  formik.handleSubmit();
+                    // Llama a la función onSubmit de formik para manejar la lógica del envío del formulario
+                    formik.handleSubmit();
+                    setIsEditMode(false);
+                  } else {
+                    // Si los campos no son válidos, puedes mostrar un mensaje de error o tomar otras medidas
+                    console.log("Los campos contienen errores");
+                  }
+                } else {
+                  // No estás en modo edición
+                  setIsEditMode(false);
                 }
-                setIsEditMode(false);
               }}
             >
               Guardar
@@ -431,32 +522,38 @@ const Profile = () => {
                     <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                       Escuela: &nbsp;
                     </Typography>
-                    <Typography sx={{ lineBreak: "anywhere" }}>
+                    <Typography
+                      sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}
+                    >
                       {formik.values.school}
                     </Typography>
                   </Box>
+
                   <Box sx={{ display: "flex", paddingBottom: "1rem" }}>
                     <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-                      Titulo: &nbsp;
+                      Genero: &nbsp;
                     </Typography>
-                    <Typography sx={{ lineBreak: "anywhere" }}>
-                      {formik.values.title1}
+                    <Typography
+                      sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}
+                    >
+                      {formik.values.genre}
                     </Typography>
                   </Box>
-                  <Box sx={{ display: "flex", paddingBottom: "1rem" }}>
+
+                  <Box
+                    sx={{
+                      display: "flex",
+                      paddingBottom: "1.3rem",
+                      width: "140%",
+                    }}
+                  >
                     <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-                      Titulo: &nbsp;
+                      Documento de identidad: &nbsp;
                     </Typography>
-                    <Typography sx={{ lineBreak: "anywhere" }}>
-                      {formik.values.title2}
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", paddingBottom: "1rem" }}>
-                    <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-                      Titulo: &nbsp;
-                    </Typography>
-                    <Typography sx={{ lineBreak: "anywhere" }}>
-                      {formik.values.title3}
+                    <Typography
+                      sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}
+                    >
+                      {formik.values.docNumber}
                     </Typography>
                   </Box>
                 </>
@@ -479,7 +576,7 @@ const Profile = () => {
                     >
                       Escuela: &nbsp;
                     </Typography>
-                    <div>
+                    <div style={{ width: "50%" }}>
                       <TextField
                         id="school"
                         name="school"
@@ -489,14 +586,20 @@ const Profile = () => {
                         sx={customText}
                       />
                       {formik.touched.school && formik.errors.school && (
-                        <Typography sx={{ color: "red" }}>
+                        <Typography
+                          sx={{
+                            color: "red",
+                            fontSize: "0.8rem",
+                            paddingTop: "0.5rem",
+                          }}
+                        >
                           {formik.errors.school}
                         </Typography>
                       )}
                     </div>
                   </Box>
 
-                  {/*title1 */}
+                  {/*Genero*/}
                   <Box
                     sx={{
                       display: "flex",
@@ -511,88 +614,113 @@ const Profile = () => {
                         fontSize: "1.2rem",
                       }}
                     >
-                      Titulo: &nbsp;
+                      Genero: &nbsp;
                     </Typography>
-                    <div>
-                      <TextField
-                        id="title1"
-                        name="title1"
-                        value={formik.values.title1}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        sx={customText}
-                      />
-                      {formik.touched.title1 && formik.errors.title1 && (
-                        <Typography sx={{ color: "red" }}>
-                          {formik.errors.title1}
-                        </Typography>
-                      )}
-                    </div>
+                    <TextField
+                      select
+                      name="genre"
+                      id="genre"
+                      type="text"
+                      variant="outlined"
+                      value={formik.values.genre}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      error={
+                        formik.touched.genre && Boolean(formik.errors.genre)
+                      }
+                      helperText={formik.touched.genre && formik.errors.genre}
+                      sx={{
+                        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
+                          {
+                            borderRadius: 0,
+                            border: "2px solid " + "#a09c9c92",
+                          },
+                        width: "50%",
+                      }}
+                    >
+                      {listGenre.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
                   </Box>
 
-                  {/*title2 */}
+                  {/*ID document */}
                   <Box
                     sx={{
                       display: "flex",
                       paddingBottom: "1rem",
-                      width: "100%",
+                      width: "90%",
                     }}
                   >
                     <Typography
                       sx={{
-                        width: "20%",
+                        width: "22%",
                         fontWeight: "bold",
                         fontSize: "1.2rem",
                       }}
                     >
-                      Titulo: &nbsp;
+                      <>{isEditMode ? "ID:" : "Documento de Identidad"}</>
                     </Typography>
-                    <div>
-                      <TextField
-                        id="title2"
-                        name="title2"
-                        value={formik.values.title2}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        sx={customText}
-                      />
-                      {formik.touched.title2 && formik.errors.title2 && (
-                        <Typography sx={{ color: "red" }}>
-                          {formik.errors.title2}
-                        </Typography>
-                      )}
-                    </div>
-                  </Box>
-
-                  {/*title3 */}
-                  <Box
-                    sx={{
-                      display: "flex",
-                      paddingBottom: "1rem",
-                      width: "100%",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        width: "20%",
-                        fontWeight: "bold",
-                        fontSize: "1.2rem",
-                      }}
+                    <TextField
+                      select
+                      name="docType"
+                      id="docType"
+                      type="text"
+                      variant="outlined"
+                      value={formik.values.docType}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      error={
+                        formik.touched.docType && Boolean(formik.errors.docType)
+                      }
+                      helperText={
+                        formik.touched.docType && formik.errors.docType
+                      }
+                      sx={licTextField}
                     >
-                      Titulo: &nbsp;
-                    </Typography>
+                      {listId.map((option) => (
+                        <MenuItem
+                          key={option.value}
+                          value={option.value}
+                          sx={{ width: "3rem" }}
+                        >
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
                     <div>
                       <TextField
-                        id="title3"
-                        name="title3"
-                        value={formik.values.title3}
+                        sx={{
+                          "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
+                            {
+                              borderRadius: 0,
+                              border: "2px solid " + "#a09c9c92",
+                            },
+                          width: "84%",
+                        }}
+                        name="docNumber"
+                        id="docNumber"
+                        type="text"
+                        variant="outlined"
+                        value={formik.values.docNumber}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        sx={customText}
+                        error={
+                          formik.touched.docNumber &&
+                          Boolean(formik.errors.docNumber)
+                        }
                       />
-                      {formik.touched.title3 && formik.errors.title3 && (
-                        <Typography sx={{ color: "red" }}>
-                          {formik.errors.title3}
+                      {formik.touched.docNumber && formik.errors.docNumber && (
+                        <Typography
+                          sx={{
+                            color: "red",
+                            fontSize: "0.8rem",
+                            paddingTop: "0.5rem",
+                          }}
+                        >
+                          {formik.errors.docNumber}
                         </Typography>
                       )}
                     </div>
