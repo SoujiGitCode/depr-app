@@ -16,6 +16,7 @@ import { PATH } from "@/routes/constants";
 import useAuthStore from "@/hooks/useAuthStore";
 import useAlert from "@/hooks/useAlert";
 import { useNavigate } from "react-router-dom";
+import ProgressStatus from "@/components/ProgressStatus/ProgressStatus";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -46,6 +47,18 @@ const Login = () => {
 
   return (
     <Grid container style={{ width: "100%", margin: 0 }}>
+      <Grid item xs={6} style={{ overflow: "hidden", height: "420px" }}>
+        <ProgressStatus
+          activeStep={4}
+          horizontal={true}
+          Steps={[
+            { Title: "Paso #1", SubTitle: "Correo electronico" },
+            { Title: "Paso #2", SubTitle: "Datos de la escuela" },
+            { Title: "Paso #3", SubTitle: "Datos personales" },
+            { Title: "Paso #4", SubTitle: "Test" },
+          ]}
+        />
+      </Grid>
       <Grid item xs={6} style={{ overflow: "hidden", height: "620px" }}>
         <div
           style={{
