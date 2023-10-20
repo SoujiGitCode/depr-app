@@ -35,31 +35,32 @@ const Register = () => {
   const setLogin = useAuthStore((state: any) => state.setLogin);
 
   const [openModal, setOpenModal] = useState(false);
+  const [modalType, setModalType] = useState<'error' | 'success'>('error');
 
   const [validate, setValidate] = useState(false);
 
-  const listId = [
+  const idList = [
     {
-      value: 'licencia',
+      value: '0',
       label: 'Licencia',
     },
     {
-      value: 'id',
+      value: '1',
       label: 'Real Id',
     },
   ];
 
-  const listGenre = [
+  const genderList = [
     {
-      value: 'f',
+      value: 'F',
       label: 'Femenino',
     },
     {
-      value: 'm',
+      value: 'M',
       label: 'Masculino',
     },
     {
-      value: 'n',
+      value: 'N',
       label: 'No Indica',
     },
   ];
@@ -74,8 +75,10 @@ const Register = () => {
 
 
   const formik = useFormik({
+    validateOnMount: true,
+
     initialValues: {
-      docType: listId[0].value,
+      docType: idList[0].value,
       docNumber: "",
       firstName: "",
       middleName: "",
@@ -86,7 +89,7 @@ const Register = () => {
       lastNameDepr: "",
       secondLastNameDepr: "",
       birthdate: "",
-      genre: listGenre[0].value,
+      gender: genderList[0].value,
       phoneNumber: "",
       socialSecurity: "",
       email: "",
@@ -178,9 +181,6 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const onCancelRegister = () => {
-    navigate("/");
-  };
 
   const OnChangeSelectedValue = (value: string) => {
     setSelectedValue(value);
@@ -191,13 +191,15 @@ const Register = () => {
     formik.setFieldValue("secondLastNameDepr", value === 'No' ? "" : formik.values.secondLastName);
   };
 
-  const customSubmit = () => {
-    setOpenModal(true)
-  };
+
+  const modalTriger = (type: 'error' | 'success') => {
+    setOpenModal(true);
+    setModalType(type)
+  }
 
 
   // Send data user
-  const senUserForRegister = async () => {
+  const sendUserForRegister = async () => {
     try {
       await requestRegister({
         email: formik.values.email,
@@ -206,20 +208,62 @@ const Register = () => {
         last_name: formik.values.lastName,
         second_last_name: formik.values.secondLastName,
         birthdate: formik.values.birthdate,
+        identification_type: formik.values.docType,
+        identification: formik.values.docNumber,
+        gender: formik.values.gender,
+        depr_first_name: formik.values.firstNameDepr,
+        depr_middle_name: formik.values.middleNameDepr,
+        depr_last_name: formik.values.lastNameDepr,
+        depr_second_last_name: formik.values.secondLastNameDepr,
+        phone: formik.values.phoneNumber,
+        social_security: formik.values.socialSecurity,
         password: formik.values.password,
       });
-      setAlert("Register successfully!", "success");
-      await setLogin(formik.values.email, formik.values.password);
-      navigate("/");
+      setAlert("Registro Completado!", "success");
+      modalTriger('success');
+
+      // Agrega una espera de 3 segundos antes de logear al usuario
+      setTimeout(() => {
+        setLogin(formik.values.email, formik.values.password);
+        navigate("/dashboard");
+      }, 3000);
     } catch (error) {
-      setAlert("Something happened. Try again", "error");
+      setAlert("El Registro no pudo ser completado, intente nuevamente", "error");
+      modalTriger('error');
+
     }
   };
 
   if (validate) {
-    senUserForRegister();
+    sendUserForRegister();
     setValidate(false);
   }
+
+  useEffect(() => {
+    if (selectedValue === 'No') {
+      formik.setFieldValue("firstNameDepr", formik.values.firstName);
+      formik.setFieldValue("middleNameDepr", formik.values.middleName);
+      formik.setFieldValue("lastNameDepr", formik.values.lastName);
+      formik.setFieldValue("secondLastNameDepr", formik.values.secondLastName);
+    }
+
+    if (selectedValue === 'Si') {
+      formik.setFieldValue("firstNameDepr", "");
+      formik.setFieldValue("middleNameDepr", "");
+      formik.setFieldValue("lastNameDepr", "");
+      formik.setFieldValue("secondLastNameDepr", "");
+    }
+  }, [selectedValue, formik.values.firstName, formik.values.middleName, formik.values.lastName, formik.values.secondLastName]);
+
+
+
+  useEffect(() => {
+    if (!formik.isValid) {
+      console.log(formik.errors);
+    }
+    console.log(formik.isValid)
+  }, [formik.isValid, formik.errors]);
+
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>
       <Grid item xs={6} style={{ overflow: 'hidden', height: 'auto' }}>
@@ -253,7 +297,7 @@ const Register = () => {
                     helperText={formik.touched.docType && formik.errors.docType}
 
                   >
-                    {listId.map((option) => (
+                    {idList.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>
@@ -551,18 +595,18 @@ const Register = () => {
                 <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                   <TextField
                     select
-                    name="genre"
-                    id="genre"
+                    name="gender"
+                    id="gender"
                     type="text"
                     variant="outlined"
-                    value={formik.values.genre}
+                    value={formik.values.gender}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    error={formik.touched.genre && Boolean(formik.errors.genre)}
-                    helperText={formik.touched.genre && formik.errors.genre}
+                    error={formik.touched.gender && Boolean(formik.errors.gender)}
+                    helperText={formik.touched.gender && formik.errors.gender}
 
                   >
-                    {listGenre.map((option) => (
+                    {genderList.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>
@@ -600,7 +644,7 @@ const Register = () => {
                   <TextField
                     placeholder='N° Seguro Social'
                     name="socialSecurity"
-                    id="secondLastName"
+                    id="socialSecurity"
                     type={showSocialSecurity ? "text" : "password"}
                     variant="outlined"
                     value={formik.values.socialSecurity}
@@ -740,6 +784,7 @@ const Register = () => {
               Ya Tengo una cuenta
             </Button>
             <Button
+              type='submit'
               variant="contained"
               color="primary"
               disabled={!formik.isValid}
@@ -751,7 +796,7 @@ const Register = () => {
                 marginRight: '16px',
                 fontSize: '0.7em'
               }}
-              onClick={() => customSubmit()}
+            // onClick={() => modalTriger('success')}
             >
               Registrarme
             </Button>
@@ -763,7 +808,7 @@ const Register = () => {
       <ConfirmationModal
         open={openModal}
         onClose={() => setOpenModal(false)}
-        type="error"
+        type={modalType}
       />
     </Grid >
   );

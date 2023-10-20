@@ -3,7 +3,8 @@ import { Home, Landing, Login, Register } from "@/views";
 import { UnauthorizedLayout, AuthorizedLayout } from "@/layout";
 import { PATH } from "./constants";
 import useAuthStore from "@/hooks/useAuthStore";
-import Error404 from "@/views/Error500";
+import Error404 from "@/views/Error404";
+import Error500 from "@/views/Error500";
 
 
 const Root = () => {
@@ -26,7 +27,7 @@ const Root = () => {
         </Route>
       )}
       <Route path={PATH.NOT_FOUND} element={<Error404 />} />
-      <Route path="*" element={<Error404 />} />
+      <Route path="*" element={<Error500 />} />
     </Routes>
   );
 };
