@@ -65,8 +65,8 @@ function ConfirmationModal({ open, onClose, type }: ConfirmationModalProps) {
                     color="primary"
                     onClick={onClose}
                     sx={{
-                        width: 148,
-                        height: 48,
+                        width: 160,
+                        height: 50,
                         padding: '8px 48px',
                         borderRadius: '4px',
                         gap: '8px'
