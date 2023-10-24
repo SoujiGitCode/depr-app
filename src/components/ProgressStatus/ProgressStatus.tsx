@@ -1,17 +1,23 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-
-interface Steps {
-  Title: string;
-  SubTitle: string;
-}
+import {
+  Steps,
+  circleStyle,
+  lineStyle,
+  boxStyle,
+  boxStyleTitles,
+  textStyleTitles,
+  mainBoxStyle,
+  mainInnerBoxStyle,
+} from "./style";
 
 interface ProgressStatusProps {
-  activeStep: number;
+  activeStep: number; // zone activations
   horizontal?: boolean;
   fontSize?: number;
   disableText?: boolean;
   Steps: Steps[];
+  Color?: string;
 }
 
 const ProgressStatus: React.FC<ProgressStatusProps> = ({
@@ -20,51 +26,22 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
   fontSize,
   disableText,
   Steps,
+  Color,
 }) => {
   const listSteps: number[] = [];
 
   const LineLayout: React.FC = () => {
+    //
     const result = listSteps.map((step) => (
-      <Box
-        key={step}
-        sx={{
-          display: "flex",
-          flexDirection: horizontal ? "row" : "column",
-          alignItems: "center",
-          ...(horizontal && { width: "100%" }),
-          ...(step < Steps.length && { height: "100%" }),
-        }}
-      >
-        <div
-          style={{
-            minHeight: "1.5rem",
-            minWidth: "1.5rem",
-            backgroundColor: activeStep >= step ? "orange" : "white",
-            borderRadius: "100%",
-            border: "2px solid white",
-          }}
-        />
-        {step < Steps.length - 1 && (
-          <div
-            style={{
-              background: activeStep > step ? "orange" : "white",
-              ...(horizontal
-                ? { width: "100%", height: "0.5rem" }
-                : { height: "100%", width: "0.5rem" }),
-            }}
-          />
-        )}
+      <Box key={step} sx={boxStyle(step, Steps, horizontal)}>
+        {/*  */}
+        <div style={circleStyle(activeStep, step, Color)} />
 
+        {step < Steps.length - 1 && (
+          <div style={lineStyle(activeStep, step, horizontal)} />
+        )}
         {step === Steps.length - 2 && (
-          <div
-            style={{
-              minHeight: "1.5rem",
-              minWidth: "1.5rem",
-              backgroundColor: activeStep >= step + 1 ? "orange" : "white",
-              borderRadius: "100%",
-              border: "2px solid white",
-            }}
-          />
+          <div style={circleStyle(activeStep, step + 1, Color)} />
         )}
       </Box>
     ));
@@ -92,54 +69,14 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
   };
 
   const Titles = Steps.map((step, index) => {
+    //
     if (Steps.length > index + 1) listSteps.push(index);
 
     return (
-      <Box
-        sx={{
-          ...(horizontal && horizontal === true
-            ? {
-                display: "flex",
-                flexDirection: "row",
-              }
-            : {
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "end",
-              }),
-        }}
-        key={index}
-      >
-        <Typography
-          sx={{
-            color: "white",
-            fontWeight: "bold",
-            justifyContent: "end",
-            display: "flex",
-            ...(fontSize
-              ? {
-                  fontSize: `${fontSize}vw`,
-                }
-              : {
-                  fontSize: "1.2vw",
-                }),
-          }}
-        >
-          {step.Title}
-        </Typography>
+      <Box sx={boxStyleTitles(horizontal)} key={index}>
+        <Typography sx={textStyleTitles(fontSize)}>{step.Title}</Typography>
         {!horizontal && (
-          <Typography
-            sx={{
-              color: "white",
-              ...(fontSize
-                ? {
-                    fontSize: `${fontSize}vw`,
-                  }
-                : {
-                    fontSize: "1.2vw",
-                  }),
-            }}
-          >
+          <Typography sx={textStyleTitles(fontSize)}>
             {step.SubTitle}
           </Typography>
         )}
@@ -148,49 +85,9 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
   });
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "#697FAA",
-        ...(horizontal && horizontal === true
-          ? {
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              height: "100%",
-            }
-          : {
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "end",
-              height: "100%",
-            }),
-      }}
-    >
-      {disableText && disableText === true ? (
-        <></>
-      ) : (
-        <Box
-          sx={{
-            ...(horizontal && horizontal === true
-              ? {
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  paddingLeft: "1rem",
-                  paddingRight: "1rem",
-                }
-              : {
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  padding: "1.3rem",
-                  height: "100%",
-                }),
-          }}
-        >
-          {Titles}
-        </Box>
+    <Box sx={mainBoxStyle(horizontal)}>
+      {disableText && disableText === true && (
+        <Box sx={mainInnerBoxStyle(horizontal)}>{Titles}</Box>
       )}
 
       <Box sx={{ paddingRight: "3rem", padding: "1.5rem" }}>
