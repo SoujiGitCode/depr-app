@@ -1,14 +1,6 @@
-import {
-  Grid,
-  Button,
-  Typography,
-  Box,
-  Divider,
-  MenuItem,
-} from "@mui/material";
+import { Grid, Button, Box, Divider } from "@mui/material";
 import { useState } from "react";
 import { useFormik } from "formik";
-import TextField from "@mui/material/TextField";
 import { validationSchema } from "./validations";
 import styles from "./profile.module.scss";
 import TitleSection from "./components/TitleSection";
