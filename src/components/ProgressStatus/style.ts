@@ -5,8 +5,11 @@ export interface Steps {
 
 // <------------------------------ Items in mainComponent ----------------------------------->
 
-export const mainBoxStyle = (horizontal: boolean | undefined) => ({
-  backgroundColor: "#697FAA",
+export const mainBoxStyle = (
+  horizontal: boolean | undefined,
+  color?: string
+) => ({
+  backgroundColor: color ? color : "#697FAA",
   ...(horizontal && horizontal === true
     ? {
         display: "flex",

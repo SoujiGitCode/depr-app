@@ -85,7 +85,7 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
   });
 
   return (
-    <Box sx={mainBoxStyle(horizontal)}>
+    <Box sx={mainBoxStyle(horizontal, Color)}>
       {disableText && disableText === true && (
         <Box sx={mainInnerBoxStyle(horizontal)}>{Titles}</Box>
       )}
