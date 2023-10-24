@@ -12,6 +12,7 @@ import TextField from "@mui/material/TextField";
 import { validationSchema } from "./validations";
 import styles from "./profile.module.scss";
 import { getFormattedDate } from "@/utils/helpers";
+import TitleSection from "./components/TitleSection";
 
 const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -113,18 +114,7 @@ const Profile = () => {
           sm={5}
         >
           {/* title*/}
-          <Box
-            sx={{
-              width: "100%",
-              paddingTop: "2rem",
-              paddingBottom: "2rem",
-              paddingLeft: "7.3rem",
-            }}
-          >
-            <Typography variant="h4" className={styles["title"]}>
-              Profile
-            </Typography>
-          </Box>
+          <TitleSection />
 
           {/*Aqui van los inputs */}
           <Box

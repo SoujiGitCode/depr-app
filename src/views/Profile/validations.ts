@@ -9,7 +9,6 @@ export const validationSchema = yup.object().shape({
   social_security: yup.string().matches(/^[0-9-]+$/, "solo números y guiones"),
   birth_date: yup
     .date()
-    .required("La fecha de nacimiento es obligatoria")
     .test(
       "age",
       "Debes ser mayor de 18 años y menor de 80 años",
@@ -36,6 +35,10 @@ export const validationSchema = yup.object().shape({
   email: yup
     .string()
     .email("Debe ser una dirección de correo electrónico válida"),
-  school: yup.string().max(100, "Máximo 100 caracteres"),
+  school: yup
+    .string()
+    .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
+    .min(2, "Mínimo 2 caracteres")
+    .max(50, "Máximo 50 caracteres"),
   docNumber: yup.string().matches(/^[0-9]+$/, "Debe contener solo números"),
 });
