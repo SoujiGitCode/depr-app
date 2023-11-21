@@ -166,7 +166,7 @@ export const fastRequest = async ({
         depr_phone: phone,
         depr_social_security: social_security,
 
-        certification_type: 'Certificado de Graduación',
+        certification_type: '1', //1 para certificado de graduación
       },
     })
 

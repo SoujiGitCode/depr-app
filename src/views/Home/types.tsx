@@ -1,7 +1,23 @@
-export interface IUserServicesResponse {
+export interface IGetUsersDocuments {
   code: string;
   message: string;
-  data: IUserServicesData;
+  data: IGetUsersDocumentsData;
+}
+
+export interface IGetUsersDocumentsData {
+  id: string,
+  name: string,
+  school_id: string,
+  school_name: string,
+  region: string,
+  district: string,
+  town_name: string,
+  grade: string,
+  grade_year: string,
+  ob_handler_id: string,
+  status: string,
+  created: string,
+  updated: string,
 }
 
 export interface IUserServicesData {

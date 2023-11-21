@@ -58,8 +58,16 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
     const certificatesList = [
         {
-            value: 'Certificado de Graduación',
+            value: '1',
             label: 'Certificado de Graduación',
+        },
+        {
+            value: '2',
+            label: 'Transcripción de Creditos',
+        },
+        {
+            value: '3',
+            label: 'Certificado Horas Taller',
         },
 
     ];

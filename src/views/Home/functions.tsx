@@ -1,15 +1,15 @@
 import api from "@/utils/services/api";
-import { userService } from "@/utils";
-import { IUserServicesResponse } from './types'
+import { getDocuments } from "@/utils";
+import { IGetUsersDocuments } from './types'
 
-export const getUserServices = async (campusId: string, token: string) => {
+export const getUserDocuments = async (token: string) => {
     try {
-        api.resource = userService;
+        api.resource = getDocuments;
         api.token = token;
 
-        const res = await api.post<IUserServicesResponse>({
+        const res = await api.get<IGetUsersDocuments>({
             body: {
-              campus_id: parseInt(campusId)
+
             }
         });
         return res.data;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, Button, CardContent, Card, TextField } from "@mui/material";
 import styles from "./styles.module.scss";
 
@@ -8,12 +8,16 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, useTheme } from "@mui/material/styles";
 import useAuthStore from "@/hooks/useAuthStore";
 import { useNavigate } from "react-router-dom";
-import { logOut } from "@/utils/";
+import { logOut, userDocuments } from "@/utils/";
 
 import paper from "../../assets/images/icon-paper.png";
 import student from "../../assets/images/icon-student.png";
 import SearchIcon from '@mui/icons-material/Search';
 import { WidthNormal } from "@mui/icons-material";
+import { getUserDocuments } from "./functions";
+import { IGetUsersDocumentsData } from "./types";
+import CustomTable from "./components/customTable";
+import { table } from "console";
 
 
 const Home = () => {
@@ -21,6 +25,7 @@ const Home = () => {
   const logout = useAuthStore((state: any) => state.setLogout);
   const token = useAuthStore((state: any) => state.token);
   const navigate = useNavigate();
+  const [tableData, setTableData] = useState<IGetUsersDocumentsData>([]);
 
 
   const theme = useTheme();
@@ -113,6 +118,19 @@ const Home = () => {
     );
   }
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userDocuments = await getUserDocuments(token);
+        setTableData(userDocuments);
+        console.log(tableData);
+      } catch (error) {
+        console.error("Error fetching user documents:", error);
+      }
+    }
+    fetchUserData();
+  }, []);
+
 
   return (
 
@@ -196,8 +214,8 @@ const Home = () => {
               <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
                 Conoce los Tipos de Certificaciones Académicas
               </Typography>
-
             </Grid>
+
             <Grid item xs={2} sx={{ marginBottom: "4em !important", marginTop: "2em !important", display: "flex", alignItems: "center" }}>
               {/* <SearchInput /> */}
             </Grid>
@@ -283,7 +301,22 @@ const Home = () => {
                 </Card>
               </Grid>
             ))}
+
+            <Grid item xs={8} sx={{ marginBottom: "4em !important", marginTop: "4em !important" }}>
+              <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
+                Consulta de solicitudes
+              </Typography>
+            </Grid>
+            <Grid item xs={2} sx={{ marginBottom: "4em !important", marginTop: "2em !important", display: "flex", alignItems: "center" }}>
+              {/* <SearchInput /> */}
+            </Grid>
+
+            <Grid item xs={10} sx={{ marginBottom: "4em !important", marginTop: "2em !important" }}>
+              <CustomTable tableData={tableData} />
+            </Grid>
+
           </Grid>
+
         </Grid>
 
 

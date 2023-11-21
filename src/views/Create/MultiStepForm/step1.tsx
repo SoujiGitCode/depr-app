@@ -69,11 +69,15 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
     const certificatesList = [
         {
-            value: 'Transcripción de Creditos',
+            value: '1',
+            label: 'Certificado de Graduación',
+        },
+        {
+            value: '2',
             label: 'Transcripción de Creditos',
         },
         {
-            value: 'Certificado Horas Taller',
+            value: '3',
             label: 'Certificado Horas Taller',
         },
 
@@ -131,7 +135,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             school_code: formData.school_code || schoolsData[0].id,
             grade: gradesList[0].value,
             grade_year: formData.grade_year || '',
-            certification_type: formData.certification_type || certificatesList[0].value,
+            certification_type: formData.certification_type || certificatesList[1].value,
 
         },
         validationSchema: step1Validations, // Aquí asegúrate de pasar el objeto globalValidations

@@ -7,7 +7,7 @@ export const towns = "/town";
 
 export const documentCreateFast = "/document/create/fast";
 export const documentCreate = "/document/create/";
-
+export const getDocuments = "/document/";
 
 export const campuses = "/campus";
 export const academicYears = "/academic_years";
@@ -17,7 +17,7 @@ export const userInfo = "/user";
 export const uploadDocuments = "/user/document/create";
 export const userDocuments = "/user/document";
 export const deleteDocuments = "/user/document/delete";
-export const userCampus = "/user/campus/";
+
 export const userAcademicInformation = "user/campus/modify";
 export const submitDocumentOnbase = "/user/document/sendOB/";
 export const userService = "/user/service/";
