@@ -135,10 +135,10 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             school_code: formData.school_code || schoolsData[0].id,
             grade: gradesList[0].value,
             grade_year: formData.grade_year || '',
-            certification_type: formData.certification_type || certificatesList[1].value,
+            certification_type_id: formData.certification_type_id || certificatesList[1].value,
 
         },
-        validationSchema: step1Validations, // Aquí asegúrate de pasar el objeto globalValidations
+        validationSchema: step1Validations,
         onSubmit: async () => {
             // await sendUserForRegister();
         },
@@ -216,7 +216,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                 grade: formik.values.grade,
                 grade_year: formik.values.grade_year,
 
-                certification_type: formik.values.certification_type,
+                certification_type_id: formik.values.certification_type_id,
             }, false);
         }
 
@@ -259,7 +259,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         fetchTowns();
         // Llamamos a fetchSchools con el town id 1 al iniciar el componente.
         fetchSchools('1');
-        formik.setFieldValue('certification_type', formData.certification_type);
+        formik.setFieldValue('certification_type_id', formData.certification_type_id);
         console.log('FORM DATA STEP1')
     }, []);
 
@@ -718,15 +718,15 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                     }
                                     variant="filled"
                                     select
-                                    name="certification_type"
-                                    id="certification_type"
+                                    name=" certification_type_id"
+                                    id=" certification_type_id"
                                     type="text"
-                                    value={formik.values.certification_type}
+                                    value={formik.values.certification_type_id}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    error={formik.touched.certification_type && Boolean(formik.errors.certification_type)}
-                                    // helperText={formik.touched.certification_type && formik.errors.certification_type?.toString()}
-                                    helperText={formik.touched.certification_type && typeof formik.errors.certification_type === 'string' ? formik.errors.certification_type : undefined}
+                                    error={formik.touched.certification_type_id && Boolean(formik.errors.certification_type_id)}
+                                    // helperText={formik.touched.certification_type_id && formik.errors.certification_type_id?.toString()}
+                                    helperText={formik.touched.certification_type_id && typeof formik.errors.certification_type_id === 'string' ? formik.errors.certification_type_id : undefined}
                                 >
                                     {certificatesList.map((option, index) => (
                                         <MenuItem key={index} value={option.value}>

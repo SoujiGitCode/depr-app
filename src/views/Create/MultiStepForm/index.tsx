@@ -35,7 +35,7 @@ interface FormData {
     email1: string;
     email2: string;
     token: string;
-    certification_type: string;
+    certification_type_id: string;
 }
 
 

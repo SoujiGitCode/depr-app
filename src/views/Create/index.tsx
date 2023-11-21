@@ -55,15 +55,15 @@ interface FormData {
   email1: string;
   email2: string;
   token: string;
-  certification_type: string;
+  certification_type_id: string;
 }
 
 
 const Create = () => {
 
 
-  const { certification_type } = useParams();
-  console.log("certification_type from useParams:", certification_type);
+  const { certification_type_id } = useParams();
+  console.log("certification_type_id from useParams:", certification_type_id);
 
 
   const initialFormData: FormData = {
@@ -89,7 +89,7 @@ const Create = () => {
     email1: '',
     email2: '',
     token: '',
-    certification_type: certification_type || '',
+    certification_type_id: certification_type_id || '',
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -137,8 +137,8 @@ const Create = () => {
   }, [isAuthenticated, token]);
 
   useEffect(() => {
-    updateFormData({ certification_type: certification_type }, false);
-  }, [formData.certification_type]);
+    updateFormData({ certification_type_id: certification_type_id }, false);
+  }, [formData.certification_type_id]);
 
   return (
 

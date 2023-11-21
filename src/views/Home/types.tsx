@@ -1,7 +1,7 @@
 export interface IGetUsersDocuments {
   code: string;
   message: string;
-  data: IGetUsersDocumentsData;
+  data: IGetUsersDocumentsData[];
 }
 
 export interface IGetUsersDocumentsData {

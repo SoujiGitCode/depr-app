@@ -147,7 +147,7 @@ export const step1Validations = Yup.object().shape({
         .matches(/^\d{4}$/, 'Debe contener exactamente 4 números')
         .notOneOf([''], 'Por favor, seleccione un año válido'),
 
-    certification_type: Yup.string()
+    certification_type_id: Yup.string()
         .required('Este campo es requerido')
         .notOneOf([''], 'Por favor, seleccione una Certificado válido'),
 

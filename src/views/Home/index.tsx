@@ -25,7 +25,8 @@ const Home = () => {
   const logout = useAuthStore((state: any) => state.setLogout);
   const token = useAuthStore((state: any) => state.token);
   const navigate = useNavigate();
-  const [tableData, setTableData] = useState<IGetUsersDocumentsData>([]);
+  const [tableData, setTableData] = useState<IGetUsersDocumentsData[]>([]);
+
 
 
   const theme = useTheme();
@@ -68,7 +69,7 @@ const Home = () => {
       description: 'Transcripción de Créditos refleja el historial académico de un estudiante dentro del Sistema Escolar del Departamento de Educación de Puerto Rico. Este es un informe oficial que detalla las calificaciones obtenidas en cada uno de los cursos y créditos acumulados por el estudiante durante sus años de estudios. Incluye, si está disponible, la determinación del promedio general Grade Point Average (GPA). Contiene, además, el registro de las horas comunitarias y de exploración ocupacional realizadas por el estudiante.',
       button: 'Crear Solicitud',
       buttonType: 'primary',
-      navigate: '/create/Transcripción de Creditos'
+      navigate: '/create/2'
     },
     {
       icon: paper,
@@ -78,7 +79,7 @@ const Home = () => {
       description: 'La Certificación de Horas Taller valida que el estudiante solicitante ha completado los requisitos de un programa de formación ocupacional, vocacional o técnica. Esta certificación identifica la especialidad del taller, temas cubiertos durante el taller, fechas y horas acumuladas en las que el estudiante realizó su capacitación. (Los estudiantes de Educación Especial, Salón a Tiempo Completo, se rigen bajo otras especificaciones).',
       button: 'Crear Solicitud',
       buttonType: 'primary',
-      navigate: '/create/Certificado Horas Taller'
+      navigate: '/create/3'
     },
   ];
 
@@ -122,7 +123,8 @@ const Home = () => {
     const fetchUserData = async () => {
       try {
         const userDocuments = await getUserDocuments(token);
-        setTableData(userDocuments);
+        if (Array.isArray(userDocuments)) setTableData(userDocuments);
+
         console.log(tableData);
       } catch (error) {
         console.error("Error fetching user documents:", error);

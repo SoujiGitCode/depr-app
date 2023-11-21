@@ -42,7 +42,7 @@ const Root = () => {
             <Route index element={<Fast />} />
           </Route>
 
-          <Route path={`${PATH.CREATE}/:certification_type`} element={<AuthorizedLayout />}>
+          <Route path={`${PATH.CREATE}/:certification_type_id`} element={<AuthorizedLayout />}>
             <Route index element={<Create />} />
           </Route>
 

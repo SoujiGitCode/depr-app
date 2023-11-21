@@ -77,7 +77,7 @@ interface ICreateRequestParams {
   email1: string;
   email2: string;
   token: string;
-  certification_type: string;
+  certification_type_id: string;
 }
 
 export type Ok = {
@@ -108,7 +108,7 @@ export const CreateRequest = async ({
   email1,
   email2,
   token,
-  certification_type
+  certification_type_id
 }: ICreateRequestParams) => {
   try {
 
@@ -137,7 +137,7 @@ export const CreateRequest = async ({
       social_security,
       email1,
       email2,
-      certification_type
+      certification_type_id
     })
 
     const res = await api.post({
@@ -169,7 +169,7 @@ export const CreateRequest = async ({
         depr_phone: phone,
         depr_social_security: social_security,
 
-        certification_type,
+        certification_type_id
       },
     })
 
