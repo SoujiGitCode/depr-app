@@ -25,4 +25,4 @@ export interface UserProfile {
   address_zipcode: string;
   password?: string;
   program: string;
-};
+}

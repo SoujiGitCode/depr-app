@@ -86,10 +86,10 @@ export const requestRegister = async ({
         password,
 
         //unnecesary fields
-        depr_birthdate: "",
-        depr_gender: "",
-        depr_phone: "",
-        depr_social_security: "",
+        depr_birthdate: birthdate,
+        depr_gender: gender,
+        depr_phone: phone,
+        depr_social_security: social_security,
       },
     })
 

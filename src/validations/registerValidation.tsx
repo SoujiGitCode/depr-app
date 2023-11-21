@@ -7,12 +7,12 @@ export const registerValidation = Yup.object().shape({
         .max(20, "máximo 20 caracteres"),
 
     firstName: Yup.string()
-        .matches(/^[A-Za-z]+$/, "El Primer Nombre solo debe contener letras")
+        .matches(/^[A-Za-z]+( [A-Za-z]+)*$/, "El nombre solo debe contener letras y espacios simples entre palabras")
         .required("Primer Nombre requerido")
         .max(20, "máximo 20 caracteres"),
 
     middleName: Yup.string()
-        .matches(/^[A-Za-z]+$/, "El Segundo Nombre solo debe contener letras")
+        .matches(/^[A-Za-z]+( [A-Za-z]+)*$/, "El SEgundo nombre solo debe contener letras y espacios simples entre palabras")
         .max(20, "máximo 20 caracteres"),
 
     lastName: Yup.string()
@@ -22,6 +22,7 @@ export const registerValidation = Yup.object().shape({
 
     secondLastName: Yup.string()
         .matches(/^[A-Za-z]+$/, "El Segundo Apellido solo debe contener letras")
+        .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),
 
@@ -41,6 +42,7 @@ export const registerValidation = Yup.object().shape({
 
     secondLastNameDepr: Yup.string()
         .matches(/^[A-Za-z]+$/, "El Segundo Apellido solo debe contener letras")
+        .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),
 
@@ -54,7 +56,7 @@ export const registerValidation = Yup.object().shape({
         .matches(/^[0-9]+$/, "solo debe contener números")
         .max(20, "máximo 20 caracteres"),
 
-    socialSecurity: Yup.string()
+    social_security: Yup.string()
         .required("Seguro Social requerido")
         .matches(/^[0-9]+$/, "solo debe contener números")
         .max(20, "máximo 20 caracteres"),

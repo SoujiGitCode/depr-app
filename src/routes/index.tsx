@@ -1,31 +1,57 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Landing, Login, Register } from "@/views";
+import { Home, Landing, Login, Register, Fast, Create } from "@/views";
 import { UnauthorizedLayout, AuthorizedLayout } from "@/layout";
 import { PATH } from "./constants";
 import useAuthStore from "@/hooks/useAuthStore";
 import Error404 from "@/views/Error404";
 import Error500 from "@/views/Error500";
 
-
 const Root = () => {
   const isAuthenticated = useAuthStore((state: any) => state.isAuthenticated);
 
   return (
     <Routes>
-      {!isAuthenticated ? (
-        <Route path={PATH.ROOT} element={<UnauthorizedLayout />}>
-          <Route path={PATH.ROOT} element={<Landing />} />
-          <Route path={PATH.LOGIN} element={<Login />} />
-          <Route path={PATH.REGISTER} element={<Register />} />
-          {/* <Route path={PATH.RECOVERY} element={<Recovery />} />
-          <Route path={PATH.RECOVERY_TOKEN} element={<RecoveryToken />} /> */}
-        </Route>
+      {/* Rutas accesibles para todos */}
+      <Route path={PATH.ROOT} element={<UnauthorizedLayout />}>
+        <Route path={PATH.ROOT} element={<Landing />} />
+        <Route path={PATH.REGISTER} index element={<Register />} />
+        <Route path={PATH.LOGIN} index element={<Login />} />
+      </Route>
 
-      ) : (
-        <Route path={PATH.ROOT} element={<AuthorizedLayout />}>
-          <Route path={PATH.DASHBOARD} element={<Home />}></Route>
-        </Route>
+      {/* Rutas solo para usuarios no autorizados */}
+      {!isAuthenticated && (
+        <>
+          <Route path={PATH.LOGIN} element={<UnauthorizedLayout />}>
+            {/* <Route index element={<Login />} /> */}
+          </Route>
+
+          <Route path={PATH.FAST} element={<UnauthorizedLayout />}>
+            <Route index element={<Fast />} />
+          </Route>
+        </>
       )}
+
+      {/* Rutas solo para usuarios autorizados */}
+      {isAuthenticated && (
+        <>
+          <Route path={PATH.DASHBOARD} element={<AuthorizedLayout />}>
+            <Route index element={<Home />} />
+          </Route>
+
+          <Route path={PATH.FAST} element={<AuthorizedLayout />}>
+            <Route index element={<Fast />} />
+          </Route>
+
+          <Route path={`${PATH.CREATE}/:certification_type`} element={<AuthorizedLayout />}>
+            <Route index element={<Create />} />
+          </Route>
+
+
+        </>
+
+      )}
+
+      {/* Rutas para errores o no encontradas */}
       <Route path={PATH.NOT_FOUND} element={<Error404 />} />
       <Route path="*" element={<Error500 />} />
     </Routes>

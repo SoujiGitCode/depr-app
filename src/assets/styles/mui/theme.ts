@@ -3,6 +3,7 @@ import { orange, blue } from '@mui/material/colors';
 
 const borderColor = "#658A86";
 const placeholderColor = "rgba(51, 51, 51, 0.4)";
+const filledInputBg = '#EAEAEA';
 
 const disabledColorPrimary = "#697FAA80";
 
@@ -53,12 +54,12 @@ const theme = createTheme({
       fontSize: '1.5rem',
     },
     h5: {
-      fontFamily: 'Montserrat-Black',
-      fontWeight: 'normal',
-      fontSize: '1.2rem',
+      fontFamily: 'Montserrat-Medium',
+      fontWeight: 'bolder',
+      fontSize: '1.5rem',
     },
     h6: {
-      fontFamily: 'Montserrat-Black',
+      fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
       fontSize: '1rem',
     },
@@ -122,6 +123,37 @@ const theme = createTheme({
           },
           '& .MuiOutlinedInput-input': {
             padding: "0.7rem",
+          },
+
+          // Estilos para variant="filled"
+          '& .MuiFilledInput-root': {
+            backgroundColor: filledInputBg, // Fondo gris para el input 'filled'
+            borderRadius: '4px 4px 0px 0px',
+            border: `2px solid ${borderColor}`,
+            '&:before': {
+              borderBottomColor: borderColor, // Línea inferior cuando no está enfocado
+            },
+            '&:hover:before': {
+              borderBottomColor: borderColor, // Línea inferior al pasar el ratón por encima
+            },
+            '&.Mui-focused': {
+              backgroundColor: filledInputBg, // Fondo gris cuando está enfocado
+              '&:after': {
+                borderBottomColor: borderColor, // Línea inferior cuando está enfocado
+              },
+            },
+            // Ajuste del padding si es necesario
+            '& .MuiInputBase-input': {
+              padding: "0.7rem",
+            },
+          },
+
+          // Estilos para la etiqueta (label) de variant="filled"
+          '& .MuiInputLabel-filled': {
+            color: placeholderColor,
+            '&.Mui-focused': {
+              color: borderColor,
+            },
           },
         },
       },
