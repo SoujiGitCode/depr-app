@@ -58,8 +58,9 @@ export const registerValidation = Yup.object().shape({
 
     social_security: Yup.string()
         .required("Seguro Social requerido")
-        .matches(/^[0-9]+$/, "solo debe contener números")
-        .max(20, "máximo 20 caracteres"),
+        .matches(/^[0-9*]+$/, "Solo debe contener números")
+        .test('len', 'Deben ser 9 caracteres', val => val.length === 9),
+
 
     birthdate: Yup.string().required("Fecha de nacimiento requerida"),
 

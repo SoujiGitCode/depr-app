@@ -24,7 +24,7 @@ const CustomTable = ({ tableData }: CustomTableProps) => {
     const statusList: { [key: number]: string } = {
         0: "En Progreso",
         1: "Enviado",
-        2: "Procesado",
+        2: "Cancelado",
         3: "Error",
     };
 
@@ -56,14 +56,15 @@ const CustomTable = ({ tableData }: CustomTableProps) => {
                     <TableRow>
                         <TableCell
                             sx={{
-                                display: "flex",
                                 justifyContent: "center",
+                                textAlign: "center",
                             }}
                         >
                             <Typography
                                 variant='h6'
                                 sx={{
-                                    fontSize: "1.2rem",
+                                    justifyContent: "center",
+                                    fontSize: "1.2em",
                                     color: "#666666 !important"
                                 }}
                             >
@@ -72,13 +73,15 @@ const CustomTable = ({ tableData }: CustomTableProps) => {
                         </TableCell>
                         <TableCell
                             sx={{
-                                paddingLeft: "8%",
+                                justifyContent: "center",
+                                textAlign: "center",
                             }}
                         >
                             <Typography
                                 variant='h6'
                                 sx={{
-                                    fontSize: "1.2rem",
+                                    justifyContent: "center",
+                                    fontSize: "1.2em",
                                     color: "#666666 !important"
                                 }}
                             >
@@ -87,13 +90,15 @@ const CustomTable = ({ tableData }: CustomTableProps) => {
                         </TableCell>
                         <TableCell
                             sx={{
-                                paddingLeft: "4%",
+                                justifyContent: "center",
+                                textAlign: "center",
                             }}
                         >
                             <Typography
                                 variant='h6'
                                 sx={{
-                                    fontSize: "1.2rem",
+                                    justifyContent: "center",
+                                    fontSize: "1.2em",
                                     color: "#666666 !important"
                                 }}
                             >
@@ -109,7 +114,7 @@ const CustomTable = ({ tableData }: CustomTableProps) => {
                             <Typography
                                 variant='h6'
                                 sx={{
-                                    fontSize: "1.2rem",
+                                    fontSize: "1.2em",
                                     color: "#666666 !important"
                                 }}
                             >

@@ -17,7 +17,7 @@ import {
 import registerImage from '../../assets/register.png';
 import Radio from '@mui/material/Radio';
 import { useNavigate } from "react-router-dom";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { SocialDistanceOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
 import WarningIcon from "@mui/icons-material/Warning";
 import CustomLabel from "@/components/CustomLabel";
 import { requestRegister } from "./functions";
@@ -70,7 +70,9 @@ const Register = () => {
   const [showSocialSecurity, setShowSocialSecurity] = useState(false);
   const [selectedValue, setSelectedValue] = useState<string | null>('No');
   const [loading, setLoading] = useState(false);
-  const [displayedSocialSecurity, setDisplayedSocialSecurity] = useState("");
+
+  const [socialSecurity, setSocialSecurity] = useState('');
+  const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill(""));
 
   const formik = useFormik({
     validateOnMount: true,
@@ -89,7 +91,7 @@ const Register = () => {
       birthdate: "",
       gender: genderList[0].value,
       phoneNumber: "",
-      social_security: "",
+      social_security: '',
       email: "",
       password: "",
       repeatPassword: "",
@@ -140,7 +142,8 @@ const Register = () => {
         depr_last_name: formik.values.lastNameDepr,
         depr_second_last_name: formik.values.secondLastNameDepr,
         phone: formik.values.phoneNumber,
-        social_security: formik.values.social_security,
+        // social_security: formik.values.social_security,
+        social_security: socialSecurityArray.join(""),
         password: formik.values.password,
       });
       setAlert("Registro Completado!", "success");
@@ -189,20 +192,61 @@ const Register = () => {
     console.log(formik.isValid)
   }, [formik.isValid, formik.errors]);
 
-  //=============Social Security input type custom---------
-  useEffect(() => {
-    if (showSocialSecurity) {
-      setDisplayedSocialSecurity(formik.values.social_security);
-    } else {
-      const totalLength = formik.values.social_security.length;
-      const visibleLength = 4; // Los últimos 3 dígitos son visibles
-      const hiddenLength = Math.max(totalLength - visibleLength, 0);
-      const masked = formik.values.social_security.slice(-visibleLength);
-      const hiddenCharacters = "*".repeat(hiddenLength);
-      setDisplayedSocialSecurity(hiddenCharacters + masked);
-    }
-  }, [formik.values.social_security, showSocialSecurity]);
 
+
+  const toggleSocialSecurityVisibility = () => {
+    setShowSocialSecurity(!showSocialSecurity);
+    if (!showSocialSecurity) {
+      console.log(socialSecurityArray)
+      formik.setFieldValue('social_security', socialSecurityArray.join("")); // Mostrar valor real
+      console.log(socialSecurityArray.join(""));
+      console.log('FIRST if')
+    } else {
+      console.log('2nd if')
+      formik.setFieldValue('social_security', maskSocialSecurity(socialSecurityArray.join(""))); // Mostrar enmascarado
+    }
+  };
+
+  const handleSocialSecurityChange = (e) => {
+    const { value: input, selectionStart, selectionEnd } = e.target;
+
+    // Crear una copia del array actual
+    let updatedArray = [...socialSecurityArray];
+
+    // Calcular la diferencia de longitud entre el input y el array actual
+    const diff = input.length - updatedArray.join('').length;
+
+    // Manejar la adición o eliminación de caracteres
+    if (diff > 0) {
+      // Adición de caracteres
+      const newChars = input.slice(selectionStart - diff, selectionStart);
+      updatedArray.splice(selectionStart - diff, 0, ...newChars.split(''));
+    } else if (diff < 0) {
+      // Eliminación de caracteres
+      updatedArray.splice(selectionStart, -diff);
+    }
+
+    // Asegurar que el array no exceda la longitud máxima y rellenar con espacios vacíos si es necesario
+    updatedArray = updatedArray.slice(0, 9);
+    while (updatedArray.length < 9) {
+      updatedArray.push("");
+    }
+
+    // Actualizar el estado y el valor de Formik
+    setSocialSecurityArray(updatedArray);
+    formik.setFieldValue('social_security', updatedArray.join(''));
+  };
+
+
+
+
+  // Función para enmascarar
+  const maskSocialSecurity = (value) => {
+    const visibleDigits = 4;
+    const maskedLength = Math.max(value.length - visibleDigits, 0);
+    const masked = value.slice(-visibleDigits);
+    return "*".repeat(maskedLength) + masked;
+  };
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>
       <Grid item xs={6} style={{ overflow: 'hidden', height: 'auto' }}>
@@ -590,11 +634,11 @@ const Register = () => {
                     <TextField
                       variant="outlined"
                       placeholder='N° Seguro Social'
-                      name="social_security"
                       id="social_security"
                       type={'text'}
-                      value={displayedSocialSecurity}
-                      onChange={formik.handleChange}
+                      name="social_security"
+                      value={showSocialSecurity ? socialSecurityArray.join('') : maskSocialSecurity(socialSecurityArray.join(''))}
+                      onChange={handleSocialSecurityChange}
                       onBlur={formik.handleBlur}
                       error={formik.touched.social_security && Boolean(formik.errors.social_security)}
                       helperText={formik.touched.social_security && typeof formik.errors.social_security === 'string' ? formik.errors.social_security : undefined}
@@ -603,7 +647,7 @@ const Register = () => {
                           <InputAdornment position="end">
                             <IconButton
                               edge="end"
-                              onClick={() => setShowSocialSecurity(!showSocialSecurity)}
+                              onClick={toggleSocialSecurityVisibility}
                             >
                               {showSocialSecurity ? <VisibilityOff /> : <Visibility />}
                             </IconButton>
