@@ -88,20 +88,20 @@ const Home = () => {
     '& .MuiInputBase-root': {
       width: '194px',
       height: '41px',
-      padding: '8px 16px', // MUI utiliza un solo valor para el eje X y otro para el eje Y
+      padding: '8px 16px',
       borderRadius: '50px',
-      border: '2px solid #CACACA', // Necesitas especificar un color o utilizar el color por defecto
-      // Si necesitas un color específico, por ejemplo gris, usarías '2px solid #gray'
+      border: '2px solid #CACACA',
+
     },
-    // Si necesitas un gap entre el ícono y el texto, esto va dentro del input
+
     '& .MuiInput-underline:before': {
-      borderBottom: 'none', // Elimina la línea de borde inferior en el estado normal
+      borderBottom: 'none',
     },
     '& .MuiInput-underline:after': {
-      borderBottom: 'none', // Elimina la línea de borde inferior en el estado activo (cuando el input está enfocado)
+      borderBottom: 'none',
     },
     '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-      borderBottom: 'none', // Elimina la línea de borde inferior en el estado hover
+      borderBottom: 'none',
     },
   });
 
@@ -109,7 +109,7 @@ const Home = () => {
     return (
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <CustomTextField
-          variant="standard" // Utiliza la variante "standard" para poder quitar la línea inferior
+          variant="standard"
           placeholder="Buscar certificado"
           sx={{ marginRight: "1em !important" }}
         />

@@ -120,7 +120,7 @@ const Create = () => {
       if (isAuthenticated) {
         try {
           const userInfo = await requestUserInfo(token);
-          setFormData(userInfo); // Actualiza directamente formData
+          setFormData(userInfo);
           console.log(formData)
           updateFormData({
             token: token,
@@ -129,7 +129,7 @@ const Create = () => {
           console.error("Error fetching user data:", error);
         }
       } else {
-        setFormData(initialFormData); // Si no está autenticado, establece los valores iniciales
+        setFormData(initialFormData);
       }
     };
 

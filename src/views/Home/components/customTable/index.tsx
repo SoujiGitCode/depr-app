@@ -179,12 +179,12 @@ const CustomTable = ({ tableData }: CustomTableProps) => {
                                     <Button variant="outlined"
                                         disabled={parseInt(row.status) !== 1}
                                         sx={{
-                                            width: '172px',  // Ancho específico
-                                            height: '43px',   // Altura específica
-                                            padding: '8px',   // Padding interno
-                                            borderRadius: '4px', // Redondeo de bordes
+                                            width: '172px',
+                                            height: '43px',
+                                            padding: '8px',
+                                            borderRadius: '4px',
                                             fontSize: '0.8em !important',
-                                            gap: '8px',      // Espacio entre icono y texto (si utilizas un icono)
+                                            gap: '8px',
                                         }}
                                         startIcon={<MarkEmailReadIcon />}>
                                         Reenviar a Correo

@@ -70,8 +70,6 @@ const Register = () => {
   const [showSocialSecurity, setShowSocialSecurity] = useState(false);
   const [selectedValue, setSelectedValue] = useState<string | null>('No');
   const [loading, setLoading] = useState(false);
-
-  const [socialSecurity, setSocialSecurity] = useState('');
   const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill(""));
 
   const formik = useFormik({
@@ -96,7 +94,7 @@ const Register = () => {
       password: "",
       repeatPassword: "",
     },
-    validationSchema: registerValidation, // Aquí asegúrate de pasar el objeto globalValidations
+    validationSchema: registerValidation,
     onSubmit: async () => {
       await sendUserForRegister();
     },
@@ -207,6 +205,9 @@ const Register = () => {
     }
   };
 
+
+  //----------------Funciones del Social Security Input-------------------//
+
   const handleSocialSecurityChange = (e) => {
     const { value: input, selectionStart, selectionEnd } = e.target;
 
@@ -238,15 +239,15 @@ const Register = () => {
   };
 
 
-
-
-  // Función para enmascarar
-  const maskSocialSecurity = (value) => {
+  // Función para enmascarar 
+  const maskSocialSecurity = (value: any) => {
     const visibleDigits = 4;
     const maskedLength = Math.max(value.length - visibleDigits, 0);
     const masked = value.slice(-visibleDigits);
     return "*".repeat(maskedLength) + masked;
   };
+
+  //----------------Fin de Funciones del Social Security Input-------------------//
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>
       <Grid item xs={6} style={{ overflow: 'hidden', height: 'auto' }}>
