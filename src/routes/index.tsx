@@ -38,8 +38,8 @@ const Root = () => {
             <Route index element={<Home />} />
           </Route>
 
-          <Route path={PATH.ROOT} element={<AuthorizedLayout />}>
-            <Route path={PATH.PROFILE} element={<Profile />} />
+          <Route path={PATH.PROFILE} element={<AuthorizedLayout />}>
+            <Route index element={<Profile />} />
           </Route>
 
           <Route path={PATH.FAST} element={<AuthorizedLayout />}>

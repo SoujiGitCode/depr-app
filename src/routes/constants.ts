@@ -8,7 +8,7 @@ export const PATH = {
   REGISTER: "/register",
   NOT_FOUND: "/not-found",
   REQUEST_SERVICES: "/request-services",
-  PROFILE: "profile",
+  PROFILE: "/profile",
   RECOVERY: "/recovery",
   RECOVERY_TOKEN: "/recovery-token/:t",
 };
