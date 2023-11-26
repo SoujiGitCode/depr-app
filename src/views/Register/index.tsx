@@ -26,8 +26,6 @@ import WarningIcon from "@mui/icons-material/Warning";
 import CustomLabel from "@/components/CustomLabel";
 import { requestRegister } from "./functions";
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import styles from "./Register.module.scss";
 import useAlert from "@/hooks/useAlert";
 import useAuthStore from "@/hooks/useAuthStore";
 import { PATH } from "@/routes/constants";
@@ -212,22 +210,18 @@ const Register = () => {
   const toggleSocialSecurityVisibility = () => {
     setShowSocialSecurity(!showSocialSecurity);
     if (!showSocialSecurity) {
-      console.log(socialSecurityArray);
       formik.setFieldValue("social_security", socialSecurityArray.join("")); // Mostrar valor real
-      console.log(socialSecurityArray.join(""));
-      console.log("FIRST if");
     } else {
-      console.log("2nd if");
       formik.setFieldValue(
         "social_security",
         maskSocialSecurity(socialSecurityArray.join(""))
-      ); // Mostrar enmascarado
+      );
     }
   };
 
   //----------------Funciones del Social Security Input-------------------//
 
-  const handleSocialSecurityChange = (e) => {
+  const handleSocialSecurityChange = (e: any) => {
     const { value: input, selectionStart, selectionEnd } = e.target;
 
     // Crear una copia del array actual
@@ -821,26 +815,13 @@ const Register = () => {
                       variant="outlined"
                       placeholder="N° Seguro Social"
                       id="social_security"
-                      type={"text"}
+                      type="text"
                       name="social_security"
-                      value={
-                        showSocialSecurity
-                          ? socialSecurityArray.join("")
-                          : maskSocialSecurity(socialSecurityArray.join(""))
-                      }
-                      onChange={handleSocialSecurityChange}
-                      onBlur={formik.handleBlur}
-                      error={
-                        formik.touched.social_security &&
-                        Boolean(formik.errors.social_security)
-                      }
-                      helperText={
-                        formik.touched.social_security &&
-                        typeof formik.errors.social_security === "string"
-                          ? formik.errors.social_security
-                          : undefined
-                      }
-                      readOnly={false}
+                      value={socialSecurityArray}
+                      visibilityPassword={showSocialSecurity}
+                      setVisibilityPassword={setShowSocialSecurity}
+                      formik={formik}
+                      setSocialSecurityArray={setSocialSecurityArray}
                     />
                   </FormControl>
                 </Grid>
