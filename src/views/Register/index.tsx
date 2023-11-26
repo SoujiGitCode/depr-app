@@ -818,10 +818,10 @@ const Register = () => {
                       type="text"
                       name="social_security"
                       value={socialSecurityArray}
+                      setSocialSecurityArray={setSocialSecurityArray}
                       visibilityPassword={showSocialSecurity}
                       setVisibilityPassword={setShowSocialSecurity}
                       formik={formik}
-                      setSocialSecurityArray={setSocialSecurityArray}
                     />
                   </FormControl>
                 </Grid>
