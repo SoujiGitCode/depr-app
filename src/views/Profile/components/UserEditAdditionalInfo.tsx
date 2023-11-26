@@ -2,8 +2,27 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import { UserDetails } from "..";
+import { FormikProps } from "formik";
 
-const UserEditAdditionalInfo = ({ formik, listGenre, listId, isEditMode }) => {
+interface ListItem {
+  value: string;
+  label: string;
+}
+
+interface UserProfileInfoProps {
+  formik: FormikProps<UserDetails>;
+  listGenre: ListItem[];
+  listId: ListItem[];
+  isEditMode: boolean;
+}
+
+const UserEditAdditionalInfo: React.FC<UserProfileInfoProps> = ({
+  formik,
+  listGenre,
+  listId,
+  isEditMode,
+}) => {
   const customText = {
     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
       borderColor: "pink",
@@ -22,35 +41,38 @@ const UserEditAdditionalInfo = ({ formik, listGenre, listId, isEditMode }) => {
     paddingRight: "1rem",
   };
 
+  console.log(formik.values.identification_type);
+
   return (
     <>
-      {/* School */}
+      {/* Phone Number */}
       <Box
         sx={{
           display: "flex",
           paddingBottom: "1rem",
-          width: "100%",
+          width: "90%",
         }}
       >
         <Typography
           sx={{
-            width: "20%",
+            width: "42%",
             fontWeight: "bold",
             fontSize: "1.2rem",
           }}
         >
-          Escuela: &nbsp;
+          Numero de Telefono: &nbsp;
         </Typography>
+
         <div style={{ width: "50%" }}>
           <TextField
-            id="school"
-            name="school"
-            value={formik.values.school}
+            id="phone"
+            name="phone"
+            sx={customText}
+            value={formik.values.phone}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            sx={customText}
           />
-          {formik.touched.school && formik.errors.school && (
+          {formik.touched.phone && formik.errors.phone && (
             <Typography
               sx={{
                 color: "red",
@@ -58,7 +80,7 @@ const UserEditAdditionalInfo = ({ formik, listGenre, listId, isEditMode }) => {
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.school}
+              {formik.errors.phone}
             </Typography>
           )}
         </div>
@@ -69,12 +91,12 @@ const UserEditAdditionalInfo = ({ formik, listGenre, listId, isEditMode }) => {
         sx={{
           display: "flex",
           paddingBottom: "1rem",
-          width: "100%",
+          width: "90%",
         }}
       >
         <Typography
           sx={{
-            width: "20%",
+            width: "42%",
             fontWeight: "bold",
             fontSize: "1.2rem",
           }}
@@ -83,15 +105,15 @@ const UserEditAdditionalInfo = ({ formik, listGenre, listId, isEditMode }) => {
         </Typography>
         <TextField
           select
-          name="genre"
-          id="genre"
+          name="gender"
+          id="gender"
           type="text"
           variant="outlined"
-          value={formik.values.genre}
+          value={formik.values.gender}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.genre && Boolean(formik.errors.genre)}
-          helperText={formik.touched.genre && formik.errors.genre}
+          error={formik.touched.gender && Boolean(formik.errors.gender)}
+          helperText={formik.touched.gender && formik.errors.gender}
           sx={{
             "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
               borderRadius: 0,
@@ -118,36 +140,14 @@ const UserEditAdditionalInfo = ({ formik, listGenre, listId, isEditMode }) => {
       >
         <Typography
           sx={{
-            width: "22%",
+            width: "42%",
             fontWeight: "bold",
             fontSize: "1.2rem",
           }}
         >
           {isEditMode ? "ID:" : "Documento de Identidad"}
         </Typography>
-        <TextField
-          select
-          name="docType"
-          id="docType"
-          type="text"
-          variant="outlined"
-          value={formik.values.docType}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.docType && Boolean(formik.errors.docType)}
-          helperText={formik.touched.docType && formik.errors.docType}
-          sx={licTextField}
-        >
-          {listId.map((option) => (
-            <MenuItem
-              key={option.value}
-              value={option.value}
-              sx={{ width: "3rem" }}
-            >
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+
         <div>
           <TextField
             sx={{
@@ -155,18 +155,21 @@ const UserEditAdditionalInfo = ({ formik, listGenre, listId, isEditMode }) => {
                 borderRadius: 0,
                 border: "2px solid " + "#a09c9c92",
               },
-              width: "84%",
+              width: "108%",
             }}
-            name="docNumber"
-            id="docNumber"
+            name="identification"
+            id="identification"
             type="text"
             variant="outlined"
-            value={formik.values.docNumber}
+            value={formik.values.identification}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.docNumber && Boolean(formik.errors.docNumber)}
+            error={
+              formik.touched.identification &&
+              Boolean(formik.errors.identification)
+            }
           />
-          {formik.touched.docNumber && formik.errors.docNumber && (
+          {formik.touched.identification && formik.errors.identification && (
             <Typography
               sx={{
                 color: "red",
@@ -174,7 +177,47 @@ const UserEditAdditionalInfo = ({ formik, listGenre, listId, isEditMode }) => {
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.docNumber}
+              {formik.errors.identification}
+            </Typography>
+          )}
+        </div>
+      </Box>
+
+      {/* Email */}
+      <Box
+        sx={{
+          display: "flex",
+          paddingBottom: "1rem",
+          width: "90%",
+        }}
+      >
+        <Typography
+          sx={{
+            width: "42%",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+          }}
+        >
+          Correo Electronico: &nbsp;
+        </Typography>
+        <div style={{ width: "50%" }}>
+          <TextField
+            id="email"
+            name="email"
+            sx={customText}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.email && formik.errors.email && (
+            <Typography
+              sx={{
+                color: "red",
+                fontSize: "0.8rem",
+                paddingTop: "0.5rem",
+              }}
+            >
+              {formik.errors.email}
             </Typography>
           )}
         </div>

@@ -1,5 +1,5 @@
 import { Grid, Button, Box, Divider } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "./validations";
 import styles from "./profile.module.scss";
@@ -8,44 +8,115 @@ import UserProfileInfo from "./components/UserProfileIInfo";
 import UserEditProfile from "./components/UserEditProfile";
 import UserAdditionalInfo from "./components/UserAdditionalnfo";
 import UserEditAdditionalInfo from "./components/UserEditAdditionalInfo";
+import Api from "@/utils/services/api";
+import useAuthStore from "@/hooks/useAuthStore";
+
+const listId = [
+  {
+    value: "licencia",
+    label: "Lic",
+  },
+  {
+    value: "id",
+    label: "Real Id",
+  },
+];
+const listGenre = [
+  {
+    value: "F",
+    label: "Femenino",
+  },
+  {
+    value: "M",
+    label: "Masculino",
+  },
+  {
+    value: "N",
+    label: "No Indica",
+  },
+];
+
+export interface UserDetails {
+  id: string;
+  email: string;
+  password: string;
+  identification_type: string;
+  identification: string;
+  first_name: string;
+  second_name: string;
+  last_name: string;
+  second_last_name: string;
+  birthdate: string;
+  gender: string;
+  phone: string;
+  social_security: string;
+  depr_first_name: string;
+  depr_second_name: string;
+  depr_last_name: string;
+  depr_second_last_name: string;
+  depr_birthdate: string;
+  depr_gender: string;
+  depr_phone: string;
+  depr_social_security: string;
+  ip_origin: string;
+  status: string;
+  created: string;
+  updated: string;
+}
+
+interface ApiResponse {
+  code: number;
+  message: string;
+  data: UserDetails;
+}
 
 const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const listId = [
-    {
-      value: "licencia",
-      label: "Lic",
-    },
-    {
-      value: "id",
-      label: "Real Id",
-    },
-  ];
-  const listGenre = [
-    {
-      value: "f",
-      label: "Femenino",
-    },
-    {
-      value: "m",
-      label: "Masculino",
-    },
-    {
-      value: "n",
-      label: "No Indica",
-    },
-  ];
-
+  const [userInfo, setUserInfo] = useState<UserDetails>();
+  const token = useAuthStore((state: any) => state.token);
   const [formValues, setFormValues] = useState({
-    name: "",
-    social_security: "",
-    birth_date: "",
-    phone_number: "",
+    id: "",
     email: "",
-    school: "",
-    genre: listGenre[0].value,
-    docType: listId[0].value,
+    password: "",
+    identification_type: listId[0].value,
+    identification: "",
+    first_name: "",
+    second_name: "",
+    last_name: "",
+    second_last_name: "",
+    birthdate: "",
+    gender: listGenre[0].value,
+    phone: "",
+    social_security: "",
+    depr_first_name: "",
+    depr_second_name: "",
+    depr_last_name: "",
+    depr_second_last_name: "",
+    depr_birthdate: "",
+    depr_gender: "",
+    depr_phone: "",
+    depr_social_security: "",
+    ip_origin: "",
+    status: "",
+    created: "",
+    updated: "",
   });
+
+  const getDetails = async () => {
+    Api.token = token;
+    Api.resource = "/user/";
+    try {
+      const resp = await Api.get<ApiResponse>();
+      const cast: UserDetails = resp.data;
+      setUserInfo(cast);
+      formik.setValues(cast);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getDetails();
+  }, [token]);
 
   const editMode = () => {
     setIsEditMode(!isEditMode);
@@ -53,19 +124,35 @@ const Profile = () => {
 
   const formik = useFormik({
     initialValues: {
-      docType: listId[0].value,
-      name: "",
-      social_security: "",
-      birth_date: "",
-      phone_number: "",
+      id: "",
       email: "",
-      school: "",
-      genre: listGenre[0].value,
-      docNumber: "",
+      password: "",
+      identification_type: listId[0].value,
+      identification: "",
+      first_name: "",
+      second_name: "",
+      last_name: "",
+      second_last_name: "",
+      birthdate: "",
+      gender: listGenre[0].value,
+      phone: "",
+      social_security: "",
+      depr_first_name: "",
+      depr_second_name: "",
+      depr_last_name: "",
+      depr_second_last_name: "",
+      depr_birthdate: "",
+      depr_gender: "",
+      depr_phone: "",
+      depr_social_security: "",
+      ip_origin: "",
+      status: "",
+      created: "",
+      updated: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // Aquí puedes manejar la lógica de envío del formulario si pasa la validación.
+      console.log(values);
     },
   });
 
@@ -101,10 +188,10 @@ const Profile = () => {
                 width: isEditMode ? "130%" : "100%",
               }}
             >
-              {!isEditMode ? (
+              {!isEditMode && userInfo ? (
                 <UserProfileInfo formik={formik} />
               ) : (
-                <UserEditProfile formik={formik} />
+                <>{userInfo && <UserEditProfile formik={formik} />}</>
               )}
             </Box>
           </Box>
@@ -132,14 +219,32 @@ const Profile = () => {
                   if (formik.isValid) {
                     // Si está en modo edición y los campos son válidos, guarda los valores
                     setFormValues({
-                      school: formik.values.school,
-                      name: formik.values.name,
-                      social_security: formik.values.social_security,
-                      birth_date: formik.values.birth_date,
-                      phone_number: formik.values.phone_number,
+                      id: formik.values.id,
                       email: formik.values.email,
-                      docType: formik.values.docType,
-                      genre: formik.values.genre,
+                      password: formik.values.password,
+                      identification_type: formik.values.identification_type,
+                      identification: formik.values.identification,
+                      first_name: formik.values.first_name,
+                      second_name: formik.values.second_name,
+                      last_name: formik.values.last_name,
+                      second_last_name: formik.values.second_last_name,
+                      birthdate: formik.values.birthdate,
+                      gender: formik.values.gender,
+                      phone: formik.values.phone,
+                      social_security: formik.values.social_security,
+                      depr_first_name: formik.values.depr_first_name,
+                      depr_second_name: formik.values.depr_second_name,
+                      depr_last_name: formik.values.depr_last_name,
+                      depr_second_last_name:
+                        formik.values.depr_second_last_name,
+                      depr_birthdate: formik.values.depr_birthdate,
+                      depr_gender: formik.values.depr_gender,
+                      depr_phone: formik.values.depr_phone,
+                      depr_social_security: formik.values.depr_social_security,
+                      ip_origin: formik.values.ip_origin,
+                      status: formik.values.status,
+                      created: formik.values.created,
+                      updated: formik.values.updated,
                     });
 
                     // Llama a la función onSubmit de formik para manejar la lógica del envío del formulario
@@ -200,15 +305,19 @@ const Profile = () => {
             }}
           >
             <>
-              {!isEditMode ? (
+              {!isEditMode && userInfo ? (
                 <UserAdditionalInfo formik={formik} />
               ) : (
-                <UserEditAdditionalInfo
-                  formik={formik}
-                  listGenre={listGenre}
-                  listId={listId}
-                  isEditMode={isEditMode}
-                />
+                <>
+                  {userInfo && (
+                    <UserEditAdditionalInfo
+                      formik={formik}
+                      listGenre={listGenre}
+                      listId={listId}
+                      isEditMode={isEditMode}
+                    />
+                  )}
+                </>
               )}
             </>
           </Box>

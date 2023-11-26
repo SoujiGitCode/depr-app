@@ -1,8 +1,14 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import { UserDetails } from "..";
+import { FormikProps } from "formik";
 
-const UserEditProfile = ({ formik }) => {
+interface UserProfileInfoProps {
+  formik: FormikProps<UserDetails>;
+}
+
+const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
   const customText = {
     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
       borderColor: "pink",
@@ -29,20 +35,20 @@ const UserEditProfile = ({ formik }) => {
             fontSize: "1.2rem",
           }}
         >
-          Nombre completo:
+          Nombre:
         </Typography>
 
         <div style={{ width: "50%" }}>
           <TextField
-            id="name"
-            name="name"
+            id="first_name"
+            name="first_name"
             size="small"
-            value={formik.values.name}
+            value={formik.values.first_name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             sx={customText}
           />
-          {formik.touched.name && formik.errors.name && (
+          {formik.touched.first_name && formik.errors.first_name && (
             <Typography
               sx={{
                 color: "red",
@@ -50,9 +56,136 @@ const UserEditProfile = ({ formik }) => {
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.name}
+              {formik.errors.first_name}
             </Typography>
           )}
+        </div>
+      </Box>
+
+      {/* Second Name */}
+      <Box
+        sx={{
+          display: "flex",
+          paddingBottom: "1rem",
+          width: "90%",
+        }}
+      >
+        <Typography
+          sx={{
+            width: "49%",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+          }}
+        >
+          Segundo Nombre:
+        </Typography>
+
+        <div style={{ width: "50%" }}>
+          <TextField
+            id="second_name"
+            name="second_name"
+            size="small"
+            value={formik.values.second_name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            sx={customText}
+          />
+          {formik.touched.second_name && formik.errors.second_name && (
+            <Typography
+              sx={{
+                color: "red",
+                fontSize: "0.8rem",
+                paddingTop: "0.5rem",
+              }}
+            >
+              {formik.errors.second_name}
+            </Typography>
+          )}
+        </div>
+      </Box>
+
+      {/*  lastName */}
+      <Box
+        sx={{
+          display: "flex",
+          paddingBottom: "1rem",
+          width: "90%",
+        }}
+      >
+        <Typography
+          sx={{
+            width: "49%",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+          }}
+        >
+          Apellido:
+        </Typography>
+
+        <div style={{ width: "50%" }}>
+          <TextField
+            id="last_name"
+            name="last_name"
+            size="small"
+            value={formik.values.last_name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            sx={customText}
+          />
+          {formik.touched.last_name && formik.errors.last_name && (
+            <Typography
+              sx={{
+                color: "red",
+                fontSize: "0.8rem",
+                paddingTop: "0.5rem",
+              }}
+            >
+              {formik.errors.last_name}
+            </Typography>
+          )}
+        </div>
+      </Box>
+
+      {/* second  lastName */}
+      <Box
+        sx={{
+          display: "flex",
+          paddingBottom: "1rem",
+          width: "90%",
+        }}
+      >
+        <Typography
+          sx={{
+            width: "49%",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+          }}
+        >
+          Segundo Apellido:
+        </Typography>
+
+        <div style={{ width: "50%" }}>
+          <TextField
+            id="second_last_name"
+            name="second_last_name"
+            size="small"
+            value={formik.values.second_last_name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            sx={customText}
+          />
+          {formik.touched.second_last_name &&
+            formik.errors.second_last_name && (
+              <Typography
+                sx={{
+                  color: "red",
+                  fontSize: "0.8rem",
+                  paddingTop: "0.5rem",
+                }}
+              >
+                {formik.errors.second_last_name}
+              </Typography>
+            )}
         </div>
       </Box>
 
@@ -115,15 +248,15 @@ const UserEditProfile = ({ formik }) => {
         </Typography>
         <div style={{ width: "50%" }}>
           <TextField
-            id="birth_date"
-            name="birth_date"
+            id="birthdate"
+            name="birthdate"
             type="date"
             sx={customText}
-            value={formik.values.birth_date}
+            value={formik.values.birthdate}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.birth_date && formik.errors.birth_date && (
+          {formik.touched.birthdate && formik.errors.birthdate && (
             <Typography
               sx={{
                 color: "red",
@@ -131,88 +264,7 @@ const UserEditProfile = ({ formik }) => {
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.birth_date}
-            </Typography>
-          )}
-        </div>
-      </Box>
-
-      {/* Phone Number */}
-      <Box
-        sx={{
-          display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
-        }}
-      >
-        <Typography
-          sx={{
-            width: "49%",
-            fontWeight: "bold",
-            fontSize: "1.2rem",
-          }}
-        >
-          Numero de Telefono: &nbsp;
-        </Typography>
-
-        <div style={{ width: "50%" }}>
-          <TextField
-            id="phone_number"
-            name="phone_number"
-            sx={customText}
-            value={formik.values.phone_number}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.phone_number && formik.errors.phone_number && (
-            <Typography
-              sx={{
-                color: "red",
-                fontSize: "0.8rem",
-                paddingTop: "0.5rem",
-              }}
-            >
-              {formik.errors.phone_number}
-            </Typography>
-          )}
-        </div>
-      </Box>
-
-      {/* Email */}
-      <Box
-        sx={{
-          display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
-        }}
-      >
-        <Typography
-          sx={{
-            width: "49%",
-            fontWeight: "bold",
-            fontSize: "1.2rem",
-          }}
-        >
-          Correo Electronico: &nbsp;
-        </Typography>
-        <div style={{ width: "50%" }}>
-          <TextField
-            id="email"
-            name="email"
-            sx={customText}
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.email && formik.errors.email && (
-            <Typography
-              sx={{
-                color: "red",
-                fontSize: "0.8rem",
-                paddingTop: "0.5rem",
-              }}
-            >
-              {formik.errors.email}
+              {formik.errors.birthdate}
             </Typography>
           )}
         </div>
