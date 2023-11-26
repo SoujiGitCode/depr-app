@@ -811,17 +811,45 @@ const Register = () => {
                     required
                     sx={{ marginBottom: "1.5em !important" }}
                   >
-                    <SocialSecurityInput
+                    <TextField
                       variant="outlined"
                       placeholder="N° Seguro Social"
                       id="social_security"
-                      type="text"
+                      type={"text"}
                       name="social_security"
-                      value={socialSecurityArray}
-                      visibilityPassword={showSocialSecurity}
-                      setVisibilityPassword={setShowSocialSecurity}
-                      formik={formik}
-                      setSocialSecurityArray={setSocialSecurityArray}
+                      value={
+                        showSocialSecurity
+                          ? socialSecurityArray.join("")
+                          : maskSocialSecurity(socialSecurityArray.join(""))
+                      }
+                      onChange={handleSocialSecurityChange}
+                      onBlur={formik.handleBlur}
+                      error={
+                        formik.touched.social_security &&
+                        Boolean(formik.errors.social_security)
+                      }
+                      helperText={
+                        formik.touched.social_security &&
+                        typeof formik.errors.social_security === "string"
+                          ? formik.errors.social_security
+                          : undefined
+                      }
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              edge="end"
+                              onClick={toggleSocialSecurityVisibility}
+                            >
+                              {showSocialSecurity ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </FormControl>
                 </Grid>
