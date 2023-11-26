@@ -43,7 +43,7 @@ const UnautoziredLayout = () => {
 
           {/* Primer Grid a la izquierda */}
           <Grid container item xs={7} alignItems="center" spacing={1}>
-            <Grid item xs={6}>
+            <Grid item xs={7}>
               <Typography variant="h5">
                 PORTAL DE CERTIFICACIONES ACADÉMICAS
               </Typography>
@@ -56,10 +56,10 @@ const UnautoziredLayout = () => {
           {/* Segundo Grid a la derecha */}
           <Grid container item xs={2} direction="column" alignItems="flex-end" spacing={2}>
             <Grid item>
-              <Button variant="contained" color="secondary" href={PATH.LOGIN}>Iniciar Sesión</Button>
+              <Button variant="contained" color="secondary" href={PATH.LOGIN} sx={{ minWidth: '150px' }}>Iniciar Sesión</Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" color="secondary" href={PATH.REGISTER}>Registrarme</Button>
+              <Button variant="outlined" color="secondary" href={PATH.REGISTER} sx={{ minWidth: '150px' }}>Registrarme</Button>
             </Grid>
           </Grid>
 

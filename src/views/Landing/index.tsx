@@ -10,14 +10,15 @@ import MyCarousel from '../../components/Carousel';
 import { styled } from '@mui/system';
 
 
-import paper from "../../assets/images/icon-paper.png"
-import student from "../../assets/images/icon-student.png"
+import paper from "../../assets/images/icon-paper.png";
+import student from "../../assets/images/icon-student.png";
+import { useNavigate } from "react-router-dom";
 
 const cardData = [
   {
     icon: student,
     goldenText: 'Fast',
-    secondaryText: 'Secundaria',
+    secondaryText: '  ',
     title: 'Certificado de Graduación',
     description: 'Documento oficial expedido por el Departamento de Educación de Puerto Rico que certifica la fecha de graduación e identifica la escuela pública en la cual el estudiante completó los requisitos de graduación de un nivel académico y logró obtener una promoción de grado. Puede solicitar una Certificación de Graduación en caso de pérdida de su diploma, para solicitudes de empleo, apoyar tus conocimientos académicos o logros educativos, con fines de migración, admisión a un programa de educación superior e ingreso a una entidad universitaria.',
     button: 'Crear Solicitud',
@@ -26,7 +27,7 @@ const cardData = [
   {
     icon: paper,
     goldenText: '',
-    secondaryText: 'Secundaria',
+    secondaryText: '  ',
     title: 'Transcripción de Créditos',
     description: 'Transcripción de Créditos refleja el historial académico de un estudiante dentro del Sistema Escolar del Departamento de Educación de Puerto Rico. Este es un informe oficial que detalla las calificaciones obtenidas en cada uno de los cursos y créditos acumulados por el estudiante durante sus años de estudios. Incluye, si está disponible, la determinación del promedio general Grade Point Average (GPA). Contiene, además, el registro de las horas comunitarias y de exploración ocupacional realizadas por el estudiante.',
     button: 'Crear Solicitud',
@@ -35,7 +36,7 @@ const cardData = [
   {
     icon: paper,
     goldenText: '',
-    secondaryText: 'Secundaria',
+    secondaryText: '  ',
     title: 'Certificado de Horas Taller',
     description: 'La Certificación de Horas Taller valida que el estudiante solicitante ha completado los requisitos de un programa de formación ocupacional, vocacional o técnica. Esta certificación identifica la especialidad del taller, temas cubiertos durante el taller, fechas y horas acumuladas en las que el estudiante realizó su capacitación. (Los estudiantes de Educación Especial, Salón a Tiempo Completo, se rigen bajo otras especificaciones).',
     button: 'Crear Solicitud',
@@ -44,12 +45,13 @@ const cardData = [
 ];
 
 const BoldText = styled('span')({
-  fontWeight: 'normal',
-  fontFamily: 'Montserrat-Black',
+  fontWeight: 'bolder',
+  fontFamily: 'Montserrat-Medium',
 });
 
 
 const Landing = () => {
+  const navigate = useNavigate();
   const background = "linear-gradient(to top, #8580b0, #7a75ad, #6f6aaa, #6460a7, #5855a4)";
 
   return (
@@ -67,7 +69,7 @@ const Landing = () => {
       <Box sx={{ bgcolor: 'white', p: 3 }}>
         <Grid container justifyContent="center" alignItems="center" spacing={3}>
           <Grid item xs={8} sx={{ position: 'relative', marginBottom: '2em !important' }}>
-            <Typography variant="h6" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important' }}>
+            <Typography variant="h5" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important' }}>
               ¡Bienvenidos al Portal de Certificaciones Académicas del Departamento de Educación!
             </Typography>
             <Typography variant="body1" sx={{ mb: 2, textAlign: 'justify', marginBottom: '2em !important', fontSize: '1em !important', lineHeight: '25px !important' }}>
@@ -76,8 +78,8 @@ const Landing = () => {
               Entre las <BoldText>Certificaciones Académicas</BoldText> que pueden solicitar los estudiantes a través de este portal son:
               <BoldText> La Certificación de Graduación, la Transcripción de Créditos y la Certificación de Horas Taller</BoldText> relacionada a horas contacto de cursos especializados en Educación Vocacional Ocupacional y Técnica.
             </Typography>
-            <Typography variant="h6" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important' }}>
-              Conoce los Tipos de Certificaciones Académicas
+            <Typography variant="h5" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important' }}>
+              Conoce los Tipos de Certificaciones AcadémicasBoldText
             </Typography>
 
           </Grid>
@@ -129,17 +131,37 @@ const Landing = () => {
                         {card.description}
                       </Typography>
 
-                      <Button variant="contained" color={card.buttonType === 'primary' ? 'primary' : 'warning'}
-                        sx={{
-                          width: '250px',
-                          height: '41px',
-                          padding: '8px 24px',
-                          borderRadius: '50px',
-                          gap: '10px',
-                        }}
-                      >
-                        {card.button}
-                      </Button>
+
+                      {card.buttonType === 'warning' &&
+                        <Button variant="contained" color='warning'
+                          sx={{
+                            width: '250px',
+                            height: '41px',
+                            padding: '8px 24px',
+                            borderRadius: '50px',
+                            gap: '10px',
+                          }}
+                          onClick={() => navigate("/fast")}
+                        >
+                          {card.button}
+                        </Button>
+                      }
+
+                      {card.buttonType === 'primary' &&
+                        <Button variant="contained" color='primary'
+                          sx={{
+                            width: '250px',
+                            height: '41px',
+                            padding: '8px 24px',
+                            borderRadius: '50px',
+                            gap: '10px',
+                          }}
+                          onClick={() => navigate("/login")}
+                        >
+                          {card.button}
+                        </Button>
+                      }
+
                     </CardContent>
                   </Grid>
                 </Grid>

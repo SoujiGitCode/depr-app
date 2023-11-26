@@ -44,8 +44,8 @@ const Sidebar = () => {
       <Options
         children={<PersonIcon sx={{ color: "white", fontSize: "1.5rem" }} />}
         text="Profile"
+        //redirect={PATH.PROFILE}
         redirect={PATH.PROFILE}
-        // redirect={PATH.PROFILE}
       />
 
       <Box onClick={handleLogout}>

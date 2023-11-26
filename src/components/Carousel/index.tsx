@@ -8,6 +8,7 @@ import styles from "./styles.module.scss"
 import slider1 from "../../assets/images/slider-1.png"
 import slider2 from "../../assets/images/slider-2.png"
 import slider3 from "../../assets/images/slider-3.png"
+import { useNavigate } from "react-router-dom";
 
 const responsive = {
     desktop: {
@@ -25,6 +26,7 @@ const responsive = {
 };
 
 const MyCarousel = () => {
+
 
     const titleOne = "Ingresar Datos"
     const paragraphOne = "Para crear una solicitud debe ingresar sus datos personales y datos de la escuela donde curso el grado a ser considerado para la emisión de sus certificado de graduación."
@@ -53,6 +55,8 @@ const MyCarousel = () => {
 
 const SlideContent = ({ title, paragraph, imgSrc, button = false }: any) => {
 
+    const navigate = useNavigate();
+
     return (
         <Box>
             <Grid container justifyContent="center" alignItems="center" gap={3}>
@@ -62,7 +66,7 @@ const SlideContent = ({ title, paragraph, imgSrc, button = false }: any) => {
                         <Typography className={styles.carouselText}>{paragraph}</Typography>
 
                         {button && (
-                            <Button className={styles.carouselButton}>
+                            <Button className={styles.carouselButton} onClick={() => navigate("/fast")}>
                                 Crear Solicitud
                             </Button>
                         )}
