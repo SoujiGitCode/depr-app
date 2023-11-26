@@ -122,6 +122,18 @@ const Profile = () => {
     setIsEditMode(!isEditMode);
   };
 
+  const UpdateChangesProfile = async (values: UserDetails) => {
+    console.log("a");
+    Api.token = token;
+    Api.resource = "/user/modify";
+    try {
+      const resp = await Api.post(values);
+      console.log(resp);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       id: "",
@@ -151,9 +163,7 @@ const Profile = () => {
       updated: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit: async (values) => await UpdateChangesProfile(values),
   });
 
   return (

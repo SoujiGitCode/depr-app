@@ -41,8 +41,6 @@ const UserEditAdditionalInfo: React.FC<UserProfileInfoProps> = ({
     paddingRight: "1rem",
   };
 
-  console.log(formik.values.identification_type);
-
   return (
     <>
       {/* Phone Number */}
