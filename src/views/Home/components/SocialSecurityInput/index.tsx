@@ -46,7 +46,7 @@ const SocialSecurityInput = ({
 
   // Function to handle changes to the social security number
   const handleSocialSecurityChange = (e: any) => {
-    const { value: input, selectionStart, selectionEnd } = e.target;
+    const { value: input, selectionStart } = e.target;
 
     // Create a copy of the current array
     let updatedArray = [...value];
