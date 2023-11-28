@@ -10,7 +10,7 @@ import TextField from "@mui/material/TextField";
 import Api from "@/utils/services/api";
 import useAuthStore from "@/hooks/useAuthStore";
 
-import { FormControl } from "@mui/material";
+import { FormControl, FormHelperText } from "@mui/material";
 import { CustomLabel } from "@/components";
 
 interface PasswordDialogProps {
@@ -25,6 +25,7 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const token = useAuthStore((state: any) => state.token);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const changePassword = async (pswd: string) => {
     Api.token = token;
@@ -49,8 +50,19 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
   };
 
   useEffect(() => {
-    const isPasswordValid = password.trim() !== "";
-    setIsFormValid(isPasswordValid);
+    let newErrorMessage = "";
+    if (password.trim() === "") {
+      newErrorMessage = "La contraseña no puede estar vacía.";
+    } else if (password.length < 8) {
+      newErrorMessage = "La contraseña debe tener al menos 8 caracteres.";
+    } else if (!/\d/.test(password)) {
+      newErrorMessage = "La contraseña debe contener al menos un dígito.";
+    } else if (!/[A-Z]/.test(password)) {
+      newErrorMessage =
+        "La contraseña debe contener al menos una letra mayúscula.";
+    }
+    setErrorMessage(newErrorMessage);
+    setIsFormValid(newErrorMessage === "");
   }, [password]);
 
   return (
