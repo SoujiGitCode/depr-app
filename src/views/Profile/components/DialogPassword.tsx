@@ -9,6 +9,7 @@ import {
 import TextField from "@mui/material/TextField";
 import Api from "@/utils/services/api";
 import useAuthStore from "@/hooks/useAuthStore";
+import useAlert from "@/hooks/useAlert";
 
 import { FormControl, FormHelperText } from "@mui/material";
 import { CustomLabel } from "@/components";
@@ -24,6 +25,7 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
 }) => {
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
+  const { setAlert } = useAlert();
   const token = useAuthStore((state: any) => state.token);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -43,26 +45,33 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
 
       if (resp.message === "success") {
         handleClose();
+        setAlert("Cambio su contraseña exitosamente!", "success");
       }
     } catch (error) {
       console.log(error);
     }
   };
-
   useEffect(() => {
     let newErrorMessage = "";
+    let isValid = true;
+
     if (password.trim() === "") {
-      newErrorMessage = "La contraseña no puede estar vacía.";
+      newErrorMessage = "";
+      isValid = false;
     } else if (password.length < 8) {
       newErrorMessage = "La contraseña debe tener al menos 8 caracteres.";
+      isValid = false;
     } else if (!/\d/.test(password)) {
       newErrorMessage = "La contraseña debe contener al menos un dígito.";
+      isValid = false;
     } else if (!/[A-Z]/.test(password)) {
       newErrorMessage =
         "La contraseña debe contener al menos una letra mayúscula.";
+      isValid = false;
     }
+
     setErrorMessage(newErrorMessage);
-    setIsFormValid(newErrorMessage === "");
+    setIsFormValid(isValid);
   }, [password]);
 
   return (
@@ -113,14 +122,30 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
               variant="outlined"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#aeacc2c0",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#807BB8",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#807BB8",
+                  },
+                },
+              }}
             />
+            <FormHelperText sx={{ color: "red" }}>
+              {errorMessage}
+            </FormHelperText>
           </FormControl>
         </DialogContent>
         <DialogActions
           sx={{
             paddingBottom: "2em",
             display: "flex",
-            width: "60%",
+            width: "75%",
             justifyContent: "space-between",
           }}
         >
