@@ -10,6 +10,9 @@ import UserAdditionalInfo from "./components/UserAdditionalnfo";
 import UserEditAdditionalInfo from "./components/UserEditAdditionalInfo";
 import Api from "@/utils/services/api";
 import useAuthStore from "@/hooks/useAuthStore";
+import React from "react";
+
+import DialogPassword from "./components/DialogPassword";
 
 const listId = [
   {
@@ -73,7 +76,17 @@ interface ApiResponse {
 const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [userInfo, setUserInfo] = useState<UserDetails>();
+  const [open, setOpen] = React.useState(false);
   const token = useAuthStore((state: any) => state.token);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const [formValues, setFormValues] = useState({
     id: "",
     email: "",
@@ -330,6 +343,16 @@ const Profile = () => {
                 </>
               )}
             </>
+            <div>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={handleClickOpen}
+              >
+                Cambiar Contraseña
+              </Button>
+              <DialogPassword open={open} handleClose={handleClose} />
+            </div>
           </Box>
         </Grid>
       </Grid>
