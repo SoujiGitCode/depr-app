@@ -1,6 +1,6 @@
 import api from "@/utils/services/api";
 import { login } from "@/utils";
-import { IUserLogin } from "@/types/responses";
+import { IUserLogin } from "@/routes/types/responses";
 
 interface IUserLoginParams {
   email: string;

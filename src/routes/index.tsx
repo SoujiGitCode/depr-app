@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Landing, Login, Register, Fast, Create } from "@/views";
+import { Home, Landing, Login, Register, Profile, Fast, Create } from "@/views";
 import { UnauthorizedLayout, AuthorizedLayout } from "@/layout";
 import { PATH } from "./constants";
 import useAuthStore from "@/hooks/useAuthStore";
@@ -38,17 +38,20 @@ const Root = () => {
             <Route index element={<Home />} />
           </Route>
 
+          <Route path={PATH.PROFILE} element={<AuthorizedLayout />}>
+            <Route index element={<Profile />} />
+          </Route>
+
           <Route path={PATH.FAST} element={<AuthorizedLayout />}>
             <Route index element={<Fast />} />
           </Route>
-
-          <Route path={`${PATH.CREATE}/:certification_type_id`} element={<AuthorizedLayout />}>
+          <Route
+            path={`${PATH.CREATE}/:certification_type_id`}
+            element={<AuthorizedLayout />}
+          >
             <Route index element={<Create />} />
           </Route>
-
-
         </>
-
       )}
 
       {/* Rutas para errores o no encontradas */}
