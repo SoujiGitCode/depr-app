@@ -18,6 +18,11 @@ interface PasswordDialogProps {
   open: boolean;
   handleClose: () => void;
 }
+interface ApiResponse {
+  code: number;
+  message: string;
+  data: boolean;
+}
 
 const DialogPassword: React.FC<PasswordDialogProps> = ({
   open,
@@ -25,30 +30,38 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
 }) => {
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [currentErrorMessage, setCurrentErrorMessage] = useState("");
+
   const { setAlert } = useAlert();
   const token = useAuthStore((state: any) => state.token);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const changePassword = async (pswd: string) => {
+  const changePassword = async (pswd: string, currentPswd: string) => {
     Api.token = token;
     Api.resource = "/user/changepwd";
-
+    console.log(pswd, currentPassword);
     try {
       const send = {
         body: {
           password: pswd,
+          current_password: currentPswd,
         },
       };
 
-      const resp = await Api.post(send);
+      const resp = await Api.post<ApiResponse>(send);
       console.log(resp);
 
-      if (resp.message === "success") {
+      if (resp.code === 200 && resp.message === "success") {
         handleClose();
         setAlert("Cambio su contraseña exitosamente!", "success");
+      } else if (resp.code !== 200) {
+        setAlert("¡Pasó algo!", "error");
+        console.log(resp.message);
       }
     } catch (error) {
       console.log(error);
+      setAlert("¡Ocurrió un error!", "error");
     }
   };
   useEffect(() => {
@@ -70,6 +83,21 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
       isValid = false;
     }
 
+    if (currentPassword.trim() === "") {
+      newErrorMessage = "";
+      isValid = false;
+    } else if (currentPassword.length < 8) {
+      newErrorMessage = "La contraseña debe tener al menos 8 caracteres.";
+      isValid = false;
+    } else if (!/\d/.test(currentPassword)) {
+      newErrorMessage = "La contraseña debe contener al menos un dígito.";
+      isValid = false;
+    } else if (!/[A-Z]/.test(currentPassword)) {
+      newErrorMessage =
+        "La contraseña debe contener al menos una letra mayúscula.";
+      isValid = false;
+    }
+
     setErrorMessage(newErrorMessage);
     setIsFormValid(isValid);
   }, [password]);
@@ -84,8 +112,8 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
         fullWidth={true}
         sx={{
           "& .MuiDialog-paper": {
-            minHeight: "40vh",
-            maxHeight: "40vh",
+            minHeight: "55vh",
+            maxHeight: "55vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -115,6 +143,33 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
           }}
         >
           <FormControl fullWidth margin="normal" required>
+            <CustomLabel name="Contraseña Antigua" required={true} />
+            <TextField
+              id="currentPassword"
+              type="password"
+              variant="outlined"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#aeacc2c0",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#807BB8",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#807BB8",
+                  },
+                },
+              }}
+            />
+            <FormHelperText sx={{ color: "red" }}>
+              {currentErrorMessage}
+            </FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal" required>
             <CustomLabel name="Nueva Contraseña" required={true} />
             <TextField
               id="password"
@@ -136,7 +191,7 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
                 },
               }}
             />
-            <FormHelperText sx={{ color: "red" }}>
+            <FormHelperText sx={{ color: "red", paddingTop: "1em" }}>
               {errorMessage}
             </FormHelperText>
           </FormControl>
@@ -158,7 +213,11 @@ const DialogPassword: React.FC<PasswordDialogProps> = ({
             Cancelar
           </Button>
           <Button
-            onClick={() => changePassword(password)}
+            onClick={() => {
+              setCurrentPassword("");
+              setPassword("");
+              changePassword(password, currentPassword);
+            }}
             color="primary"
             variant="contained"
             disabled={!isFormValid}
