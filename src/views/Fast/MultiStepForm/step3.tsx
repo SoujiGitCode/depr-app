@@ -14,12 +14,11 @@ import {
     InputAdornment,
 } from '@mui/material';
 import Radio from '@mui/material/Radio';
-import { useNavigate } from "react-router-dom";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import WarningIcon from "@mui/icons-material/Warning";
 import CustomLabel from "@/components/CustomLabel";
 import { useFormik } from "formik";
 import { step3Validations } from './validations/step3Validations';
+import SocialSecurityInput from '@/components/SocialSecurityInput';
 
 
 interface StepProps {
@@ -43,48 +42,38 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     ];
 
     const genderList = [
-        {
-            value: 'F',
-            label: 'Femenino',
-        },
-        {
-            value: 'M',
-            label: 'Masculino',
-        },
-        {
-            value: 'N',
-            label: 'No Indica',
-        },
+        { value: 'F', label: 'Femenino' },
+        { value: 'M', label: 'Masculino' },
+        { value: 'N', label: 'No Indica' }
     ];
 
 
-    const [showsocial_security, setShowsocial_security] = useState(false);
+    const [showSocialSecurity, setShowSocialSecurity] = useState(false);
+    const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill(""));
     const [selectedValue, setSelectedValue] = useState<string | null>('No');
-    const [displayedSocialSecurity, setDisplayedSocialSecurity] = useState("");
-
 
     const formik = useFormik({
         validateOnMount: true,
 
         initialValues: {
             identification_type: formData.identification_type === "" ? idList[0].value : formData.identification_type,
-            identification: formData.identification,
-            first_name: formData.first_name,
-            second_name: formData.second_name,
-            last_name: formData.last_name,
-            second_last_name: formData.second_last_name,
-            depr_first_name: formData.depr_first_name,
-            depr_second_name: formData.depr_second_name,
-            depr_last_name: formData.depr_last_name,
-            depr_second_last_name: formData.depr_second_last_name,
-            birthdate: formData.birthdate,
+            identification: formData.identification || '',
+            first_name: formData.first_name || '',
+            second_name: formData.second_name || '',
+            last_name: formData.last_name || '',
+            second_last_name: formData.second_last_name || '',
+            depr_first_name: formData.depr_first_name || '',
+            depr_second_name: formData.depr_second_name || '',
+            depr_last_name: formData.depr_last_name || '',
+            depr_second_last_name: formData.depr_second_last_name || '',
+            birthdate: formData.birthdate || '',
             gender: formData.gender === "" ? genderList[0].value : formData.gender,
-            phone: formData.phone,
-            social_security: formData.social_security,
-            email: formData.email,
-            email1: formData.email1,
+            phone: formData.phone || '',
+            social_security: formData.social_security || '',
+            email: formData.email || '',
+            email1: formData.email1 || '',
             confirmEmail1: '',
-            email2: formData.email2,
+            email2: formData.email2 || '',
             confirmEmail2: '',
         },
         validationSchema: step3Validations, // Aquí asegúrate de pasar el objeto globalValidations
@@ -94,8 +83,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         validateOnChange: true,
         validateOnBlur: true,
     });
-
-    const navigate = useNavigate();
 
 
     const OnChangeSelectedValue = (value: string) => {
@@ -163,22 +150,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
         console.log('isStepValid ' + isStepValid)
     }, [formik.values, formik.touched, formik.isValid]);
-
-    //=============Social Security input type custom---------
-    useEffect(() => {
-        if (showsocial_security) {
-            setDisplayedSocialSecurity(formik.values.social_security);
-        } else {
-            const totalLength = formik.values.social_security.length;
-            const visibleLength = 4; // Los últimos 3 dígitos son visibles
-            const hiddenLength = Math.max(totalLength - visibleLength, 0);
-            const masked = formik.values.social_security.slice(-visibleLength);
-            const hiddenCharacters = "*".repeat(hiddenLength);
-            setDisplayedSocialSecurity(hiddenCharacters + masked);
-        }
-    }, [formik.values.social_security, showsocial_security]);
-
-
 
     return (
         <form style={{ width: '80%' }} onSubmit={formik.handleSubmit}>
@@ -556,29 +527,18 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     <Grid item xs={6}>
                         <CustomLabel name="Seguro Social" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
-                            <TextField
+                            <SocialSecurityInput
                                 variant="outlined"
                                 placeholder='N° Seguro Social'
                                 name="social_security"
                                 id="social_security"
                                 type={'text'}
-                                value={displayedSocialSecurity}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.social_security && Boolean(formik.errors.social_security)}
-                                helperText={formik.touched.social_security && typeof formik.errors.social_security === 'string' ? formik.errors.social_security : undefined}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                edge="end"
-                                                onClick={() => setShowsocial_security(!showsocial_security)}
-                                            >
-                                                {showsocial_security ? <VisibilityOff /> : <Visibility />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    ),
-                                }}
+                                value={socialSecurityArray}
+                                formik={formik}
+                                setSocialSecurityArray={setSocialSecurityArray}
+                                visibilityPassword={showSocialSecurity}
+                                setVisibilityPassword={setShowSocialSecurity}
+                                form_social_security={formData.social_security}
                             />
                         </FormControl>
                     </Grid>

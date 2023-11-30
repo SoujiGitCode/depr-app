@@ -1,20 +1,21 @@
-// SocialSecurityInput.js
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect } from "react";
 
+// Define the props for the SocialSecurityInput component
 interface SocialSecurityInputProps {
   value: any;
   variant?: "outlined";
   name?: string;
   type?: string;
   placeholder?: string;
-  id?: string;
+  id: string; // The id is required
   sx?: CSSProperties;
-  formik: any;
-  setSocialSecurityArray: (value: any[]) => void;
-  visibilityPassword: boolean;
-  setVisibilityPassword: React.Dispatch<React.SetStateAction<boolean>>;
+  formik: any; // The formik object is required
+  setSocialSecurityArray: (value: any[]) => void; // The function to update the social security array is required
+  visibilityPassword: boolean; // The visibility state of the password is required
+  setVisibilityPassword: React.Dispatch<React.SetStateAction<boolean>>; // The function to update the visibility state of the password is required
+  form_social_security: string;
 }
 
 const SocialSecurityInput = ({
@@ -29,11 +30,15 @@ const SocialSecurityInput = ({
   setSocialSecurityArray,
   visibilityPassword,
   setVisibilityPassword,
+  form_social_security
 }: SocialSecurityInputProps) => {
+  // Function to toggle the visibility of the social security number
   const toggleSocialSecurityVisibility = () => {
     setVisibilityPassword(!visibilityPassword);
+    formik.setFieldTouched('social_security', true, true);
   };
 
+  // Function to mask the social security number
   const maskSocialSecurity = (value: any) => {
     const visibleDigits = 4;
     const maskedLength = Math.max(value.length - visibleDigits, 0);
@@ -41,35 +46,40 @@ const SocialSecurityInput = ({
     return "*".repeat(maskedLength) + masked;
   };
 
+  // Function to handle changes to the social security number
   const handleSocialSecurityChange = (e: any) => {
-    const { value: input, selectionStart, selectionEnd } = e.target;
+    const { value: input, selectionStart } = e.target;
 
-    // Crear una copia del array actual
+    // Create a copy of the current array
     let updatedArray = [...value];
 
-    // Calcular la diferencia de longitud entre el input y el array actual
+    // Calculate the length difference between the input and the current array
     const diff = input.length - updatedArray.join("").length;
 
-    // Manejar la adición o eliminación de caracteres
+    // Handle the addition or deletion of characters
     if (diff > 0) {
-      // Adición de caracteres
+      // Addition of characters
       const newChars = input.slice(selectionStart - diff, selectionStart);
       updatedArray.splice(selectionStart - diff, 0, ...newChars.split(""));
     } else if (diff < 0) {
-      // Eliminación de caracteres
+      // Deletion of characters
       updatedArray.splice(selectionStart, -diff);
     }
 
-    // Asegurar que el array no exceda la longitud máxima y rellenar con espacios vacíos si es necesario
+    // Ensure that the array does not exceed the maximum length and fill with empty spaces if necessary
     updatedArray = updatedArray.slice(0, 9);
     while (updatedArray.length < 9) {
       updatedArray.push("");
     }
 
-    // Actualizar el estado y el valor de Formik
+    // Update the state and the value of Formik
     setSocialSecurityArray(updatedArray);
-    formik.setFieldValue("social_security", updatedArray.join(""));
+    formik.setFieldValue(id, updatedArray.join(""));
   };
+
+  useEffect(() => {
+    setSocialSecurityArray(form_social_security.toString().length > 0 ? form_social_security.split('') : new Array(9).fill(""));
+  }, [form_social_security, setSocialSecurityArray]);
 
   return (
     <TextField
@@ -83,13 +93,10 @@ const SocialSecurityInput = ({
       }
       onChange={handleSocialSecurityChange}
       onBlur={formik.handleBlur}
-      error={
-        formik.touched.social_security && Boolean(formik.errors.social_security)
-      }
+      error={formik.touched[id] && Boolean(formik.errors[id])}
       helperText={
-        formik.touched.social_security &&
-        typeof formik.errors.social_security === "string"
-          ? formik.errors.social_security
+        formik.touched[id] && typeof formik.errors[id] === "string"
+          ? formik.errors[id]
           : undefined
       }
       sx={sx}
