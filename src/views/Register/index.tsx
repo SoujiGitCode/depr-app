@@ -27,7 +27,7 @@ import styles from "./Register.module.scss";
 import useAlert from "@/hooks/useAlert";
 import useAuthStore from "@/hooks/useAuthStore";
 import { PATH } from '@/routes/constants';
-import { ConfirmationModal } from '@/components';
+import { ConfirmationModal, SocialSecurityInput } from '@/components';
 import { registerValidation } from '@/validations/registerValidation';
 
 
@@ -632,29 +632,18 @@ const Register = () => {
                 <Grid item xs={6}>
                   <CustomLabel name="Seguro Social" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
-                    <TextField
+                    <SocialSecurityInput
                       variant="outlined"
                       placeholder='N° Seguro Social'
+                      name="social_security"
                       id="social_security"
                       type={'text'}
-                      name="social_security"
-                      value={showSocialSecurity ? socialSecurityArray.join('') : maskSocialSecurity(socialSecurityArray.join(''))}
-                      onChange={handleSocialSecurityChange}
-                      onBlur={formik.handleBlur}
-                      error={formik.touched.social_security && Boolean(formik.errors.social_security)}
-                      helperText={formik.touched.social_security && typeof formik.errors.social_security === 'string' ? formik.errors.social_security : undefined}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton
-                              edge="end"
-                              onClick={toggleSocialSecurityVisibility}
-                            >
-                              {showSocialSecurity ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                          </InputAdornment>
-                        ),
-                      }}
+                      value={socialSecurityArray}
+                      formik={formik}
+                      setSocialSecurityArray={setSocialSecurityArray}
+                      visibilityPassword={showSocialSecurity}
+                      setVisibilityPassword={setShowSocialSecurity}
+                      form_social_security={''}
                     />
                   </FormControl>
                 </Grid>
