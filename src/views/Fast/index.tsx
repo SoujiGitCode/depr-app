@@ -94,7 +94,7 @@ const Fast = () => {
   const steps = [
     {
       Title: "Paso #1",
-      SubTitle: "Correo Eléctronico",
+      SubTitle: "Correo Electrónico",
     },
     {
       Title: "Paso #2",

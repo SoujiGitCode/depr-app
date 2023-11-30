@@ -560,7 +560,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             <Box>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
-                        <CustomLabel name="Correo Eléctronico" required={true} />
+                        <CustomLabel name="Correo Electrónico" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
                                 inputProps={
@@ -580,13 +580,13 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     </Grid>
 
                     <Grid item xs={6}>
-                        <CustomLabel name="Confirme Correo Eléctronico" required={true} />
+                        <CustomLabel name="Confirme Correo Electrónico" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
                                 inputProps={
                                     { readOnly: true, }
                                 }
-                                placeholder='Correo Eléctronico'
+                                placeholder='Correo Electrónico'
                                 name="emailConfirm"
                                 id="emailConfirm"
                                 type="text"
@@ -605,10 +605,10 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             <Box>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
-                        <CustomLabel name="Correo Eléctronico " required={false} />
+                        <CustomLabel name="Correo Electrónico " required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
-                                placeholder='Correo Eléctronico'
+                                placeholder='Correo Electrónico'
                                 name="email1"
                                 autoComplete="new-password-email"
                                 id="email1"
@@ -624,10 +624,10 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     </Grid>
 
                     <Grid item xs={6}>
-                        <CustomLabel name="Confirme Correo Eléctronico" required={false} />
+                        <CustomLabel name="Confirme Correo Electrónico" required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
-                                placeholder='Correo Eléctronico'
+                                placeholder='Correo Electrónico'
                                 name="confirmEmail1"
                                 autoComplete="new-password"
                                 id="confirmEmail1"
@@ -647,10 +647,10 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             <Box>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
-                        <CustomLabel name="Correo Eléctronico " required={false} />
+                        <CustomLabel name="Correo Electrónico " required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
-                                placeholder='Correo Eléctronico'
+                                placeholder='Correo Electrónico'
                                 name="email2"
                                 autoComplete="off"
                                 id="email2"
@@ -666,10 +666,10 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     </Grid>
 
                     <Grid item xs={6}>
-                        <CustomLabel name="Confirme Correo Eléctronico" required={false} />
+                        <CustomLabel name="Confirme Correo Electrónico" required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
-                                placeholder='Correo Eléctronico'
+                                placeholder='Correo Electrónico'
                                 name="confirmEmail2"
                                 autoComplete="new-password"
                                 id="confirmEmail2"
