@@ -46,6 +46,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     const [selectedValue, setSelectedValue] = useState<string | null>('No');
     const [showSocialSecurity, setShowSocialSecurity] = useState(false);
     const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill("") ?? null);
+    const [confirmEmail1, setConfirmEmail1] = useState('');
+    const [confirmEmail2, setConfirmEmail2] = useState('');
 
     const gradesList = [
         {
@@ -127,9 +129,9 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             email: formData.email || '',
             confirmEmail: formData.email || '',
             email1: formData.email1 || '',
-            confirmEmail1: '',
+            confirmEmail1: confirmEmail1 || '',
             email2: formData.email2 || '',
-            confirmEmail2: '',
+            confirmEmail2: confirmEmail2 || '',
             schoolTown: formData.schoolTown || '1',
             school_code: formData.school_code || schoolsData[0].id,
             grade: gradesList[0].value || '',
@@ -291,6 +293,20 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     }, [schoolsData]);
 
     //------------End school form functions------------------------------//
+
+    // Manejar los cambios de confirmEmail1 y confirmEmail2
+    const handleConfirmEmail1Change = (e) => {
+        const value = e.target.value;
+        setConfirmEmail1(value);
+        formik.setFieldValue('confirmEmail1', value);
+    };
+
+    const handleConfirmEmail2Change = (e) => {
+        const value = e.target.value;
+        setConfirmEmail2(value);
+        formik.setFieldValue('confirmEmail2', value);
+    };
+
 
     return (
         <form style={{ width: '80%' }} onSubmit={formik.handleSubmit}>
@@ -654,7 +670,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         <Grid item xs={6}>
                             <CustomLabel name="Año de Graduación o Último Año Cursado" required={true} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
-                                /* <TextField
+                                <TextField
                                     placeholder='2000'
                                     name="grade_year"
                                     id="grade_year"
@@ -798,7 +814,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                     type="text"
                                     variant="outlined"
                                     value={formik.values.confirmEmail1}
-                                    onChange={formik.handleChange}
+                                    onChange={handleConfirmEmail1Change}
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.confirmEmail1 && Boolean(formik.errors.confirmEmail1)}
                                     helperText={formik.touched.confirmEmail1 && typeof formik.errors.confirmEmail1 === 'string' ? formik.errors.confirmEmail1 : undefined}
@@ -840,7 +856,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                     type="text"
                                     variant="outlined"
                                     value={formik.values.confirmEmail2}
-                                    onChange={formik.handleChange}
+                                    onChange={handleConfirmEmail2Change}
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.confirmEmail2 && Boolean(formik.errors.confirmEmail2)}
                                     helperText={formik.touched.confirmEmail2 && typeof formik.errors.confirmEmail2 === 'string' ? formik.errors.confirmEmail2 : undefined}
