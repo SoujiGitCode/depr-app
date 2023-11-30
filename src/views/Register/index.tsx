@@ -191,63 +191,6 @@ const Register = () => {
   }, [formik.isValid, formik.errors]);
 
 
-
-  const toggleSocialSecurityVisibility = () => {
-    setShowSocialSecurity(!showSocialSecurity);
-    if (!showSocialSecurity) {
-      console.log(socialSecurityArray)
-      formik.setFieldValue('social_security', socialSecurityArray.join("")); // Mostrar valor real
-      console.log(socialSecurityArray.join(""));
-      console.log('FIRST if')
-    } else {
-      console.log('2nd if')
-      formik.setFieldValue('social_security', maskSocialSecurity(socialSecurityArray.join(""))); // Mostrar enmascarado
-    }
-  };
-
-
-  //----------------Funciones del Social Security Input-------------------//
-
-  const handleSocialSecurityChange = (e) => {
-    const { value: input, selectionStart, selectionEnd } = e.target;
-
-    // Crear una copia del array actual
-    let updatedArray = [...socialSecurityArray];
-
-    // Calcular la diferencia de longitud entre el input y el array actual
-    const diff = input.length - updatedArray.join('').length;
-
-    // Manejar la adición o eliminación de caracteres
-    if (diff > 0) {
-      // Adición de caracteres
-      const newChars = input.slice(selectionStart - diff, selectionStart);
-      updatedArray.splice(selectionStart - diff, 0, ...newChars.split(''));
-    } else if (diff < 0) {
-      // Eliminación de caracteres
-      updatedArray.splice(selectionStart, -diff);
-    }
-
-    // Asegurar que el array no exceda la longitud máxima y rellenar con espacios vacíos si es necesario
-    updatedArray = updatedArray.slice(0, 9);
-    while (updatedArray.length < 9) {
-      updatedArray.push("");
-    }
-
-    // Actualizar el estado y el valor de Formik
-    setSocialSecurityArray(updatedArray);
-    formik.setFieldValue('social_security', updatedArray.join(''));
-  };
-
-
-  // Función para enmascarar 
-  const maskSocialSecurity = (value: any) => {
-    const visibleDigits = 4;
-    const maskedLength = Math.max(value.length - visibleDigits, 0);
-    const masked = value.slice(-visibleDigits);
-    return "*".repeat(maskedLength) + masked;
-  };
-
-  //----------------Fin de Funciones del Social Security Input-------------------//
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>
       <Grid item xs={6} style={{ overflow: 'hidden', height: 'auto' }}>
