@@ -1,7 +1,6 @@
-// SocialSecurityInput.js
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect } from "react";
 
 // Define the props for the SocialSecurityInput component
 interface SocialSecurityInputProps {
@@ -16,6 +15,7 @@ interface SocialSecurityInputProps {
   setSocialSecurityArray: (value: any[]) => void; // The function to update the social security array is required
   visibilityPassword: boolean; // The visibility state of the password is required
   setVisibilityPassword: React.Dispatch<React.SetStateAction<boolean>>; // The function to update the visibility state of the password is required
+  form_social_security: string;
 }
 
 const SocialSecurityInput = ({
@@ -30,10 +30,12 @@ const SocialSecurityInput = ({
   setSocialSecurityArray,
   visibilityPassword,
   setVisibilityPassword,
+  form_social_security
 }: SocialSecurityInputProps) => {
   // Function to toggle the visibility of the social security number
   const toggleSocialSecurityVisibility = () => {
     setVisibilityPassword(!visibilityPassword);
+    formik.setFieldTouched('social_security', true, true);
   };
 
   // Function to mask the social security number
@@ -74,6 +76,10 @@ const SocialSecurityInput = ({
     setSocialSecurityArray(updatedArray);
     formik.setFieldValue(id, updatedArray.join(""));
   };
+
+  useEffect(() => {
+    setSocialSecurityArray(form_social_security.toString().length > 0 ? form_social_security.split('') : new Array(9).fill(""));
+  }, [form_social_security, setSocialSecurityArray]);
 
   return (
     <TextField

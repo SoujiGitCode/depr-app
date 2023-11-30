@@ -21,6 +21,7 @@ import CustomLabel from "@/components/CustomLabel";
 import { useFormik } from "formik";
 import { step1Validations } from './validations/step1Validations';
 import { requestSchools, requestTowns } from '@/views/Create/functions';
+import SocialSecurityInput from '@/components/SocialSecurityInput';
 
 
 interface StepProps {
@@ -42,11 +43,9 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
     const [townsData, setTownsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione un Pueblo' }]);
     const [schoolsData, setSchoolsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Escuela' }]);
-    const [showsocial_security, setShowsocial_security] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string | null>('No');
-    const [displayedSocialSecurity, setDisplayedSocialSecurity] = useState("");
-
-
+    const [showSocialSecurity, setShowSocialSecurity] = useState(false);
+    const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill("") ?? null);
 
     const gradesList = [
         {
@@ -112,30 +111,30 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
         initialValues: {
             identification_type: formData.identification_type === "" ? idList[0].value : formData.identification_type,
-            identification: formData.identification,
-            first_name: formData.first_name,
-            second_name: formData.second_name,
-            last_name: formData.last_name,
-            second_last_name: formData.second_last_name,
-            depr_first_name: formData.depr_first_name,
-            depr_second_name: formData.depr_second_name,
-            depr_last_name: formData.depr_last_name,
-            depr_second_last_name: formData.depr_second_last_name,
+            identification: formData.identification || '',
+            first_name: formData.first_name || '',
+            second_name: formData.second_name || '',
+            last_name: formData.last_name || '',
+            second_last_name: formData.second_last_name || '',
+            depr_first_name: formData.depr_first_name || '',
+            depr_second_name: formData.depr_second_name || '',
+            depr_last_name: formData.depr_last_name || '',
+            depr_second_last_name: formData.depr_second_last_name || '',
             birthdate: formData.birthdate,
-            gender: formData.gender === "" ? genderList[0].value : formData.gender,
-            phone: formData.phone,
-            social_security: formData.social_security,
-            email: formData.email,
-            confirmEmail: formData.email,
-            email1: formData.email1,
+            gender: formData.gender === "" ? genderList[0].value : formData.gender || '',
+            phone: formData.phone || '',
+            social_security: formData.social_security || '',
+            email: formData.email || '',
+            confirmEmail: formData.email || '',
+            email1: formData.email1 || '',
             confirmEmail1: '',
-            email2: formData.email2,
+            email2: formData.email2 || '',
             confirmEmail2: '',
             schoolTown: formData.schoolTown || '1',
             school_code: formData.school_code || schoolsData[0].id,
-            grade: gradesList[0].value,
+            grade: gradesList[0].value || '',
             grade_year: formData.grade_year || '',
-            certification_type_id: formData.certification_type_id || certificatesList[1].value,
+            certification_type_id: formData.certification_type_id || certificatesList[1].value || '',
 
         },
         validationSchema: step1Validations,
@@ -291,26 +290,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         }
     }, [schoolsData]);
 
-    //------------End school form functions------------------------------
-
-    useEffect(() => {
-        return
-    }, [formData, formik.values]);
-
-    //=============Social Security input type custom---------
-    useEffect(() => {
-        if (showsocial_security) {
-            setDisplayedSocialSecurity(formik.values.social_security);
-        } else {
-            const totalLength = formik.values.social_security.length;
-            const visibleLength = 4; // Los últimos 3 dígitos son visibles
-            const hiddenLength = Math.max(totalLength - visibleLength, 0);
-            const masked = formik.values.social_security.slice(-visibleLength);
-            const hiddenCharacters = "*".repeat(hiddenLength);
-            setDisplayedSocialSecurity(hiddenCharacters + masked);
-        }
-    }, [formik.values.social_security, showsocial_security]);
-
+    //------------End school form functions------------------------------//
 
     return (
         <form style={{ width: '80%' }} onSubmit={formik.handleSubmit}>
@@ -533,32 +513,18 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     <Grid item xs={6}>
                         <CustomLabel name="Seguro Social" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
-                            <TextField
-                                inputProps={{
-                                    readOnly: true,
-                                }}
-                                variant="filled"
+                            <SocialSecurityInput
+                                variant="outlined"
                                 placeholder='N° Seguro Social'
                                 name="social_security"
                                 id="social_security"
                                 type={'text'}
-                                value={displayedSocialSecurity}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.social_security && Boolean(formik.errors.social_security)}
-                                helperText={formik.touched.social_security && typeof formik.errors.social_security === 'string' ? formik.errors.social_security : undefined}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                edge="end"
-                                                onClick={() => setShowsocial_security(!showsocial_security)}
-                                            >
-                                                {showsocial_security ? <VisibilityOff /> : <Visibility />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    ),
-                                }}
+                                value={socialSecurityArray}
+                                formik={formik}
+                                setSocialSecurityArray={setSocialSecurityArray}
+                                visibilityPassword={showSocialSecurity}
+                                setVisibilityPassword={setShowSocialSecurity}
+                                form_social_security={formData.social_security}
                             />
                         </FormControl>
                     </Grid>
