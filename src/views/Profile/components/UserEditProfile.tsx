@@ -8,14 +8,14 @@ interface UserProfileInfoProps {
   formik: FormikProps<UserDetails>;
 }
 
-const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
+const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
   const customText = {
-    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "pink",
-      borderRadius: 0,
-      border: "2px solid " + "#a09c9c92",
-    },
-    width: "100%",
+    // "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    //   borderColor: "pink",
+    //   borderRadius: 0,
+    //   border: "2px solid " + "#a09c9c92",
+    // },
+    // width: "100%",
   };
 
   return (
@@ -24,8 +24,9 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
       <Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
         }}
       >
         <Typography
@@ -41,14 +42,14 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
         <div style={{ width: "50%" }}>
           <TextField
             id="first_name"
-            name="first_name"
+            name="depr_first_name"
             size="small"
-            value={formik.values.first_name}
+            value={formik.values.depr_first_name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             sx={customText}
           />
-          {formik.touched.first_name && formik.errors.first_name && (
+          {formik.touched.depr_first_name && formik.errors.depr_first_name && (
             <Typography
               sx={{
                 color: "red",
@@ -56,7 +57,7 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.first_name}
+              {formik.errors.depr_first_name}
             </Typography>
           )}
         </div>
@@ -66,8 +67,9 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
       <Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
         }}
       >
         <Typography
@@ -83,14 +85,14 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
         <div style={{ width: "50%" }}>
           <TextField
             id="second_name"
-            name="second_name"
+            name="depr_second_name"
             size="small"
-            value={formik.values.second_name}
+            value={formik.values.depr_second_name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             sx={customText}
           />
-          {formik.touched.second_name && formik.errors.second_name && (
+          {formik.touched.depr_second_name && formik.errors.depr_second_name && (
             <Typography
               sx={{
                 color: "red",
@@ -98,7 +100,7 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.second_name}
+              {formik.errors.depr_second_name}
             </Typography>
           )}
         </div>
@@ -108,8 +110,9 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
       <Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
         }}
       >
         <Typography
@@ -125,14 +128,14 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
         <div style={{ width: "50%" }}>
           <TextField
             id="last_name"
-            name="last_name"
+            name="depr_last_name"
             size="small"
-            value={formik.values.last_name}
+            value={formik.values.depr_last_name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             sx={customText}
           />
-          {formik.touched.last_name && formik.errors.last_name && (
+          {formik.touched.depr_last_name && formik.errors.depr_last_name && (
             <Typography
               sx={{
                 color: "red",
@@ -140,7 +143,7 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.last_name}
+              {formik.errors.depr_last_name}
             </Typography>
           )}
         </div>
@@ -150,8 +153,9 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
       <Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
         }}
       >
         <Typography
@@ -167,15 +171,15 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
         <div style={{ width: "50%" }}>
           <TextField
             id="second_last_name"
-            name="second_last_name"
+            name="depr_second_last_name"
             size="small"
-            value={formik.values.second_last_name}
+            value={formik.values.depr_second_last_name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             sx={customText}
           />
-          {formik.touched.second_last_name &&
-            formik.errors.second_last_name && (
+          {formik.touched.depr_second_last_name &&
+            formik.errors.depr_second_last_name && (
               <Typography
                 sx={{
                   color: "red",
@@ -183,7 +187,7 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
                   paddingTop: "0.5rem",
                 }}
               >
-                {formik.errors.second_last_name}
+                {formik.errors.depr_second_last_name}
               </Typography>
             )}
         </div>
@@ -193,8 +197,9 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
       <Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
         }}
       >
         <Typography
@@ -209,13 +214,13 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
         <div style={{ width: "50%" }}>
           <TextField
             id="social_security"
-            name="social_security"
-            value={formik.values.social_security}
+            name="depr_social_security"
+            value={formik.values.depr_social_security}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             sx={customText}
           />
-          {formik.touched.social_security && formik.errors.social_security && (
+          {formik.touched.depr_social_security && formik.errors.depr_social_security && (
             <Typography
               sx={{
                 color: "red",
@@ -223,7 +228,7 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.social_security}
+              {formik.errors.depr_social_security}
             </Typography>
           )}
         </div>
@@ -233,8 +238,9 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
       <Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
         }}
       >
         <Typography
@@ -249,14 +255,14 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
         <div style={{ width: "50%" }}>
           <TextField
             id="birthdate"
-            name="birthdate"
+            name="depr_birthdate"
             type="date"
             sx={customText}
-            value={formik.values.birthdate}
+            value={formik.values.depr_birthdate}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.birthdate && formik.errors.birthdate && (
+          {formik.touched.depr_birthdate && formik.errors.depr_birthdate && (
             <Typography
               sx={{
                 color: "red",
@@ -264,7 +270,7 @@ const UserEditProfile: React.FC<UserProfileInfoProps> = ({ formik }) => {
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.birthdate}
+              {formik.errors.depr_birthdate}
             </Typography>
           )}
         </div>

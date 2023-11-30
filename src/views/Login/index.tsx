@@ -92,7 +92,7 @@ const Login = () => {
             required
             sx={{ marginBottom: "1.5em !important" }}
           >
-            <CustomLabel name="Correo Eléctronico" required={true} />
+            <CustomLabel name="Correo Electrónico" required={true} />
             <TextField
               id="email"
               type="email"

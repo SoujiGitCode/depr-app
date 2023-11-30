@@ -598,10 +598,10 @@ const Register = () => {
             <Box>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <CustomLabel name="Correo Eléctronico" required={true} />
+                  <CustomLabel name="Correo Electrónico" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
-                      placeholder='Correo Eléctronico'
+                      placeholder='Correo Electrónico'
                       name="email"
                       id="email"
                       type="text"

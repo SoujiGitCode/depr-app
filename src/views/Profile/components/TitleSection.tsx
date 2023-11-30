@@ -9,12 +9,11 @@ function TitleSection() {
       sx={{
         width: "100%",
         paddingTop: "2rem",
-        paddingBottom: "2rem",
-        paddingLeft: "7.3rem",
+        paddingBottom: "2rem"
       }}
     >
-      <Typography variant="h4" className={styles["title"]}>
-        Profile
+      <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
+        Perfil
       </Typography>
     </Box>
   );

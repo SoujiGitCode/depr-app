@@ -17,28 +17,28 @@ interface UserProfileInfoProps {
   isEditMode: boolean;
 }
 
-const UserEditAdditionalInfo: React.FC<UserProfileInfoProps> = ({
+const UserEditAdditionalInfo = ({
   formik,
   listGenre,
   listId,
   isEditMode,
-}) => {
+}: UserProfileInfoProps) => {
   const customText = {
-    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "pink",
-      borderRadius: 0,
-      border: "2px solid " + "#a09c9c92",
-    },
-    width: "100%",
+    // "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    //   borderColor: "pink",
+    //   borderRadius: 0,
+    //   border: "2px solid " + "#a09c9c92",
+    // },
+    // width: "100%",
   };
 
   const licTextField = {
-    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderRadius: 0,
-      border: "2px solid " + "#a09c9c92",
-    },
-    width: "4.6rem",
-    paddingRight: "1rem",
+    // "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    //   borderRadius: 0,
+    //   border: "2px solid " + "#a09c9c92",
+    // },
+    // width: "4.6rem",
+    // paddingRight: "1rem",
   };
 
   return (
@@ -47,30 +47,31 @@ const UserEditAdditionalInfo: React.FC<UserProfileInfoProps> = ({
       <Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
         }}
       >
         <Typography
           sx={{
-            width: "42%",
+            width: "49%",
             fontWeight: "bold",
             fontSize: "1.2rem",
           }}
         >
-          Numero de Telefono: &nbsp;
+          Número de Teléfono: &nbsp;
         </Typography>
 
         <div style={{ width: "50%" }}>
           <TextField
-            id="phone"
-            name="phone"
+            id="depr_phone"
+            name="depr_phone"
             sx={customText}
-            value={formik.values.phone}
+            value={formik.values.depr_phone}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.phone && formik.errors.phone && (
+          {formik.touched.depr_phone && formik.errors.depr_phone && (
             <Typography
               sx={{
                 color: "red",
@@ -78,7 +79,7 @@ const UserEditAdditionalInfo: React.FC<UserProfileInfoProps> = ({
                 paddingTop: "0.5rem",
               }}
             >
-              {formik.errors.phone}
+              {formik.errors.depr_phone}
             </Typography>
           )}
         </div>
@@ -88,35 +89,32 @@ const UserEditAdditionalInfo: React.FC<UserProfileInfoProps> = ({
       <Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
         }}
       >
         <Typography
           sx={{
-            width: "42%",
+            width: "49%",
             fontWeight: "bold",
             fontSize: "1.2rem",
           }}
         >
-          Genero: &nbsp;
+          Género: &nbsp;
         </Typography>
         <TextField
           select
-          name="gender"
-          id="gender"
+          name="depr_gender"
+          id="depr_gender"
           type="text"
           variant="outlined"
-          value={formik.values.gender}
+          value={formik.values.depr_gender}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.gender && Boolean(formik.errors.gender)}
-          helperText={formik.touched.gender && formik.errors.gender}
+          error={formik.touched.depr_gender && Boolean(formik.errors.depr_gender)}
+          helperText={formik.touched.depr_gender && formik.errors.depr_gender}
           sx={{
-            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-              borderRadius: 0,
-              border: "2px solid " + "#a09c9c92",
-            },
             width: "50%",
           }}
         >
@@ -126,35 +124,30 @@ const UserEditAdditionalInfo: React.FC<UserProfileInfoProps> = ({
             </MenuItem>
           ))}
         </TextField>
-      </Box>
+      </Box >
 
       {/* ID Document */}
-      <Box
+      < Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
-        }}
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
+        }
+        }
       >
         <Typography
           sx={{
-            width: "42%",
+            width: "49%",
             fontWeight: "bold",
             fontSize: "1.2rem",
           }}
         >
-          {isEditMode ? "ID:" : "Documento de Identidad"}
+          Licencia / Real ID
         </Typography>
 
-        <div>
+        <div style={{ width: "50%" }}>
           <TextField
-            sx={{
-              "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                borderRadius: 0,
-                border: "2px solid " + "#a09c9c92",
-              },
-              width: "108%",
-            }}
             name="identification"
             id="identification"
             type="text"
@@ -179,30 +172,35 @@ const UserEditAdditionalInfo: React.FC<UserProfileInfoProps> = ({
             </Typography>
           )}
         </div>
-      </Box>
+      </Box >
 
       {/* Email */}
-      <Box
+      < Box
         sx={{
           display: "flex",
-          paddingBottom: "1rem",
-          width: "90%",
+          paddingBottom: "2rem",
+          width: "95%",
+          alignItems: "center !important"
         }}
       >
         <Typography
           sx={{
-            width: "42%",
+            width: "49%",
             fontWeight: "bold",
             fontSize: "1.2rem",
           }}
         >
-          Correo Electronico: &nbsp;
+          Correo Electrónico: &nbsp;
         </Typography>
         <div style={{ width: "50%" }}>
           <TextField
             id="email"
             name="email"
             sx={customText}
+            inputProps={
+              { readOnly: true, }
+            }
+            variant="filled"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -219,7 +217,7 @@ const UserEditAdditionalInfo: React.FC<UserProfileInfoProps> = ({
             </Typography>
           )}
         </div>
-      </Box>
+      </Box >
     </>
   );
 };

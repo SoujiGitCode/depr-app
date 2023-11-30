@@ -8,7 +8,7 @@ interface UserProfileInfoProps {
   formik: FormikProps<UserDetails>;
 }
 
-const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ formik }) => {
+const UserProfileInfo = ({ formik }: UserProfileInfoProps) => {
   return (
     <>
       <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
@@ -21,7 +21,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ formik }) => {
             fontSize: "1.2rem",
           }}
         >
-          {formik.values.first_name}
+          {formik.values.depr_first_name}
         </Typography>
       </Box>
 
@@ -35,7 +35,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ formik }) => {
             fontSize: "1.2rem",
           }}
         >
-          {formik.values.second_name}
+          {formik.values.depr_second_name}
         </Typography>
       </Box>
 
@@ -49,7 +49,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ formik }) => {
             fontSize: "1.2rem",
           }}
         >
-          {formik.values.last_name}
+          {formik.values.depr_last_name}
         </Typography>
       </Box>
 
@@ -63,7 +63,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ formik }) => {
             fontSize: "1.2rem",
           }}
         >
-          {formik.values.second_last_name}
+          {formik.values.depr_second_last_name}
         </Typography>
       </Box>
 
@@ -77,7 +77,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ formik }) => {
             fontSize: "1.2rem",
           }}
         >
-          {formik.values.social_security}
+          {formik.values.depr_social_security}
         </Typography>
       </Box>
 
@@ -86,7 +86,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ formik }) => {
           Fecha de nacimiento: &nbsp;
         </Typography>
         <Typography sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}>
-          {getFormattedDate(formik.values.birthdate)}
+          {getFormattedDate(formik.values.depr_birthdate)}
         </Typography>
       </Box>
     </>

@@ -1,4 +1,5 @@
-import { Grid, Button, Box, Divider } from "@mui/material";
+import { Button, Box, Divider } from "@mui/material";
+import Grid from '@mui/material/Grid';
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "./validations";
@@ -37,19 +38,8 @@ const listGenre = [
 ];
 
 export interface UserDetails {
-  id: string;
   email: string;
-  password: string;
-  identification_type: string;
   identification: string;
-  first_name: string;
-  second_name: string;
-  last_name: string;
-  second_last_name: string;
-  birthdate: string;
-  gender: string;
-  phone: string;
-  social_security: string;
   depr_first_name: string;
   depr_second_name: string;
   depr_last_name: string;
@@ -58,10 +48,6 @@ export interface UserDetails {
   depr_gender: string;
   depr_phone: string;
   depr_social_security: string;
-  ip_origin: string;
-  status: string;
-  created: string;
-  updated: string;
 }
 
 interface ApiResponse {
@@ -74,20 +60,10 @@ const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [userInfo, setUserInfo] = useState<UserDetails>();
   const token = useAuthStore((state: any) => state.token);
+  const [formValid, setFormValid] = useState(false);
   const [formValues, setFormValues] = useState({
-    id: "",
-    email: "",
-    password: "",
-    identification_type: listId[0].value,
     identification: "",
-    first_name: "",
-    second_name: "",
-    last_name: "",
-    second_last_name: "",
-    birthdate: "",
-    gender: listGenre[0].value,
-    phone: "",
-    social_security: "",
+    email: "",
     depr_first_name: "",
     depr_second_name: "",
     depr_last_name: "",
@@ -96,10 +72,6 @@ const Profile = () => {
     depr_gender: "",
     depr_phone: "",
     depr_social_security: "",
-    ip_origin: "",
-    status: "",
-    created: "",
-    updated: "",
   });
 
   const getDetails = async () => {
@@ -108,6 +80,7 @@ const Profile = () => {
     try {
       const resp = await Api.get<ApiResponse>();
       const cast: UserDetails = resp.data;
+      console.log(cast)
       setUserInfo(cast);
       formik.setValues(cast);
     } catch (error) {
@@ -123,32 +96,26 @@ const Profile = () => {
   };
 
   const UpdateChangesProfile = async (values: UserDetails) => {
-    console.log("a");
     Api.token = token;
     Api.resource = "/user/modify";
     try {
-      const resp = await Api.post(values);
-      console.log(resp);
+      const res = await Api.post({
+        body: {
+          ...values
+        },
+      })
+
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
 
+
   const formik = useFormik({
     initialValues: {
-      id: "",
-      email: "",
-      password: "",
-      identification_type: listId[0].value,
       identification: "",
-      first_name: "",
-      second_name: "",
-      last_name: "",
-      second_last_name: "",
-      birthdate: "",
-      gender: listGenre[0].value,
-      phone: "",
-      social_security: "",
+      email: "",
       depr_first_name: "",
       depr_second_name: "",
       depr_last_name: "",
@@ -157,18 +124,41 @@ const Profile = () => {
       depr_gender: "",
       depr_phone: "",
       depr_social_security: "",
-      ip_origin: "",
-      status: "",
-      created: "",
-      updated: "",
     },
     validationSchema: validationSchema,
-    onSubmit: async (values) => await UpdateChangesProfile(values),
+    onSubmit: async (values: any) => {
+
+      await UpdateChangesProfile(values)
+      getDetails();
+    },
+
+    validateOnChange: true,
+    validateOnBlur: true,
+    enableReinitialize: true
   });
+
+  useEffect(() => {
+    getDetails();
+    console.log('consulting info')
+  }, [isEditMode]);
+
+
+
+  useEffect(() => {
+    if (!formik.isValid) {
+      console.log(formik.errors);
+      setFormValid(false)
+      return
+    }
+    if (formik.isValid) {
+      setFormValid(true)
+    }
+    console.log('isStepValid ' + formValid)
+  }, [formik.values, formik.touched, formik.isValid]);
 
   return (
     <>
-      <Grid container sx={{ height: "100%" }}>
+      <Grid container sx={{ height: "100%", paddingLeft: '12%' }}>
         <Grid
           item
           sx={{
@@ -186,16 +176,15 @@ const Profile = () => {
           <Box
             sx={{
               flexDirection: "row",
-              width: isEditMode ? "100%" : "70%",
-              height: "70%",
-              paddingLeft: isEditMode ? "7rem" : "2rem",
+              width: '100%',
+              minHeight: "70%",
+              paddingLeft: '0%',
               paddingTop: "1.5rem",
             }}
           >
             <Box
               sx={{
-                height: isEditMode ? "80%" : "60%",
-                width: isEditMode ? "130%" : "100%",
+                width: '100%',
               }}
             >
               {!isEditMode && userInfo ? (
@@ -208,53 +197,36 @@ const Profile = () => {
           {/*Botones */}
           <Box
             sx={{
+              // background: 'red',
               flexDirection: "row",
               display: "flex",
               width: "100%",
-              justifyContent: "space-between",
-              paddingLeft: "5rem",
+              justifyContent: "start",
             }}
           >
             <Button
-              variant="outlined"
+              disabled={!isEditMode}
+              variant="contained"
               type="submit"
               className={styles["buttons-save"]}
-              sx={{
-                backgroundColor: formik.isValid ? "#697FAA" : "#697faa62",
-                color: "white",
-              }}
+              sx={{ marginRight: "5% !important" }}
+
               onClick={() => {
                 if (isEditMode) {
                   // Valida los campos antes de guardar
                   if (formik.isValid) {
                     // Si está en modo edición y los campos son válidos, guarda los valores
                     setFormValues({
-                      id: formik.values.id,
-                      email: formik.values.email,
-                      password: formik.values.password,
-                      identification_type: formik.values.identification_type,
-                      identification: formik.values.identification,
-                      first_name: formik.values.first_name,
-                      second_name: formik.values.second_name,
-                      last_name: formik.values.last_name,
-                      second_last_name: formik.values.second_last_name,
-                      birthdate: formik.values.birthdate,
-                      gender: formik.values.gender,
-                      phone: formik.values.phone,
-                      social_security: formik.values.social_security,
-                      depr_first_name: formik.values.depr_first_name,
-                      depr_second_name: formik.values.depr_second_name,
-                      depr_last_name: formik.values.depr_last_name,
-                      depr_second_last_name:
-                        formik.values.depr_second_last_name,
-                      depr_birthdate: formik.values.depr_birthdate,
-                      depr_gender: formik.values.depr_gender,
-                      depr_phone: formik.values.depr_phone,
-                      depr_social_security: formik.values.depr_social_security,
-                      ip_origin: formik.values.ip_origin,
-                      status: formik.values.status,
-                      created: formik.values.created,
-                      updated: formik.values.updated,
+                      identification: formik.values.identification || '',
+                      email: formik.values.email || '',
+                      depr_first_name: formik.values.depr_first_name || '',
+                      depr_second_name: formik.values.depr_second_name || '',
+                      depr_last_name: formik.values.depr_last_name || '',
+                      depr_second_last_name: formik.values.depr_second_last_name || '',
+                      depr_birthdate: formik.values.depr_birthdate || '',
+                      depr_gender: formik.values.depr_gender || '',
+                      depr_phone: formik.values.depr_phone || '',
+                      depr_social_security: formik.values.depr_social_security || '',
                     });
 
                     // Llama a la función onSubmit de formik para manejar la lógica del envío del formulario
@@ -291,7 +263,7 @@ const Profile = () => {
             display: "flex",
             justifyContent: "center",
           }}
-          sm={7}
+          sm={5}
         >
           <div style={{ alignItems: "center", display: "flex" }}>
             <Divider
@@ -308,10 +280,9 @@ const Profile = () => {
           <Box
             sx={{
               flexDirection: "row",
-              width: "70%",
-              height: "40%",
+              width: "100%",
               paddingTop: "8rem",
-              paddingLeft: "5rem",
+              paddingLeft: "6%",
             }}
           >
             <>

@@ -5,28 +5,27 @@ export const validationSchema = yup.object().shape({
   email: yup
     .string()
     .email("Debe ser una dirección de correo electrónico válida"),
-  identification: yup.string(),
-  first_name: yup
+  depr_first_name: yup
     .string()
     .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
-  second_name: yup
+  depr_second_name: yup
     .string()
     .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
-  last_name: yup
+  depr_last_name: yup
     .string()
     .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
-  second_last_name: yup
+  depr_second_last_name: yup
     .string()
     .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
-  birthdate: yup
+  depr_birthdate: yup
     .date()
     .test(
       "age",
@@ -48,16 +47,9 @@ export const validationSchema = yup.object().shape({
         return true;
       }
     ),
-  gender: yup.string(),
-  phone: yup.string().matches(/^[0-9]+$/, "Debe contener solo números"),
-  social_security: yup
-    .string()
-    .matches(/^[0-9]+$/, "Debe contener solo números"),
+  depr_gender: yup.string(),
+  depr_phone: yup.string().matches(/^[0-9]+$/, "Debe contener solo números"),
   depr_social_security: yup
     .string()
     .matches(/^[0-9]+$/, "Debe contener solo números"),
-  ip_origin: yup.string(),
-  status: yup.string(),
-  created: yup.string(),
-  updated: yup.string(),
 });
