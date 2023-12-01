@@ -46,6 +46,7 @@ const UserEditAdditionalInfo = ({
       {/* Phone Number */}
       <Box
         sx={{
+          marginTop: '6.22rem !important',
           display: "flex",
           paddingBottom: "2rem",
           width: "95%",

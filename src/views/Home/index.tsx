@@ -18,6 +18,7 @@ import { getUserDocuments } from "./functions";
 import { IGetUsersDocumentsData } from "./types";
 import CustomTable from "./components/customTable";
 import { table } from "console";
+import Paper from "@mui/material/Paper";
 
 
 const Home = () => {
@@ -314,7 +315,24 @@ const Home = () => {
             </Grid>
 
             <Grid item xs={10} sx={{ marginBottom: "4em !important", marginTop: "2em !important" }}>
-              <CustomTable tableData={tableData} />
+              {tableData.length !== 0 ?
+                <CustomTable tableData={tableData} />
+                :
+                <Box
+                  component={Paper}
+                  sx={{
+                    padding: "1rem",
+                    boxShadow: '0px 4px 13.5px 0px rgba(0, 0, 0, 0.1)',
+                    justifyContent: 'center',
+                    textAling: 'center',
+                    display: 'flex'
+                  }}>
+                  <Typography variant="body1" gutterBottom sx={{ textAling: 'center' }}>
+                    No ha realizado ninguna solicitud.
+                  </Typography>
+                </Box>
+              }
+
             </Grid>
 
           </Grid>

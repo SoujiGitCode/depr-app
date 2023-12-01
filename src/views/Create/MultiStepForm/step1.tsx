@@ -271,13 +271,16 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             try {
                 const responseSchools = await requestSchools(formik.values.schoolTown);
                 setSchoolsData(responseSchools);
-                formik.setFieldValue('school_code', schoolsData[0]?.id || '');
+                formik.setFieldValue('school_code', responseSchools[0]?.id || '');
+
             } catch (error) {
                 console.error("Error fetching schools:", error);
             }
         };
 
         fetchSchools();
+        console.log(schoolsData[0]?.id || '')
+
     }, [formik.values.schoolTown, formData.school_town]);
 
 
@@ -619,9 +622,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                             type="text"
                                             variant="outlined"
                                             value={formik.values.school_code}
-                                            onChange={(e) => {
-                                                formik.handleChange(e);  // handle formik's change
-                                            }}
+                                            onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                             error={formik.touched.school_code && Boolean(formik.errors.school_code)}
                                             helperText={formik.touched.school_code && typeof formik.errors.school_code === 'string' ? formik.errors.school_code : undefined}

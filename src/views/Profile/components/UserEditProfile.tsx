@@ -1,14 +1,23 @@
+
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { UserDetails } from "..";
 import { FormikProps } from "formik";
+import { useState } from "react";
+import SocialSecurityInput from "@/components/SocialSecurityInput";
 
 interface UserProfileInfoProps {
   formik: FormikProps<UserDetails>;
 }
 
 const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
+
+  console.log(formik.values.social_security)
+
+  const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill("") ?? null);
+  const [showSocialSecurity, setShowSocialSecurity] = useState(false);
+
   const customText = {
     // "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
     //   borderColor: "pink",
@@ -41,7 +50,7 @@ const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
 
         <div style={{ width: "50%" }}>
           <TextField
-            id="first_name"
+            id="depr_first_name"
             name="depr_first_name"
             size="small"
             value={formik.values.depr_first_name}
@@ -84,7 +93,7 @@ const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
 
         <div style={{ width: "50%" }}>
           <TextField
-            id="second_name"
+            id="depr_second_name"
             name="depr_second_name"
             size="small"
             value={formik.values.depr_second_name}
@@ -127,7 +136,7 @@ const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
 
         <div style={{ width: "50%" }}>
           <TextField
-            id="last_name"
+            id="depr_last_name"
             name="depr_last_name"
             size="small"
             value={formik.values.depr_last_name}
@@ -170,7 +179,7 @@ const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
 
         <div style={{ width: "50%" }}>
           <TextField
-            id="second_last_name"
+            id="depr_second_last_name"
             name="depr_second_last_name"
             size="small"
             value={formik.values.depr_second_last_name}
@@ -212,25 +221,19 @@ const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
           Seguro Social: &nbsp;
         </Typography>
         <div style={{ width: "50%" }}>
-          <TextField
-            id="social_security"
+          <SocialSecurityInput
+            variant="outlined"
+            placeholder='N° Seguro Social'
             name="depr_social_security"
-            value={formik.values.depr_social_security}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            sx={customText}
+            id="depr_social_security"
+            type={'text'}
+            value={socialSecurityArray}
+            formik={formik}
+            setSocialSecurityArray={setSocialSecurityArray}
+            visibilityPassword={showSocialSecurity}
+            setVisibilityPassword={setShowSocialSecurity}
+            form_social_security={formik.values.depr_social_security}
           />
-          {formik.touched.depr_social_security && formik.errors.depr_social_security && (
-            <Typography
-              sx={{
-                color: "red",
-                fontSize: "0.8rem",
-                paddingTop: "0.5rem",
-              }}
-            >
-              {formik.errors.depr_social_security}
-            </Typography>
-          )}
         </div>
       </Box>
 
@@ -254,7 +257,7 @@ const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
         </Typography>
         <div style={{ width: "50%" }}>
           <TextField
-            id="birthdate"
+            id="depr_birthdate"
             name="depr_birthdate"
             type="date"
             sx={customText}

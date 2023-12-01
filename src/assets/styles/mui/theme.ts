@@ -79,6 +79,10 @@ const theme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: {
+        root: {
+          //font-weight para todos los botones a pedido de Pier
+          fontWeight: 'bold'
+        },
         containedPrimary: {
           '&:disabled': {
             backgroundColor: disabledColorPrimary, // Background Color when disabled for contained buttons

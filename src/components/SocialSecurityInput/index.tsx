@@ -48,37 +48,26 @@ const SocialSecurityInput = ({
 
   // Function to handle changes to the social security number
   const handleSocialSecurityChange = (e: any) => {
-    const { value: input, selectionStart } = e.target;
+    const input = e.target.value;
 
-    // Create a copy of the current array
-    let updatedArray = [...value];
+    // Crear un nuevo array basado en la entrada del usuario
+    let updatedArray = input.split("");
 
-    // Calculate the length difference between the input and the current array
-    const diff = input.length - updatedArray.join("").length;
-
-    // Handle the addition or deletion of characters
-    if (diff > 0) {
-      // Addition of characters
-      const newChars = input.slice(selectionStart - diff, selectionStart);
-      updatedArray.splice(selectionStart - diff, 0, ...newChars.split(""));
-    } else if (diff < 0) {
-      // Deletion of characters
-      updatedArray.splice(selectionStart, -diff);
-    }
-
-    // Ensure that the array does not exceed the maximum length and fill with empty spaces if necessary
-    updatedArray = updatedArray.slice(0, 9);
+    // Asegurarse de que el array no exceda la longitud máxima y llenar con espacios vacíos si es necesario
     while (updatedArray.length < 9) {
       updatedArray.push("");
     }
 
-    // Update the state and the value of Formik
+    // Actualizar solo los primeros 9 caracteres (la longitud máxima del SSN)
+    updatedArray = updatedArray.slice(0, 9);
+
+    // Actualizar el estado y el valor en Formik
     setSocialSecurityArray(updatedArray);
     formik.setFieldValue(id, updatedArray.join(""));
   };
 
   useEffect(() => {
-    setSocialSecurityArray(form_social_security.toString().length > 0 ? form_social_security.split('') : new Array(9).fill(""));
+    setSocialSecurityArray(form_social_security.length > 0 ? form_social_security.split('') : new Array(9).fill(""));
   }, [form_social_security, setSocialSecurityArray]);
 
   return (

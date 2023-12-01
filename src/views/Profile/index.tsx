@@ -1,5 +1,5 @@
 import { Button, Box, Divider } from "@mui/material";
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid/Grid';
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "./validations";
@@ -11,6 +11,7 @@ import UserAdditionalInfo from "./components/UserAdditionalnfo";
 import UserEditAdditionalInfo from "./components/UserEditAdditionalInfo";
 import Api from "@/utils/services/api";
 import useAuthStore from "@/hooks/useAuthStore";
+import profileImage from "@/assets/images/profile-image.png"
 
 const listId = [
   {
@@ -71,7 +72,7 @@ const Profile = () => {
     depr_birthdate: "",
     depr_gender: "",
     depr_phone: "",
-    depr_social_security: "",
+    depr_social_security: ""
   });
 
   const getDetails = async () => {
@@ -101,7 +102,7 @@ const Profile = () => {
     try {
       const res = await Api.post({
         body: {
-          ...values
+          ...values, social_security: values.depr_social_security
         },
       })
 
@@ -158,7 +159,7 @@ const Profile = () => {
 
   return (
     <>
-      <Grid container sx={{ height: "100%", paddingLeft: '12%' }}>
+      <Grid container sx={{ height: "100%", paddingLeft: '12%', marginBottom: '2rem !important' }}>
         <Grid
           item
           sx={{
@@ -175,11 +176,13 @@ const Profile = () => {
           {/*Aqui van los inputs */}
           <Box
             sx={{
+              display: 'flex',
               flexDirection: "row",
               width: '100%',
-              minHeight: "70%",
+              minHeight: "auto",
               paddingLeft: '0%',
               paddingTop: "1.5rem",
+              marginBottom: '1rem !important'
             }}
           >
             <Box
@@ -187,6 +190,19 @@ const Profile = () => {
                 width: '100%',
               }}
             >
+
+              <Grid container>
+                <Grid
+                  item
+                  sx={{ display: 'flex', padding: 0, justifyContent: 'center' }}
+                >
+                  <img
+                    src={profileImage}
+                    alt="user-photo"
+                    className={styles["img-profile-style"]}
+                  />
+                </Grid>
+              </Grid>
               {!isEditMode && userInfo ? (
                 <UserProfileInfo formik={formik} />
               ) : (

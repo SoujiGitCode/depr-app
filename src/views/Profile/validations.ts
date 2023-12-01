@@ -51,5 +51,8 @@ export const validationSchema = yup.object().shape({
   depr_phone: yup.string().matches(/^[0-9]+$/, "Debe contener solo números"),
   depr_social_security: yup
     .string()
+    .required("Seguro Social requerido")
+    .matches(/^[0-9*]+$/, "Solo debe contener números")
+    .test('len', 'Deben ser 9 caracteres', val => val.length === 9)
     .matches(/^[0-9]+$/, "Debe contener solo números"),
 });
