@@ -5,6 +5,7 @@ import { PATH } from "./constants";
 import useAuthStore from "@/hooks/useAuthStore";
 import Error404 from "@/views/Error404";
 import Error500 from "@/views/Error500";
+import Recovery from "@/views/RecoveryPassword";
 
 const Root = () => {
   const isAuthenticated = useAuthStore((state: any) => state.isAuthenticated);
@@ -27,6 +28,10 @@ const Root = () => {
 
           <Route path={PATH.FAST} element={<UnauthorizedLayout />}>
             <Route index element={<Fast />} />
+          </Route>
+
+          <Route path={PATH.RECOVERY} element={<UnauthorizedLayout />}>
+            <Route index element={<Recovery />} />
           </Route>
         </>
       )}
