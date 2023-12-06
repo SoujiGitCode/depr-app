@@ -51,7 +51,7 @@ export interface UserDetails {
   depr_birthdate: string;
   depr_gender: string;
   depr_phone: string;
-  depr_social_security: string;
+  social_security: string;
 }
 
 interface ApiResponse {
@@ -75,7 +75,7 @@ const Profile = () => {
     depr_birthdate: "",
     depr_gender: "",
     depr_phone: "",
-    depr_social_security: ""
+    social_security: ""
   });
 
   const getDetails = async () => {
@@ -105,7 +105,7 @@ const Profile = () => {
     try {
       const res = await Api.post({
         body: {
-          ...values, social_security: values.depr_social_security
+          ...values, social_security: values.social_security, phone: values.depr_phone, gender: values.depr_gender, birthdate: values.depr_birthdate,
         },
       })
 
@@ -127,7 +127,7 @@ const Profile = () => {
       depr_birthdate: "",
       depr_gender: "",
       depr_phone: "",
-      depr_social_security: "",
+      social_security: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values: any) => {
@@ -486,7 +486,7 @@ const Profile = () => {
                       depr_birthdate: formik.values.depr_birthdate || '',
                       depr_gender: formik.values.depr_gender || '',
                       depr_phone: formik.values.depr_phone || '',
-                      depr_social_security: formik.values.depr_social_security || '',
+                      social_security: formik.values.social_security || '',
                     });
 
                     // Llama a la función onSubmit de formik para manejar la lógica del envío del formulario

@@ -77,7 +77,7 @@ const UserProfileInfo = ({ formik }: UserProfileInfoProps) => {
             fontSize: "1.2rem",
           }}
         >
-          {formik.values.depr_social_security}
+          {formik.values.social_security}
         </Typography>
       </Box>
 

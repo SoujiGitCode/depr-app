@@ -1,5 +1,7 @@
 
 
+// export const DEV_URI = "https://qaapipepr.lobsys.net/";
+
 export const DEV_URI = "https://apipepr.lobsys.net/";
 
 // DEPR Endpoints

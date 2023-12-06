@@ -15,7 +15,7 @@ const UserAdditionalInfo: React.FC<UserProfileInfoProps> = ({ formik }) => {
           Número de Teléfono: &nbsp;
         </Typography>
         <Typography sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}>
-          {formik.values.phone}
+          {formik.values.depr_phone}
         </Typography>
       </Box>
 
@@ -24,7 +24,7 @@ const UserAdditionalInfo: React.FC<UserProfileInfoProps> = ({ formik }) => {
           Género: &nbsp;
         </Typography>
         <Typography sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}>
-          {formik.values.gender}
+          {formik.values.depr_gender}
         </Typography>
       </Box>
 

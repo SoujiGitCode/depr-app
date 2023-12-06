@@ -49,7 +49,7 @@ export const validationSchema = yup.object().shape({
     ),
   depr_gender: yup.string(),
   depr_phone: yup.string().matches(/^[0-9]+$/, "Debe contener solo números"),
-  depr_social_security: yup
+  social_security: yup
     .string()
     .required("Seguro Social requerido")
     .matches(/^[0-9*]+$/, "Solo debe contener números")

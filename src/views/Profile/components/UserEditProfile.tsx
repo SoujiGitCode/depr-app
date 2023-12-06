@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { UserDetails } from "..";
 import { FormikProps } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SocialSecurityInput from "@/components/SocialSecurityInput";
 
 interface UserProfileInfoProps {
@@ -17,6 +17,10 @@ const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
 
   const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill("") ?? null);
   const [showSocialSecurity, setShowSocialSecurity] = useState(false);
+
+  useEffect(() => {
+    console.log(socialSecurityArray)
+  }, [socialSecurityArray])
 
   const customText = {
     // "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
@@ -224,15 +228,15 @@ const UserEditProfile = ({ formik }: UserProfileInfoProps) => {
           <SocialSecurityInput
             variant="outlined"
             placeholder='N° Seguro Social'
-            name="depr_social_security"
-            id="depr_social_security"
+            name="social_security"
+            id="social_security"
             type={'text'}
             value={socialSecurityArray}
             formik={formik}
             setSocialSecurityArray={setSocialSecurityArray}
             visibilityPassword={showSocialSecurity}
             setVisibilityPassword={setShowSocialSecurity}
-            form_social_security={formik.values.depr_social_security}
+            form_social_security={formik.values.social_security}
           />
         </div>
       </Box>

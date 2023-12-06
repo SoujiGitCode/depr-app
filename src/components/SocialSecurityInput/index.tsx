@@ -1,6 +1,6 @@
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { CSSProperties, useEffect } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 
 // Define the props for the SocialSecurityInput component
 interface SocialSecurityInputProps {
@@ -32,6 +32,8 @@ const SocialSecurityInput = ({
   setVisibilityPassword,
   form_social_security
 }: SocialSecurityInputProps) => {
+  const [realValue, setRealValue] = useState(""); // Estado para el valor numérico real
+  const [displayValue, setDisplayValue] = useState(""); // Estado para el valor que se muestra
   // Function to toggle the visibility of the social security number
   const toggleSocialSecurityVisibility = () => {
     setVisibilityPassword(!visibilityPassword);
@@ -39,37 +41,33 @@ const SocialSecurityInput = ({
   };
 
   // Function to mask the social security number
-  const maskSocialSecurity = (value: any) => {
-    const visibleDigits = 4;
-    const maskedLength = Math.max(value.length - visibleDigits, 0);
-    const masked = value.slice(-visibleDigits);
-    return "*".repeat(maskedLength) + masked;
+  const handleSocialSecurityChange = (e) => {
+    const input = e.target.value;
+    let numericInput = input.replace(/\D/g, ''); // Solo números
+    numericInput = numericInput.slice(0, 9); // Limitar a 9 caracteres
+
+    setRealValue(numericInput); // Actualiza el valor real
+    setDisplayValue(visibilityPassword ? numericInput : maskSocialSecurity(numericInput)); // Actualiza el valor mostrado
   };
 
-  // Function to handle changes to the social security number
-  const handleSocialSecurityChange = (e: any) => {
-    const input = e.target.value;
-
-    // Crear un nuevo array basado en la entrada del usuario
-    let updatedArray = input.split("");
-
-    // Asegurarse de que el array no exceda la longitud máxima y llenar con espacios vacíos si es necesario
-    while (updatedArray.length < 9) {
-      updatedArray.push("");
+  const maskSocialSecurity = (value) => {
+    if (value.length <= 4) {
+      return value; // Si el valor es menor o igual a 4, no necesita máscara
     }
 
-    // Actualizar solo los primeros 9 caracteres (la longitud máxima del SSN)
-    updatedArray = updatedArray.slice(0, 9);
-
-    // Actualizar el estado y el valor en Formik
-    setSocialSecurityArray(updatedArray);
-    formik.setFieldValue(id, updatedArray.join(""));
+    const maskedSection = "*".repeat(value.length - 4);
+    const visibleSection = value.slice(-4);
+    return maskedSection + visibleSection;
   };
 
   useEffect(() => {
-    setSocialSecurityArray(form_social_security.length > 0 ? form_social_security.split('') : new Array(9).fill(""));
-  }, [form_social_security, setSocialSecurityArray]);
+    setDisplayValue(visibilityPassword ? realValue : maskSocialSecurity(realValue));
+  }, [realValue, visibilityPassword]);
 
+  useEffect(() => {
+    // Este useEffect sincroniza el valor de Formik con el valor real actual
+    formik.setFieldValue(id, realValue);
+  }, [realValue]);
   return (
     <TextField
       variant={variant}
@@ -77,9 +75,7 @@ const SocialSecurityInput = ({
       id={id}
       type={type}
       name={name}
-      value={
-        visibilityPassword ? value.join("") : maskSocialSecurity(value.join(""))
-      }
+      value={displayValue}
       onChange={handleSocialSecurityChange}
       onBlur={formik.handleBlur}
       error={formik.touched[id] && Boolean(formik.errors[id])}
