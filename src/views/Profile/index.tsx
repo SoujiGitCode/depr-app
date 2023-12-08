@@ -105,7 +105,15 @@ const Profile = () => {
     try {
       const res = await Api.post({
         body: {
-          ...values, social_security: values.social_security, phone: values.depr_phone, gender: values.depr_gender, birthdate: values.depr_birthdate,
+          ...values,
+          social_security: values.social_security,
+          phone: values.depr_phone,
+          gender: values.depr_gender,
+          birthdate: values.depr_birthdate,
+          first_name: values.depr_first_name,
+          second_name: values.depr_second_name,
+          last_name: values.depr_last_name,
+          second_last_name: values.depr_second_last_name,
         },
       })
 

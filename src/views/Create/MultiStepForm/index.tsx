@@ -106,7 +106,7 @@ const MultiStepForm = ({
             updateFormData({}, true);  // o cualquier otro valor inicial
             setAlert("Solicitud completada!", "success");
             modalTriger('success');
-            // espera de 2 segundos antes de redireccionar al suuario al landing
+            // espera de 3 segundos antes de redireccionar al suuario al landing
             setTimeout(() => {
                 onBack();
             }, 3000);
