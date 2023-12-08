@@ -1,6 +1,6 @@
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, useEffect } from "react";
 
 // Define the props for the SocialSecurityInput component
 interface SocialSecurityInputProps {
@@ -32,8 +32,6 @@ const SocialSecurityInput = ({
   setVisibilityPassword,
   form_social_security
 }: SocialSecurityInputProps) => {
-  const [realValue, setRealValue] = useState(""); // Estado para el valor numérico real
-  const [displayValue, setDisplayValue] = useState(""); // Estado para el valor que se muestra
   // Function to toggle the visibility of the social security number
   const toggleSocialSecurityVisibility = () => {
     setVisibilityPassword(!visibilityPassword);
@@ -41,33 +39,48 @@ const SocialSecurityInput = ({
   };
 
   // Function to mask the social security number
-  const handleSocialSecurityChange = (e) => {
-    const input = e.target.value;
-    let numericInput = input.replace(/\D/g, ''); // Solo números
-    numericInput = numericInput.slice(0, 9); // Limitar a 9 caracteres
-
-    setRealValue(numericInput); // Actualiza el valor real
-    setDisplayValue(visibilityPassword ? numericInput : maskSocialSecurity(numericInput)); // Actualiza el valor mostrado
+  const maskSocialSecurity = (value: any) => {
+    const visibleDigits = 4;
+    const maskedLength = Math.max(value.length - visibleDigits, 0);
+    const masked = value.slice(-visibleDigits);
+    return "*".repeat(maskedLength) + masked;
   };
 
-  const maskSocialSecurity = (value) => {
-    if (value.length <= 4) {
-      return value; // Si el valor es menor o igual a 4, no necesita máscara
+  // Function to handle changes to the social security number
+  const handleSocialSecurityChange = (e: any) => {
+    const { value: input, selectionStart } = e.target;
+
+    // Create a copy of the current array
+    let updatedArray = [...value];
+
+    // Calculate the length difference between the input and the current array
+    const diff = input.length - updatedArray.join("").length;
+
+    // Handle the addition or deletion of characters
+    if (diff > 0) {
+      // Addition of characters
+      const newChars = input.slice(selectionStart - diff, selectionStart);
+      updatedArray.splice(selectionStart - diff, 0, ...newChars.split(""));
+    } else if (diff < 0) {
+      // Deletion of characters
+      updatedArray.splice(selectionStart, -diff);
     }
 
-    const maskedSection = "*".repeat(value.length - 4);
-    const visibleSection = value.slice(-4);
-    return maskedSection + visibleSection;
+    // Ensure that the array does not exceed the maximum length and fill with empty spaces if necessary
+    updatedArray = updatedArray.slice(0, 9);
+    while (updatedArray.length < 9) {
+      updatedArray.push("");
+    }
+
+    // Update the state and the value of Formik
+    setSocialSecurityArray(updatedArray);
+    formik.setFieldValue(id, updatedArray.join(""));
   };
 
   useEffect(() => {
-    setDisplayValue(visibilityPassword ? realValue : maskSocialSecurity(realValue));
-  }, [realValue, visibilityPassword]);
+    setSocialSecurityArray(form_social_security.toString().length > 0 ? form_social_security.split('') : new Array(9).fill(""));
+  }, [form_social_security, setSocialSecurityArray]);
 
-  useEffect(() => {
-    // Este useEffect sincroniza el valor de Formik con el valor real actual
-    formik.setFieldValue(id, realValue);
-  }, [realValue]);
   return (
     <TextField
       variant={variant}
@@ -75,7 +88,9 @@ const SocialSecurityInput = ({
       id={id}
       type={type}
       name={name}
-      value={displayValue}
+      value={
+        visibilityPassword ? value.join("") : maskSocialSecurity(value.join(""))
+      }
       onChange={handleSocialSecurityChange}
       onBlur={formik.handleBlur}
       error={formik.touched[id] && Boolean(formik.errors[id])}
