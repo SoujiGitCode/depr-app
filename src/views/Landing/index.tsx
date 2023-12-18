@@ -4,7 +4,9 @@ import {
   Card,
   Grid,
   Typography,
-  CardContent
+  CardContent,
+  useTheme,
+  useMediaQuery
 } from "@mui/material";
 import MyCarousel from '../../components/Carousel';
 import { styled } from '@mui/system';
@@ -51,6 +53,9 @@ const BoldText = styled('span')({
 
 
 const Landing = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+
   const navigate = useNavigate();
   const background = "linear-gradient(to top, #8580b0, #7a75ad, #6f6aaa, #6460a7, #5855a4)";
 
@@ -60,7 +65,7 @@ const Landing = () => {
       <Box sx={{ backgroundImage: background, p: 3 }}>
         <Grid container justifyContent="center" alignItems="center">
           <Grid item xs={12}>
-            <MyCarousel />
+            <MyCarousel isMobile={isMobile} />
           </Grid>
         </Grid>
       </Box>

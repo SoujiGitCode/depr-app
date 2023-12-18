@@ -12,20 +12,20 @@ import { useNavigate } from "react-router-dom";
 
 const responsive = {
     desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+        breakpoint: { max: 3000, min: 1200 },
         items: 1,
     },
     tablet: {
-        breakpoint: { max: 1024, min: 464 },
+        breakpoint: { max: 1200, min: 600 },
         items: 1,
     },
     mobile: {
-        breakpoint: { max: 464, min: 0 },
+        breakpoint: { max: 600, min: 0 },
         items: 1,
     },
 };
 
-const MyCarousel = () => {
+const MyCarousel = ({ isMobile }: { isMobile: boolean }) => {
 
 
     const titleOne = "Ingresar Datos"
@@ -44,39 +44,39 @@ const MyCarousel = () => {
                 arrows={true}
                 renderButtonGroupOutside={true}
             >
-                <SlideContent title={titleOne} paragraph={paragraphOne} imgSrc={slider1} />
-                <SlideContent title={titleTwo} paragraph={paragraphTwo} imgSrc={slider2} button={true} />
-                <SlideContent title={titleThree} paragraph={paragraphThree} imgSrc={slider3} />
+                <SlideContent title={titleOne} paragraph={paragraphOne} imgSrc={slider1} isMobile={isMobile} />
+                <SlideContent title={titleTwo} paragraph={paragraphTwo} imgSrc={slider2} button={true} isMobile={isMobile} />
+                <SlideContent title={titleThree} paragraph={paragraphThree} imgSrc={slider3} isMobile={isMobile} />
 
             </Carousel>
         </Box>
     );
 };
 
-const SlideContent = ({ title, paragraph, imgSrc, button = false }: any) => {
+const SlideContent = ({ title, paragraph, imgSrc, button = false, isMobile }: any) => {
 
     const navigate = useNavigate();
 
     return (
         <Box>
             <Grid container justifyContent="center" alignItems="center" gap={3}>
-                <Grid item xs={3}>
+                <Grid item xs={12} lg={3} >
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                        <Typography className={styles.carouselTitle}>{title}</Typography>
-                        <Typography className={styles.carouselText}>{paragraph}</Typography>
+                        <Typography className={styles.carouselTitle} sx={{ textAlign: isMobile ? 'center' : 'left' }} >{title}</Typography>
+                        <Typography className={styles.carouselText} sx={{ textAlign: isMobile ? 'center' : 'left' }}>{paragraph}</Typography>
 
                         {button && (
-                            <Button className={styles.carouselButton} onClick={() => navigate("/fast")}>
+                            <Button className={styles.carouselButton} onClick={() => navigate("/fast")} sx={{ width: isMobile ? '100%' : '240px' }} >
                                 Crear Solicitud
                             </Button>
                         )}
                     </Box>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={12} lg={3} sx={{ textAlign: isMobile ? 'center' : 'left' }}>
                     <img src={imgSrc} alt={title} />
                 </Grid>
             </Grid>
-        </Box>
+        </Box >
     );
 };
 

@@ -12,8 +12,6 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import InstagramIcon from '@mui/icons-material/Instagram'
 
 export default function Footer({ isMobile }: { isMobile: boolean }) {
-
-    console.log(isMobile)
     return (
         <>
             {/* Footer */}
