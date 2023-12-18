@@ -51,28 +51,48 @@ const theme = createTheme({
     },
     h2: {
       fontFamily: 'Montserrat-Medium',
-      fontWeight: 'bold',
+      fontWeight: 'bolder',
       fontSize: '1.5rem',
+    },
+    h3: {
+      fontFamily: 'Montserrat-Medium',
+      fontWeight: 'bolder',
+      fontSize: '1.4rem',
+    },
+    h4: {
+      fontFamily: 'Montserrat-Medium',
+      fontWeight: 'bolder',
+      fontSize: '1.3rem',
     },
     h5: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
-      fontSize: '1.5rem',
+      fontSize: '1.2rem',
     },
     h6: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
-      fontSize: '1rem',
+      fontSize: '1.1rem',
     },
     body1: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'normal',
       fontSize: '1rem',
     },
+    body2: {
+      fontFamily: 'Montserrat-Medium',
+      fontWeight: 'normal',
+      fontSize: '0.8rem',
+    },
     subtitle1: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
       fontSize: '1.2rem',
+    },
+    subtitle2: {
+      fontFamily: 'Montserrat-Medium',
+      fontWeight: 'bolder',
+      fontSize: '0.9rem',
     },
     // ... (puedes añadir más variantes según tus necesidades)
   },

@@ -11,7 +11,9 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import InstagramIcon from '@mui/icons-material/Instagram'
 
-export default function Footer() {
+export default function Footer({ isMobile }: { isMobile: boolean }) {
+
+    console.log(isMobile)
     return (
         <>
             {/* Footer */}
@@ -19,59 +21,59 @@ export default function Footer() {
                 <Grid container>
                     {/* Primer Contenedor */}
                     <Box display="flex" className={styles.footerFirstContainer} sx={{ justifyContent: 'center', marginBottom: '4em !important' }}>
-                        <Grid container item xs={10} justifyContent="space-around" gap={1}>
-                            <Grid item xs={3} >
+                        <Grid container item xs={10} justifyContent="space-around" gap={3}>
+                            <Grid item xs={12} lg={3} textAlign={isMobile ? 'center' : 'left'}>
                                 {/* Contenido de la primera columna */}
                                 <img src={logoWhite} alt="Logo" style={{ width: 'auto' }} />
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={12} lg={2}  >
                                 {/* Contenido de la segunda columna */}
-                                <Typography variant="body1" sx={{ marginBottom: '0.8em !important' }}>Contáctanos</Typography>
-                                <List sx={{ p: 0 }}>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important' }}>
+                                <Typography variant="body1" sx={{ marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>Contáctanos</Typography>
+                                <List sx={{ p: 0 }} >
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
                                         <ListItemText primary="Dirección Postal" />
                                     </ListItem>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important' }}>
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
                                         <ListItemText primary="P.O. Box 190759 San Juan PR" />
                                     </ListItem>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important' }}>
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
                                         <ListItemText primary="00919-0759" />
                                     </ListItem>
                                 </List>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={12} lg={2}>
                                 {/* Contenido de la tercera columna */}
-                                <Typography variant="body1" sx={{ marginBottom: '0.8em !important' }}>Dirección Física</Typography>
+                                <Typography variant="body1" sx={{ marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>Dirección Física</Typography>
                                 <List sx={{ p: 0 }}>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important' }}>
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
                                         <ListItemText primary="Ave Tnte. César González, esq" />
                                     </ListItem>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important' }}>
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
                                         <ListItemText primary="Calle Juan Calaf" />
                                     </ListItem>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important' }}>
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
                                         <ListItemText primary="Urb. Industrial" />
                                     </ListItem>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important' }}>
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
                                         <ListItemText primary="Tres Monjitas" />
                                     </ListItem>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important' }}>
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
                                         <ListItemText primary="Hato Rey, P.R. 00917" />
                                     </ListItem>
                                 </List>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={12} lg={2}>
                                 {/* Contenido de la cuarta columna */}
-                                <Typography variant="body1" sx={{ marginBottom: '0.8em !important' }}>Teléfono</Typography>
+                                <Typography variant="body1" sx={{ marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>Teléfono</Typography>
                                 <List sx={{ p: 0 }}>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important' }}>
-                                        <Typography variant="body1" fontSize={'0.8em !important'}>(787) 759-2000</Typography>
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
+                                        <ListItemText primary="(787) 759-2000" />
                                     </ListItem>
 
-                                    <ListItem sx={{ padding: 0, marginBottom: '1.5em !important' }}>
+                                    <ListItem sx={{ padding: 0, marginBottom: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
                                         <ListItemText primary="Síguenos en:" />
                                     </ListItem>
-                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', display: 'flex', gap: '1.5em' }} >
+                                    <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', display: 'flex', gap: '1.5em', justifyContent: isMobile ? 'center' : 'left' }} >
 
                                         {/* Facebook Icon */}
                                         <IconButton color="inherit" component="a" href="https://www.facebook.com/EDUCACIONPR/" target="_blank" rel="noopener noreferrer" sx={{ padding: '0px !important' }}>
@@ -98,12 +100,15 @@ export default function Footer() {
 
                                 </List>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={12} lg={2} sx={{ justifyContent: isMobile ? 'center' : 'left' }} >
                                 {/* Contenido de la quinta columna */}
-                                <Box mb={4}>
+                                <Box mb={4} textAlign={isMobile ? 'center' : 'left'}>
                                     <img src={oigLogo} alt="Logo" style={{ width: '150px', height: '64px' }} />
+
                                 </Box>
-                                <img src={oigInfo} alt="Logo" style={{ width: '150px' }} />
+                                <Box textAlign={isMobile ? 'center' : 'left'}>
+                                    <img src={oigInfo} alt="Logo" style={{ width: '150px' }} />
+                                </Box>
                             </Grid>
 
                         </Grid>

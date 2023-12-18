@@ -1,4 +1,4 @@
-import { Grid, Typography, Box, Button, List, ListItem, ListItemText, IconButton, Divider } from "@mui/material";
+import { Grid, Typography, Box, Button, useTheme, useMediaQuery, Stack } from "@mui/material";
 import { Header, Footer } from "@/layout";
 import { Outlet } from "react-router-dom";
 import AlertPopup from "@/components/AlertPopup";
@@ -9,9 +9,12 @@ import { PATH } from "@/routes/constants";
 import { AccessibilityWidget } from "@/components";
 
 const UnautoziredLayout = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100% !important' }}>
         <AlertPopup />
 
         {/* Header */}
@@ -31,7 +34,7 @@ const UnautoziredLayout = () => {
             </Grid>
             <Grid item xs>
               {/* Contenido del Header */}
-              <Typography className={styles.headerFont}>
+              <Typography variant="body1" color={'white'}>
                 Portal oficial del Gobierno de Puerto Rico
               </Typography>
             </Grid>
@@ -39,38 +42,49 @@ const UnautoziredLayout = () => {
         </Box>
 
         {/* Nav */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', padding: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', padding: 2, flexDirection: 'row' }}>
 
-          {/* Primer Grid a la izquierda */}
-          <Grid container item xs={7} alignItems="center" spacing={1}>
-            <Grid item xs={7}>
-              <Typography variant="h5">
+          {/* Primer Grid */}
+          <Grid container alignItems="center" spacing={0.5}>
+            <Grid item xs={12} lg={5}>
+              <Typography variant="h2" sx={{ textAlign: 'center' }}>
                 PORTAL DE CERTIFICACIONES ACADÉMICAS
               </Typography>
             </Grid>
-            <Grid item xs={3}>
-              <img src={logo} alt="Logo" style={{ height: '120px' }} />
-            </Grid>
-          </Grid>
 
-          {/* Segundo Grid a la derecha */}
-          <Grid container item xs={2} direction="column" alignItems="flex-end" spacing={2}>
-            <Grid item>
-              <Button variant="contained" color="secondary" href={PATH.LOGIN} sx={{ minWidth: '150px' }}>Iniciar Sesión</Button>
+            <Grid item xs={12} lg={3} sx={{ textAlign: isMobile ? 'center' : 'start' }}>
+              <img src={logo} alt="Logo" style={{ height: 'auto', width: isMobile ? '50%' : '50%' }} />
             </Grid>
-            <Grid item>
-              <Button variant="outlined" color="secondary" href={PATH.REGISTER} sx={{ minWidth: '150px' }}>Registrarme</Button>
+
+            <Grid container item xs={12} lg={2} alignItems="center" justifyContent="center">
+              <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap">
+                <div>
+                  <Button variant="contained" color="secondary" href={PATH.LOGIN} sx={{ width: '150px' }}>
+                    <Typography variant="body2" sx={{ textAlign: 'center' }}>
+                      Iniciar Sesión
+                    </Typography>
+                  </Button>
+                </div>
+                <div>
+                  <Button variant="outlined" color="secondary" href={PATH.REGISTER} sx={{ width: '150px' }}>
+                    <Typography variant="body2" sx={{ textAlign: 'center' }}>
+                      Registrarme
+                    </Typography>
+                  </Button>
+                </div>
+              </Stack>
             </Grid>
+
+
           </Grid>
 
         </Box>
-
         {/* Main Content */}
         <Box className={styles.outletContainer}>
           <Outlet />
         </Box>
 
-        <Footer />
+        <Footer isMobile={isMobile} />
         <AccessibilityWidget />
       </Box >
     </>

@@ -128,6 +128,7 @@ const Login = () => {
               component="a"
               href="#"
               sx={{ fontSize: "16px !important", color: "#807BB8" }}
+              onClick={() => navigate('/recovery')}
             >
               Olvidé mi contraseña
             </Typography>
