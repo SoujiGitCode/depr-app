@@ -62,7 +62,7 @@ const Landing = () => {
   return (
     <>
       {/* Carousel */}
-      <Box sx={{ backgroundImage: background, p: 3 }}>
+      <Box sx={{ backgroundImage: background, p: 0 }}>
         <Grid container justifyContent="center" alignItems="center">
           <Grid item xs={12}>
             <MyCarousel isMobile={isMobile} />
@@ -71,10 +71,10 @@ const Landing = () => {
       </Box>
 
       {/* Certificaciones */}
-      <Box sx={{ bgcolor: 'white', p: 3 }}>
-        <Grid container justifyContent="center" alignItems="center" spacing={3}>
-          <Grid item xs={8} sx={{ position: 'relative', marginBottom: '2em !important' }}>
-            <Typography variant="h5" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important' }}>
+      <Box sx={{ bgcolor: 'white', p: 0, margin: 0 }}>
+        <Grid container justifyContent="center" alignItems="center" spacing={0}>
+          <Grid item xs={10} lg={8} sx={{ position: 'relative', marginBottom: '3em !important', marginTop: '3em !important' }}>
+            <Typography variant="h5" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
               ¡Bienvenidos al Portal de Certificaciones Académicas del Departamento de Educación!
             </Typography>
             <Typography variant="body1" sx={{ mb: 2, textAlign: 'justify', marginBottom: '2em !important', fontSize: '1em !important', lineHeight: '25px !important' }}>
@@ -83,7 +83,8 @@ const Landing = () => {
               Entre las <BoldText>Certificaciones Académicas</BoldText> que pueden solicitar los estudiantes a través de este portal son:
               <BoldText> La Certificación de Graduación, la Transcripción de Créditos y la Certificación de Horas Taller</BoldText> relacionada a horas contacto de cursos especializados en Educación Vocacional Ocupacional y Técnica.
             </Typography>
-            <Typography variant="h5" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important' }}>
+
+            <Typography variant="h5" sx={{ marginTop: '2em !important', marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
               Conoce los Tipos de Certificaciones AcadémicasBoldText
             </Typography>
 
@@ -91,7 +92,7 @@ const Landing = () => {
 
           {/* Contenido de Certificaciones */}
           {cardData.map((card) => (
-            <Grid item xs={8} key={card.title}>
+            <Grid item xs={12} lg={8} key={card.title}>
               <Card
                 sx={{
                   width: '100%',
