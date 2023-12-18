@@ -21,7 +21,7 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
                 <Grid container>
                     {/* Primer Contenedor */}
                     <Box display="flex" className={styles.footerFirstContainer} sx={{ justifyContent: 'center', marginBottom: '4em !important' }}>
-                        <Grid container item xs={10} justifyContent="space-around" gap={3}>
+                        <Grid container item xs={10} justifyContent="space-around" gap={isMobile ? 4 : 1}>
                             <Grid item xs={12} lg={3} textAlign={isMobile ? 'center' : 'left'}>
                                 {/* Contenido de la primera columna */}
                                 <img src={logoWhite} alt="Logo" style={{ width: 'auto' }} />

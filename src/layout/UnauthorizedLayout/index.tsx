@@ -10,7 +10,7 @@ import { AccessibilityWidget } from "@/components";
 
 const UnautoziredLayout = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <>
