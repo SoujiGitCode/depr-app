@@ -64,15 +64,15 @@ const Landing = () => {
       {/* Carousel */}
       <Box sx={{ backgroundImage: background, p: 0 }}>
         <Grid container justifyContent="center" alignItems="center">
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ p: 0.5 }}>
             <MyCarousel isMobile={isMobile} />
           </Grid>
         </Grid>
       </Box>
 
       {/* Certificaciones */}
-      <Box sx={{ bgcolor: 'white', p: 0, margin: 0 }}>
-        <Grid container justifyContent="center" alignItems="center" spacing={0}>
+      <Box sx={{ bgcolor: 'white', p: 0.5, margin: 0 }}>
+        <Grid container justifyContent="center" alignItems="center" spacing={3} >
           <Grid item xs={10} lg={8} sx={{ position: 'relative', marginBottom: '3em !important', marginTop: '3em !important' }}>
             <Typography variant="h5" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
               ¡Bienvenidos al Portal de Certificaciones Académicas del Departamento de Educación!
@@ -92,7 +92,7 @@ const Landing = () => {
 
           {/* Contenido de Certificaciones */}
           {cardData.map((card) => (
-            <Grid item xs={12} lg={8} key={card.title}>
+            <Grid item xs={12} lg={8} key={card.title} >
               <Card
                 sx={{
                   width: '100%',
