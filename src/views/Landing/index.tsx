@@ -72,7 +72,7 @@ const Landing = () => {
 
       {/* Certificaciones */}
       <Box sx={{ bgcolor: 'white', p: 0.5, margin: 0 }}>
-        <Grid container justifyContent="center" alignItems="center" spacing={3} >
+        <Grid container justifyContent="center" alignItems="center" spacing={0} >
           <Grid item xs={10} lg={8} sx={{ position: 'relative', marginBottom: '3em !important', marginTop: '3em !important' }}>
             <Typography variant="h5" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
               ¡Bienvenidos al Portal de Certificaciones Académicas del Departamento de Educación!

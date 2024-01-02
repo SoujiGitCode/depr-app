@@ -91,8 +91,8 @@ const theme = createTheme({
     },
     subtitle2: {
       fontFamily: 'Montserrat-Medium',
-      fontWeight: 'bolder',
-      fontSize: '0.9rem',
+      fontWeight: 'normal',
+      fontSize: '0.8rem',
     },
     // ... (puedes añadir más variantes según tus necesidades)
   },
@@ -101,6 +101,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           //font-weight para todos los botones a pedido de Pier
+          fontFamily: 'Montserrat-Medium',
           fontWeight: 'bold'
         },
         containedPrimary: {

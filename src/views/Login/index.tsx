@@ -9,6 +9,8 @@ import {
   FormHelperText,
   FormControl,
   InputLabel,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import loginImage from "../../assets/login.png";
 import { CustomLabel } from "@/components";
@@ -18,6 +20,9 @@ import useAlert from "@/hooks/useAlert";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
@@ -46,7 +51,7 @@ const Login = () => {
 
   return (
     <Grid container style={{ width: "100%", margin: 0 }}>
-      <Grid item xs={6} style={{ overflow: "hidden", height: "620px" }}>
+      <Grid item xs={12} lg={6} style={{ overflow: "hidden", height: "620px" }}>
         <div
           style={{
             height: "100%",
@@ -64,7 +69,7 @@ const Login = () => {
       </Grid>
       <Grid
         item
-        xs={6}
+        xs={12} lg={6}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -140,6 +145,7 @@ const Login = () => {
             gap: 2,
             width: "70%",
             display: "flex",
+            flexDirection: isMobile ? 'column' : 'row',
             justifyContent: "center",
           }}
         >
@@ -147,9 +153,9 @@ const Login = () => {
             variant="outlined"
             color="primary"
             style={{
-              width: "241.5px",
+              width: "100%",
               height: "48px",
-              padding: "8px 40px",
+              padding: "8px 30px",
               borderRadius: "4px",
               border: "2px solid",
               marginRight: "16px",
@@ -163,9 +169,9 @@ const Login = () => {
             color="primary"
             disabled={!isFormValid}
             style={{
-              width: "241.5px",
+              width: "100%",
               height: "48px",
-              padding: "8px 40px",
+              padding: "8px 30px",
               borderRadius: "4px",
               marginRight: "16px",
             }}

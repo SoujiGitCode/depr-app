@@ -193,12 +193,12 @@ const Register = () => {
 
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>
-      <Grid item xs={6} style={{ overflow: 'hidden', height: 'auto' }}>
+      <Grid item xs={12} lg={6} style={{ overflow: 'hidden', height: 'auto' }}>
         <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img src={registerImage} alt="login" style={{ width: '100%', height: '100%' }} />
         </div>
       </Grid>
-      <Grid item xs={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2em' }}>
+      <Grid item xs={12} lg={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2em' }}>
 
 
         {!loading ?
@@ -213,7 +213,7 @@ const Register = () => {
                 <Grid item xs={12} sx={{ marginBottom: '-1em !important' }}>
                   <CustomLabel name="Documento de Identidad" required={true} />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
                     <TextField
                       inputProps={
@@ -240,7 +240,7 @@ const Register = () => {
                   </FormControl>
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
                     <TextField
                       placeholder="Número de documento"
@@ -261,7 +261,7 @@ const Register = () => {
 
             <Box>
               <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <CustomLabel name="Primer Nombre" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -278,7 +278,7 @@ const Register = () => {
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <CustomLabel name="Segundo Nombre" required={false} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -302,7 +302,7 @@ const Register = () => {
             <Box>
               <Grid container spacing={2}>
 
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <CustomLabel name="Primer Apellido" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -319,7 +319,7 @@ const Register = () => {
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <CustomLabel name="Segundo Apellido" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -350,21 +350,21 @@ const Register = () => {
                 width: 'calc(100% + 16px)'
               }}
             >
-              <Grid container alignItems="center" spacing={3}>
-                <Grid item xs={1}>
+              <Grid container alignItems="center" sx={{ textAlign: 'center' }}>
+                <Grid item xs={12} lg={1}>
                   <IconButton color="warning">
                     <WarningIcon fontSize="large" />
                   </IconButton>
                 </Grid>
 
-                <Grid item xs={8}>
+                <Grid item xs={12} lg={8} sx={{ padding: '1.2rem' }}>
                   <Typography variant="body1" color="textPrimary">
                     ¿Los datos de la licencia de conducir o Real ID del solicitante (Nombre y Apellido) son diferentes a la información registrada en el Departamento de Educación (DEPR)?
                   </Typography>
                 </Grid>
 
-                <Grid item xs={3}>
-                  <Box display="flex" alignItems="center" justifyContent="left" width="100%" gap={2}>
+                <Grid item xs={12} lg={2} >
+                  <Box display="flex" alignItems="center" justifyContent="center" width="100%" gap={2} >
                     <Box display="flex" alignItems="center" gap={0}>
                       <Radio
                         checked={selectedValue === 'Si'}
@@ -415,7 +415,7 @@ const Register = () => {
                     <Typography variant='body1' textAlign="center">Datos Personales en Educación (DEPR)</Typography>
                   </Grid>
                   <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6}>
                       <CustomLabel name="Primer Nombre" required={true} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
@@ -432,7 +432,7 @@ const Register = () => {
                         />
                       </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6}>
                       <CustomLabel name="Segundo Nombre" required={false} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
@@ -457,7 +457,7 @@ const Register = () => {
 
                   <Grid container spacing={2}>
 
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6}>
                       <CustomLabel name="Primer Apellido" required={true} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
@@ -474,7 +474,7 @@ const Register = () => {
                         />
                       </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6}>
                       <CustomLabel name="Segundo Apellido" required={true} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
@@ -504,7 +504,7 @@ const Register = () => {
 
               </Grid>
               <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <CustomLabel name="Fecha de Nacimiento" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -524,7 +524,7 @@ const Register = () => {
 
                   </FormControl>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <CustomLabel name="Género" required={false} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -555,7 +555,7 @@ const Register = () => {
             <Box>
               <Grid container spacing={2}>
 
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <CustomLabel name="Teléfono" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -572,7 +572,7 @@ const Register = () => {
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} lg={6}>
                   <CustomLabel name="Seguro Social" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <SocialSecurityInput
@@ -679,50 +679,63 @@ const Register = () => {
               </Grid>
             </Box>
 
-            <Box display="flex" alignItems="center" sx={{ marginBottom: '2.5em !important', marginTop: '2.5em !important', padding: '1.5em' }}>
-              <IconButton color="warning">
-                <WarningIcon />
-              </IconButton>
-              <Typography variant="body1" ml={2}>
-                Al presionar el botón de continuar, confirma que ha leído las advertencias y acepta las Condiciones de Uso.
-              </Typography>
-            </Box>
 
-            <Box mt={2} sx={{ gap: 2, width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <Box>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Box display="flex" alignItems="center" sx={{ marginBottom: '1.5em !important', marginTop: '1.5em !important' }}>
+                    <IconButton color="warning">
+                      <WarningIcon />
+                    </IconButton>
+                    <Typography variant="body1" ml={2}>
+                      Al presionar el botón de continuar, confirma que ha leído las advertencias y acepta las Condiciones de Uso.
+                    </Typography>
+                  </Box>
 
-              <Button
-                variant="outlined"
-                color="primary"
-                style={{
-                  width: '241.5px',
-                  height: '48px',
-                  padding: '8px 40px',
-                  borderRadius: '4px',
-                  border: '2px solid',
-                  marginRight: '16px',
-                  fontSize: '0.7em'
-                }}
-                href={PATH.LOGIN}
-              >
-                Ya Tengo una cuenta
-              </Button>
-              <Button
-                type='submit'
-                variant="contained"
-                color="primary"
-                disabled={!formik.isValid}
-                style={{
-                  width: '241.5px',
-                  height: '48px',
-                  padding: '8px 40px',
-                  borderRadius: '4px',
-                  marginRight: '16px',
-                  fontSize: '0.7em'
-                }}
-              // onClick={() => modalTriger('success')}
-              >
-                Registrarme
-              </Button>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Grid container spacing={2} justifyContent={'center'}>
+                    <Grid item xs={12} lg={4} sx={{ marginRight: '1.5rem !important' }}>
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        style={{
+                          width: '241.5px',
+                          height: 'auto',
+                          padding: '12px 40px',
+                          borderRadius: '4px',
+                          border: '2px solid',
+                          fontSize: '0.7rem'
+                        }}
+                        href={PATH.LOGIN}
+                      >
+                        Ya Tengo una cuenta
+                      </Button>
+                    </Grid>
+
+                    <Grid item xs={12} lg={4}>
+                      <Button
+                        type='submit'
+                        variant="contained"
+                        color="primary"
+                        disabled={!formik.isValid}
+                        style={{
+                          width: '241.5px',
+                          height: 'auto',
+                          padding: '12px 40px',
+                          borderRadius: '4px',
+                          fontSize: '0.7rem'
+                        }}
+                      // onClick={() => modalTriger('success')}
+                      >
+                        Registrarme
+                      </Button>
+                    </Grid>
+
+                  </Grid>
+                </Grid>
+              </Grid>
             </Box>
           </form>
 

@@ -59,17 +59,13 @@ const UnautoziredLayout = () => {
             <Grid container item xs={12} lg={2} alignItems="center" justifyContent="center">
               <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap">
                 <div>
-                  <Button variant="contained" color="secondary" href={PATH.LOGIN} sx={{ width: '150px' }}>
-                    <Typography variant="body2" sx={{ textAlign: 'center' }}>
-                      Iniciar Sesión
-                    </Typography>
+                  <Button variant="contained" color="secondary" href={PATH.LOGIN} sx={{ width: '150px', height: '37px' }}>
+                    Iniciar Sesión
                   </Button>
                 </div>
                 <div>
-                  <Button variant="outlined" color="secondary" href={PATH.REGISTER} sx={{ width: '150px' }}>
-                    <Typography variant="body2" sx={{ textAlign: 'center' }}>
-                      Registrarme
-                    </Typography>
+                  <Button variant="outlined" color="secondary" href={PATH.REGISTER} sx={{ width: '150px', height: '37px' }}>
+                    Registrarme
                   </Button>
                 </div>
               </Stack>
