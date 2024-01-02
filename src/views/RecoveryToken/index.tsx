@@ -166,7 +166,7 @@ const RecoveryToken = () => {
   return (
     <>
       <Grid container>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} lg={6}>
           <Box className={styles["recovery-container"]}>
             <Box className={styles["background-image"]}></Box>
           </Box>
@@ -179,9 +179,8 @@ const RecoveryToken = () => {
           {token !== '' ? (
             <Box
               sx={{ display: "flex", gap: "1rem" }}
-              className={styles["container-recovey"]}
             >
-              <Grid container>
+              <Grid container gap={2} padding={2}>
                 <Grid item xs={12}>
                   <Typography variant="body1" color="#807BB8" sx={{ fontSize: '2rem', fontWeight: 'bolder' }} >Nueva Contraseña</Typography>
                 </Grid>
@@ -245,24 +244,38 @@ const RecoveryToken = () => {
                 <Box sx={{
                   width: '100%', marginBottom: "3rem !important"
                 }}>
-                  < Grid container spacing={2} justifyContent="start" sx={{ py: 4 }}>
-                    <Grid item xs={12} sm={6}>
+                  < Grid container justifyContent="start" sx={{ py: 4 }}>
+                    <Grid item xs={12} lg={6} textAlign={'center'} sx={{ marginBottom: '1.5rem !important' }}>
                       <Button
                         variant="outlined"
                         fullWidth
-                        sx={{ height: '48px' }}
+                        sx={{
+                          width: '241.5px',
+                          height: 'auto',
+                          padding: '12px 40px',
+                          borderRadius: '4px',
+                          border: '2px solid',
+                          fontSize: '0.7rem'
+                        }}
                         onClick={() => goBack()}
                       >
                         Cancel
                       </Button>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} lg={6} textAlign={'center'} sx={{ marginBottom: '1.5rem !important' }}>
                       <Button
                         disabled={!isPasswordValid()}
                         type="submit"
                         variant="contained"
                         fullWidth
-                        sx={{ height: '48px' }}
+                        sx={{
+                          width: '241.5px',
+                          height: 'auto',
+                          padding: '12px 40px',
+                          borderRadius: '4px',
+                          border: '2px #697FAA solid',
+                          fontSize: '0.7rem'
+                        }}
                         onClick={() => onSave()}
                       >
                         Save

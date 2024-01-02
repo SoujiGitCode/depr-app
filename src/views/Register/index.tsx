@@ -714,7 +714,7 @@ const Register = () => {
                       </Button>
                     </Grid>
 
-                    <Grid item xs={12} lg={4}>
+                    <Grid item xs={12} lg={4} sx={{ justifyContent: 'center' }}>
                       <Button
                         type='submit'
                         variant="contained"
@@ -724,7 +724,7 @@ const Register = () => {
                           width: '241.5px',
                           height: 'auto',
                           padding: '12px 40px',
-                          borderRadius: '4px',
+                          border: '2px #697FAA solid',
                           fontSize: '0.7rem'
                         }}
                       // onClick={() => modalTriger('success')}
