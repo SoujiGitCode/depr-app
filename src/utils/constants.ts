@@ -1,6 +1,8 @@
 
 
-// export const DEV_URI = "https://qaapipepr.lobsys.net/";
+// export const DEV_URI = "https://certificacionesacademicas.dde.pr/";
+// export const DEV_URI = "https://calidad.certificacionesacademicas.dde.pr/";
+// export const DEV_URI = "https://dev.certificacionesacademicas.dde.pr/";
 
 export const DEV_URI = "https://apipepr.lobsys.net/";
 

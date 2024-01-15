@@ -106,26 +106,13 @@ const Home = () => {
     },
   });
 
-  function SearchInput() {
-    return (
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <CustomTextField
-          variant="standard"
-          placeholder="Buscar certificado"
-          sx={{ marginRight: "1em !important" }}
-        />
-        <SearchIcon color="primary" />
-      </ Box >
-
-    );
-  }
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const userDocuments = await getUserDocuments(token);
         if (Array.isArray(userDocuments)) setTableData(userDocuments);
-
+        console.log('tableData');
         console.log(tableData);
       } catch (error) {
         console.error("Error fetching user documents:", error);
@@ -137,22 +124,8 @@ const Home = () => {
 
   return (
 
-    <Box
-      sx={{
-        width: '100%',
-        height: '100%',
-        alignItems: "start",
-        justifyContent: "center"
-      }}
-    >
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "start",
-        }}
-      >
+    <>
+      <Grid container>
         <Grid
           item
           xs={12}
@@ -170,12 +143,10 @@ const Home = () => {
                 flexDirection="column"
                 justifyContent="center"
                 alignItems="center"
+                textAlign={'center'}
                 height="100%"
                 padding={5}
-                border={1}
                 gap={4}
-                borderRadius={2}
-                borderColor="divider"
               >
                 <Typography variant="h1" gutterBottom sx={{ color: '#FFFFFF', fontSize: '2.2em !important' }}>
                   Bienvenido
@@ -213,14 +184,10 @@ const Home = () => {
           }}
         >
           <Grid container justifyContent="center" alignItems="center">
-            <Grid item xs={8} sx={{ marginBottom: "4em !important", marginTop: "2em !important" }}>
+            <Grid item xs={10} sx={{ marginBottom: "4em !important", marginTop: "2em !important" }}>
               <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
                 Conoce los Tipos de Certificaciones Académicas
               </Typography>
-            </Grid>
-
-            <Grid item xs={2} sx={{ marginBottom: "4em !important", marginTop: "2em !important", display: "flex", alignItems: "center" }}>
-              {/* <SearchInput /> */}
             </Grid>
 
             {/* Contenido de Certificaciones */}
@@ -344,7 +311,7 @@ const Home = () => {
       </Grid >
 
 
-    </Box >
+    </>
 
   );
 };
