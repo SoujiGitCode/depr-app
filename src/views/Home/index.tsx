@@ -33,7 +33,6 @@ const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-
   const handleLogout = async () => {
     try {
       await logOut(token);
@@ -272,18 +271,15 @@ const Home = () => {
               </Grid>
             ))}
 
-            <Grid item xs={8} sx={{ marginBottom: "4em !important", marginTop: "4em !important" }}>
-              <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
+            <Grid item xs={12} lg={10} sx={{ marginBottom: "4em !important", marginTop: "4em !important" }}>
+              <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important', textAlign: isMobile ? 'center' : 'left' }}>
                 Consulta de solicitudes
               </Typography>
-            </Grid>
-            <Grid item xs={2} sx={{ marginBottom: "4em !important", marginTop: "2em !important", display: "flex", alignItems: "center" }}>
-              {/* <SearchInput /> */}
             </Grid>
 
             <Grid item xs={10} sx={{ marginBottom: "4em !important", marginTop: "2em !important" }}>
               {tableData.length !== 0 ?
-                <CustomTable tableData={tableData} />
+                <CustomTable tableData={tableData} isMobile={isMobile} />
                 :
                 <Box
                   component={Paper}
