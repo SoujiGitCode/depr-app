@@ -12,6 +12,8 @@ import {
   MenuItem,
   IconButton,
   InputAdornment,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import registerImage from '../../assets/register.png';
 import Radio from '@mui/material/Radio';
@@ -60,9 +62,13 @@ interface FormData {
 
 const Fast = () => {
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+
   const initialFormData: FormData = {
     email: '',
-    schoolTown: '1',
+    schoolTown: '',
     school_code: '',
     grade: 'none',
     grade_year: '',
@@ -149,38 +155,66 @@ const Fast = () => {
 
   return (
 
-    <Grid container style={{ width: '100%', margin: 0 }}>
+    <Grid container sx={{ width: '100%', margin: 0, pading: '1rem !important' }}>
 
-      <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', paddingLeft: '12%' }}>
-        <Button
-          style={{ alignSelf: 'flex-start', marginBottom: '5em !important"', color: 'black' }} // Estilos para posicionar el botón a la izquierda
-          onClick={() => onBack()}
-        >
-          &lt; Volver
-        </Button>
-        <br />  <br />  <br />
+      {/* <Grid item xs={12}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'start',
+          padding: '1rem !important',
+          marginY: '4rem !important',
+          paddingLeft: isMobile ? '1rem' : '4rem'
+        }}>
+    
+      </Grid> */}
+
+      <Grid item xs={12} sx={{ overflow: 'hidden', height: 'auto', marginBottom: '2rem !important' }}>
+
+        <Box sx={{ height: 'auto', display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'center' : 'start', padding: '1rem', paddingLeft: isMobile ? '1rem' : '4rem' }}>
+          <Grid container>
+            <Grid item xs={12} sx={{}}>
+              <Button
+                sx={{ background: 'none', marginY: '5rem !important', color: '#000', textTransform: 'none', fontSize: '1.2rem' }} // Estilos para posicionar el botón a la izquierda
+                onClick={() => onBack()}
+              >
+                &lt; Volver
+              </Button>
+            </Grid>
+
+            <Grid item xs={12} >
+              <Typography variant="h2" gutterBottom sx={{ fontSize: '2.2em !important', fontWeight: 'bolder' }}>
+                Crear solicitud
+              </Typography>
+            </Grid>
+
+          </Grid>
+
+
+        </Box>
       </Grid>
 
-      <Grid item xs={3} style={{ overflow: 'hidden', height: 'auto' }}>
-
-
-        <Box style={{ height: '', display: 'flex', alignItems: 'center', justifyContent: 'right' }}>
-
-          <Typography variant="h2" gutterBottom sx={{ fontSize: '2.2em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
-            Crear solicitud
-          </Typography>
-        </Box>
-
-        <Box style={{ height: '33%', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'right' }}>
+      <Grid item xs={12} lg={3} sx={{ height: 'auto' }}>
+        <Box sx={{
+          height: '100%',
+          minHeight: isMobile ? 'auto' : '440px', display: 'flex',
+          alignItems: 'center', justifyContent: isMobile ? 'center' : 'center',
+          width: '100%',
+          padding: '1rem !important',
+          paddingLeft: isMobile ? '1rem !important' : '4rem !important',
+        }}>
           <ProgressStatus
             activeStep={activeStep}
             Steps={steps}
-            horizontal={false}
+            horizontal={isMobile ? true : false}
             fontSize={1}
+
           />
         </Box>
       </Grid>
-      <Grid item xs={9} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2em' }}>
+
+      <Grid item xs={12} lg={9} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start' }}>
 
         <MultiStepForm
           onBack={onBack}

@@ -75,14 +75,14 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     }, [formData.email]);
 
     return (
-        <form style={{ width: '80%' }} onSubmit={formik.handleSubmit}>
-            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important", marginTop: "2em !important" }}>
+        <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
                 Datos de la Escuela
             </Typography>
 
-            <Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
+            <Box sx={{ display: 'flex', width: '100%' }}>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} lg={5} sx={{ paddingX: '1rem' }} >
                         <CustomLabel name="Correo Electrónico" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -99,7 +99,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                             />
                         </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+
+                    <Grid xs={12} lg={5} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Confirme el Correo Electrónico" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -117,16 +118,16 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         </FormControl>
                     </Grid>
 
-                    <Grid item xs={12} sx={{ marginTop: "2.5em !important", marginBottom: "2.5em !important" }}>
+                    <Grid item xs={10} sx={{ marginTop: "2.5em !important", marginBottom: "2.5em !important", paddingX: '1rem' }}>
 
-                        <Grid container alignItems="center" spacing={3}>
-                            <Grid item xs={1}>
+                        <Grid container alignItems="center" >
+                            <Grid item xs={3} lg={1}>
                                 <IconButton color="warning">
                                     <WarningIcon fontSize="large" />
                                 </IconButton>
                             </Grid>
 
-                            <Grid item xs={10}>
+                            <Grid item xs={9} lg={10}>
                                 <Typography variant="body1" color="textPrimary">
                                     Al presionar el botón de siguiente, confirma que ha leído las advertencias y acepta las
                                     <span style={{ color: '#1FAEEB', position: 'relative', bottom: '' }}> Condiciones de Uso</span>.

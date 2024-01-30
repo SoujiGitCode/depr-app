@@ -16,6 +16,7 @@ interface SocialSecurityInputProps {
   visibilityPassword: boolean; // The visibility state of the password is required
   setVisibilityPassword: React.Dispatch<React.SetStateAction<boolean>>; // The function to update the visibility state of the password is required
   form_social_security: string;
+  disableToggleVisibility?: boolean;
 }
 
 const SocialSecurityInput = ({
@@ -30,10 +31,14 @@ const SocialSecurityInput = ({
   setSocialSecurityArray,
   visibilityPassword,
   setVisibilityPassword,
-  form_social_security
+  form_social_security,
+  disableToggleVisibility = false
 }: SocialSecurityInputProps) => {
   // Function to toggle the visibility of the social security number
   const toggleSocialSecurityVisibility = () => {
+    //return if the toggle is disabled -- requested by DEPR trashy designer
+    if (disableToggleVisibility) return;
+
     setVisibilityPassword(!visibilityPassword);
     formik.setFieldTouched('social_security', true, true);
   };

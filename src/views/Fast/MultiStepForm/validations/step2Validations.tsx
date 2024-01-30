@@ -3,11 +3,11 @@ import * as Yup from 'yup';
 export const step2Validations = Yup.object().shape({
     schoolTown: Yup.string()
         .required('Este campo es requerido')
-        .notOneOf([''], 'Por favor, seleccione un Pueblo  válido'),
+        .notOneOf(['0'], 'Por favor, seleccione un Pueblo  válido'),
 
     school_code: Yup.string()
         .required('Este campo es requerido')
-        .notOneOf([''], 'Por favor, seleccione una Escuela  válida'),
+        .notOneOf(['0'], 'Por favor, seleccione una Escuela  válida'),
 
     grade: Yup.string()
         .required('Este campo es requerido')

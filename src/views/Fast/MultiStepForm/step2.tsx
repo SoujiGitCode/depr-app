@@ -34,7 +34,7 @@ interface StepProps {
 }
 
 const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
-    const [townsData, setTownsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione un Pueblo' }]);
+    const [townsData, setTownsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Pueblo' }]);
     const [schoolsData, setSchoolsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Escuela' }]);
 
     const gradesList = [
@@ -76,7 +76,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         validateOnMount: true,
 
         initialValues: {
-            schoolTown: formData.schoolTown || '1',
+            schoolTown: formData.schoolTown || townsData[0].id,
             school_code: formData.school_code || schoolsData[0].id,
             grade: gradesList[0].value,
             grade_year: formData.grade_year || '',
@@ -119,22 +119,26 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         const fetchTowns = async () => {
             try {
                 const responseTowns = await requestTowns();
-                setTownsData(responseTowns);
+                setTownsData([{ id: '0', name: 'Seleccione Pueblo' }, ...responseTowns]);
             } catch (error) {
                 console.error("Error fetching towns:", error);
             }
         };
 
         // Función que trae la data de las escuelas basada en el townId.
-        const fetchSchools = async (townId: '1') => {
+        const fetchSchools = async (townId: string) => {
+
+            if (townId == '0') {
+                setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }])
+                return
+            }
             console.log('school code antes de fetch schools: ', formData.school_code)
             try {
                 const responseSchools = await requestSchools(townId);
-                setSchoolsData(responseSchools);
+                setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
+                formik.setFieldValue('school_code', schoolsData[0]?.id || '');
                 // Actualizamos el valor de school_code en el estado de Formik.
-
                 if (formData.school_code === '0') {
-                    console.log('true as fuck : ', responseSchools[0].id)
                     formik.setFieldValue('school_code', responseSchools[0].id || '');
                 }
 
@@ -145,7 +149,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
         fetchTowns();
         // Llamamos a fetchSchools con el town id 1 al iniciar el componente.
-        fetchSchools('1');
+        fetchSchools(formData.schoolTown);
     }, []);
 
 
@@ -155,6 +159,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             try {
                 const responseSchools = await requestSchools(formik.values.schoolTown);
                 setSchoolsData(responseSchools);
+                setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
                 formik.setFieldValue('school_code', schoolsData[0]?.id || '');
             } catch (error) {
                 console.error("Error fetching schools:", error);
@@ -168,24 +173,21 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     useEffect(() => {
         // Asegurarse de que schoolsData esté actualizado antes de asignar el valor a school_code
         if (schoolsData.length > 0 && formData.school_code !== '0') {
-            console.log('YEPPERS')
             formik.setFieldValue('school_code', formData.school_code);
         } else if (schoolsData.length > 0) {
-
             formik.setFieldValue('school_code', schoolsData[0].id);
         }
     }, [schoolsData]);
 
     return (
-        <form style={{ width: '80%' }} onSubmit={formik.handleSubmit}>
-            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important", marginTop: "2em !important" }}>
+        <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
                 Datos de la Escuela
             </Typography>
 
             <Box>
-                <Grid container spacing={2}>
-
-                    <Grid item xs={6}>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Pueblo de la Escuela" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -203,7 +205,6 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 error={formik.touched.schoolTown && Boolean(formik.errors.schoolTown)}
                                 helperText={formik.touched.schoolTown && typeof formik.errors.schoolTown === 'string' ? formik.errors.schoolTown : undefined}
 
-
                             >
                                 {townsData.map((option: ItemData) => (
                                     <MenuItem key={option.id} value={option.id}>
@@ -213,7 +214,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                             </TextField>
                         </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Escuela" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             {
@@ -248,8 +249,8 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             </Box>
 
             <Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                <Grid container spacing={0}>
+                    <Grid xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Nivel Acádemico" required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -273,7 +274,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                             </TextField>
                         </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Año de Graduación o Último Año Cursado" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -296,8 +297,8 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
 
             <Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Certificado a Solicitar" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField

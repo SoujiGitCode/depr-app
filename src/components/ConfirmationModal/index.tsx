@@ -65,15 +65,16 @@ function ConfirmationModal({ open, onClose, type, content = {} }: ConfirmationMo
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    textAlign: 'center',
                     bgcolor: 'background.paper',
                     gap: '32px'
                 }}
             >
                 {mergedContent[type].icon}
-                <Typography id="global-modal-title" variant="h6" component="h2" gutterBottom sx={{ fontSize: '1.5em !important' }}>
+                <Typography id="global-modal-title" variant="h6" component="h2" gutterBottom sx={{ fontSize: '1.5rem !important' }}>
                     {mergedContent[type].title}
                 </Typography>
-                <Typography id="global-modal-description" variant="body2" color="textSecondary" sx={{ fontSize: '1em !important' }}>
+                <Typography id="global-modal-description" variant="body2" sx={{ fontSize: '1.2rem !important' }}>
                     {mergedContent[type].text}
 
                 </Typography>

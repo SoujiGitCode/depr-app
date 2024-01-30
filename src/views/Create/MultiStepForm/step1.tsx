@@ -363,7 +363,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                     { readOnly: true, }
                                 }
                                 variant="filled"
-                                placeholder="Número de documento"
+                                placeholder="Número de identificación"
                                 name="identification"
                                 id="identification"
                                 type="text"

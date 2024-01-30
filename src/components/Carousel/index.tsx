@@ -29,7 +29,7 @@ const MyCarousel = ({ isMobile }: { isMobile: boolean }) => {
 
 
     const titleOne = "Ingresar Datos"
-    const paragraphOne = "Para crear una solicitud debe ingresar sus datos personales y datos de la escuela donde curso el grado a ser considerado para la emisión de sus certificado de graduación."
+    const paragraphOne = "Para crear una solicitud debe ingresar sus datos personales e información de la escuela donde curso el grado a ser considerado para la emisión de sus certificado de graduación."
 
     const titleTwo = "Crear Solicitud"
     const paragraphTwo = "Para crear una solicitud solo debe oprimir el botón de Crear solicitud completar el formulario y enviar la solicitud."

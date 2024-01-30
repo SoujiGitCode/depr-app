@@ -15,7 +15,7 @@ export const step1Validations = Yup.object().shape({
     // .required("Captcha es requerido")
 
     identification: Yup.string()
-        .required("Número de documento requerido")
+        .required("Número de identificación requerido")
         .matches(/^[0-9]+$/, "solo debe contener números")
         .max(20, "máximo 20 caracteres"),
 

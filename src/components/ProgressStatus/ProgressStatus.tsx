@@ -16,7 +16,7 @@ interface ProgressStatusProps {
 
 const ProgressStatus: React.FC<ProgressStatusProps> = ({
   activeStep,
-  horizontal,
+  horizontal = false,
   fontSize,
   disableText,
   Steps,
@@ -28,6 +28,7 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
       <Box
         key={step}
         sx={{
+          width: "100%",
           display: "flex",
           flexDirection: horizontal ? "row" : "column",
           alignItems: "center",
@@ -73,17 +74,17 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
       <Box
         sx={{
           display: "flex",
-          ...(horizontal && horizontal === true
+          ...(horizontal
             ? {
-                flexDirection: "row",
-                alignItems: "center",
-                width: "100%",
-              }
+              flexDirection: "row",
+              alignItems: "center",
+              width: "100%",
+            }
             : {
-                height: "100%",
-                flexDirection: "column",
-                alignItems: "center",
-              }),
+              height: "100%",
+              flexDirection: "column",
+              alignItems: "center",
+            }),
         }}
       >
         {result}
@@ -97,16 +98,16 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
     return (
       <Box
         sx={{
-          ...(horizontal && horizontal === true
+          ...(horizontal
             ? {
-                display: "flex",
-                flexDirection: "row",
-              }
+              display: "flex",
+              flexDirection: "row",
+            }
             : {
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "end",
-              }),
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "end",
+            }),
         }}
         key={index}
       >
@@ -118,11 +119,11 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
             display: "flex",
             ...(fontSize
               ? {
-                  fontSize: `${fontSize}vw`,
-                }
+                fontSize: `${fontSize}rem !important`,
+              }
               : {
-                  fontSize: "1.2vw",
-                }),
+                fontSize: "1.2rem !important",
+              }),
           }}
         >
           {step.Title}
@@ -133,11 +134,11 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
               color: "white",
               ...(fontSize
                 ? {
-                    fontSize: `${fontSize}vw`,
-                  }
+                  fontSize: `${fontSize}rem !important`,
+                }
                 : {
-                    fontSize: "1.2vw",
-                  }),
+                  fontSize: "1.2rem !important",
+                }),
             }}
           >
             {step.SubTitle}
@@ -151,49 +152,52 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
     <Box
       sx={{
         backgroundColor: "#697FAA",
-        ...(horizontal && horizontal === true
+        width: '100%',
+        ...(horizontal
           ? {
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              height: "100%",
-            }
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            height: "auto",
+            padding: "2rem",
+          }
           : {
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "end",
-              height: "100%",
-            }),
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "end",
+            height: "100%",
+            padding: "1rem",
+          }),
       }}
     >
-      {disableText && disableText === true ? (
+      {disableText ? (
         <></>
       ) : (
         <Box
           sx={{
-            ...(horizontal && horizontal === true
+            ...(horizontal
               ? {
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  paddingLeft: "1rem",
-                  paddingRight: "1rem",
-                }
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+                paddingLeft: "1rem",
+                paddingRight: "1rem !important",
+              }
               : {
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  padding: "1.3rem",
-                  height: "100%",
-                }),
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                padding: "1.3rem",
+                height: "100%",
+              }),
           }}
         >
           {Titles}
         </Box>
       )}
 
-      <Box sx={{ paddingRight: "3rem", padding: "1.5rem" }}>
+      <Box sx={{}}>
         <LineLayout />
       </Box>
     </Box>

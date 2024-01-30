@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 export const step3Validations = Yup.object().shape({
 
     identification: Yup.string()
-        .required("Número de documento requerido")
+        .required("Número de identificación requerido")
         .matches(/^[0-9]+$/, "solo debe contener números")
         .max(20, "máximo 20 caracteres"),
 

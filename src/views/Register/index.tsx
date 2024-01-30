@@ -243,7 +243,7 @@ const Register = () => {
                 <Grid item xs={12} lg={6}>
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
                     <TextField
-                      placeholder="Número de documento"
+                      placeholder="Número de identificación"
                       name="docNumber"
                       id="docNumber"
                       type="text"

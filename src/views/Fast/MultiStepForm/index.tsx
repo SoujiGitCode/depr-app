@@ -150,9 +150,9 @@ const MultiStepForm = ({
 
 
     return (
-        <Box style={{ width: '100%', marginTop: '3em !important', marginBottom: '3em !important' }}>
-            <Grid container style={{}}>
-                <Grid item xs={12} style={{ marginBottom: '3em !important' }}>
+        <Box sx={{ padding: '1rem !important', width: '100%' }}>
+            <Grid container >
+                <Grid item xs={12} style={{ marginBottom: '3rem !important' }}>
                     {currentStep === 0 && (
                         <Step1
                             isStepValid={isStepValid}

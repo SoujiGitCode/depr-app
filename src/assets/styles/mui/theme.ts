@@ -83,6 +83,7 @@ const theme = createTheme({
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'normal',
       fontSize: '0.8rem',
+      color: '#000',
     },
     subtitle1: {
       fontFamily: 'Montserrat-Medium',
