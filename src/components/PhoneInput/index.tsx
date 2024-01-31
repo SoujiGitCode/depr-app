@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TextField } from '@mui/material';
 
 // Definición de la prop interface para PhoneInput
@@ -30,6 +30,12 @@ const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik
             formik.setFieldValue(name, formatted);
         }
     };
+
+    useEffect(() => {
+        // Esto formateará el valor inicial y lo establecerá en Formik al montar el componente
+        const formattedInitialValue = formatPhoneNumber(formik.values[name]);
+        formik.setFieldValue(name, formattedInitialValue);
+    }, [formik.values[name]]); // Asegúrate de incluir dependencias adecuadas
 
     return (
         <TextField

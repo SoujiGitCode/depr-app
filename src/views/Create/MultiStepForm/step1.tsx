@@ -313,10 +313,10 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
 
     return (
-        <form style={{ width: '80%' }} onSubmit={formik.handleSubmit}>
+        <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
             <Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "0.5em !important" }}>
                             Datos Personales
                         </Typography>
@@ -326,11 +326,12 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
 
             <Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sx={{ marginBottom: '-1em !important' }}>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Documento de Identidad" required={true} />
                     </Grid>
-                    <Grid item xs={6}>
+
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
                             <TextField
                                 inputProps={
@@ -357,7 +358,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         </FormControl>
                     </Grid>
 
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
                             <TextField
                                 inputProps={
@@ -380,8 +381,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             </Box>
 
             <Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Primer Nombre" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -401,7 +402,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                             />
                         </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Segundo Nombre" required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -425,8 +426,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             </Box>
 
             <Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Primer Apellido" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -446,7 +447,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                             />
                         </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Segundo Apellido" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -471,11 +472,11 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             </Box>
 
             <Box>
-                <Grid container spacing={2} sx={{ marginBottom: '1.5em !important' }}>
+                <Grid container spacing={0} sx={{ marginBottom: '1.5em !important' }}>
 
                 </Grid>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Fecha de Nacimiento" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -497,7 +498,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
                         </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Género" required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
@@ -529,8 +530,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             </Box>
 
             <Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Seguro Social" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <SocialSecurityInput
@@ -550,8 +551,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         </FormControl>
                     </Grid>
 
-
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Número de Teléfono" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <PhoneInput
@@ -571,15 +571,15 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             <>
 
                 <Box>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={0}>
 
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sx={{ paddingX: '1rem' }}>
                             <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "0.5em !important" }}>
                                 Datos de la Escuela
                             </Typography>
                         </Grid>
 
-                        <Grid item xs={6}>
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Pueblo de la Escuela" required={true} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
@@ -607,7 +607,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 </TextField>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={6}>
+
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Escuela" required={true} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 {
@@ -640,8 +641,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                 </Box>
 
                 <Box>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Nivel Acádemico" required={false} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
@@ -665,7 +666,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 </TextField>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Año de Graduación o Último Año Cursado" required={true} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
@@ -688,8 +689,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
 
                 <Box>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Certificado a Solicitar" required={true} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
@@ -725,8 +726,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             {/*----------Enviar a:--------*/}
             <>
                 <Box>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} sx={{ paddingX: '1rem' }}>
                             <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important", marginTop: "2em !important" }}>
                                 Enviar a:
                             </Typography>
@@ -736,8 +737,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
 
                 <Box>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Correo Electrónico" required={true} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
@@ -757,7 +758,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                             </FormControl>
                         </Grid>
 
-                        <Grid item xs={6}>
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Confirme Correo Electrónico" required={true} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
@@ -781,8 +782,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                 </Box>
 
                 <Box>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Correo Electrónico " required={false} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
@@ -800,8 +801,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 />
                             </FormControl>
                         </Grid>
-
-                        <Grid item xs={6}>
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Confirme Correo Electrónico" required={false} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
@@ -823,8 +823,8 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                 </Box>
 
                 <Box>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Correo Electrónico " required={false} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
@@ -843,7 +843,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                             </FormControl>
                         </Grid>
 
-                        <Grid item xs={6}>
+                        <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Confirme Correo Electrónico" required={false} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField

@@ -12,6 +12,8 @@ import {
   MenuItem,
   IconButton,
   InputAdornment,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import registerImage from '../../assets/register.png';
 import Radio from '@mui/material/Radio';
@@ -60,6 +62,9 @@ interface FormData {
 
 
 const Create = () => {
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
 
   const { certification_type_id } = useParams();
@@ -142,18 +147,19 @@ const Create = () => {
 
   return (
 
-    <Grid container style={{ width: '100%', margin: 0 }}>
+    <Grid container sx={{ width: '100%', margin: 0, paddingLeft: isMobile ? '1rem ' : '5rem', paddingRight: isMobile ? '1rem' : '5rem' }}>
 
+      <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'start', }}>
 
-      <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'start', paddingLeft: '12%' }}>
-
-        <Grid item xs={12} sx={{ marginBottom: "1em !important", marginTop: "4em !important", padding: '1em !important' }}>
+        <Grid item xs={12} sx={{ marginBottom: "1em !important", marginTop: "4em !important", display: 'flex', width: '100%', justifyContent: isMobile ? 'center' : 'start' }}>
           <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
             Crear Solicitud
           </Typography>
         </Grid>
-        <Grid item xs={4} sx={{ padding: '1em !important' }}>
-          <Typography variant="body1" gutterBottom sx={{ fontSize: '1em !important' }}>
+
+
+        <Grid item xs={12} sx={{ marginY: '4rem !important' }}>
+          <Typography variant="body1" gutterBottom sx={{ fontSize: '1.1em !important' }}>
             Solicite su certificado en formato digital.
             Puede tardar hasta 5 días en ser procesada y enviada.
           </Typography>

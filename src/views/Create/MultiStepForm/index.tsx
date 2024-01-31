@@ -136,9 +136,9 @@ const MultiStepForm = ({
 
 
     return (
-        <Box style={{ width: '100%', marginTop: '3em !important', marginBottom: '3em !important' }}>
-            <Grid container style={{}}>
-                <Grid item xs={12} style={{ marginBottom: '3em !important' }}>
+        <Box sx={{ padding: '1rem !important', width: '100%' }}>
+            <Grid container >
+                <Grid item xs={12} style={{ marginBottom: '3rem !important' }}>
                     {currentStep === 0 && (
                         <Step1
                             isStepValid={isStepValid}
@@ -152,8 +152,7 @@ const MultiStepForm = ({
 
                     )}
 
-                    <Box mt={2} sx={{ gap: 2, width: '100%', display: 'flex', justifyContent: 'start', marginBottom: '3em !important', marginTop: '3em !important', marginLeft: '1em !important', }}>
-
+                    <Box mt={2} sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '3em !important', marginTop: '3em !important' }}>
                         {currentStep !== 1 &&
 
                             <>
@@ -176,7 +175,6 @@ const MultiStepForm = ({
                                 </Button>
                             </>
                         }
-
                     </Box>
                 </Grid>
             </Grid>
