@@ -97,13 +97,6 @@ const MultiStepForm = ({
         }
     };
 
-
-    const onNewRequestFast = () => {
-        updateFormData({}, true);
-        changeStep(0)
-    };
-
-    const navigate = useNavigate();
     // Función para avanzar al siguiente paso
     const handleNextStep = async () => {
         if (currentStep < 3) {

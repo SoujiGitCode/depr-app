@@ -52,8 +52,8 @@ export const step3Validations = Yup.object().shape({
 
     phone: Yup.string()
         .required("Teléfono requerido")
-        .matches(/^[0-9]+$/, "solo debe contener números")
-        .max(20, "máximo 20 caracteres"),
+        .matches(/^\(\d{3}\) \d{3}-\d{4}$/, "El formato del teléfono debe ser (XXX) XXX-XXXX")
+        .max(14, "El teléfono no debe exceder 10 caracteres"),
 
     social_security: Yup.string()
         .required("Seguro Social requerido")

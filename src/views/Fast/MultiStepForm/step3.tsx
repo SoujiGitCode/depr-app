@@ -21,6 +21,7 @@ import CustomLabel from "@/components/CustomLabel";
 import { useFormik } from "formik";
 import { step3Validations } from './validations/step3Validations';
 import SocialSecurityInput from '@/components/SocialSecurityInput';
+import PhoneInput from '@/components/PhoneInput';
 
 
 interface StepProps {
@@ -156,6 +157,35 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
         console.log('isStepValid ' + isStepValid)
     }, [formik.values, formik.touched, formik.isValid]);
+
+
+
+    const [phone, setPhone] = useState('');
+
+    const formatPhoneNumber = (value: any) => {
+        if (!value) return value;
+        const phoneNumber = value.replace(/[^\d]/g, '');
+        const phoneNumberLength = phoneNumber.length;
+
+        if (phoneNumberLength < 4) return phoneNumber;
+
+        if (phoneNumberLength < 7) {
+            return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+        }
+
+        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+    };
+
+    const parsePhoneNumber = (formattedNumber: string) => {
+        return formattedNumber.replace(/[^\d]/g, '');
+    };
+
+
+    useEffect(() => {
+        console.log('phone')
+        console.log(parsePhoneNumber(formik.values.phone))
+        setPhone(parsePhoneNumber(formik.values.phone))
+    }, [formik.values.phone])
 
     return (
         <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
@@ -529,17 +559,28 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Teléfono" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
-                            <TextField
+                            {/* <TextField
                                 placeholder='Teléfono'
                                 name="phone"
                                 id="phone"
                                 type="text"
                                 variant="outlined"
                                 value={formik.values.phone}
-                                onChange={formik.handleChange}
+                                onChange={(event) => {
+                                    const formattedPhoneNumber = formatPhoneNumber(event.target.value);
+                                    formik.setFieldValue('phone', formattedPhoneNumber);
+                                }}
                                 onBlur={formik.handleBlur}
                                 error={formik.touched.phone && Boolean(formik.errors.phone)}
                                 helperText={formik.touched.phone && typeof formik.errors.phone === 'string' ? formik.errors.phone : undefined}
+                            /> */}
+
+                            <PhoneInput
+                                placeholder='Teléfono'
+                                name="phone"
+                                id="phone"
+                                variant="outlined"
+                                formik={formik}
                             />
                         </FormControl>
                     </Grid>
