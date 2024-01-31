@@ -559,22 +559,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Teléfono" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
-                            {/* <TextField
-                                placeholder='Teléfono'
-                                name="phone"
-                                id="phone"
-                                type="text"
-                                variant="outlined"
-                                value={formik.values.phone}
-                                onChange={(event) => {
-                                    const formattedPhoneNumber = formatPhoneNumber(event.target.value);
-                                    formik.setFieldValue('phone', formattedPhoneNumber);
-                                }}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.phone && Boolean(formik.errors.phone)}
-                                helperText={formik.touched.phone && typeof formik.errors.phone === 'string' ? formik.errors.phone : undefined}
-                            /> */}
-
                             <PhoneInput
                                 placeholder='Teléfono'
                                 name="phone"

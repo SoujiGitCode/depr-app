@@ -22,6 +22,7 @@ import { useFormik } from "formik";
 import { step1Validations } from './validations/step1Validations';
 import { requestSchools, requestTowns } from '@/views/Create/functions';
 import SocialSecurityInput from '@/components/SocialSecurityInput';
+import PhoneInput from '@/components/PhoneInput';
 
 
 interface StepProps {
@@ -544,6 +545,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 visibilityPassword={showSocialSecurity}
                                 setVisibilityPassword={setShowSocialSecurity}
                                 form_social_security={formData.social_security}
+                                disableToggleVisibility={true}
                             />
                         </FormControl>
                     </Grid>
@@ -552,17 +554,12 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     <Grid item xs={6}>
                         <CustomLabel name="Número de Teléfono" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
-                            <TextField
+                            <PhoneInput
                                 placeholder='Teléfono'
                                 name="phone"
                                 id="phone"
-                                type="text"
                                 variant="outlined"
-                                value={formik.values.phone}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.phone && Boolean(formik.errors.phone)}
-                                helperText={formik.touched.phone && typeof formik.errors.phone === 'string' ? formik.errors.phone : undefined}
+                                formik={formik}
                             />
                         </FormControl>
                     </Grid>

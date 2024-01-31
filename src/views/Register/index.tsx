@@ -29,6 +29,7 @@ import useAuthStore from "@/hooks/useAuthStore";
 import { PATH } from '@/routes/constants';
 import { ConfirmationModal, SocialSecurityInput } from '@/components';
 import { registerValidation } from '@/validations/registerValidation';
+import PhoneInput from '@/components/PhoneInput';
 
 
 const Register = () => {
@@ -203,17 +204,18 @@ const Register = () => {
 
         {!loading ?
 
-          <form style={{ width: '80%' }} onSubmit={formik.handleSubmit}>
+          <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
             <Typography variant="body1" gutterBottom sx={{ color: '#807BB8', fontSize: '2.2em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
               Registro
             </Typography>
 
             <Box>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sx={{ marginBottom: '-1em !important' }}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Documento de Identidad" required={true} />
                 </Grid>
-                <Grid item xs={12} lg={6}>
+
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
                     <TextField
                       inputProps={
@@ -240,7 +242,7 @@ const Register = () => {
                   </FormControl>
                 </Grid>
 
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
                     <TextField
                       placeholder="Número de identificación"
@@ -260,8 +262,8 @@ const Register = () => {
             </Box>
 
             <Box>
-              <Grid container spacing={2}>
-                <Grid item xs={12} lg={6}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Primer Nombre" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -278,7 +280,7 @@ const Register = () => {
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Segundo Nombre" required={false} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -300,9 +302,9 @@ const Register = () => {
             </Box>
 
             <Box>
-              <Grid container spacing={2}>
+              <Grid container spacing={0}>
 
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Primer Apellido" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -319,7 +321,7 @@ const Register = () => {
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Segundo Apellido" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -411,10 +413,10 @@ const Register = () => {
             {selectedValue === "Si" &&
               <>
                 <Box>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
                     <Typography variant='body1' textAlign="center">Datos Personales en Educación (DEPR)</Typography>
                   </Grid>
-                  <Grid container spacing={2}>
+                  <Grid container spacing={0}>
                     <Grid item xs={12} lg={6}>
                       <CustomLabel name="Primer Nombre" required={true} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
@@ -432,7 +434,7 @@ const Register = () => {
                         />
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                       <CustomLabel name="Segundo Nombre" required={false} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
@@ -455,9 +457,8 @@ const Register = () => {
 
                 <Box>
 
-                  <Grid container spacing={2}>
-
-                    <Grid item xs={12} lg={6}>
+                  <Grid container spacing={0}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                       <CustomLabel name="Primer Apellido" required={true} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
@@ -474,7 +475,7 @@ const Register = () => {
                         />
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                       <CustomLabel name="Segundo Apellido" required={true} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
@@ -500,11 +501,11 @@ const Register = () => {
             {/*--------------------END DEPR personal data---------------*/}
 
             <Box>
-              <Grid container spacing={2} sx={{ marginBottom: '1.5em !important' }}>
+              <Grid container spacing={0} sx={{ marginBottom: '1.5em !important' }}>
 
               </Grid>
-              <Grid container spacing={2}>
-                <Grid item xs={12} lg={6}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Fecha de Nacimiento" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -524,7 +525,7 @@ const Register = () => {
 
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Género" required={false} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -553,26 +554,20 @@ const Register = () => {
             </Box>
 
             <Box>
-              <Grid container spacing={2}>
-
-                <Grid item xs={12} lg={6}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Teléfono" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
-                    <TextField
+                    <PhoneInput
                       placeholder='Teléfono'
                       name="phoneNumber"
                       id="phoneNumber"
-                      type="text"
                       variant="outlined"
-                      value={formik.values.phoneNumber}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-                      helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                      formik={formik}
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Seguro Social" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <SocialSecurityInput
@@ -587,6 +582,7 @@ const Register = () => {
                       visibilityPassword={showSocialSecurity}
                       setVisibilityPassword={setShowSocialSecurity}
                       form_social_security={''}
+                      disableToggleVisibility={true}
                     />
                   </FormControl>
                 </Grid>
@@ -596,8 +592,8 @@ const Register = () => {
 
 
             <Box>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Correo Electrónico" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -615,7 +611,7 @@ const Register = () => {
                   </FormControl>
                 </Grid>
 
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Contraseña" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -645,7 +641,7 @@ const Register = () => {
 
                   </FormControl>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{ paddingX: '1rem' }}>
                   <CustomLabel name="Confirmar Contraseña" required={false} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <TextField
@@ -681,8 +677,8 @@ const Register = () => {
 
 
             <Box>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} sx={{ paddingX: '1rem' }}>
                   <Box display="flex" alignItems="center" sx={{ marginBottom: '1.5em !important', marginTop: '1.5em !important' }}>
                     <IconButton color="warning">
                       <WarningIcon />
@@ -694,9 +690,10 @@ const Register = () => {
 
                 </Grid>
 
-                <Grid item xs={12}>
-                  <Grid container spacing={2} justifyContent={'center'}>
-                    <Grid item xs={12} lg={4} sx={{ marginRight: '1.5rem !important' }}>
+                <Grid item xs={12} sx={{ paddingX: '1rem' }}>
+                  <Grid container spacing={0} justifyContent={'center'} textAlign={'center'}>
+
+                    <Grid item xs={12} lg={4} sx={{ marginBottom: "1rem !important" }}>
                       <Button
                         variant="outlined"
                         color="primary"
@@ -714,7 +711,7 @@ const Register = () => {
                       </Button>
                     </Grid>
 
-                    <Grid item xs={12} lg={4} sx={{ justifyContent: 'center' }}>
+                    <Grid item xs={12} lg={4} sx={{ justifyContent: 'center', marginBottom: "1rem !important" }}>
                       <Button
                         type='submit'
                         variant="contained"
@@ -741,8 +738,8 @@ const Register = () => {
 
           :
 
-          <Box style={{ width: '80%', display: 'flex', justifyContent: 'center' }}>
-            <Grid container spacing={2}>
+          <Box style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <Grid container spacing={0}>
               <Grid item xs={11} sx={{ marginTop: "2.5em !important", marginBottom: "2.5em !important", textAlign: 'center' }}>
                 <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important", marginTop: "2em !important" }}>
                   Cargando
