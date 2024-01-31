@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, Typography, Box, Modal, TextField, InputAdornment, IconButton } from "@mui/material";
+import { Button, Divider, Grid, Typography, Box, Modal, TextField, InputAdornment, IconButton, useTheme, useMediaQuery } from "@mui/material";
 import LockPersonIcon from '@mui/icons-material/LockPerson';
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
@@ -61,6 +61,9 @@ interface ApiResponse {
 }
 
 const Profile = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   const [isEditMode, setIsEditMode] = useState(false);
   const [userInfo, setUserInfo] = useState<UserDetails>();
   const token = useAuthStore((state: any) => state.token);
@@ -252,17 +255,8 @@ const Profile = () => {
 
   return (
     <>
-      <Grid container sx={{ height: "100%", paddingLeft: '12%', marginBottom: '2rem !important' }}>
-        <Grid
-          item
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
-          }}
-          sm={5}
-        >
+      <Grid container sx={{ width: '100%', margin: 0, paddingLeft: isMobile ? '1rem ' : '5rem', paddingRight: isMobile ? '1rem' : '5rem' }}>
+        <Grid item xs={12} lg={6} sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", paddingX: '1rem' }} >
           {/* title*/}
           <TitleSection />
 
