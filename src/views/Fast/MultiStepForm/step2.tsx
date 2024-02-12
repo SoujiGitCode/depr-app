@@ -38,38 +38,17 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     const [schoolsData, setSchoolsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Escuela' }]);
 
     const gradesList = [
-        {
-            value: 'none',
-            label: 'No Recuerdo',
-        },
-        {
-            value: 'pri',
-            label: 'Primaria / Elemental',
-        },
-        {
-            value: 'sec',
-            label: 'Intermedia',
-        },
-        {
-            value: 'sup',
-            label: 'Secundaria / Superior',
-        },
+        { value: 'notAValidGrade', label: 'Seleccione un Nivel Acádemico' },
+        { value: 'none', label: 'No Recuerdo' },
+        { value: 'pri', label: 'Primaria / Elemental' },
+        { value: 'sec', label: 'Intermedia' },
+        { value: 'sup', label: 'Secundaria / Superior' },
     ];
 
     const certificatesList = [
-        {
-            value: '1',
-            label: 'Certificado de Graduación',
-        },
-        {
-            value: '2',
-            label: 'Transcripción de Creditos',
-        },
-        {
-            value: '3',
-            label: 'Certificado de Horas Taller',
-        },
-
+        { value: '1', label: 'Certificado de Graduación' },
+        { value: '2', label: 'Transcripción de Creditos' },
+        { value: '3', label: 'Certificado de Horas Taller' },
     ];
 
     const formik = useFormik({
@@ -267,7 +246,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
                             >
                                 {gradesList.map((option, index) => (
-                                    <MenuItem key={index} value={option.value}>
+                                    <MenuItem key={index} value={option.value} disabled={option.value === 'notAValidGrade'}>
                                         {option.label}
                                     </MenuItem>
                                 ))}

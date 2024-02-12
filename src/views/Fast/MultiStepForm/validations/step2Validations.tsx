@@ -11,7 +11,8 @@ export const step2Validations = Yup.object().shape({
 
     grade: Yup.string()
         .required('Este campo es requerido')
-        .notOneOf([''], 'Por favor, seleccione una Nivel Académico válido'),
+        .notOneOf(['notAValidGrade'], 'Por favor, seleccione una Nivel Académico válido'),
+
 
     grade_year: Yup.string()
         .required('Este campo es requerido')
