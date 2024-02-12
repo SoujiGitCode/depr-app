@@ -199,7 +199,7 @@ const MultiStepForm = ({
                                     }}
                                     onClick={() => handlePrevStep()}
                                 >
-                                    Atras
+                                    Anterior
                                 </Button>
                                 <Button
                                     disabled={!isStepValid}
