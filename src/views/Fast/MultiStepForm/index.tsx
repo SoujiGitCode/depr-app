@@ -142,6 +142,8 @@ const MultiStepForm = ({
 
 
 
+    console.log(currentStep)
+
     return (
         <Box sx={{ padding: '1rem !important', width: '100%' }}>
             <Grid container >
@@ -183,6 +185,7 @@ const MultiStepForm = ({
 
                             <>
                                 <Button
+                                    disabled={currentStep === 0}
                                     variant="outlined"
                                     color="primary"
                                     style={{
