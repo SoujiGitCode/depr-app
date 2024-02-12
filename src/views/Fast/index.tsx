@@ -185,7 +185,7 @@ const Fast = () => {
 
             <Grid item xs={12} >
               <Typography variant="h2" gutterBottom sx={{ fontSize: '2.2em !important', fontWeight: 'bolder' }}>
-                Crear solicitud
+                Crear solicitud Fast
               </Typography>
             </Grid>
 

@@ -100,6 +100,15 @@ const Create = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isStepValid, setStepValid] = useState(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [formTitle, setFormTitle] = useState('Transcripción de Créditos');
+
+  const { id } = useParams();
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    setFormTitle(certification_type_id == '3' ? 'Certificado de Horas Taller' : 'Transcripción de Créditos')
+  }, []);
+
 
   const navigate = useNavigate();
 
@@ -153,7 +162,7 @@ const Create = () => {
 
         <Grid item xs={12} sx={{ marginBottom: "1em !important", marginTop: "4em !important", display: 'flex', width: '100%', justifyContent: isMobile ? 'center' : 'start' }}>
           <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
-            Crear Solicitud
+            Crear Solicitud {formTitle}
           </Typography>
         </Grid>
 

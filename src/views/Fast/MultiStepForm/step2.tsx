@@ -67,7 +67,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         },
         {
             value: '3',
-            label: 'Certificado Horas Taller',
+            label: 'Certificado de Horas Taller',
         },
 
     ];
