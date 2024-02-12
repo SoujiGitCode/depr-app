@@ -23,28 +23,6 @@ const RecoveryToken = () => {
   const [message, setMessage] = useState('');
   const [modalType, setModalType] = useState<'error' | 'success'>('error');
 
-  const customContent = {
-    success: {
-      title: "Solicitud enviada",
-      text: (
-        <>
-          Correo para restablecer su contraseña ha sido enviado
-        </>
-      )
-    },
-    error: {
-      title: "Error",
-      text: (
-        <>
-          Ha ocurrido un error al enviar su solicitud, por favor, revise sus datos y vuelva a intentarlo.
-          <br />
-          Verifique que el correo sea el correcto asociado a su cuenta y/o contacte al Departamento de Educación.
-        </>
-      )
-    }
-  };
-
-
   // 1. Rearrange useState Hooks:
   const { t } = useParams();
   const cleanT = cleanToken(t);

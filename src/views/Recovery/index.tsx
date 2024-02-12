@@ -27,7 +27,7 @@ const Recovery = () => {
       title: "Solicitud enviada",
       text: (
         <>
-          Correo para restablecer su contraseña ha sido enviado
+          Hemos recibido su solicitud de Cambio de Contraseña. Enviaremos un enlace a su correo electrónico para cambiar su contraseña.
         </>
       )
     },
@@ -109,7 +109,7 @@ const Recovery = () => {
 
           <Grid container gap={2} padding={2}>
             <Grid item xs={12} >
-              <Typography variant="body1" color="#807BB8" sx={{ fontSize: '2rem', fontWeight: 'bolder' }} >Restablecer Contraseña</Typography>
+              <Typography variant="body1" color="#807BB8" sx={{ fontSize: '2rem', fontWeight: 'bolder' }} >Solicitud de cambio de contraseña</Typography>
 
               <Typography className={styles["descriptions-recovery"]}>
                 Enviaremos un enlace a su correo electrónico donde podrá restablecer su contraseña
