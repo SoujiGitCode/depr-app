@@ -49,7 +49,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     ];
 
     const genderList = [
-        { value: 'notAValidGender', label: 'Seleccione Genero' },
+        { value: 'notAValidGender', label: 'Seleccione Género' },
         { value: 'F', label: 'Femenino' },
         { value: 'M', label: 'Masculino' },
         { value: 'N', label: 'No Indica' }

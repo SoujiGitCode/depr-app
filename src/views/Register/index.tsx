@@ -49,18 +49,10 @@ const Register = () => {
   ];
 
   const genderList = [
-    {
-      value: 'F',
-      label: 'Femenino',
-    },
-    {
-      value: 'M',
-      label: 'Masculino',
-    },
-    {
-      value: 'N',
-      label: 'No Indica',
-    },
+    { value: 'notAValidGender', label: 'Seleccione Género' },
+    { value: 'F', label: 'Femenino' },
+    { value: 'M', label: 'Masculino' },
+    { value: 'N', label: 'No Indica' }
   ];
 
 
@@ -541,11 +533,11 @@ const Register = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       error={formik.touched.gender && Boolean(formik.errors.gender)}
-                      helperText={formik.touched.gender && formik.errors.gender}
+                      helperText={formik.touched.gender && typeof formik.errors.gender === 'string' ? formik.errors.gender : undefined}
 
                     >
                       {genderList.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
+                        <MenuItem key={option.value} value={option.value} disabled={option.value === 'notAValidGender'}>
                           {option.label}
                         </MenuItem>
                       ))}
