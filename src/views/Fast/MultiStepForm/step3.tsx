@@ -193,7 +193,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                 <Grid container spacing={0}>
                     <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
-                            Datos de la Escuela
+                            Datos Personales
                         </Typography>
                     </Grid>
                 </Grid>
