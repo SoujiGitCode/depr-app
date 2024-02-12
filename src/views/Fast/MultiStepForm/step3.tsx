@@ -362,7 +362,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={6} lg={1}>
+                    <Grid item xs={6} sm={2} lg={2}>
                         <Box display="flex" alignItems="center" justifyContent="space-around"
 
                             sx={{
