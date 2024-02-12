@@ -177,6 +177,8 @@ const Register = () => {
 
 
   useEffect(() => {
+    setAlert("Registro Completado!", "success");
+
     if (!formik.isValid) {
       console.log(formik.errors);
       console.log('!!!formik.isValid');

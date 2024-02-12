@@ -7,18 +7,17 @@ const AlertPopup = () => {
   if (text.length) {
     return (
       <Stack
-        sx={{ 
-          width: '20%',
+        sx={{
+          width: '30%',
           position: 'fixed',
           "z-index": 999,
-          left: '2%',
-          bottom: '2%'
-        }} 
+          top: 0, right: 0,
+        }}
         spacing={2}
       >
         <Alert severity={type}>
-          <AlertTitle sx={{ textTransform: 'capitalize' }}>{ type }</AlertTitle>
-          { text }
+          <AlertTitle sx={{ textTransform: 'capitalize' }}>{type}</AlertTitle>
+          {text}
         </Alert>
       </Stack>
     );
