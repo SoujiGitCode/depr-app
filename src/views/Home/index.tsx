@@ -148,7 +148,7 @@ const Home = () => {
                 gap={4}
               >
                 <Typography variant="h1" gutterBottom sx={{ color: '#FFFFFF', fontSize: '2.2em !important' }}>
-                  Bienvenido
+                  ¡Bienvenido!
                 </Typography>
                 <Typography variant="body1" gutterBottom sx={{ color: '#FFFFFF', fontSize: '1.2em !important' }}>
                   Al Portal de Certificaciones Académicas
@@ -273,7 +273,7 @@ const Home = () => {
 
             <Grid item xs={12} lg={10} sx={{ marginBottom: "4em !important", marginTop: "4em !important" }}>
               <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important', textAlign: isMobile ? 'center' : 'left' }}>
-                Consulta de solicitudes
+                Consulta de Solicitudes
               </Typography>
             </Grid>
 

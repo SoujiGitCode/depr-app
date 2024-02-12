@@ -65,7 +65,7 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
                                 <Typography variant="body1" sx={{ marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>Teléfono</Typography>
                                 <List sx={{ p: 0 }}>
                                     <ListItem sx={{ padding: 0, marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
-                                        <ListItemText primary="(787) 759-2000" />
+                                        <ListItemText primary="(787) 759-2000 o al (787) 759-9311" />
                                     </ListItem>
 
                                     <ListItem sx={{ padding: 0, marginBottom: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>

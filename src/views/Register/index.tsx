@@ -89,7 +89,7 @@ const Register = () => {
       secondLastNameDepr: "",
       birthdate: "",
       gender: genderList[0].value,
-      phoneNumber: "",
+      phone: "",
       social_security: '',
       email: "",
       password: "",
@@ -140,7 +140,7 @@ const Register = () => {
         depr_middle_name: formik.values.middleNameDepr,
         depr_last_name: formik.values.lastNameDepr,
         depr_second_last_name: formik.values.secondLastNameDepr,
-        phone: formik.values.phoneNumber,
+        phone: formik.values.phone,
         // social_security: formik.values.social_security,
         social_security: socialSecurityArray.join(""),
         password: formik.values.password,
@@ -187,8 +187,11 @@ const Register = () => {
   useEffect(() => {
     if (!formik.isValid) {
       console.log(formik.errors);
+      console.log('!!!formik.isValid');
+      return
     }
     console.log(formik.isValid)
+    console.log('VALIDO');
   }, [formik.isValid, formik.errors]);
 
 
@@ -560,8 +563,8 @@ const Register = () => {
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <PhoneInput
                       placeholder='Teléfono'
-                      name="phoneNumber"
-                      id="phoneNumber"
+                      name="phone"
+                      id="phone"
                       variant="outlined"
                       formik={formik}
                     />
@@ -572,14 +575,14 @@ const Register = () => {
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <SocialSecurityInput
                       variant="outlined"
-                      placeholder='N° Seguro Social'
+                      // placeholder='N° Seguro Social'
                       name="social_security"
                       id="social_security"
-                      type={'text'}
+                      // type={'text'}
                       value={socialSecurityArray}
                       formik={formik}
                       setSocialSecurityArray={setSocialSecurityArray}
-                      visibilityPassword={showSocialSecurity}
+                      visibilityPassword={false}
                       setVisibilityPassword={setShowSocialSecurity}
                       form_social_security={''}
                       disableToggleVisibility={true}

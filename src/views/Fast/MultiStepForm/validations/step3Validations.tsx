@@ -8,41 +8,41 @@ export const step3Validations = Yup.object().shape({
         .max(20, "máximo 20 caracteres"),
 
     first_name: Yup.string()
-        .matches(/^[A-Za-z]+$/, "El Primer Nombre solo debe contener letras")
+        .matches(/^[\p{L}]+$/u, "El Primer Nombre solo debe contener letras")
         .required("Primer Nombre requerido")
         .max(20, "máximo 20 caracteres"),
 
     second_name: Yup.string()
-        .matches(/^[A-Za-z]+$/, "El Segundo Nombre solo debe contener letras")
+        .matches(/^[\p{L}]+$/u, "El Segundo Nombre solo debe contener letras")
         .max(20, "máximo 20 caracteres"),
 
     last_name: Yup.string()
-        .matches(/^[A-Za-z]+$/, "El Apellido solo debe contener letras")
+        .matches(/^[\p{L}]+$/u, "El Apellido solo debe contener letras")
         .required("Apellido requerido")
         .max(20, "máximo 20 caracteres"),
 
     second_last_name: Yup.string()
-        .matches(/^[A-Za-z]+$/, "El Segundo Apellido solo debe contener letras")
+        .matches(/^[\p{L}]+$/u, "El Segundo Apellido solo debe contener letras")
         .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),
 
     depr_first_name: Yup.string()
-        .matches(/^[A-Za-z]+( [A-Za-z]+)*$/, "El nombre solo debe contener letras y espacios simples entre palabras")
+        .matches(/^[\p{L}]+( [\p{L}]+)*$/u, "El nombre solo debe contener letras y espacios simples entre palabras")
         .required("Primer nombre requerido")
         .max(20, "máximo 20 caracteres"),
 
     depr_second_name: Yup.string()
-        .matches(/^[A-Za-z]+( [A-Za-z]+)*$/, "El Segundo nombre solo debe contener letras y espacios simples entre palabras")
+        .matches(/^[\p{L}]+( [\p{L}]+)*$/u, "El Segundo nombre solo debe contener letras y espacios simples entre palabras")
         .max(20, "máximo 20 caracteres"),
 
     depr_last_name: Yup.string()
-        .matches(/^[A-Za-z]+$/, "El Apellido solo debe contener letras")
+        .matches(/^[\p{L}]+$/u, "El Apellido solo debe contener letras")
         .required("Apellido requerido")
         .max(20, "máximo 20 caracteres"),
 
     depr_second_last_name: Yup.string()
-        .matches(/^[A-Za-z]+$/, "El Segundo Apellido solo debe contener letras")
+        .matches(/^[\p{L}]+$/u, "El Segundo Apellido solo debe contener letras")
         .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),

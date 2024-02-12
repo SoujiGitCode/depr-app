@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import InputMask from 'react-input-mask';
 import { TextField } from '@mui/material';
 
 // Definición de la prop interface para PhoneInput
@@ -12,44 +13,51 @@ interface PhoneInputProps {
 }
 
 const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik }: PhoneInputProps) => {
-    // Función para formatear el número de teléfono
-    const formatPhoneNumber = (phoneNumber: string) => {
-        const digits = phoneNumber.replace(/\D/g, '');
-        const match = digits.match(/^(\d{3})(\d{3})(\d{4})$/);
-        if (match) {
-            return `(${match[1]}) ${match[2]}-${match[3]}`;
-        }
-        return phoneNumber;
-    };
-
-    // Manejador del cambio que formatea el número y actualiza Formik
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const input = e.target.value.replace(/\D/g, ''); // Remueve todos los caracteres no numéricos
-        if (input.length <= 10) { // Asegura que solo se consideren hasta 10 dígitos
-            const formatted = formatPhoneNumber(e.target.value);
-            formik.setFieldValue(name, formatted);
-        }
-    };
-
+    const [value, setValue] = useState("");
+    // Inicializa el input con el formato deseado
     useEffect(() => {
-        // Esto formateará el valor inicial y lo establecerá en Formik al montar el componente
-        const formattedInitialValue = formatPhoneNumber(formik.values[name]);
-        formik.setFieldValue(name, formattedInitialValue);
-    }, [formik.values[name]]); // Asegúrate de incluir dependencias adecuadas
+        setValue(formik.values.phone || "(___) ___-____");
+    }, [formik.values.phone]);
+
+    // const handleChange = (event) => {
+    //     console.log(event.target.value); // Ver el valor actual del input
+    //     formik.setFieldValue(name, event.target.value);
+    // };
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const formattedValue = event.target.value; // Mantiene el formato (XXX) XXX-XXXX
+        formik.setFieldValue(name, formattedValue);
+    };
+
+
 
     return (
-        <TextField
-            fullWidth
-            name={name}
-            label={label}
-            placeholder={placeholder}
+        <InputMask
+            mask="(999) 999-9999"
             value={formik.values[name]}
             onChange={handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched[name] && Boolean(formik.errors[name])}
-            helperText={formik.touched[name] && formik.errors[name]}
-            variant="outlined"
-        />
+            onBlur={formik.onBlur} // Correcto manejo de onBlur
+            maskChar="_"
+        >
+            {() => (
+                <TextField
+                    fullWidth
+                    id={id || name}
+                    name={name}
+                    label={label || ''}
+                    placeholder="(xxx) xxx-xxxx"
+                    variant={variant}
+                    // onChange={handleChange}
+                    value={formik.values[name]}
+                    error={formik.touched[name] && Boolean(formik.errors[name])}
+                    helperText={formik.touched[name] && formik.errors[name]}
+                    InputLabelProps={{ shrink: true }}
+                    InputProps={{
+                        sx: { letterSpacing: '2px' },
+                    }}
+                />
+            )}
+        </InputMask>
     );
 };
 
