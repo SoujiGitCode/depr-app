@@ -177,10 +177,6 @@ const Register = () => {
 
 
   useEffect(() => {
-
-    setOpenModal(true);
-    setModalType('error')
-
     if (!formik.isValid) {
       console.log(formik.errors);
       console.log('!!!formik.isValid');

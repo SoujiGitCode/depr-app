@@ -74,10 +74,20 @@ function ConfirmationModal({ open, onClose, type, content = {} }: ConfirmationMo
                 <Typography id="global-modal-title" variant="h6" component="h2" gutterBottom sx={{ fontSize: '1.5rem !important' }}>
                     {mergedContent[type].title}
                 </Typography>
-                <Typography id="global-modal-description" variant="body2" sx={{ fontSize: '1.2rem !important' }}>
-                    {mergedContent[type].text}
+                <Box
+                    sx={{
+                        border: 1,
+                        boxShadow: 'lg',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        padding: '2rem !important'
+                    }}
+                >
+                    <Typography id="global-modal-description" variant="body2" sx={{ fontSize: '1.2rem !important' }}>
+                        {mergedContent[type].text}
 
-                </Typography>
+                    </Typography>
+                </Box>
                 <Button
                     variant="contained"
                     color="primary"
