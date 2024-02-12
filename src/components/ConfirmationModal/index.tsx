@@ -34,7 +34,7 @@ const defaultContent = {
             <>
                 Ha ocurrido un error al intentar registrar su usuario. Por favor, revise sus datos y vuelva a intentarlo. Si el error persiste puede comunicarse al (787) 759-2000 o al 787-759-9311.
                 <br /> <br />
-                ¡Gracias por utilizar el Portal de Certificaciones Académicas del Departamento de Educación de Puerto Rico.
+                ¡Gracias por utilizar el Portal de Certificaciones Académicas del Departamento de Educación de Puerto Rico!
             </>
         )
     }

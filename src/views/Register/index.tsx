@@ -17,7 +17,7 @@ import {
 import registerImage from '../../assets/register.png';
 import Radio from '@mui/material/Radio';
 import { useNavigate } from "react-router-dom";
-import { SocialDistanceOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import WarningIcon from "@mui/icons-material/Warning";
 import CustomLabel from "@/components/CustomLabel";
 import { requestRegister } from "./functions";
@@ -177,6 +177,10 @@ const Register = () => {
 
 
   useEffect(() => {
+
+    setOpenModal(true);
+    setModalType('error')
+
     if (!formik.isValid) {
       console.log(formik.errors);
       console.log('!!!formik.isValid');
