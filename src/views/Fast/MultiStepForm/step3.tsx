@@ -49,6 +49,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     ];
 
     const genderList = [
+        { value: 'notAValidGender', label: 'Seleccione Genero' },
         { value: 'F', label: 'Femenino' },
         { value: 'M', label: 'Masculino' },
         { value: 'N', label: 'No Indica' }
@@ -543,7 +544,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
                             >
                                 {genderList.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
+                                    <MenuItem key={option.value} value={option.value} disabled={option.value === 'notAValidGender'}>
                                         {option.label}
                                     </MenuItem>
                                 ))}

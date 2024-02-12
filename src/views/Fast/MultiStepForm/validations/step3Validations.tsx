@@ -50,6 +50,10 @@ export const step3Validations = Yup.object().shape({
 
     birthdate: Yup.string().required("Fecha de nacimiento requerida"),
 
+    gender: Yup.string()
+        .notOneOf(['notAValidGender'], 'Debe seleccionar una opción valida')
+        .required('Debe seleccionar una opción valida'),
+
     phone: Yup.string()
         .required("Teléfono requerido")
         .matches(/^\(\d{3}\) \d{3}-\d{4}$/, "El formato del teléfono debe ser (XXX) XXX-XXXX")
