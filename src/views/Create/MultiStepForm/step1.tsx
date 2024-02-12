@@ -57,15 +57,15 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         },
         {
             value: 'pri',
-            label: 'Primaria',
+            label: 'Primaria / Elemental',
         },
         {
             value: 'sec',
-            label: 'Secundaria',
+            label: 'Intermedia',
         },
         {
             value: 'sup',
-            label: 'Superior',
+            label: 'Secundaria / Superior',
         },
     ];
 
