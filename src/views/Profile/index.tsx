@@ -17,28 +17,14 @@ import useAlert from "@/hooks/useAlert";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const listId = [
-  {
-    value: "licencia",
-    label: "Lic",
-  },
-  {
-    value: "id",
-    label: "Real Id",
-  },
+  { value: "licencia", label: "Lic" },
+  { value: "id", label: "Real Id" },
 ];
+
 const listGenre = [
-  {
-    value: "F",
-    label: "Femenino",
-  },
-  {
-    value: "M",
-    label: "Masculino",
-  },
-  {
-    value: "N",
-    label: "No Indica",
-  },
+  { value: "F", label: "Femenino" },
+  { value: "M", label: "Masculino" },
+  { value: "N", label: "No Indica" },
 ];
 
 export interface UserDetails {

@@ -1,120 +1,107 @@
+import React, { useState, useEffect } from 'react';
 import { TextField, IconButton, InputAdornment } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { CSSProperties, useEffect } from "react";
 
-// Define the props for the SocialSecurityInput component
-interface SocialSecurityInputProps {
-  value: any;
-  variant?: "outlined";
-  name?: string;
-  type?: string;
-  placeholder?: string;
-  id: string; // The id is required
-  sx?: CSSProperties;
-  formik: any; // The formik object is required
-  setSocialSecurityArray: (value: any[]) => void; // The function to update the social security array is required
-  visibilityPassword: boolean; // The visibility state of the password is required
-  setVisibilityPassword: React.Dispatch<React.SetStateAction<boolean>>; // The function to update the visibility state of the password is required
-  form_social_security: string;
-  disableToggleVisibility?: boolean;
-}
 
-const SocialSecurityInput = ({
-  value,
-  variant,
-  name,
-  type,
-  placeholder,
-  id,
-  sx,
-  formik,
-  setSocialSecurityArray,
-  visibilityPassword,
-  setVisibilityPassword,
-  form_social_security,
-  disableToggleVisibility = false
-}: SocialSecurityInputProps) => {
-  // Function to toggle the visibility of the social security number
-  const toggleSocialSecurityVisibility = () => {
-    //return if the toggle is disabled -- requested by DEPR trashy designer
-    if (disableToggleVisibility) return;
+const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecurityArray, socialSecurityArray, id = 'social_security' }) => {
+  // Estado para almacenar el valor real (numérico) del SSN
+  const [realSSN, setRealSSN] = useState('');
+  // Estado para almacenar el valor enmascarado y formateado para visualización
+  const [displaySSN, setDisplaySSN] = useState('');
 
-    setVisibilityPassword(!visibilityPassword);
-    formik.setFieldTouched('social_security', true, true);
+  // Función para enmascarar y formatear el SSN para la visualización
+  const maskAndFormatSSN = (ssn) => {
+    // Enmascara los primeros 5 números y mantiene los últimos 4 dígitos visibles
+    let masked = ssn.slice(0, 5).replace(/\d/g, 'X') + ssn.slice(5);
+    // Añade guiones para el formato
+    if (masked.length > 3) masked = masked.slice(0, 3) + '-' + masked.slice(3);
+    if (masked.length > 6) masked = masked.slice(0, 6) + '-' + masked.slice(6);
+    return masked;
   };
 
-  // Function to mask the social security number
-  const maskSocialSecurity = (value: any) => {
-    const visibleDigits = 4;
-    const maskedLength = Math.max(value.length - visibleDigits, 0);
-    const masked = value.slice(-visibleDigits);
-    return "*".repeat(maskedLength) + masked;
+  // Manejador para cambios en el input
+  const handleChange = (e) => {
+
+    const input = e.target.value.replace(/-/g, ''); // Elimina guiones para manejar solo números
+    if (input.length <= 9) { // Asegura no exceder la longitud del SSN
+      setRealSSN(input); // Actualiza el estado con el valor real
+      setDisplaySSN(maskAndFormatSSN(input)); // Actualiza el estado con el valor enmascarado y formateado
+    }
   };
 
-  // Function to handle changes to the social security number
-  const handleSocialSecurityChange = (e: any) => {
-    const { value: input, selectionStart } = e.target;
 
-    // Create a copy of the current array
-    let updatedArray = [...value];
+  // Manejador para cambios en el input
+  const handleChange2 = (e) => {
+    const { value: currentValue } = e.target;
+    // Elimina guiones para simplificar la detección de cambios
+    let inputWithoutHyphens = currentValue.replace(/-/g, '');
 
-    // Calculate the length difference between the input and the current array
-    const diff = input.length - updatedArray.join("").length;
 
-    // Handle the addition or deletion of characters
-    if (diff > 0) {
-      // Addition of characters
-      const newChars = input.slice(selectionStart - diff, selectionStart);
-      updatedArray.splice(selectionStart - diff, 0, ...newChars.split(""));
-    } else if (diff < 0) {
-      // Deletion of characters
-      updatedArray.splice(selectionStart, -diff);
+    if (displaySSN.length > 10 && inputWithoutHyphens.length > realSSN.length) {
+      console.log("Límite alcanzado. Solo se permite borrar.");
+      // Permite solo la acción de borrado ajustando `inputWithoutHyphensAndX` para reflejar el estado anterior
+      inputWithoutHyphens = realSSN;
     }
 
-    // Ensure that the array does not exceed the maximum length and fill with empty spaces if necessary
-    updatedArray = updatedArray.slice(0, 9);
-    while (updatedArray.length < 9) {
-      updatedArray.push("");
+
+    console.log(inputWithoutHyphens)
+
+    // Detecta si se ha añadido un nuevo dígito o si se está borrando
+    if (inputWithoutHyphens.length > realSSN.length) {
+      // Se ha añadido un dígito
+      const newDigit = inputWithoutHyphens.charAt(inputWithoutHyphens.length - 1);
+      console.log("Nuevo dígito ingresado:", newDigit);
+
+
+      if (newDigit.match(/\d/)) {
+        if (realSSN.length < 9) setRealSSN(realSSN + newDigit);
+      }
+
+    } else if (inputWithoutHyphens.length < realSSN.length) {
+      // Se ha borrado un dígito
+      console.log("Se ha borrado un dígito");
+      setRealSSN(inputWithoutHyphens);
     }
 
-    // Update the state and the value of Formik
-    setSocialSecurityArray(updatedArray);
-    formik.setFieldValue(id, updatedArray.join(""));
+    // Continúa con la lógica de enmascaramiento y formateo
+    const maskedValue = maskAndFormatSSN(inputWithoutHyphens);
+    if (realSSN.length < 9) setDisplaySSN(maskedValue);
+    setDisplaySSN(maskedValue);
   };
 
+
+  // Detecta específicamente la acción de borrar
+  const handleKeyDown = (e) => {
+    if (e.key === 'Backspace') {
+      setRealSSN((prev) => prev.slice(0, -1));
+    }
+  };
+
+
+  // Efecto para actualizar Formik cuando cambia el realSSN
   useEffect(() => {
-    setSocialSecurityArray(form_social_security.toString().length > 0 ? form_social_security.split('') : new Array(9).fill(""));
-  }, [form_social_security, setSocialSecurityArray]);
+    // console.log(realSSN)
+    setSocialSecurityArray(realSSN.split('')); // Opcional: Actualiza un array externo si es necesario
+  }, [realSSN]);
+
+  // useEffect(() => {
+  //   console.log(socialSecurityArray)
+  // }, [socialSecurityArray]);
 
   return (
-    <TextField
-      variant={variant}
-      placeholder={placeholder}
-      id={id}
-      type={type}
-      name={name}
-      value={
-        visibilityPassword ? value.join("") : maskSocialSecurity(value.join(""))
-      }
-      onChange={handleSocialSecurityChange}
-      onBlur={formik.handleBlur}
-      error={formik.touched[id] && Boolean(formik.errors[id])}
-      helperText={
-        formik.touched[id] && typeof formik.errors[id] === "string"
-          ? formik.errors[id]
-          : undefined
-      }
-      sx={sx}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton edge="end" onClick={toggleSocialSecurityVisibility}>
-              {visibilityPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}
-    />
+    <>
+      <TextField
+        id='social_security'
+        name='social_security'
+        value={displaySSN}
+        onChange={handleChange2}
+        onKeyDown={handleKeyDown}
+        placeholder="XXX-XX-XXXX"
+        onBlur={formik.handleBlur}
+        error={formik.touched.social_security && Boolean(formik.errors.social_security)}
+        helperText={formik.touched.social_security && typeof formik.errors.social_security === 'string' ? formik.errors.social_security : undefined}
+      />
+    </>
+
   );
 };
 

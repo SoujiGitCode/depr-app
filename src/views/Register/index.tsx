@@ -27,7 +27,7 @@ import styles from "./Register.module.scss";
 import useAlert from "@/hooks/useAlert";
 import useAuthStore from "@/hooks/useAuthStore";
 import { PATH } from '@/routes/constants';
-import { ConfirmationModal, SocialSecurityInput } from '@/components';
+import { ConfirmationModal, SocialSecurityInput, SocialSecurityNumberInput } from '@/components';
 import { registerValidation } from '@/validations/registerValidation';
 import PhoneInput from '@/components/PhoneInput';
 
@@ -186,6 +186,11 @@ const Register = () => {
     console.log('VALIDO');
   }, [formik.isValid, formik.errors]);
 
+  useEffect(() => {
+    console.log(socialSecurityArray)
+    console.log(formik.values.social_security)
+    formik.setFieldValue("social_security", socialSecurityArray.join(""));
+  }, [socialSecurityArray]);
 
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>
@@ -533,7 +538,7 @@ const Register = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       error={formik.touched.gender && Boolean(formik.errors.gender)}
-                      helperText={formik.touched.gender && typeof formik.errors.gender === 'string' ? formik.errors.gender : undefined}
+                      helperText={formik.touched.gender && formik.errors.gender ? formik.errors.gender : ''}
 
                     >
                       {genderList.map((option) => (
@@ -566,18 +571,9 @@ const Register = () => {
                   <CustomLabel name="Seguro Social" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <SocialSecurityInput
-                      variant="outlined"
-                      // placeholder='N° Seguro Social'
-                      name="social_security"
-                      id="social_security"
-                      // type={'text'}
-                      value={socialSecurityArray}
                       formik={formik}
+                      socialSecurityArray={socialSecurityArray}
                       setSocialSecurityArray={setSocialSecurityArray}
-                      visibilityPassword={false}
-                      setVisibilityPassword={setShowSocialSecurity}
-                      form_social_security={''}
-                      disableToggleVisibility={true}
                     />
                   </FormControl>
                 </Grid>
