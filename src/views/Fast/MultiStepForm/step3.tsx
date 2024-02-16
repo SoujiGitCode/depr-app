@@ -573,18 +573,9 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         <CustomLabel name="Seguro Social" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <SocialSecurityInput
-                                variant="outlined"
-                                placeholder='N° Seguro Social'
-                                name="social_security"
-                                id="social_security"
-                                type={'text'}
-                                value={socialSecurityArray}
+                                socialSecurityArray={socialSecurityArray}
                                 formik={formik}
                                 setSocialSecurityArray={setSocialSecurityArray}
-                                visibilityPassword={showSocialSecurity}
-                                setVisibilityPassword={setShowSocialSecurity}
-                                form_social_security={''}
-                                disableToggleVisibility={true}
                             />
                         </FormControl>
                     </Grid>

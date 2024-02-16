@@ -76,7 +76,6 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
     }
   };
 
-
   // Efecto para actualizar Formik cuando cambia el realSSN
   useEffect(() => {
     // console.log(realSSN)
@@ -84,6 +83,7 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
   }, [realSSN]);
 
   useEffect(() => {
+    console.log(socialSecurityArray)
     formik.setFieldValue("social_security", socialSecurityArray.join(""));
   }, [socialSecurityArray]);
 
