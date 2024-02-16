@@ -83,9 +83,9 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
     setSocialSecurityArray(realSSN.split('')); // Opcional: Actualiza un array externo si es necesario
   }, [realSSN]);
 
-  // useEffect(() => {
-  //   console.log(socialSecurityArray)
-  // }, [socialSecurityArray]);
+  useEffect(() => {
+    formik.setFieldValue("social_security", socialSecurityArray.join(""));
+  }, [socialSecurityArray]);
 
   return (
     <>

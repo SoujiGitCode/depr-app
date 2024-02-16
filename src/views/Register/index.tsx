@@ -153,10 +153,10 @@ const Register = () => {
     }
   };
 
-  if (validate) {
-    sendUserForRegister();
-    setValidate(false);
-  }
+  // if (validate) {
+  //   sendUserForRegister();
+  //   setValidate(false);
+  // }
 
   useEffect(() => {
     if (selectedValue === 'No') {
@@ -186,11 +186,17 @@ const Register = () => {
     console.log('VALIDO');
   }, [formik.isValid, formik.errors]);
 
+
   useEffect(() => {
-    console.log(socialSecurityArray)
-    console.log(formik.values.social_security)
-    formik.setFieldValue("social_security", socialSecurityArray.join(""));
-  }, [socialSecurityArray]);
+    // Esto hará que Formik muestre los errores inmediatamente si los campos no cumplen con el esquema de validación.
+    formik.setTouched({
+      birthdate: true,
+      gender: true,
+      phone: true,
+      social_security: true,
+      email: true,
+    });
+  }, []);
 
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>

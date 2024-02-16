@@ -13,10 +13,10 @@ interface PhoneInputProps {
 }
 
 const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik }: PhoneInputProps) => {
-    const [value, setValue] = useState("");
+    const [displayValue, setDisplayValue] = useState("");
     // Inicializa el input con el formato deseado
     useEffect(() => {
-        setValue(formik.values.phone || "(___) ___-____");
+        setDisplayValue(formik.values.phone || "(___) ___-____");
     }, [formik.values.phone]);
 
     // const handleChange = (event) => {
@@ -24,9 +24,18 @@ const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik
     //     formik.setFieldValue(name, event.target.value);
     // };
 
+    function cleanPhoneNumber(phoneNumber) {
+        // Elimina todo lo que no sea dígitos
+        const onlyNumbers = phoneNumber.replace(/\D/g, '');
+        return onlyNumbers;
+    }
+
+
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const formattedValue = event.target.value; // Mantiene el formato (XXX) XXX-XXXX
-        formik.setFieldValue(name, formattedValue);
+        setDisplayValue(formattedValue)
+        formik.setFieldValue(name, cleanPhoneNumber(formattedValue));
     };
 
 
@@ -34,7 +43,7 @@ const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik
     return (
         <InputMask
             mask="(999) 999-9999"
-            value={formik.values[name]}
+            value={displayValue}
             onChange={handleChange}
             onBlur={formik.onBlur} // Correcto manejo de onBlur
             maskChar="_"
@@ -48,7 +57,6 @@ const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik
                     placeholder="(xxx) xxx-xxxx"
                     variant={variant}
                     // onChange={handleChange}
-                    value={formik.values[name]}
                     error={formik.touched[name] && Boolean(formik.errors[name])}
                     helperText={formik.touched[name] && formik.errors[name]}
                     InputLabelProps={{ shrink: true }}
