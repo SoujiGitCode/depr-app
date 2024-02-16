@@ -462,7 +462,6 @@ const Register = () => {
                 </Box>
 
                 <Box>
-
                   <Grid container spacing={0}>
                     <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                       <CustomLabel name="Primer Apellido" required={true} />

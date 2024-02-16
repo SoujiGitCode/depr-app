@@ -43,7 +43,6 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
     }
 
 
-    console.log(inputWithoutHyphens)
 
     // Detecta si se ha añadido un nuevo dígito o si se está borrando
     if (inputWithoutHyphens.length > realSSN.length) {
@@ -80,6 +79,7 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
   useEffect(() => {
     // console.log(realSSN)
     setSocialSecurityArray(realSSN.split('')); // Opcional: Actualiza un array externo si es necesario
+    setDisplaySSN(maskAndFormatSSN(realSSN));
   }, [realSSN]);
 
   useEffect(() => {
@@ -87,12 +87,18 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
     formik.setFieldValue("social_security", socialSecurityArray.join(""));
   }, [socialSecurityArray]);
 
+  useEffect(() => {
+    // console.log('render on ssi')
+    // console.log(socialSecurityArray.join(""))
+    setDisplaySSN(socialSecurityArray.join("").split(''));
+  }, []);
+
   return (
     <>
       <TextField
         id='social_security'
         name='social_security'
-        value={displaySSN}
+        value={maskAndFormatSSN(socialSecurityArray.join("")) || displaySSN}
         onChange={handleChange2}
         onKeyDown={handleKeyDown}
         placeholder="XXX-XX-XXXX"

@@ -4,6 +4,9 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { UserDetails } from "..";
 import { FormikProps } from "formik";
+import { FormControl, Grid } from "@mui/material";
+import { CustomLabel } from "@/components";
+import PhoneInput from "@/components/PhoneInput";
 
 interface ListItem {
   value: string;
@@ -23,202 +26,103 @@ const UserEditAdditionalInfo = ({
   listId,
   isEditMode,
 }: UserProfileInfoProps) => {
-  const customText = {
-    // "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-    //   borderColor: "pink",
-    //   borderRadius: 0,
-    //   border: "2px solid " + "#a09c9c92",
-    // },
-    // width: "100%",
-  };
 
-  const licTextField = {
-    // "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-    //   borderRadius: 0,
-    //   border: "2px solid " + "#a09c9c92",
-    // },
-    // width: "4.6rem",
-    // paddingRight: "1rem",
-  };
+  const genderList = [
+    { value: 'notAValidGender', label: 'Seleccione Género' },
+    { value: 'F', label: 'Femenino' },
+    { value: 'M', label: 'Masculino' },
+    { value: 'N', label: 'No Indica' }
+  ];
+
 
   return (
     <>
-      {/* Phone Number */}
-      <Box
-        sx={{
-          marginTop: '6.22rem !important',
-          display: "flex",
-          paddingBottom: "2rem",
-          width: "95%",
-          alignItems: "center !important"
-        }}
-      >
-        <Typography
-          sx={{
-            width: "49%",
-            fontWeight: "bold",
-            fontSize: "1.2rem",
-          }}
-        >
-          Número de Teléfono: &nbsp;
-        </Typography>
+      <Box>
+        <Grid container spacing={0}>
+          <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
+            <CustomLabel name="Teléfono" required={true} />
+            <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+              <PhoneInput
+                placeholder='Teléfono'
+                name="depr_phone"
+                id="depr_phon"
+                variant="outlined"
+                formik={formik}
+              />
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
+            <CustomLabel name="Género" required={false} />
+            <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+              <TextField
+                select
+                name="depr_gender"
+                id="depr_gender"
+                type="text"
+                variant="outlined"
+                value={formik.values.depr_gender}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.depr_gender && Boolean(formik.errors.depr_gender)}
+                helperText={formik.touched.depr_gender && formik.errors.depr_gender ? formik.errors.depr_gender : ''}
 
-        <div style={{ width: "50%" }}>
-          <TextField
-            id="depr_phone"
-            name="depr_phone"
-            sx={customText}
-            value={formik.values.depr_phone}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.depr_phone && formik.errors.depr_phone && (
-            <Typography
-              sx={{
-                color: "red",
-                fontSize: "0.8rem",
-                paddingTop: "0.5rem",
-              }}
-            >
-              {formik.errors.depr_phone}
-            </Typography>
-          )}
-        </div>
+              >
+                {genderList.map((option) => (
+                  <MenuItem key={option.value} value={option.value} disabled={option.value === 'notAValidGender'}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </FormControl>
+          </Grid>
+        </Grid>
       </Box>
 
-      {/* Genre */}
-      <Box
-        sx={{
-          display: "flex",
-          paddingBottom: "2rem",
-          width: "95%",
-          alignItems: "center !important"
-        }}
-      >
-        <Typography
-          sx={{
-            width: "49%",
-            fontWeight: "bold",
-            fontSize: "1.2rem",
-          }}
-        >
-          Género: &nbsp;
-        </Typography>
-        <TextField
-          select
-          name="depr_gender"
-          id="depr_gender"
-          type="text"
-          variant="outlined"
-          value={formik.values.depr_gender}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.depr_gender && Boolean(formik.errors.depr_gender)}
-          helperText={formik.touched.depr_gender && formik.errors.depr_gender}
-          sx={{
-            width: "50%",
-          }}
-        >
-          {listGenre.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-      </Box >
+      <Box>
+        <Grid container spacing={0}>
+          <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
+            <CustomLabel name="Licencia / Real ID" required={true} />
+          </Grid>
 
-      {/* ID Document */}
-      < Box
-        sx={{
-          display: "flex",
-          paddingBottom: "2rem",
-          width: "95%",
-          alignItems: "center !important"
-        }
-        }
-      >
-        <Typography
-          sx={{
-            width: "49%",
-            fontWeight: "bold",
-            fontSize: "1.2rem",
-          }}
-        >
-          Licencia / Real ID
-        </Typography>
+          <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
+            <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
+              <TextField
+                placeholder="Número de identificación"
+                name="identification"
+                id="identification"
+                type="text"
+                variant="outlined"
+                value={formik.values.identification}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.identification && Boolean(formik.errors.identification)}
+                helperText={formik.touched.identification && formik.errors.identification}
+              />
+            </FormControl>
+          </Grid>
 
-        <div style={{ width: "50%" }}>
-          <TextField
-            name="identification"
-            id="identification"
-            type="text"
-            variant="outlined"
-            value={formik.values.identification}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.identification &&
-              Boolean(formik.errors.identification)
-            }
-          />
-          {formik.touched.identification && formik.errors.identification && (
-            <Typography
-              sx={{
-                color: "red",
-                fontSize: "0.8rem",
-                paddingTop: "0.5rem",
-              }}
-            >
-              {formik.errors.identification}
-            </Typography>
-          )}
-        </div>
-      </Box >
-
-      {/* Email */}
-      < Box
-        sx={{
-          display: "flex",
-          paddingBottom: "2rem",
-          width: "95%",
-          alignItems: "center !important"
-        }}
-      >
-        <Typography
-          sx={{
-            width: "49%",
-            fontWeight: "bold",
-            fontSize: "1.2rem",
-          }}
-        >
-          Correo Electrónico: &nbsp;
-        </Typography>
-        <div style={{ width: "50%" }}>
-          <TextField
-            id="email"
-            name="email"
-            sx={customText}
-            inputProps={
-              { readOnly: true, }
-            }
-            variant="filled"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.email && formik.errors.email && (
-            <Typography
-              sx={{
-                color: "red",
-                fontSize: "0.8rem",
-                paddingTop: "0.5rem",
-              }}
-            >
-              {formik.errors.email}
-            </Typography>
-          )}
-        </div>
-      </Box >
+          <Grid item xs={12} sx={{ paddingX: '1rem' }}>
+            <CustomLabel name="Correo Electrónico" required={true} />
+            <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
+              <TextField
+                placeholder='Correo Electrónico'
+                name="email"
+                id="email"
+                type="text"
+                variant="filled"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
+                inputProps={
+                  { readOnly: true, }
+                }
+              />
+            </FormControl>
+          </Grid>
+        </Grid>
+      </Box>
     </>
   );
 };

@@ -96,6 +96,7 @@ const Profile = () => {
         body: {
           ...values,
           social_security: values.social_security,
+          depr_social_security: values.social_security,
           phone: values.depr_phone,
           gender: values.depr_gender,
           birthdate: values.depr_birthdate,
@@ -140,7 +141,7 @@ const Profile = () => {
 
   useEffect(() => {
     getDetails();
-    console.log('consulting info')
+    // console.log('consulting info')
   }, [isEditMode]);
 
 
@@ -250,37 +251,21 @@ const Profile = () => {
           <Box
             sx={{
               display: 'flex',
-              flexDirection: "row",
               width: '100%',
               minHeight: "auto",
               paddingLeft: '0%',
               paddingTop: "1.5rem",
-              marginBottom: '1rem !important'
+              justifyContent: 'center',
+              marginBottom: '2rem !important'
             }}
           >
-            <Box
-              sx={{
-                width: '100%',
-              }}
-            >
-
+            <Box sx={{ width: '100%', }}>
               <Grid container>
-                <Grid
-                  item
-                  xs={6}
-                  sx={{ display: 'flex', padding: 0, justifyContent: 'start' }}
-                >
-                  <img
-                    src={profileImage}
-                    alt="user-photo"
-                    className={styles["img-profile-style"]}
-                  />
+                <Grid item xs={12} lg={6} sx={{ justifyContent: isMobile ? 'center' : 'start', display: 'flex', alignItems: 'center', }}>
+                  <img src={profileImage} alt="user-photo" className={styles["img-profile-style"]} />
                 </Grid>
-
-                <Grid item xs={6} sx={{ display: 'flex', padding: 0, justifyContent: 'center', alignItems: 'center' }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
+                <Grid item xs={12} lg={6} sx={{ display: 'flex', justifyContent: isMobile ? 'center' : 'start', alignItems: 'center  !important', verticalAlign: 'center !important' }}>
+                  <Button variant="contained" color="primary"
                     style={{
                       width: '241.5px',
                       height: '38px',
@@ -293,226 +278,27 @@ const Profile = () => {
                     type="button"
                     onClick={handleOpenModal}
                   >
-                    Cambiar Contraseña<LockPersonIcon sx={{ fontSize: '18px' }} />
+                    Cambiar Contraseña <LockPersonIcon sx={{ fontSize: '14px' }} />
                   </Button>
-
-                  <Modal
-                    open={openModal}
-                    onClose={handleCloseModal}
-                    aria-labelledby="change-password-modal"
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        bgcolor: 'white !important',
-                        boxShadow: 24,
-                        p: 4,
-                        width: 400
-                      }}
-
-                    >
-                      <Grid container>
-
-                        <Grid item xs={12} className="mb-1  flex-center">
-                          <Typography color="" sx={{ fontSize: '18px' }}>
-                            Cambiar Contraseña
-                          </Typography>
-                        </Grid>
-                        {/* Grid para los inputs */}
-                        <Grid item xs={12}>
-                          <div className="mb-1">
-                            <TextField
-                              size="small"
-                              placeholder="Contraseña actual"
-                              type={showPassword ? "text" : "password"}
-                              name="currentPassword"
-                              fullWidth
-                              InputProps={{
-                                endAdornment: (
-                                  <InputAdornment position="end">
-                                    <IconButton
-                                      onClick={() => setShowPassword(!showPassword)}
-                                      edge="end"
-                                    >
-                                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                  </InputAdornment>
-                                ),
-                              }}
-                              onChange={(e: any) => setCurrentPassword(e.target.value)}
-                            />
-                          </div>
-                        </Grid>
-                        <Grid item xs={12} sx={{ marginBottom: 2 }}>
-                          <div className="mb-1">
-                            <TextField
-                              size="small"
-                              placeholder="Contraseña nueva"
-                              type={showPassword ? "text" : "password"}
-                              name="password"
-                              fullWidth
-                              InputProps={{
-                                endAdornment: (
-                                  <InputAdornment position="end">
-                                    <IconButton
-                                      onClick={() => setShowPassword(!showPassword)}
-                                      edge="end"
-                                    >
-                                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                  </InputAdornment>
-                                ),
-                              }}
-                              onChange={(e: any) => setPassword(e.target.value)}
-                            />
-                          </div>
-                        </Grid>
-                        <Grid item xs={12} sx={{ marginBottom: 1 }}>
-                          <div className="mb-1">
-                            <TextField
-                              size="small"
-                              placeholder="Confirmar Contraseña nueva"
-                              type={showPassword ? "text" : "password"}
-                              name="confirmPassword"
-                              fullWidth
-                              InputProps={{
-                                endAdornment: (
-                                  <InputAdornment position="end">
-                                    <IconButton
-                                      onClick={() => setShowPassword(!showPassword)}
-                                      edge="end"
-                                    >
-                                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                  </InputAdornment>
-                                ),
-                              }}
-                              onChange={(e: any) => setConfirmPassword(e.target.value)}
-                            />
-                          </div>
-
-                        </Grid>
-
-                        <Grid item xs={12} className="mb-1 mt-1">
-                          {passwordError && (
-                            <Typography color="error" sx={{ fontSize: '12px' }}>
-                              {passwordError}
-                            </Typography>
-                          )}
-                        </Grid>
-
-                        {/* Grid para los botones */}
-                        <Grid container item justifyContent="center">
-                          <Grid item xs={5} className="mr-1">
-                            <Button
-                              variant="outlined"
-                              color="primary"
-                              fullWidth
-                              onClick={handleCloseModal}
-                            >
-                              Cancelar
-                            </Button>
-                          </Grid>
-                          <Grid item xs={5}>
-                            <Button
-                              className={styles.submitButton}
-                              disabled={!isPasswordValid()}
-                              variant="contained"
-                              color="primary"
-                              fullWidth
-                              onClick={onSave}
-                            >
-                              Guardar
-                            </Button>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </Modal>
                 </Grid>
               </Grid>
-              {!isEditMode && userInfo ? (
-                <UserProfileInfo formik={formik} />
-              ) : (
-                <>{userInfo && <UserEditProfile formik={formik} />}</>
-              )}
+
+
+              <Grid item xs={12} >
+                {!isEditMode && userInfo ? (
+                  <UserProfileInfo formik={formik} isMobile={isMobile} />
+                ) : (
+                  <>{userInfo && <UserEditProfile formik={formik} isMobile={isMobile} />}</>
+                )}
+              </Grid>
+
             </Box>
           </Box>
-          {/*Botones */}
-          <Box
-            sx={{
-              // background: 'red',
-              flexDirection: "row",
-              display: "flex",
-              width: "100%",
-              justifyContent: "start",
-            }}
-          >
-            <Button
-              disabled={!isEditMode}
-              variant="contained"
-              type="submit"
-              className={styles["buttons-save"]}
-              sx={{ marginRight: "5% !important" }}
 
-              onClick={() => {
-                if (isEditMode) {
-                  // Valida los campos antes de guardar
-                  if (formik.isValid) {
-                    // Si está en modo edición y los campos son válidos, guarda los valores
-                    setFormValues({
-                      identification: formik.values.identification || '',
-                      email: formik.values.email || '',
-                      depr_first_name: formik.values.depr_first_name || '',
-                      depr_second_name: formik.values.depr_second_name || '',
-                      depr_last_name: formik.values.depr_last_name || '',
-                      depr_second_last_name: formik.values.depr_second_last_name || '',
-                      depr_birthdate: formik.values.depr_birthdate || '',
-                      depr_gender: formik.values.depr_gender || '',
-                      depr_phone: formik.values.depr_phone || '',
-                      social_security: formik.values.social_security || '',
-                    });
-
-                    // Llama a la función onSubmit de formik para manejar la lógica del envío del formulario
-                    formik.handleSubmit();
-                    setIsEditMode(false);
-                  } else {
-                    // Si los campos no son válidos, puedes mostrar un mensaje de error o tomar otras medidas
-                    console.log("Los campos contienen errores");
-                  }
-                } else {
-                  // No estás en modo edición
-                  setIsEditMode(false);
-                }
-              }}
-            >
-              Guardar
-            </Button>
-
-            <Button
-              variant="outlined"
-              type="submit"
-              onClick={editMode}
-              className={styles["buttons-save"]}
-            >
-              {isEditMode ? "Cancelar" : "Editar"}
-            </Button>
-          </Box>
         </Grid>
 
         {/*Second section */}
-        <Grid
-          item
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-          sm={5}
-        >
+        <Grid item sx={{ display: isMobile ? 'none' : 'flex', justifyContent: "center", }} sm={5}>
           <div style={{ alignItems: "center", display: "flex" }}>
             <Divider
               orientation="vertical"
@@ -535,7 +321,7 @@ const Profile = () => {
           >
             <>
               {!isEditMode && userInfo ? (
-                <UserAdditionalInfo formik={formik} />
+                <UserAdditionalInfo formik={formik} isMobile={isMobile} />
               ) : (
                 <>
                   {userInfo && (
@@ -551,7 +337,205 @@ const Profile = () => {
             </>
           </Box>
         </Grid>
-      </Grid>
+
+        {/*Botones */}
+        <Box
+          sx={{
+            // background: 'red',
+            flexDirection: "row",
+            display: "flex",
+            width: "100%",
+            justifyContent: "start",
+            marginBottom: "2rem !important",
+          }}
+        >
+          <Button
+            disabled={!isEditMode}
+            variant="contained"
+            type="submit"
+            className={styles["buttons-save"]}
+            sx={{ marginRight: "5% !important" }}
+            onClick={() => {
+              if (isEditMode) {
+                // Valida los campos antes de guardar
+                if (formik.isValid) {
+                  // Si está en modo edición y los campos son válidos, guarda los valores
+                  setFormValues({
+                    identification: formik.values.identification || '',
+                    email: formik.values.email || '',
+                    depr_first_name: formik.values.depr_first_name || '',
+                    depr_second_name: formik.values.depr_second_name || '',
+                    depr_last_name: formik.values.depr_last_name || '',
+                    depr_second_last_name: formik.values.depr_second_last_name || '',
+                    depr_birthdate: formik.values.depr_birthdate || '',
+                    depr_gender: formik.values.depr_gender || '',
+                    depr_phone: formik.values.depr_phone || '',
+                    social_security: formik.values.social_security || '',
+                  });
+
+                  // Llama a la función onSubmit de formik para manejar la lógica del envío del formulario
+                  formik.handleSubmit();
+                  setIsEditMode(false);
+                } else {
+                  // Si los campos no son válidos, puedes mostrar un mensaje de error o tomar otras medidas
+                  console.log("Los campos contienen errores");
+                }
+              } else {
+                // No estás en modo edición
+                setIsEditMode(false);
+              }
+            }}
+          >
+            Guardar
+          </Button>
+
+          <Button
+            variant="outlined"
+            type="submit"
+            onClick={editMode}
+            className={styles["buttons-save"]}
+          >
+            {isEditMode ? "Cancelar" : "Editar"}
+          </Button>
+        </Box>
+
+        <Modal
+          open={openModal}
+          onClose={handleCloseModal}
+          aria-labelledby="change-password-modal"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <Box
+            sx={{
+              bgcolor: 'white !important',
+              boxShadow: 24,
+              p: 4,
+              width: 400
+            }}
+
+          >
+            <Grid container>
+              <Grid item xs={12} className="mb-1  flex-center">
+                <Typography color="" sx={{ fontSize: '18px' }}>
+                  Cambiar Contraseña
+                </Typography>
+              </Grid>
+              {/* Grid para los inputs */}
+              <Grid item xs={12}>
+                <div className="mb-1">
+                  <TextField
+                    size="small"
+                    placeholder="Contraseña actual"
+                    type={showPassword ? "text" : "password"}
+                    name="currentPassword"
+                    fullWidth
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={() => setShowPassword(!showPassword)}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    onChange={(e: any) => setCurrentPassword(e.target.value)}
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={12} sx={{ marginBottom: 2 }}>
+                <div className="mb-1">
+                  <TextField
+                    size="small"
+                    placeholder="Contraseña nueva"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    fullWidth
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={() => setShowPassword(!showPassword)}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    onChange={(e: any) => setPassword(e.target.value)}
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={12} sx={{ marginBottom: 1 }}>
+                <div className="mb-1">
+                  <TextField
+                    size="small"
+                    placeholder="Confirmar Contraseña nueva"
+                    type={showPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    fullWidth
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={() => setShowPassword(!showPassword)}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    onChange={(e: any) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
+
+              </Grid>
+
+              <Grid item xs={12} className="mb-1 mt-1">
+                {passwordError && (
+                  <Typography color="error" sx={{ fontSize: '12px' }}>
+                    {passwordError}
+                  </Typography>
+                )}
+              </Grid>
+
+              {/* Grid para los botones */}
+              <Grid container item justifyContent="center">
+                <Grid item xs={5} className="mr-1">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    fullWidth
+                    onClick={handleCloseModal}
+                  >
+                    Cancelar
+                  </Button>
+                </Grid>
+                <Grid item xs={5}>
+                  <Button
+                    className={styles.submitButton}
+                    disabled={!isPasswordValid()}
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    onClick={onSave}
+                  >
+                    Guardar
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Box>
+        </Modal>
+      </Grid >
     </>
   );
 };

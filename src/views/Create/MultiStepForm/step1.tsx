@@ -42,31 +42,28 @@ interface ItemData {
 const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
 
 
-    const [townsData, setTownsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione un Pueblo' }]);
+    const [townsData, setTownsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Pueblo' }]);
     const [schoolsData, setSchoolsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Escuela' }]);
+
     const [selectedValue, setSelectedValue] = useState<string | null>('No');
     const [showSocialSecurity, setShowSocialSecurity] = useState(false);
-    const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill("") ?? null);
+    const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill(""));
     const [confirmEmail1, setConfirmEmail1] = useState('');
     const [confirmEmail2, setConfirmEmail2] = useState('');
 
     const gradesList = [
-        {
-            value: 'none',
-            label: 'No Recuerdo',
-        },
-        {
-            value: 'pri',
-            label: 'Primaria / Elemental',
-        },
-        {
-            value: 'sec',
-            label: 'Intermedia',
-        },
-        {
-            value: 'sup',
-            label: 'Secundaria / Superior',
-        },
+        { value: 'notAValidGrade', label: 'Seleccione un Nivel Acádemico' },
+        { value: 'none', label: 'No Recuerdo' },
+        { value: 'pri', label: 'Primaria / Elemental' },
+        { value: 'sec', label: 'Intermedia' },
+        { value: 'sup', label: 'Secundaria / Superior' },
+    ];
+
+    const genderList = [
+        { value: 'notAValidGender', label: 'Seleccione Género' },
+        { value: 'F', label: 'Femenino' },
+        { value: 'M', label: 'Masculino' },
+        { value: 'N', label: 'No Indica' }
     ];
 
     const certificatesList = [
@@ -94,20 +91,6 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         },
     ];
 
-    const genderList = [
-        {
-            value: 'F',
-            label: 'Femenino',
-        },
-        {
-            value: 'M',
-            label: 'Masculino',
-        },
-        {
-            value: 'N',
-            label: 'No Indica',
-        },
-    ];
 
     const formik = useFormik({
         validateOnMount: true,
@@ -133,7 +116,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             confirmEmail1: confirmEmail1 || '',
             email2: formData.email2 || '',
             confirmEmail2: confirmEmail2 || '',
-            schoolTown: formData.schoolTown || '1',
+            schoolTown: formData.schoolTown || townsData[0].id,
             school_code: formData.school_code || schoolsData[0].id,
             grade: gradesList[0].value || '',
             grade_year: formData.grade_year || '',
@@ -263,8 +246,9 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         fetchSchools('1');
         formik.setFieldValue('certification_type_id', formData.certification_type_id);
         console.log('FORM DATA STEP1')
-    }, []);
 
+        setSocialSecurityArray(formData.social_security ? formData.social_security.split('') : new Array(9).fill(""));
+    }, []);
 
     // Cada vez que cambia el valor de schoolTown en Formik, actualizamos las escuelas.
     useEffect(() => {
@@ -310,6 +294,7 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         setConfirmEmail2(value);
         formik.setFieldValue('confirmEmail2', value);
     };
+
 
 
     return (

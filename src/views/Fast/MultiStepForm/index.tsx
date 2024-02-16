@@ -140,10 +140,6 @@ const MultiStepForm = ({
 
     }, [formData]);
 
-
-
-    console.log(currentStep)
-
     return (
         <Box sx={{ padding: '1rem !important', width: '100%' }}>
             <Grid container >

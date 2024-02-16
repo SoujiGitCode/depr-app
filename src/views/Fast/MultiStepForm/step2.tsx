@@ -57,7 +57,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         initialValues: {
             schoolTown: formData.schoolTown || townsData[0].id,
             school_code: formData.school_code || schoolsData[0].id,
-            grade: gradesList[0].value,
+            grade: formData.grade || gradesList[0].value,
             grade_year: formData.grade_year || '',
             certificateToRequest: certificatesList[0].value,
         },
@@ -158,6 +158,8 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         }
     }, [schoolsData]);
 
+
+
     return (
         <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
             <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
@@ -242,7 +244,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 error={formik.touched.grade && Boolean(formik.errors.grade)}
-                                helperText={formik.touched.grade && formik.errors.grade}
+                                helperText={formik.touched.grade && typeof formik.errors.grade === 'string' ? formik.errors.grade : undefined}
 
                             >
                                 {gradesList.map((option, index) => (

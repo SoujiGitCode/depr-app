@@ -188,6 +188,11 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         setPhone(parsePhoneNumber(formik.values.phone))
     }, [formik.values.phone])
 
+
+    useEffect(() => {
+        setSocialSecurityArray(formData.social_security ? formData.social_security.split('') : new Array(9).fill(""));
+    }, [formData.social_security]);
+
     return (
         <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
             <Box>
@@ -576,6 +581,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 socialSecurityArray={socialSecurityArray}
                                 formik={formik}
                                 setSocialSecurityArray={setSocialSecurityArray}
+
                             />
                         </FormControl>
                     </Grid>
