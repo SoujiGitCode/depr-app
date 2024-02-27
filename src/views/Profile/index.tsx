@@ -15,6 +15,7 @@ import profileImage from "@/assets/images/profile-image.png"
 import ApiRequest from "@/utils/services/apiService";
 import useAlert from "@/hooks/useAlert";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import PurpleHeader from "@/components/PurpleHeader";
 
 const listId = [
   { value: "licencia", label: "Lic" },
@@ -242,8 +243,10 @@ const Profile = () => {
 
   return (
     <>
-      <Grid container sx={{ width: '100%', margin: 0, paddingLeft: isMobile ? '1rem ' : '5rem', paddingRight: isMobile ? '1rem' : '5rem' }}>
-        <Grid item xs={12} lg={6} sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", paddingX: '1rem' }} >
+      <Grid container sx={{ width: '100%', margin: 0 }}>
+
+        <PurpleHeader />
+        <Grid item xs={12} lg={6} sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", paddingLeft: isMobile ? '1rem ' : '5rem', paddingRight: isMobile ? '1rem' : '5rem' }} >
           {/* title*/}
           <TitleSection />
 
@@ -345,6 +348,7 @@ const Profile = () => {
             flexDirection: "row",
             display: "flex",
             width: "100%",
+            paddingLeft: isMobile ? '1rem ' : '5rem',
             justifyContent: "start",
             marginBottom: "2rem !important",
           }}

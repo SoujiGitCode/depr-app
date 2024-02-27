@@ -48,12 +48,12 @@ export const registerValidation = Yup.object().shape({
 
     email: Yup.string()
         .email("Dirección de correo electrónico no válida")
-        .required("Correo electronico es requerido")
+        .required("Correo electrónico es requerido")
         .max(100, "máximo 100 caracteres"),
 
-    gender: Yup.string()
-        .notOneOf(['notAValidGender'], 'Debe seleccionar una opción valida')
-        .required('Debe seleccionar una opción valida'),
+    gender: Yup.string(),
+    // .notOneOf(['notAValidGender'], 'Debe seleccionar una opción valida'),
+    // .required('Debe seleccionar una opción valida'),
 
     phone: Yup.string()
         .required("Teléfono requerido")
@@ -66,7 +66,8 @@ export const registerValidation = Yup.object().shape({
         .test('len', 'Deben ser 9 caracteres', val => val.length === 9),
 
 
-    birthdate: Yup.string().required("Fecha de nacimiento requerida"),
+    birthdate: Yup.string(),
+    // .required("Fecha de nacimiento requerida"),
 
     password: Yup.string()
         .required("Contraseña no puede estar vacío")

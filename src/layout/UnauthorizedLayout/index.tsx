@@ -35,7 +35,7 @@ const UnautoziredLayout = () => {
             <Grid item xs>
               {/* Contenido del Header */}
               <Typography variant="body1" color={'white'}>
-                Portal oficial del Gobierno de Puerto Rico
+                Portal Oficial del Gobierno de Puerto Rico
               </Typography>
             </Grid>
           </Grid>
@@ -47,7 +47,7 @@ const UnautoziredLayout = () => {
           {/* Primer Grid */}
           <Grid container alignItems="center" spacing={0.5}>
             <Grid item xs={12} lg={5}>
-              <Typography variant="h2" sx={{ textAlign: 'center' }}>
+              <Typography variant="h2" sx={{ textAlign: isMobile ? 'center' : 'start', paddingLeft: !isMobile ? '2.5rem !important' : '0' }}>
                 PORTAL DE CERTIFICACIONES ACADÉMICAS
               </Typography>
             </Grid>
@@ -59,12 +59,12 @@ const UnautoziredLayout = () => {
             <Grid container item xs={12} lg={2} alignItems="center" justifyContent="center">
               <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap">
                 <div>
-                  <Button variant="contained" color="secondary" href={PATH.LOGIN} sx={{ width: '150px', height: '37px' }}>
+                  <Button variant="contained" color="secondary" href={PATH.LOGIN} sx={{ width: '150px', height: '37px', fontSize: '0.8rem' }}>
                     Iniciar Sesión
                   </Button>
                 </div>
                 <div>
-                  <Button variant="outlined" color="secondary" href={PATH.REGISTER} sx={{ width: '150px', height: '37px' }}>
+                  <Button variant="outlined" color="secondary" href={PATH.REGISTER} sx={{ width: '150px', height: '37px', fontSize: '0.8rem' }}>
                     Registrarme
                   </Button>
                 </div>

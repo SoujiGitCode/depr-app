@@ -52,7 +52,7 @@ const Recovery = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email("Dirección de correo electrónico no válida")
-        .required("Correo electronico es requerido")
+        .required("Correo electrónico es requerido")
         .max(100, "máximo 100 caracteres"),
     }),
 

@@ -38,11 +38,10 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     const [schoolsData, setSchoolsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Escuela' }]);
 
     const gradesList = [
-        { value: 'notAValidGrade', label: 'Seleccione un Nivel Acádemico' },
-        { value: 'none', label: 'No Recuerdo' },
-        { value: 'pri', label: 'Primaria / Elemental' },
-        { value: 'sec', label: 'Intermedia' },
-        { value: 'sup', label: 'Secundaria / Superior' },
+        { value: 'notAValidGrade', label: 'Seleccione un Nivel Académico ' },
+        { value: 'ELEMENTAL', label: 'Primaria / Elemental' },
+        { value: 'INTERMEDIA', label: 'Intermedia' },
+        { value: 'SUPERIOR', label: 'Secundaria / Superior' },
     ];
 
     const certificatesList = [
@@ -232,7 +231,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             <Box>
                 <Grid container spacing={0}>
                     <Grid xs={12} lg={6} sx={{ paddingX: '1rem' }}>
-                        <CustomLabel name="Nivel Acádemico" required={false} />
+                        <CustomLabel name="Nivel Académico " required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
                                 select
@@ -259,7 +258,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         <CustomLabel name="Año de Graduación o Último Año Cursado" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
-                                placeholder='2000'
+                                placeholder=''
                                 name="grade_year"
                                 id="grade_year"
                                 type="text"
@@ -269,6 +268,8 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 onBlur={formik.handleBlur}
                                 error={formik.touched.grade_year && Boolean(formik.errors.grade_year)}
                                 helperText={formik.touched.grade_year && typeof formik.errors.grade_year === 'string' ? formik.errors.grade_year : undefined}
+                                inputProps={{ maxLength: 4 }}
+
                             />
                         </FormControl>
                     </Grid>

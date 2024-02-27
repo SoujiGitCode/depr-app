@@ -85,7 +85,7 @@ const Landing = () => {
             </Typography>
 
             <Typography variant="h5" sx={{ marginTop: '2em !important', marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
-              Conoce los Tipos de Certificaciones Académicas
+              Conoce los tipos de Certificaciones Académicas
             </Typography>
 
           </Grid>

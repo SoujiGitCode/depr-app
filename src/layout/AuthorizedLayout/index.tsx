@@ -29,7 +29,7 @@ const AuthorizedLayout = () => {
         onClick={toggleDrawer}
         sx={{ display: isMobile ? 'block' : 'none' }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'start', justifyContent: 'center' }}>
           <MenuIcon />
           <Typography variant="caption" sx={{ fontSize: '0.75rem' }}>MENU</Typography>
         </Box>
@@ -50,7 +50,7 @@ const AuthorizedLayout = () => {
         }
 
       </Grid>
-      <Grid item xs={12} lg={11} sx={{ display: 'flex', alignItems: 'center', minHeight: '100%' }}>
+      <Grid item xs={12} lg={11} sx={{ display: 'flex', alignItems: 'start', minHeight: '100%' }}>
         <Outlet />
       </Grid>
 

@@ -176,7 +176,7 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
             }}
           >
             <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
-              Correo electronico: &nbsp;
+              Correo electrónico: &nbsp;
             </Typography>
             <Typography sx={{ lineBreak: "anywhere", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
               {formik.values.email}

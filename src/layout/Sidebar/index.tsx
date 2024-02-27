@@ -32,7 +32,7 @@ const Sidebar = () => {
         children={
           <AppsIcon sx={{ color: "white", fontSize: "1.5rem !important" }} />
         }
-        text="Dashboard"
+        text="Inicio"
         redirect={PATH.DASHBOARD}
       />
       <Options
@@ -43,7 +43,7 @@ const Sidebar = () => {
       />
       <Options
         children={<PersonIcon sx={{ color: "white", fontSize: "1.5rem" }} />}
-        text="Profile"
+        text="Perfil"
         //redirect={PATH.PROFILE}
         redirect={PATH.PROFILE}
       />

@@ -33,6 +33,7 @@ import { registerValidation } from '@/validations/registerValidation';
 import ProgressStatus from '@/components/ProgressStatus/ProgressStatus';
 import MultiStepForm from './MultiStepForm';
 import { useParams } from 'react-router-dom';
+import PurpleHeader from '@/components/PurpleHeader';
 
 interface FormData {
   email: string;
@@ -156,38 +157,43 @@ const Create = () => {
 
   return (
 
-    <Grid container sx={{ width: '100%', margin: 0, paddingLeft: isMobile ? '1rem ' : '5rem', paddingRight: isMobile ? '1rem' : '5rem' }}>
+    <>
 
-      <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'start', }}>
+      <Grid container sx={{ width: '100%', margin: 0 }}>
+        <PurpleHeader />
+        <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'start', paddingLeft: isMobile ? '1rem ' : '5rem', paddingRight: isMobile ? '1rem' : '5rem' }}>
 
-        <Grid item xs={12} sx={{ marginBottom: "1em !important", marginTop: "4em !important", display: 'flex', width: '100%', justifyContent: isMobile ? 'center' : 'start' }}>
-          <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
-            Crear Solicitud {formTitle}
-          </Typography>
+          <Grid item xs={12} sx={{ marginBottom: "1em !important", marginTop: "4em !important", display: 'flex', width: '100%', justifyContent: isMobile ? 'center' : 'start' }}>
+            <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
+              Crear Solicitud {formTitle}
+            </Typography>
+          </Grid>
+
+
+          <Grid item xs={12} sx={{ marginY: '4rem !important' }}>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.1em !important' }}>
+              Solicite su certificado en formato digital.
+              Puede tardar hasta 5 días en ser procesada y enviada.
+            </Typography>
+          </Grid>
+
+          <MultiStepForm
+            onBack={onBack}
+            currentStep={activeStep}
+            changeStep={setActiveStep}
+            isStepValid={isStepValid}
+            setStepValid={setStepValid}
+            formData={formData}
+            updateFormData={updateFormData}
+            isAuthenticated={isAuthenticated}
+          />
+
         </Grid>
 
+      </Grid >
+    </>
 
-        <Grid item xs={12} sx={{ marginY: '4rem !important' }}>
-          <Typography variant="body1" gutterBottom sx={{ fontSize: '1.1em !important' }}>
-            Solicite su certificado en formato digital.
-            Puede tardar hasta 5 días en ser procesada y enviada.
-          </Typography>
-        </Grid>
 
-        <MultiStepForm
-          onBack={onBack}
-          currentStep={activeStep}
-          changeStep={setActiveStep}
-          isStepValid={isStepValid}
-          setStepValid={setStepValid}
-          formData={formData}
-          updateFormData={updateFormData}
-          isAuthenticated={isAuthenticated}
-        />
-
-      </Grid>
-
-    </Grid >
   );
 };
 

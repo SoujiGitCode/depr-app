@@ -32,6 +32,7 @@ import { ConfirmationModal } from '@/components';
 import { registerValidation } from '@/validations/registerValidation';
 import ProgressStatus from '@/components/ProgressStatus/ProgressStatus';
 import MultiStepForm from './MultiStepForm';
+import PurpleHeader from '@/components/PurpleHeader';
 
 
 interface FormData {
@@ -70,7 +71,7 @@ const Fast = () => {
     email: '',
     schoolTown: '',
     school_code: '',
-    grade: 'none',
+    grade: 'notAValidGrade',
     grade_year: '',
     identification_type: '',
     identification: '',
@@ -155,7 +156,12 @@ const Fast = () => {
 
   return (
 
-    <Grid container sx={{ width: '100%', margin: 0, pading: '1rem !important' }}>
+    <Grid container sx={{ width: '100%', margin: ' 0 !important', pading: '0rem 0rem 0rem 0rem !important' }}>
+
+      {token !== "" && isAuthenticated && (
+        <PurpleHeader />)
+      }
+
 
       {/* <Grid item xs={12}
         sx={{
@@ -174,14 +180,14 @@ const Fast = () => {
 
         <Box sx={{ height: 'auto', display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'center' : 'start', padding: '1rem', paddingLeft: isMobile ? '1rem' : '4rem' }}>
           <Grid container>
-            <Grid item xs={12} sx={{}}>
+            {/* <Grid item xs={12} sx={{}}>
               <Button
                 sx={{ background: 'none', marginY: '5rem !important', color: '#000', textTransform: 'none', fontSize: '1.2rem' }} // Estilos para posicionar el botón a la izquierda
                 onClick={() => onBack()}
               >
                 &lt; Volver
               </Button>
-            </Grid>
+            </Grid> */}
 
             <Grid item xs={12} >
               <Typography variant="h2" gutterBottom sx={{ fontSize: '2.2em !important', fontWeight: 'bolder' }}>

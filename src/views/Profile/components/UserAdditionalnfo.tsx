@@ -72,7 +72,7 @@ const UserAdditionalInfo: React.FC<UserProfileInfoProps> = ({ formik, isMobile }
         }}
       >
         <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-          Correo electronico: &nbsp;
+          Correo electrónico: &nbsp;
         </Typography>
         <Typography sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}>
           {formik.values.email}

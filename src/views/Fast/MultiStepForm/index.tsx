@@ -181,7 +181,7 @@ const MultiStepForm = ({
 
                             <>
                                 <Button
-                                    disabled={currentStep === 0}
+                                    // disabled={currentStep === 0}
                                     variant="outlined"
                                     color="primary"
                                     style={{

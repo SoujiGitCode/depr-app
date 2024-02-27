@@ -185,7 +185,7 @@ const Home = () => {
           <Grid container justifyContent="center" alignItems="center">
             <Grid item xs={10} sx={{ marginBottom: "4em !important", marginTop: "2em !important" }}>
               <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
-                Conoce los Tipos de Certificaciones Académicas
+                Conoce los tipos de Certificaciones Académicas
               </Typography>
             </Grid>
 

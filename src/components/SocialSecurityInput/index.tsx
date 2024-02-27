@@ -73,6 +73,11 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
     if (e.key === 'Backspace') {
       setRealSSN((prev) => prev.slice(0, -1));
     }
+
+    if (!e.key.match(/[0-9]/) && e.key.length === 1) {
+      console.log('new val')
+      e.preventDefault();
+    }
   };
 
   // Efecto para actualizar Formik cuando cambia el realSSN
@@ -90,7 +95,10 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
   useEffect(() => {
     // console.log('render on ssi')
     // console.log(socialSecurityArray.join(""))
-    setDisplaySSN(socialSecurityArray.join("").split(''));
+    // setDisplaySSN(socialSecurityArray.join("").split(''));
+    setDisplaySSN(maskAndFormatSSN(socialSecurityArray.join("")));
+    console.log(socialSecurityArray.join(''))
+    setRealSSN(socialSecurityArray.join(''));
   }, []);
 
   return (
@@ -98,7 +106,7 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
       <TextField
         id='social_security'
         name='social_security'
-        value={maskAndFormatSSN(socialSecurityArray.join("")) || displaySSN}
+        value={displaySSN}
         onChange={handleChange2}
         onKeyDown={handleKeyDown}
         placeholder="XXX-XX-XXXX"

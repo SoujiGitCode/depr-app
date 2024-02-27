@@ -187,16 +187,16 @@ const Register = () => {
   }, [formik.isValid, formik.errors]);
 
 
-  useEffect(() => {
-    // Esto hará que Formik muestre los errores inmediatamente si los campos no cumplen con el esquema de validación.
-    formik.setTouched({
-      birthdate: true,
-      gender: true,
-      phone: true,
-      social_security: true,
-      email: true,
-    });
-  }, []);
+  // useEffect(() => {
+  //   // Esto hará que Formik muestre los errores inmediatamente si los campos no cumplen con el esquema de validación.
+  //   formik.setTouched({
+  //     birthdate: true,
+  //     gender: true,
+  //     // phone: true,
+  //     // social_security: true,
+  //     // email: true,
+  //   });
+  // }, []);
 
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>
