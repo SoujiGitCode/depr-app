@@ -45,23 +45,24 @@ const UnautoziredLayout = () => {
         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
 
           {/* Primer Grid */}
-          <Grid container alignItems="center" spacing={0.5} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Grid container alignItems="center" spacing={0.5} sx={{ display: 'flex', justifyContent: 'space-around' }}>
             <Grid item xs={12} lg={5}>
-              <Typography variant="h2" sx={{ textAlign: isMobile ? 'center' : 'start', paddingLeft: !isMobile ? '2.5rem !important' : '0' }}>
+              <Typography variant="h2" sx={{ textAlign: isMobile ? 'center' : 'start', paddingLeft: !isMobile ? '2rem !important' : '0' }}>
                 PORTAL DE CERTIFICACIONES ACADÉMICAS
               </Typography>
             </Grid>
 
-            <Grid item xs={12} lg={3} sx={{ textAlign: isMobile ? 'center' : 'start' }}>
+            <Grid item xs={12} lg={3} sx={{ textAlign: isMobile ? 'center' : 'start', paddingLeft: !isMobile ? '2rem !important' : '0' }}>
               <img src={logo} alt="Logo" style={{ height: 'auto', width: isMobile ? '50%' : '60%' }} />
             </Grid>
 
             <Grid item xs={12} lg={3}
               sx={{
                 display: 'flex', // Habilita flexbox
-                flexDirection: 'column', // Alinea los elementos en columna
+                flexDirection: 'row', // Alinea los elementos en columna
                 alignItems: 'center', // Centra horizontalmente
-                justifyContent: 'center', // Centra verticalmente
+                justifyContent: 'right', // Centra verticalmente
+                paddingRight: !isMobile ? '2rem !important' : '0'
 
               }}
             >
