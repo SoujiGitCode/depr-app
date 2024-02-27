@@ -42,10 +42,10 @@ const UnautoziredLayout = () => {
         </Box>
 
         {/* Nav */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', padding: 2, flexDirection: 'row' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
 
           {/* Primer Grid */}
-          <Grid container alignItems="center" spacing={0.5}>
+          <Grid container alignItems="center" spacing={0.5} sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Grid item xs={12} lg={5}>
               <Typography variant="h2" sx={{ textAlign: isMobile ? 'center' : 'start', paddingLeft: !isMobile ? '2.5rem !important' : '0' }}>
                 PORTAL DE CERTIFICACIONES ACADÉMICAS
@@ -53,23 +53,49 @@ const UnautoziredLayout = () => {
             </Grid>
 
             <Grid item xs={12} lg={3} sx={{ textAlign: isMobile ? 'center' : 'start' }}>
-              <img src={logo} alt="Logo" style={{ height: 'auto', width: isMobile ? '50%' : '50%' }} />
+              <img src={logo} alt="Logo" style={{ height: 'auto', width: isMobile ? '50%' : '60%' }} />
             </Grid>
 
-            <Grid container item xs={12} lg={2} alignItems="center" justifyContent="center">
-              <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap">
+            <Grid item xs={12} lg={3}
+              sx={{
+                display: 'flex', // Habilita flexbox
+                flexDirection: 'column', // Alinea los elementos en columna
+                alignItems: 'center', // Centra horizontalmente
+                justifyContent: 'center', // Centra verticalmente
+
+              }}
+            >
+              <Stack
+                spacing={{ xs: 1, sm: 2 }}
+                direction="column"
+                sx={{
+                  display: 'flex', // Aunque Stack ya usa flexbox, lo especificamos por claridad
+                  alignItems: 'center', // Alineación horizontal de los elementos del Stack
+                }}
+              >
                 <div>
-                  <Button variant="contained" color="secondary" href={PATH.LOGIN} sx={{ width: '150px', height: '37px', fontSize: '0.8rem' }}>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    href={PATH.LOGIN}
+                    sx={{ width: '150px', height: '37px', fontSize: '0.8rem' }}
+                  >
                     Iniciar Sesión
                   </Button>
                 </div>
                 <div>
-                  <Button variant="outlined" color="secondary" href={PATH.REGISTER} sx={{ width: '150px', height: '37px', fontSize: '0.8rem' }}>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    href={PATH.REGISTER}
+                    sx={{ width: '150px', height: '37px', fontSize: '0.8rem' }}
+                  >
                     Registrarme
                   </Button>
                 </div>
               </Stack>
             </Grid>
+
 
 
           </Grid>
