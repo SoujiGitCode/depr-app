@@ -119,7 +119,7 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
                     {/* Segundo Contenedor */}
                     <Grid item xs={12}>
                         <Box display="flex" className={styles.footerSecondContainer}>
-                            <Typography variant="body1" className={styles.footerSecondContainerText} >2022 © Departamento de Educación de Puerto Rico</Typography>
+                            <Typography variant="body1" className={styles.footerSecondContainerText} >2024 © Departamento de Educación de Puerto Rico</Typography>
                         </Box>
                     </Grid>
                 </Grid>

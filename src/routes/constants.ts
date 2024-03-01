@@ -11,4 +11,5 @@ export const PATH = {
   PROFILE: "/profile",
   RECOVERY: "/recovery",
   RECOVERY_TOKEN: "/recovery-token/:t",
+  TERMS_AND_CONDITIONS: "/terms-and-conditions",
 };

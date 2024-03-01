@@ -23,9 +23,12 @@ import { step1Validations } from './validations/step1Validations';
 import { requestSchools, requestTowns } from '@/views/Create/functions';
 import SocialSecurityInput from '@/components/SocialSecurityInput';
 import PhoneInput from '@/components/PhoneInput';
+import { TermsandConditionsCheckBox } from '@/components';
 
 
 interface StepProps {
+    termsandConditionsCheckBox: boolean;
+    setTermsandConditionsCheckBox: (status: boolean) => void;
     isStepValid: boolean;
     setStepValid: (valid: boolean) => void;
     onStepCompleted: (data: any) => void;
@@ -39,7 +42,7 @@ interface ItemData {
 }
 
 
-const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
+const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
 
 
     const [townsData, setTownsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Pueblo' }]);
@@ -838,13 +841,18 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                             </FormControl>
                         </Grid>
                     </Grid>
+
+                    <Grid item xs={12} lg={12} sx={{ paddingX: '1rem', marginY: '2rem !important' }}>
+                        < TermsandConditionsCheckBox checkStatus={termsandConditionsCheckBox} setCheckStatus={setTermsandConditionsCheckBox} />
+                    </Grid>
+
                 </Box>
 
             </>
             {/*----------FIN Enviar a:--------*/}
 
 
-        </form>
+        </form >
     );
 };
 

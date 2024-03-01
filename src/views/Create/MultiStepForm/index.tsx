@@ -67,6 +67,7 @@ const MultiStepForm = ({
     const [onSendingData, setOnSendingData] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [modalType, setModalType] = useState<'error' | 'success'>('error');
+    const [termsandConditionsCheckBox, seetTermsandConditionsCheckBox] = useState(false);
 
     const customContent = {
         success: {
@@ -141,6 +142,8 @@ const MultiStepForm = ({
                 <Grid item xs={12} style={{ marginBottom: '3rem !important' }}>
                     {currentStep === 0 && (
                         <Step1
+                            termsandConditionsCheckBox={termsandConditionsCheckBox}
+                            setTermsandConditionsCheckBox={seetTermsandConditionsCheckBox}
                             isStepValid={isStepValid}
                             setStepValid={setStepValid}
                             updateFormData={updateFormData}
@@ -157,7 +160,7 @@ const MultiStepForm = ({
 
                             <>
                                 <Button
-                                    disabled={!isStepValid}
+                                    disabled={!isStepValid || !termsandConditionsCheckBox}
                                     type='submit'
                                     variant="contained"
                                     color="primary"

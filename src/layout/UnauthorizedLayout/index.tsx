@@ -67,12 +67,14 @@ const UnautoziredLayout = () => {
               }}
             >
               <Stack
-                spacing={{ xs: 1, sm: 2 }}
+                spacing={{ xs: 1, sm: 1 }}
                 direction="column"
                 sx={{
                   display: 'flex', // Aunque Stack ya usa flexbox, lo especificamos por claridad
                   alignItems: 'center', // Alineación horizontal de los elementos del Stack
                 }}
+                useFlexGap
+
               >
                 <div>
                   <Button
@@ -84,6 +86,7 @@ const UnautoziredLayout = () => {
                     Iniciar Sesión
                   </Button>
                 </div>
+
                 <div>
                   <Button
                     variant="outlined"

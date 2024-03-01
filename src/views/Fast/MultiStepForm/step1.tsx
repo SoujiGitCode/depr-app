@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { PATH } from '@/routes/constants';
 
 import {
     Grid,
@@ -21,8 +22,11 @@ import { requestSchools, requestTowns } from '../functions';
 import { convertLength } from '@mui/material/styles/cssUtils';
 
 import WarningIcon from "@mui/icons-material/Warning";
+import { TermsandConditionsCheckBox } from '@/components';
 
 interface StepProps {
+    termsandConditionsCheckBox: boolean;
+    setTermsandConditionsCheckBox: (status: boolean) => void;
     isStepValid: boolean;
     setStepValid: (valid: boolean) => void;
     onStepCompleted: (data: any) => void;
@@ -31,7 +35,7 @@ interface StepProps {
 }
 
 
-const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
+const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
     const [validate, setValidate] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
 
@@ -121,17 +125,19 @@ const Step1 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     <Grid item xs={10} sx={{ marginTop: "2.5em !important", marginBottom: "2.5em !important", paddingX: '1rem' }}>
 
                         <Grid container alignItems="center" >
-                            <Grid item xs={3} lg={1}>
+                            {/* <Grid item xs={3} lg={1}>
                                 <IconButton color="warning">
                                     <WarningIcon fontSize="large" />
                                 </IconButton>
-                            </Grid>
+                            </Grid> */}
 
-                            <Grid item xs={9} lg={10}>
-                                <Typography variant="body1" color="textPrimary">
+                            <Grid item xs={12} lg={12}>
+                                {/* <Typography variant="body1" color="textPrimary">
                                     Al presionar el botón de siguiente, confirma que ha leído las advertencias y acepta las
-                                    <span style={{ color: '#1FAEEB', position: 'relative', bottom: '' }}> Condiciones de Uso</span>.
-                                </Typography>
+                                    <span style={{ color: '#1FAEEB', position: 'relative', bottom: '' }}> <a style={{ color: '#1FAEEB', textDecorationColor: '#1FAEEB' }} href={PATH.TERMS_AND_CONDITIONS} target='_blank'>Condiciones de Uso</a></span>.
+                                </Typography> */}
+
+                                <TermsandConditionsCheckBox checkStatus={termsandConditionsCheckBox} setCheckStatus={setTermsandConditionsCheckBox} />
                             </Grid>
                         </Grid>
                     </Grid>

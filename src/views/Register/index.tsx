@@ -27,7 +27,7 @@ import styles from "./Register.module.scss";
 import useAlert from "@/hooks/useAlert";
 import useAuthStore from "@/hooks/useAuthStore";
 import { PATH } from '@/routes/constants';
-import { ConfirmationModal, SocialSecurityInput, SocialSecurityNumberInput } from '@/components';
+import { ConfirmationModal, SocialSecurityInput, SocialSecurityNumberInput, TermsandConditionsCheckBox } from '@/components';
 import { registerValidation } from '@/validations/registerValidation';
 import PhoneInput from '@/components/PhoneInput';
 
@@ -38,6 +38,7 @@ const Register = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [modalType, setModalType] = useState<'error' | 'success'>('error');
+  const [checkStatus, setCheckStatus] = useState(false);
 
   const [validate, setValidate] = useState(false);
 
@@ -674,27 +675,21 @@ const Register = () => {
 
             <Box>
               <Grid container spacing={0}>
-                <Grid item xs={12} sx={{ paddingX: '1rem' }}>
-                  <Box display="flex" alignItems="center" sx={{ marginBottom: '1.5em !important', marginTop: '1.5em !important' }}>
-                    <IconButton color="warning">
-                      <WarningIcon />
-                    </IconButton>
-                    <Typography variant="body1" ml={2}>
-                      Al presionar el botón de continuar, confirma que ha leído las advertencias y acepta las Condiciones de Uso.
-                    </Typography>
-                  </Box>
-
+                <Grid item xs={12} sx={{ paddingX: '1rem', marginY: '2rem !important' }}>
+                  <TermsandConditionsCheckBox checkStatus={checkStatus} setCheckStatus={setCheckStatus} />
                 </Grid>
 
                 <Grid item xs={12} sx={{ paddingX: '1rem' }}>
                   <Grid container spacing={0} justifyContent={'center'} textAlign={'center'}>
 
-                    <Grid item xs={12} lg={4} sx={{ marginBottom: "1rem !important" }}>
+                    <Grid item xs={12} xl={4} sx={{ marginBottom: "1rem !important" }}>
                       <Button
                         variant="outlined"
                         color="primary"
                         style={{
-                          width: '241.5px',
+                          // width: '241.5px',
+                          width: '97%',
+                          maxWidth: '241.5px',
                           height: 'auto',
                           padding: '12px 40px',
                           borderRadius: '4px',
@@ -707,14 +702,16 @@ const Register = () => {
                       </Button>
                     </Grid>
 
-                    <Grid item xs={12} lg={4} sx={{ justifyContent: 'center', marginBottom: "1rem !important" }}>
+                    <Grid item xs={12} xl={4} sx={{ justifyContent: 'center', marginBottom: "1rem !important" }}>
                       <Button
                         type='submit'
                         variant="contained"
                         color="primary"
-                        disabled={!formik.isValid}
+                        disabled={!formik.isValid || !checkStatus}
                         style={{
-                          width: '241.5px',
+                          // width: '241.5px',
+                          width: '97%',
+                          maxWidth: '241.5px',
                           height: 'auto',
                           padding: '12px 40px',
                           border: '2px #697FAA solid',

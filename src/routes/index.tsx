@@ -7,6 +7,8 @@ import Error404 from "@/views/Error404";
 import Error500 from "@/views/Error500";
 import Recovery from "@/views/Recovery";
 import RecoveryToken from "@/views/RecoveryToken";
+import TermsandConditionsLayout from "@/layout/TermsAndConditionsLayout";
+import TermsandConditions from "@/views/TermsAndConditions";
 
 const Root = () => {
   const isAuthenticated = useAuthStore((state: any) => state.isAuthenticated);
@@ -19,6 +21,11 @@ const Root = () => {
         <Route path={PATH.REGISTER} index element={<Register />} />
         <Route path={PATH.LOGIN} index element={<Login />} />
       </Route>
+
+      <Route path={PATH.ROOT} element={<TermsandConditionsLayout />}>
+        <Route path={PATH.TERMS_AND_CONDITIONS} element={<TermsandConditions />} />
+      </Route>
+
 
       {/* Rutas solo para usuarios no autorizados */}
       {!isAuthenticated && (
