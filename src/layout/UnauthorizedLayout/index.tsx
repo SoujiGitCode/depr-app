@@ -61,8 +61,9 @@ const UnautoziredLayout = () => {
                 display: 'flex', // Habilita flexbox
                 flexDirection: 'row', // Alinea los elementos en columna
                 alignItems: 'center', // Centra horizontalmente
-                justifyContent: 'right', // Centra verticalmente
-                paddingRight: !isMobile ? '2rem !important' : '0'
+                justifyContent: isMobile ? 'center' : 'right', // Centra verticalmente
+                paddingRight: !isMobile ? '2rem !important' : '0',
+                padding: '0.5rem'
 
               }}
             >
