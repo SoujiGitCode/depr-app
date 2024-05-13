@@ -74,7 +74,7 @@ const Create = () => {
 
   const initialFormData: FormData = {
     email: '',
-    schoolTown: '1',
+    schoolTown: '0',
     school_code: '',
     grade: 'none',
     grade_year: '',

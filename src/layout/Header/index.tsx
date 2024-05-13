@@ -32,6 +32,7 @@ export default function Header() {
       await setLogin(email, password);
       navigate("/");
     } catch (error: any) {
+      console.log('test error')
       setAlert(error?.message, "error")
     }
   }

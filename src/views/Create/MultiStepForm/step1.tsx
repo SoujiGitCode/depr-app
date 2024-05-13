@@ -215,27 +215,35 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
     //----------------------School Form Functions------------------------
 
+
     useEffect(() => {
         // Función que trae la data de las ciudades.
         const fetchTowns = async () => {
             try {
                 const responseTowns = await requestTowns();
-                setTownsData(responseTowns);
+                setTownsData([{ id: '0', name: 'Seleccione Pueblo' }, ...responseTowns]);
             } catch (error) {
                 console.error("Error fetching towns:", error);
             }
         };
 
         // Función que trae la data de las escuelas basada en el townId.
-        const fetchSchools = async (townId: '1') => {
+        const fetchSchools = async (townId: string) => {
+
+            if (townId == '0') {
+                setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }])
+                return
+            }
             console.log('school code antes de fetch schools: ', formData.school_code)
             try {
+                console.log(townId)
                 const responseSchools = await requestSchools(townId);
-                setSchoolsData(responseSchools);
+                setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
+                formik.setFieldValue('school_code', schoolsData[0]?.id || '');
+                console.log(schoolsData)
                 // Actualizamos el valor de school_code en el estado de Formik.
-
                 if (formData.school_code === '0') {
-                    formik.setFieldValue('school_code', responseSchools[0].id || '');
+                    formik.setFieldValue('school_code', responseSchools[0].id || schoolsData[0]?.id);
                 }
 
             } catch (error) {
@@ -245,11 +253,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
         fetchTowns();
         // Llamamos a fetchSchools con el town id 1 al iniciar el componente.
-        fetchSchools('1');
-        formik.setFieldValue('certification_type_id', formData.certification_type_id);
-        console.log('FORM DATA STEP1')
-
-        setSocialSecurityArray(formData.social_security ? formData.social_security.split('') : new Array(9).fill(""));
+        fetchSchools(formData.schoolTown);
     }, []);
 
     // Cada vez que cambia el valor de schoolTown en Formik, actualizamos las escuelas.
@@ -258,17 +262,16 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
             try {
                 const responseSchools = await requestSchools(formik.values.schoolTown);
                 setSchoolsData(responseSchools);
-                formik.setFieldValue('school_code', responseSchools[0]?.id || '');
-
+                setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
+                formik.setFieldValue('school_code', schoolsData[0]?.id || '');
             } catch (error) {
                 console.error("Error fetching schools:", error);
             }
         };
 
         fetchSchools();
-        console.log(schoolsData[0]?.id || '')
-
     }, [formik.values.schoolTown, formData.school_town]);
+
 
 
     useEffect(() => {
@@ -598,7 +601,9 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                             type="text"
                                             variant="outlined"
                                             value={formik.values.school_code}
-                                            onChange={formik.handleChange}
+                                            onChange={(e) => {
+                                                formik.handleChange(e);  // handle formik's change
+                                            }}
                                             onBlur={formik.handleBlur}
                                             error={formik.touched.school_code && Boolean(formik.errors.school_code)}
                                             helperText={formik.touched.school_code && typeof formik.errors.school_code === 'string' ? formik.errors.school_code : undefined}
@@ -611,7 +616,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                         </TextField>
                                     )
                                 }
-
                             </FormControl>
                         </Grid>
 

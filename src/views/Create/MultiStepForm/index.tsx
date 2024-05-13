@@ -100,7 +100,6 @@ const MultiStepForm = ({
     // Función para avanzar al siguiente paso
     const onSendRequest = async () => {
         try {
-            console.log(formData);
             setOnSendingData(true);
             changeStep(1);
             await CreateRequest(formData);
@@ -128,12 +127,6 @@ const MultiStepForm = ({
     const handleStepData = (data: Partial<FormData>) => {
         updateFormData(data, false);
     };
-
-    useEffect(() => {
-        console.log(formData)
-
-    }, [formData]);
-
 
 
     return (

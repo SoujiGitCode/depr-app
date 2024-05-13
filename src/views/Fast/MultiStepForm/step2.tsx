@@ -33,6 +33,7 @@ interface StepProps {
     updateFormData: (data: any, reset: boolean) => void;
 }
 
+
 const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
     const [townsData, setTownsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Pueblo' }]);
     const [schoolsData, setSchoolsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Escuela' }]);

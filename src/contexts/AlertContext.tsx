@@ -1,9 +1,10 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState, useCallback } from "react";
 
-const ALERT_TIME = 5000;
+const ALERT_TIME = 600000;
 const initialState = {
   text: "",
-  type: "success" || "info" || "warning" || "error",
+  type: "success" as AlertColor,
+  isOpen: false,
 };
 
 type AlertProviderProps = { children: ReactNode };
@@ -11,29 +12,39 @@ type AlertColor = "success" | "info" | "warning" | "error";
 
 const AlertContext = createContext({
   ...initialState,
-  setAlert: (text: string, type: string) => { },
+  setAlert: (text: string, type: AlertColor) => { },
+  hideAlert: () => { },
 });
 
 export const AlertProvider = ({ children }: AlertProviderProps) => {
-  const [text, setText] = useState("");
-  const [type, setType] = useState("success");
+  const [alert, setAlertState] = useState(initialState);
 
-  const setAlert = (text: string, type: AlertColor) => {
-    setText(text);
-    setType(type);
+  let timeoutId: NodeJS.Timeout | null = null;
 
-    setTimeout(() => {
-      setText("");
-      setType("");
+  const setAlert = useCallback((text: string, type: AlertColor) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    setAlertState({ text, type, isOpen: true });
+
+    timeoutId = setTimeout(() => {
+      setAlertState(prev => ({ ...prev, isOpen: false }));
     }, ALERT_TIME);
-  };
+  }, []);
+
+  const hideAlert = useCallback(() => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    setAlertState(prev => ({ ...prev, isOpen: false }));
+  }, []);
 
   return (
     <AlertContext.Provider
       value={{
-        text,
-        type,
+        ...alert,
         setAlert,
+        hideAlert,
       }}
     >
       {children}
