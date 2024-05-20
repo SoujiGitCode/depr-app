@@ -8,6 +8,21 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
   // Estado para almacenar el valor enmascarado y formateado para visualización
   const [displaySSN, setDisplaySSN] = useState('');
 
+  //Inicializar valores si el usuario ya tiene este dato registrado
+  useEffect(() => {
+    if (formik.values[name]) {
+      setRealSSN(formik.values[name]);
+    }
+  }, [formik.values[name]]);
+
+  // Update display value and Formik field value whenever realSSN changes
+  useEffect(() => {
+    const maskedValue = maskAndFormatSSN(realSSN);
+    setDisplaySSN(maskedValue);
+    formik.setFieldValue(name, realSSN, true);
+  }, [realSSN]);
+
+
   // Función para enmascarar y formatear el SSN para la visualización
   const maskAndFormatSSN = (ssn) => {
     // Enmascara los primeros 5 números y mantiene los últimos 4 dígitos visibles
@@ -20,17 +35,6 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
 
   // Manejador para cambios en el input
   const handleChange = (e) => {
-
-    const input = e.target.value.replace(/-/g, ''); // Elimina guiones para manejar solo números
-    if (input.length <= 9) { // Asegura no exceder la longitud del SSN
-      setRealSSN(input); // Actualiza el estado con el valor real
-      setDisplaySSN(maskAndFormatSSN(input)); // Actualiza el estado con el valor enmascarado y formateado
-    }
-  };
-
-
-  // Manejador para cambios en el input
-  const handleChange2 = (e) => {
     const { value: currentValue } = e.target;
     // Elimina guiones para simplificar la detección de cambios
     let inputWithoutHyphens = currentValue.replace(/-/g, '');
@@ -82,24 +86,9 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
 
   // Efecto para actualizar Formik cuando cambia el realSSN
   useEffect(() => {
-    // console.log(realSSN)
     setSocialSecurityArray(realSSN.split('')); // Opcional: Actualiza un array externo si es necesario
     setDisplaySSN(maskAndFormatSSN(realSSN));
   }, [realSSN]);
-
-  useEffect(() => {
-    console.log(socialSecurityArray)
-    formik.setFieldValue("social_security", socialSecurityArray.join(""));
-  }, [socialSecurityArray]);
-
-  useEffect(() => {
-    // console.log('render on ssi')
-    // console.log(socialSecurityArray.join(""))
-    // setDisplaySSN(socialSecurityArray.join("").split(''));
-    setDisplaySSN(maskAndFormatSSN(socialSecurityArray.join("")));
-    console.log(socialSecurityArray.join(''))
-    setRealSSN(socialSecurityArray.join(''));
-  }, []);
 
   return (
     <>
@@ -107,7 +96,7 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
         id='social_security'
         name='social_security'
         value={displaySSN}
-        onChange={handleChange2}
+        onChange={handleChange}
         onKeyDown={handleKeyDown}
         placeholder="XXX-XX-XXXX"
         onBlur={formik.handleBlur}

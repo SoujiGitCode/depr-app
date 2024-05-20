@@ -66,6 +66,8 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill(""));
 
+
+
   const formik = useFormik({
     validateOnMount: true,
 
@@ -134,8 +136,8 @@ const Register = () => {
         depr_last_name: formik.values.lastNameDepr,
         depr_second_last_name: formik.values.secondLastNameDepr,
         phone: formik.values.phone,
-        // social_security: formik.values.social_security,
-        social_security: socialSecurityArray.join(""),
+        social_security: formik.values.social_security,
+        // social_security: socialSecurityArray.join(""),
         password: formik.values.password,
       });
       setAlert("Registro Completado!", "success");
@@ -198,6 +200,11 @@ const Register = () => {
   //     // email: true,
   //   });
   // }, []);
+
+  useEffect(() => {
+    console.log('SSA changing to:')
+    console.log(formik.values.social_security)
+  }, [formik.values.social_security])
 
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>
@@ -577,6 +584,7 @@ const Register = () => {
                   <CustomLabel name="Seguro Social" required={true} />
                   <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                     <SocialSecurityInput
+                      name={'social_security'}
                       formik={formik}
                       socialSecurityArray={socialSecurityArray}
                       setSocialSecurityArray={setSocialSecurityArray}

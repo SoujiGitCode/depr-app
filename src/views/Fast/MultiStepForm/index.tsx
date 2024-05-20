@@ -138,7 +138,6 @@ const MultiStepForm = ({
 
     useEffect(() => {
         console.log(formData)
-
     }, [formData]);
 
     return (

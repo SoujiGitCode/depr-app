@@ -189,9 +189,9 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     }, [formik.values.phone])
 
 
-    useEffect(() => {
-        setSocialSecurityArray(formData.social_security ? formData.social_security.split('') : new Array(9).fill(""));
-    }, [formData.social_security]);
+    // useEffect(() => {
+    //     setSocialSecurityArray(formData.social_security ? formData.social_security.split('') : new Array(9).fill(""));
+    // }, [formData.social_security]);
 
     return (
         <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>

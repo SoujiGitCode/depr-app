@@ -56,7 +56,6 @@ const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik
                     label={label || ''}
                     placeholder="(xxx) xxx-xxxx"
                     variant={variant}
-                    // onChange={handleChange}
                     error={formik.touched[name] && Boolean(formik.errors[name])}
                     helperText={formik.touched[name] && formik.errors[name]}
                     InputLabelProps={{ shrink: true }}

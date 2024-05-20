@@ -51,14 +51,14 @@ export const registerValidation = Yup.object().shape({
         .required("Correo electrónico es requerido")
         .max(100, "máximo 100 caracteres"),
 
-    gender: Yup.string(),
-    // .notOneOf(['notAValidGender'], 'Debe seleccionar una opción valida'),
-    // .required('Debe seleccionar una opción valida'),
+    gender: Yup.string()
+        .notOneOf(['notAValidGender'], 'Debe seleccionar una opción valida')
+        .required('Debe seleccionar una opción valida'),
 
     phone: Yup.string()
         .required("Teléfono requerido")
         .matches(/^[0-9*]+$/, "El formato del teléfono debe ser (XXX) XXX-XXXX")
-        .max(14, "El teléfono no debe exceder 10 caracteres"),
+        .test('len', 'Deben ser 10 caracteres', val => val.length === 10),
 
     social_security: Yup.string()
         .required("Seguro Social requerido")
@@ -66,8 +66,8 @@ export const registerValidation = Yup.object().shape({
         .test('len', 'Deben ser 9 caracteres', val => val.length === 9),
 
 
-    birthdate: Yup.string(),
-    // .required("Fecha de nacimiento requerida"),
+    birthdate: Yup.string()
+        .required("Fecha de nacimiento requerida"),
 
     password: Yup.string()
         .required("Contraseña no puede estar vacío")
