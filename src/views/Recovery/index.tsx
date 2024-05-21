@@ -76,7 +76,7 @@ const Recovery = () => {
           // espera de 3 segundos antes de redireccionar al suuario al landing
           setTimeout(() => {
             navigate('/login');
-          }, 3000);
+          }, 4000);
 
         }
 

@@ -140,13 +140,13 @@ const Register = () => {
         // social_security: socialSecurityArray.join(""),
         password: formik.values.password,
       });
-      setAlert("Registro Completado!", "success");
+      setAlert("¡Registro Completado!", "success");
       setLogin(formik.values.email, formik.values.password);
       modalTriger('success');
       // Agrega una espera de 3 segundos antes de logear al usuario
       setTimeout(() => {
         navigate("/dashboard");
-      }, 3000);
+      }, 4000);
       setLoading(false);
     } catch (error) {
       setLoading(false);

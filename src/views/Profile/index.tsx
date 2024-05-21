@@ -199,7 +199,7 @@ const Profile = () => {
       });
       console.log(response)
       if (response.code === 200) {
-        setAlert('Contraseña actualizada!', "success");
+        setAlert('¡Contraseña actualizada!', "success");
       }
 
       handleCloseModal();

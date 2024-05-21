@@ -3,7 +3,16 @@ import { useContext } from "react";
 import AlertContext from "@/hooks/useAlert";  // Asegúrate de que la importación sea correcta
 
 const AlertPopup = () => {
+
   const { text, type, isOpen, hideAlert } = AlertContext();
+
+  const titles = {
+    success: "éxito",
+    warning: "advertencia",
+    error: "error",
+    info: "Información"
+  }
+
 
   if (isOpen && text) {
     return (
@@ -17,7 +26,7 @@ const AlertPopup = () => {
         spacing={2}
       >
         <Alert severity={type} onClose={hideAlert} sx={{ justifyContent: 'space-between' }}>
-          <AlertTitle sx={{ textTransform: 'capitalize' }}>{type}</AlertTitle>
+          <AlertTitle sx={{ textTransform: 'capitalize' }}>{titles[type]}</AlertTitle>
           {text}
         </Alert>
       </Stack>

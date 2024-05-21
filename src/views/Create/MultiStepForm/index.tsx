@@ -104,12 +104,12 @@ const MultiStepForm = ({
             changeStep(1);
             await CreateRequest(formData);
             updateFormData({}, true);  // o cualquier otro valor inicial
-            setAlert("Solicitud completada!", "success");
+            setAlert("¡Solicitud completada!", "success");
             modalTriger('success');
             // espera de 3 segundos antes de redireccionar al suuario al landing
             setTimeout(() => {
                 onBack();
-            }, 3000);
+            }, 4000);
         } catch (error) {
             setAlert("La solicitud no pudo ser completada, intente nuevamente", "error");
             modalTriger('error');

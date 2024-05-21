@@ -89,13 +89,13 @@ const RecoveryToken = () => {
       console.log(response)
 
       if (response.code === 200) {
-        setAlert('Contraseña actualizada!', "success");
+        setAlert('¡Contraseña actualizada!', "success");
         setOpenModal(true);
         setModalType('success');
         // espera de 3 segundos antes de redireccionar al suuario al landing
         setTimeout(() => {
           navigate('/login');
-        }, 3000);
+        }, 4000);
       }
 
     } catch (error) {
