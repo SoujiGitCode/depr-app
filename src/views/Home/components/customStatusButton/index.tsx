@@ -28,9 +28,10 @@ const CustomStatusButton = ({ statusName, statusCode }: StatusButtonProps) => {
                 padding: '0.5rem',
                 fontSize: '0.6rem !important',
                 color: buttonColor,
-                borderColor: buttonColor,
+                cursor: 'default',
+                // borderColor: buttonColor,
                 "&:hover": {
-                    borderColor: hoverColor
+                    // borderColor: hoverColor
                 }
             }}
         >
