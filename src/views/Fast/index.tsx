@@ -69,8 +69,8 @@ const Fast = () => {
 
   const initialFormData: FormData = {
     email: '',
-    schoolTown: '',
-    school_code: '',
+    schoolTown: '0',
+    school_code: '0',
     grade: 'notAValidGrade',
     grade_year: '',
     identification_type: '',

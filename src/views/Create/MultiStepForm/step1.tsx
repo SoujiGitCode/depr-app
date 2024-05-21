@@ -236,10 +236,9 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
             }
             console.log('school code antes de fetch schools: ', formData.school_code)
             try {
-                console.log(townId)
                 const responseSchools = await requestSchools(townId);
                 setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
-                formik.setFieldValue('school_code', schoolsData[0]?.id || '');
+                formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
                 console.log(schoolsData)
                 // Actualizamos el valor de school_code en el estado de Formik.
                 if (formData.school_code === '0') {
@@ -253,7 +252,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
         fetchTowns();
         // Llamamos a fetchSchools con el town id 1 al iniciar el componente.
-        fetchSchools(formData.schoolTown);
+        // fetchSchools(formData.schoolTown);
     }, []);
 
     // Cada vez que cambia el valor de schoolTown en Formik, actualizamos las escuelas.
@@ -261,9 +260,9 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         const fetchSchools = async () => {
             try {
                 const responseSchools = await requestSchools(formik.values.schoolTown);
-                setSchoolsData(responseSchools);
+                // setSchoolsData(responseSchools);
                 setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
-                formik.setFieldValue('school_code', schoolsData[0]?.id || '');
+                formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
             } catch (error) {
                 console.error("Error fetching schools:", error);
             }
@@ -277,7 +276,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
     useEffect(() => {
         // Asegurarse de que schoolsData esté actualizado antes de asignar el valor a school_code
         if (schoolsData.length > 0 && formData.school_code !== '0') {
-            console.log('YEPPERS')
             formik.setFieldValue('school_code', formData.school_code);
         } else if (schoolsData.length > 0) {
 
@@ -300,7 +298,13 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         formik.setFieldValue('confirmEmail2', value);
     };
 
-
+    const handleNumericChange = (event) => {
+        const { value, name } = event.target;
+        // Permite solo números
+        if (value === '' || /^[0-9]+$/.test(value)) {
+            formik.setFieldValue(name, value);
+        }
+    };
 
     return (
         <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
@@ -652,13 +656,13 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                             <CustomLabel name="Año de Graduación o Último Año Cursado" required={true} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
-                                    placeholder='200'
+                                    placeholder='2000'
                                     name="grade_year"
                                     id="grade_year"
                                     type="text"
                                     variant="outlined"
                                     value={formik.values.grade_year}
-                                    onChange={formik.handleChange}
+                                    onChange={handleNumericChange}
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.grade_year && Boolean(formik.errors.grade_year)}
                                     helperText={formik.touched.grade_year && typeof formik.errors.grade_year === 'string' ? formik.errors.grade_year : undefined}

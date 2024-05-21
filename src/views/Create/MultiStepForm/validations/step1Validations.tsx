@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+const currentYear = new Date().getFullYear();
+
 export const step1Validations = Yup.object().shape({
     email: Yup.string()
         .email("Dirección de correo electrónico no válida")
@@ -146,7 +148,13 @@ export const step1Validations = Yup.object().shape({
     grade_year: Yup.string()
         .required('Este campo es requerido')
         .matches(/^\d{4}$/, 'Debe contener exactamente 4 números')
-        .notOneOf([''], 'Por favor, seleccione un año válido'),
+        .test(
+            'is-year-valid',
+            `El año debe ser menor o igual a ${currentYear}`,
+            value => {
+                return parseInt(value, 10) <= currentYear;
+            }
+        ),
 
     certification_type_id: Yup.string()
         .required('Este campo es requerido')

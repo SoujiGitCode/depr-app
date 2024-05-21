@@ -115,10 +115,10 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             try {
                 const responseSchools = await requestSchools(townId);
                 setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
-                formik.setFieldValue('school_code', schoolsData[0]?.id || '');
+                formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
                 // Actualizamos el valor de school_code en el estado de Formik.
                 if (formData.school_code === '0') {
-                    formik.setFieldValue('school_code', responseSchools[0].id || '');
+                    formik.setFieldValue('school_code', responseSchools[0].id || '0');
                 }
 
             } catch (error) {
@@ -128,7 +128,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
         fetchTowns();
         // Llamamos a fetchSchools con el town id 1 al iniciar el componente.
-        fetchSchools(formData.schoolTown);
+        // fetchSchools(formData.schoolTown);
     }, []);
 
 
@@ -137,9 +137,9 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         const fetchSchools = async () => {
             try {
                 const responseSchools = await requestSchools(formik.values.schoolTown);
-                setSchoolsData(responseSchools);
+                // setSchoolsData(responseSchools);
                 setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
-                formik.setFieldValue('school_code', schoolsData[0]?.id || '');
+                formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
             } catch (error) {
                 console.error("Error fetching schools:", error);
             }
@@ -158,6 +158,13 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         }
     }, [schoolsData]);
 
+    const handleNumericChange = (event) => {
+        const { value, name } = event.target;
+        // Permite solo números
+        if (value === '' || /^[0-9]+$/.test(value)) {
+            formik.setFieldValue(name, value);
+        }
+    };
 
 
     return (
@@ -259,13 +266,13 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         <CustomLabel name="Año de Graduación o Último Año Cursado" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
-                                placeholder=''
+                                placeholder='2000'
                                 name="grade_year"
                                 id="grade_year"
                                 type="text"
                                 variant="outlined"
                                 value={formik.values.grade_year}
-                                onChange={formik.handleChange}
+                                onChange={handleNumericChange}
                                 onBlur={formik.handleBlur}
                                 error={formik.touched.grade_year && Boolean(formik.errors.grade_year)}
                                 helperText={formik.touched.grade_year && typeof formik.errors.grade_year === 'string' ? formik.errors.grade_year : undefined}
