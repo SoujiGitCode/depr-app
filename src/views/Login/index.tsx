@@ -37,7 +37,7 @@ const Login = () => {
       navigate("/dashboard");
     } catch (error: any) {
       console.log(error);
-      setAlert("Error, Credenciales de accesso invalidas", "error");
+      setAlert("Credenciales de accesso invalidas", "error");
     }
   };
 

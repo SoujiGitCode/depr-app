@@ -143,10 +143,6 @@ const Register = () => {
       setAlert("¡Registro Completado!", "success");
       setLogin(formik.values.email, formik.values.password);
       modalTriger('success');
-      // Agrega una espera de 3 segundos antes de logear al usuario
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 4000);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -155,11 +151,6 @@ const Register = () => {
 
     }
   };
-
-  // if (validate) {
-  //   sendUserForRegister();
-  //   setValidate(false);
-  // }
 
   useEffect(() => {
     if (selectedValue === 'No') {
@@ -177,8 +168,6 @@ const Register = () => {
     }
   }, [selectedValue, formik.values.firstName, formik.values.middleName, formik.values.lastName, formik.values.secondLastName]);
 
-
-
   useEffect(() => {
     if (!formik.isValid) {
       console.log(formik.errors);
@@ -189,22 +178,23 @@ const Register = () => {
     console.log('VALIDO');
   }, [formik.isValid, formik.errors]);
 
-
-  // useEffect(() => {
-  //   // Esto hará que Formik muestre los errores inmediatamente si los campos no cumplen con el esquema de validación.
-  //   formik.setTouched({
-  //     birthdate: true,
-  //     gender: true,
-  //     // phone: true,
-  //     // social_security: true,
-  //     // email: true,
-  //   });
-  // }, []);
-
   useEffect(() => {
     console.log('SSA changing to:')
     console.log(formik.values.social_security)
   }, [formik.values.social_security])
+
+  const onBack = () => {
+    navigate("/dashboard");
+  }
+
+  const onCloseModal = () => {
+    setOpenModal(false)
+    if (modalType === 'success') {
+      setTimeout(() => {
+        onBack();
+      }, 1500);
+    }
+  }
 
   return (
     <Grid container style={{ width: '100%', margin: 0 }}>
@@ -768,7 +758,7 @@ const Register = () => {
       </Grid>
       <ConfirmationModal
         open={openModal}
-        onClose={() => setOpenModal(false)}
+        onClose={onCloseModal}
         type={modalType}
       />
     </Grid >

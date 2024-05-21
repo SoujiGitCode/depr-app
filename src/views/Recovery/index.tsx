@@ -73,11 +73,6 @@ const Recovery = () => {
           // Abrimos el modal
           setOpenModal(true);
           setModalType('success');
-          // espera de 3 segundos antes de redireccionar al suuario al landing
-          setTimeout(() => {
-            navigate('/login');
-          }, 4000);
-
         }
 
 
@@ -95,6 +90,18 @@ const Recovery = () => {
     navigate("/");
   };
 
+  const onBack = () => {
+    navigate('/login');
+  }
+
+  const onCloseModal = () => {
+    setOpenModal(false)
+    if (modalType === 'success') {
+      setTimeout(() => {
+        onBack();
+      }, 1500);
+    }
+  }
 
   return (
     <>
@@ -182,7 +189,7 @@ const Recovery = () => {
 
         <ConfirmationModal
           open={openModal}
-          onClose={() => setOpenModal(false)}
+          onClose={onCloseModal}
           content={customContent}
           type={modalType}
         />

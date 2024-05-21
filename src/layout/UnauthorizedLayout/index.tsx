@@ -53,7 +53,7 @@ const UnautoziredLayout = () => {
             </Grid>
 
             <Grid item xs={12} lg={3} sx={{ textAlign: isMobile ? 'center' : 'start', paddingLeft: !isMobile ? '2rem !important' : '0' }}>
-              <img src={logo} alt="Logo" style={{ height: 'auto', width: isMobile ? '50%' : '60%' }} />
+              <img src={logo} alt="Logo" style={{ height: 'auto', width: isMobile ? '50%' : '80%' }} />
             </Grid>
 
             <Grid item xs={12} lg={3}

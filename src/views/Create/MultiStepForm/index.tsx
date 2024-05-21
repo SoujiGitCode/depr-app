@@ -106,10 +106,6 @@ const MultiStepForm = ({
             updateFormData({}, true);  // o cualquier otro valor inicial
             setAlert("¡Solicitud completada!", "success");
             modalTriger('success');
-            // espera de 3 segundos antes de redireccionar al suuario al landing
-            setTimeout(() => {
-                onBack();
-            }, 4000);
         } catch (error) {
             setAlert("La solicitud no pudo ser completada, intente nuevamente", "error");
             modalTriger('error');
@@ -128,6 +124,15 @@ const MultiStepForm = ({
         updateFormData(data, false);
     };
 
+
+    const onCloseModal = () => {
+        setOpenModal(false)
+        if (modalType === 'success') {
+            setTimeout(() => {
+                onBack();
+            }, 1500);
+        }
+    }
 
     return (
         <Box sx={{ padding: '1rem !important', width: '100%' }}>
@@ -176,7 +181,7 @@ const MultiStepForm = ({
             </Grid>
             <ConfirmationModal
                 open={openModal}
-                onClose={() => setOpenModal(false)}
+                onClose={onCloseModal}
                 content={customContent}
                 type={modalType}
             />
