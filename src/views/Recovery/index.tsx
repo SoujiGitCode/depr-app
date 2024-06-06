@@ -24,7 +24,7 @@ const Recovery = () => {
 
   const customContent = {
     success: {
-      title: "Solicitud enviada",
+      title: "Solicitud Enviada",
       text: (
         <>
           Hemos recibido su solicitud de Cambio de Contraseña. Enviaremos un enlace a su correo electrónico para cambiar su contraseña.

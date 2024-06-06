@@ -71,7 +71,7 @@ const MultiStepForm = ({
 
     const customContent = {
         success: {
-            title: "Solicitud enviada",
+            title: "Solicitud Enviada",
             text: (
                 <>
                     Próximamente recibirá un correo electrónico relacionado al proceso de su solicitud.
