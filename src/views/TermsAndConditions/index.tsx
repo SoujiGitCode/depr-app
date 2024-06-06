@@ -62,7 +62,7 @@ export default function TermsandConditions() {
         FERPA: "https://www.ed.gov/FERPA",
         CIPA: "https://www.fcc.gov/consumers/guides/childrens-internet-protection-act",
         IDEA: "https://sites.ed.gov/idea/",
-        FAFSA: "https://studentaid.gov/h/apply-for-aid/fafsa",
+        FAFSA: "https://fsapartners.ed.gov/knowledge-center/fsa-handbook/2023-2024/vol2/ch7-record-keeping-privacy-electronic-processes",
         DigitalStateLawPR: "https://www.lexjuris.com/lexlex/Leyes2000/lex2000110.htm",
         PublicDocumentsAdministration: "https://www.pr.gov/",
         StudentRightsCharterPR: "https://www2.pr.gov/agencias/oech/Pages/Carta-Derechos.aspx",
@@ -239,7 +239,7 @@ export default function TermsandConditions() {
                                 <li><a href={urlDictionary.FERPA} target="_blank" rel="noopener noreferrer" style={linkStyle}>Family Educational Rights and Privacy Act (FERPA)</a></li>
                                 <li><a href={urlDictionary.CIPA} target="_blank" rel="noopener noreferrer" style={linkStyle}>Children's Internet Protection Act (CIPA) | Federal Communications Commission (fcc.gov)</a></li>
                                 <li><a href={urlDictionary.IDEA} target="_blank" rel="noopener noreferrer" style={linkStyle}>Individuals with Disabilities Education Act (IDEA)</a></li>
-                                <li>Free Application for Federal Student Aid (FAFSA) Guide 2023-2024 Federal Student Aid Handbook.</li>
+                                <li><a href={urlDictionary.FAFSA} target="_blank" rel="noopener noreferrer" style={linkStyle}>Free Application for Federal Student Aid (FAFSA) Guide 2023-2024 Federal Student Aid Handbook.</a></li>
                                 <li>Ley Núm. 110-2000; Ley del Estado Digital de Puerto Rico</li>
                                 <li>Ley Núm. 5, 8 de diciembre de 1955- Administración de Documentos Públicos</li>
                                 <li>Reglamento 4284-Administración de Documentos Públicos</li>
