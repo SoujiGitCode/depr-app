@@ -24,7 +24,7 @@ interface ConfirmationModalProps {
 const defaultContent = {
     success: {
         icon: <CheckCircleIcon style={{ fontSize: 100, color: 'green' }} />,
-        title: 'Registro Éxitoso',
+        title: 'Registro Exitoso',
         text: 'A través de un correo electrónico podrá confirmar su registro.'
     },
     error: {

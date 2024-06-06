@@ -91,7 +91,7 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
             <CustomLabel name="Primer Apellido" required={true} />
             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
               <TextField
-                placeholder='Primer Apellido DEPR'
+                placeholder='Primer Apellido'
                 name="depr_last_name "
                 id="depr_last_name "
                 type="text"
@@ -108,7 +108,7 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
             <CustomLabel name="Segundo Apellido" required={true} />
             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
               <TextField
-                placeholder='Segundo Apellido DEPR'
+                placeholder='Segundo Apellido'
                 name="depr_second_last_name"
                 id="depr_second_last_name"
                 type="text"

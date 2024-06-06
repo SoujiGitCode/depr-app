@@ -384,7 +384,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     { readOnly: true, }
                                 }
                                 variant="filled"
-                                placeholder='Primer Nombre DEPR'
+                                placeholder='Primer'
                                 name="depr_first_name"
                                 id="depr_first_name"
                                 type="text"
@@ -404,7 +404,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     { readOnly: true, }
                                 }
                                 variant="filled"
-                                placeholder='Segundo Nombre DEPR'
+                                placeholder='Segundo Nombre'
                                 name="depr_second_name"
                                 id="depr_second_name"
                                 type="text"
@@ -429,7 +429,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     { readOnly: true, }
                                 }
                                 variant="filled"
-                                placeholder='Primer Apellido DEPR'
+                                placeholder='Primer Apellido'
                                 name="depr_last_name"
                                 id="depr_last_name"
                                 type="text"
@@ -449,7 +449,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     { readOnly: true, }
                                 }
                                 variant="filled"
-                                placeholder='Segundo Apellido DEPR'
+                                placeholder='Segundo Apellido'
                                 name="depr_second_last_name"
                                 id="depr_second_last_name"
                                 type="text"

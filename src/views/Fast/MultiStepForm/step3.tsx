@@ -430,7 +430,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 <CustomLabel name="Primer Nombre" required={true} />
                                 <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                     <TextField
-                                        placeholder='Primer Nombre DEPR'
+                                        placeholder='Primer Nombre'
                                         name="depr_first_name"
                                         id="depr_first_name"
                                         type="text"
@@ -447,7 +447,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 <CustomLabel name="Segundo Nombre" required={false} />
                                 <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                     <TextField
-                                        placeholder='Segundo Nombre DEPR'
+                                        placeholder='Segundo Nombre'
                                         name="depr_second_name"
                                         id="depr_second_name"
                                         type="text"
@@ -469,7 +469,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 <CustomLabel name="Primer Apellido" required={true} />
                                 <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                     <TextField
-                                        placeholder='Primer Apellido DEPR'
+                                        placeholder='Primer Apellido'
                                         name="depr_last_name"
                                         id="depr_last_name"
                                         type="text"
@@ -486,7 +486,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 <CustomLabel name="Segundo Apellido" required={true} />
                                 <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                     <TextField
-                                        placeholder='Segundo Apellido DEPR'
+                                        placeholder='Segundo Apellido'
                                         name="depr_second_last_name"
                                         id="depr_second_last_name"
                                         type="text"

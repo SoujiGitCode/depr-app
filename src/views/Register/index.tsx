@@ -425,7 +425,7 @@ const Register = () => {
                       <CustomLabel name="Primer Nombre" required={true} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
-                          placeholder='Primer Nombre DEPR'
+                          placeholder='Primer Nombre'
                           name="firstNameDepr"
                           id="firstNameDepr"
                           type="text"
@@ -442,7 +442,7 @@ const Register = () => {
                       <CustomLabel name="Segundo Nombre" required={false} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
-                          placeholder='Segundo Nombre DEPR'
+                          placeholder='Segundo Nombre'
                           name="middleNameDepr"
                           id="middleNameDepr"
                           type="text"
@@ -465,7 +465,7 @@ const Register = () => {
                       <CustomLabel name="Primer Apellido" required={true} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
-                          placeholder='Primer Apellido DEPR'
+                          placeholder='Primer Apellido'
                           name="lastNameDepr"
                           id="lastNameDepr"
                           type="text"
@@ -482,7 +482,7 @@ const Register = () => {
                       <CustomLabel name="Segundo Apellido" required={true} />
                       <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                         <TextField
-                          placeholder='Segundo Apellido DEPR'
+                          placeholder='Segundo Apellido'
                           name="secondLastNameDepr"
                           id="secondLastNameDepr"
                           type="text"
