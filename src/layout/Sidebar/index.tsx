@@ -8,6 +8,7 @@ import Options from "./components/Options";
 import { PATH } from "@/routes/constants";
 import useAuthStore from "@/hooks/useAuthStore";
 import { logOut } from "@/utils/";
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const logout = useAuthStore((state: any) => state.setLogout);
@@ -17,11 +18,22 @@ const Sidebar = () => {
     try {
       await logOut(token);
       logout();
+      navigate('/');
     } catch (error) {
-      console.log("error");
+      console.log(error);
+      console.log('log out error, check code line 24')
+      navigate('/');
       logout();
     }
   };
+
+  const navigate = useNavigate();
+
+
+  const handleClick = () => {
+    navigate(PATH.DASHBOARD, { state: { fromRequests: true } });
+  }
+
 
   return (
     <Grid
@@ -38,8 +50,8 @@ const Sidebar = () => {
       <Options
         children={<FeedIcon sx={{ color: "white", fontSize: "1.5rem" }} />}
         text="Solicitudes"
-        redirect={PATH.DASHBOARD}
-      // redirect={PATH.REQUEST_SERVICES}
+        redirect={handleClick}
+
       />
       <Options
         children={<PersonIcon sx={{ color: "white", fontSize: "1.5rem" }} />}

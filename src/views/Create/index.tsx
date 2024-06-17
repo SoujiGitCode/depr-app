@@ -69,8 +69,6 @@ const Create = () => {
 
 
   const { certification_type_id } = useParams();
-  console.log("certification_type_id from useParams:", certification_type_id);
-
 
   const initialFormData: FormData = {
     email: '',

@@ -8,10 +8,20 @@ const Options = ({
   children,
 }: {
   text: string;
-  redirect?: string;
+  redirect?: string | (() => void);
   children: ReactNode;
 }) => {
   const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    if (typeof redirect === 'string') {
+      navigate(redirect); // Navegar a la URL si redirect es un string
+    } else if (typeof redirect === 'function') {
+      redirect(); // Ejecutar la función si redirect es una función
+    } else {
+      navigate("/"); // Navegar al inicio como fallback
+    }
+  };
 
   return (
     <Box
@@ -22,7 +32,7 @@ const Options = ({
         alignItems: "center",
         cursor: "pointer",
       }}
-      onClick={() => navigate(`${redirect ?? "/"}`)}
+      onClick={handleRedirect} // Usar handleRedirect para manejar el evento click
     >
       {children}
       <Typography variant="body1" sx={{ color: "white", textAlign: "center" }}>

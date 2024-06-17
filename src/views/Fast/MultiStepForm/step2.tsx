@@ -94,6 +94,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
 
     useEffect(() => {
+
         // Función que trae la data de las ciudades.
         const fetchTowns = async () => {
             try {
@@ -105,26 +106,26 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         };
 
         // Función que trae la data de las escuelas basada en el townId.
-        const fetchSchools = async (townId: string) => {
+        // const fetchSchools = async (townId: string) => {
 
-            if (townId == '0') {
-                setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }])
-                return
-            }
-            console.log('school code antes de fetch schools: ', formData.school_code)
-            try {
-                const responseSchools = await requestSchools(townId);
-                setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
-                formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
-                // Actualizamos el valor de school_code en el estado de Formik.
-                if (formData.school_code === '0') {
-                    formik.setFieldValue('school_code', responseSchools[0].id || '0');
-                }
+        //     if (townId == '0') {
+        //         setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }])
+        //         return
+        //     }
+        //     console.log('school code antes de fetch schools: ', formData.school_code)
+        //     try {
+        //         const responseSchools = await requestSchools(townId);
+        //         setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
+        //         formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
+        //         // Actualizamos el valor de school_code en el estado de Formik.
+        //         if (formData.school_code === '0') {
+        //             formik.setFieldValue('school_code', responseSchools[0].id || '0');
+        //         }
 
-            } catch (error) {
-                console.error("Error fetching schools:", error);
-            }
-        };
+        //     } catch (error) {
+        //         console.error("Error fetching schools:", error);
+        //     }
+        // };
 
         fetchTowns();
         // Llamamos a fetchSchools con el town id 1 al iniciar el componente.
@@ -150,6 +151,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
 
     useEffect(() => {
+        console.log(schoolsData)
         // Asegurarse de que schoolsData esté actualizado antes de asignar el valor a school_code
         if (schoolsData.length > 0 && formData.school_code !== '0') {
             formik.setFieldValue('school_code', formData.school_code);
@@ -292,6 +294,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         <CustomLabel name="Certificado a Solicitar" required={true} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
+                                SelectProps={{ IconComponent: () => null }}
                                 inputProps={
                                     { readOnly: true, }
                                 }

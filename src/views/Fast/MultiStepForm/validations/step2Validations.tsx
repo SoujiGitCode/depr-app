@@ -21,9 +21,10 @@ export const step2Validations = Yup.object().shape({
         .matches(/^\d{4}$/, 'Debe contener exactamente 4 números')
         .test(
             'is-year-valid',
-            `El año debe ser menor o igual a ${currentYear}`,
+            `Año invalido`,
             value => {
-                return parseInt(value, 10) <= currentYear;
+                const year = parseInt(value, 10);
+                return year <= currentYear && year >= 1900;
             }
         ),
 

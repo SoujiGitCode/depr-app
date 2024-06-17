@@ -7,7 +7,7 @@ import RequiredDocuments from "./components/RequiredDocuments";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, useTheme } from "@mui/material/styles";
 import useAuthStore from "@/hooks/useAuthStore";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { logOut, userDocuments } from "@/utils/";
 
 import paper from "../../assets/images/icon-paper.png";
@@ -66,7 +66,7 @@ const Home = () => {
       goldenText: '',
       secondaryText: '',
       title: 'Transcripción de Créditos',
-      description: 'Transcripción de Créditos refleja el historial académico de un estudiante dentro del Sistema Escolar del Departamento de Educación de Puerto Rico. Este es un informe oficial que detalla las calificaciones obtenidas en cada uno de los cursos y créditos acumulados por el estudiante durante sus años de estudios. Incluye, si está disponible, la determinación del promedio general Grade Point Average (GPA). Contiene, además, el registro de las horas comunitarias y de exploración ocupacional realizadas por el estudiante.',
+      description: 'Transcripción de Créditos refleja el historial académico de un estudiante dentro del Sistema Escolar del Departamento de Educación de Puerto Rico. Este es un informe oficial que detalla las calificaciones obtenidas en cada uno de los cursos y créditos acumulados por el estudiante durante sus años de estudios. Incluye, si está disponible, la determinación del promedio general Grade Point Average (GPA). Contiene además, el registro de las horas comunitarias y de exploración ocupacional realizadas por el estudiante.',
       button: 'Crear Solicitud',
       buttonType: 'primary',
       navigate: '/create/2'
@@ -76,7 +76,7 @@ const Home = () => {
       goldenText: '',
       secondaryText: '',
       title: 'Certificado de Horas Taller',
-      description: 'La Certificación de Horas Taller valida que el estudiante solicitante ha completado los requisitos de un programa de formación ocupacional, vocacional o técnica. Esta certificación identifica la especialidad del taller, temas cubiertos durante el taller, fechas y horas acumuladas en las que el estudiante realizó su capacitación. (Los estudiantes de Educación Especial, Salón a Tiempo Completo, se rigen bajo otras especificaciones).',
+      description: 'La Certificación de Horas Taller valida que el estudiante solicitante ha completado los requisitos de un programa de formación ocupacional, vocacional o técnica. Esta certificación identifica la especialidad del taller, temas cubiertos durante el taller, fechas y horas acumuladas en las que el estudiante realizó su capacitación. (Los estudiantes de Educación Especial y Salón a Tiempo Completo, se rigen bajo otras especificaciones).',
       button: 'Crear Solicitud',
       buttonType: 'primary',
       navigate: '/create/3'
@@ -120,6 +120,19 @@ const Home = () => {
     fetchUserData();
   }, []);
 
+
+  const location = useLocation(); // Obtener el objeto de ubicación
+
+  useEffect(() => {
+    // Verificar si el estado 'fromRequests' fue pasado y es verdadero
+    if (location.state?.fromRequests) {
+      const section = document.getElementById('solicitudes');
+      if (section) {
+        // Hacer scroll suave hasta el elemento
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]); // Incluir location en las dependencias del useEffect
 
   return (
 
@@ -271,7 +284,7 @@ const Home = () => {
               </Grid>
             ))}
 
-            <Grid item xs={12} lg={10} sx={{ marginBottom: "4em !important", marginTop: "4em !important" }}>
+            <Grid item xs={12} lg={10} sx={{ marginBottom: "4em !important", marginTop: "4em !important" }} id="solicitudes">
               <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important', textAlign: isMobile ? 'center' : 'left' }}>
                 Consulta de Solicitudes
               </Typography>

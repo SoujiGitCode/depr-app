@@ -38,7 +38,7 @@ const TermsandConditionsCheckBox = ({ checkStatus, setCheckStatus }: TermsandCon
                     />
 
                     <Typography variant="body1" color="textSecondary">
-                        Acepto y confirmo que he leído las advertencias y acepto las  <a style={{ color: '#1FAEEB', textDecorationColor: '#1FAEEB' }} href={PATH.TERMS_AND_CONDITIONS} target='_blank'>Condiciones de Uso</a>. Información Académica que comprenda desde el 2006
+                        Acepto y confirmo que he leído las advertencias y acepto las  <a style={{ color: '#1FAEEB', textDecorationColor: '#1FAEEB' }} href={PATH.TERMS_AND_CONDITIONS} target='_blank'>Condiciones de Uso</a>. Información Académica que comprenda desde el 2008
                         hasta el presente puede acceder al siguiente enlace <a style={{ color: '#2E2EFF', textDecorationColor: '#2E2EFF' }} href="https://srx.dde.pr/" target='_blank'>SRX | Home (dde.pr)</a>.
                     </Typography>
                 </Grid>

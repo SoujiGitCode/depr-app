@@ -74,7 +74,6 @@ export const step1Validations = Yup.object().shape({
         .matches(/^[0-9*]+$/, "Solo debe contener números")
         .test('len', 'Deben ser 9 caracteres', val => val.length === 9),
 
-
     email1: Yup.string()
         .email("Dirección de correo electrónico no válida")
         .max(100, "máximo 100 caracteres")
@@ -150,9 +149,10 @@ export const step1Validations = Yup.object().shape({
         .matches(/^\d{4}$/, 'Debe contener exactamente 4 números')
         .test(
             'is-year-valid',
-            `El año debe ser menor o igual a ${currentYear}`,
+            `Año invalido`,
             value => {
-                return parseInt(value, 10) <= currentYear;
+                const year = parseInt(value, 10);
+                return year <= currentYear && year >= 1900;
             }
         ),
 

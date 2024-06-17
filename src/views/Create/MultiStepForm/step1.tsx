@@ -120,7 +120,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
             confirmEmail2: confirmEmail2 || '',
             schoolTown: formData.schoolTown || townsData[0].id,
             school_code: formData.school_code || schoolsData[0].id,
-            grade: gradesList[0].value || '',
+            grade: formData.grade || gradesList[0].value,
             grade_year: formData.grade_year || '',
             certification_type_id: formData.certification_type_id || certificatesList[1].value || '',
 
@@ -133,23 +133,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         validateOnBlur: true,
         enableReinitialize: true
     });
-
-    const navigate = useNavigate();
-
-
-    const OnChangeSelectedValue = (value: string) => {
-        setSelectedValue(value);
-
-        formik.setFieldValue("depr_first_name", value === 'No' ? "" : formik.values.first_name);
-        formik.setFieldValue("depr_second_name", value === 'No' ? "" : formik.values.second_name);
-        formik.setFieldValue("depr_last_name", value === 'No' ? "" : formik.values.last_name);
-        formik.setFieldValue("depr_second_last_name", value === 'No' ? "" : formik.values.second_last_name);
-    };
-
-
-    if (validate) {
-        setValidate(false);
-    }
 
     useEffect(() => {
         if (selectedValue === 'No') {
@@ -169,59 +152,58 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
 
 
-    useEffect(() => {
-        if (!formik.isValid) {
-            console.log(formik.errors);
-            setStepValid(false)
-        }
-        if (formik.isValid) {
-            setStepValid(true)
-            updateFormData({
-                identification_type: formik.values.identification_type,
-                identification: formik.values.identification,
-                first_name: formik.values.first_name,
-                second_name: formik.values.second_name,
-                last_name: formik.values.last_name,
-                second_last_name: formik.values.second_last_name,
+    // useEffect(() => {
+    //     if (!formik.isValid) {
+    //         console.log(formik.errors);
+    //         setStepValid(false)
+    //     }
+    //     if (formik.isValid) {
+    //         setStepValid(true)
+    //         updateFormData({
+    //             identification_type: formik.values.identification_type,
+    //             identification: formik.values.identification,
+    //             first_name: formik.values.first_name,
+    //             second_name: formik.values.second_name,
+    //             last_name: formik.values.last_name,
+    //             second_last_name: formik.values.second_last_name,
 
-                gender: formik.values.gender,
+    //             gender: formik.values.gender,
 
-                depr_first_name: formik.values.depr_first_name,
-                depr_second_name: formik.values.depr_second_name,
-                depr_last_name: formik.values.depr_last_name,
-                depr_second_last_name: formik.values.depr_second_last_name,
+    //             depr_first_name: formik.values.depr_first_name,
+    //             depr_second_name: formik.values.depr_second_name,
+    //             depr_last_name: formik.values.depr_last_name,
+    //             depr_second_last_name: formik.values.depr_second_last_name,
 
-                birthdate: formik.values.birthdate,
-                phone: formik.values.phone,
-                social_security: formik.values.social_security,
+    //             birthdate: formik.values.birthdate,
+    //             phone: formik.values.phone,
+    //             social_security: formik.values.social_security,
 
-                email1: formik.values.email1,
-                email2: formik.values.email2,
+    //             email1: formik.values.email1,
+    //             email2: formik.values.email2,
 
-                schoolTown: formik.values.schoolTown,
-                school_code: formik.values.school_code,
-                grade: formik.values.grade,
-                grade_year: formik.values.grade_year,
+    //             schoolTown: formik.values.schoolTown,
+    //             school_code: formik.values.school_code,
+    //             grade: formik.values.grade,
+    //             grade_year: formik.values.grade_year,
 
-                certification_type_id: formik.values.certification_type_id,
-            }, false);
-        }
+    //             certification_type_id: formik.values.certification_type_id,
+    //         }, false);
+    //     }
 
-        console.log('isStepValid ' + isStepValid)
-    }, [formik.values, formik.touched, formik.isValid]);
+    //     console.log('isStepValid ' + isStepValid)
+    // }, [formik.values, formik.touched, formik.isValid]);
 
 
 
 
     //----------------------School Form Functions------------------------
-
-
     useEffect(() => {
         // Función que trae la data de las ciudades.
         const fetchTowns = async () => {
             try {
                 const responseTowns = await requestTowns();
                 setTownsData([{ id: '0', name: 'Seleccione Pueblo' }, ...responseTowns]);
+                setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }])
             } catch (error) {
                 console.error("Error fetching towns:", error);
             }
@@ -239,10 +221,9 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                 const responseSchools = await requestSchools(townId);
                 setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
                 formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
-                console.log(schoolsData)
                 // Actualizamos el valor de school_code en el estado de Formik.
                 if (formData.school_code === '0') {
-                    formik.setFieldValue('school_code', responseSchools[0].id || schoolsData[0]?.id);
+                    formik.setFieldValue('school_code', responseSchools[0].id || '0');
                 }
 
             } catch (error) {
@@ -254,6 +235,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         // Llamamos a fetchSchools con el town id 1 al iniciar el componente.
         // fetchSchools(formData.schoolTown);
     }, []);
+
 
     // Cada vez que cambia el valor de schoolTown en Formik, actualizamos las escuelas.
     useEffect(() => {
@@ -272,17 +254,14 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
     }, [formik.values.schoolTown, formData.school_town]);
 
 
-
-    useEffect(() => {
-        // Asegurarse de que schoolsData esté actualizado antes de asignar el valor a school_code
-        if (schoolsData.length > 0 && formData.school_code !== '0') {
-            formik.setFieldValue('school_code', formData.school_code);
-        } else if (schoolsData.length > 0) {
-
-            formik.setFieldValue('school_code', schoolsData[0].id);
-        }
-    }, [schoolsData]);
-
+    // useEffect(() => {
+    //     // Asegurarse de que schoolsData esté actualizado antes de asignar el valor a school_code
+    //     if (schoolsData.length > 1 && formData.school_code != '0') {
+    //         formik.setFieldValue('school_code', formData.school_code);
+    //     } else if (schoolsData.length == 1) {
+    //         formik.setFieldValue('school_code', schoolsData[0].id);
+    //     }
+    // }, [schoolsData]);
     //------------End school form functions------------------------------//
 
     // Manejar los cambios de confirmEmail1 y confirmEmail2
@@ -641,8 +620,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.grade && Boolean(formik.errors.grade)}
-                                    helperText={formik.touched.grade && formik.errors.grade}
-
+                                    helperText={formik.touched.grade && typeof formik.errors.grade === 'string' ? formik.errors.grade : undefined}
                                 >
                                     {gradesList.map((option, index) => (
                                         <MenuItem key={index} value={option.value}>
@@ -681,6 +659,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                             <CustomLabel name="Certificado a Solicitar" required={true} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                 <TextField
+                                    SelectProps={{ IconComponent: () => null }}
                                     inputProps={
                                         { readOnly: true, }
                                     }
@@ -732,10 +711,10 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     inputProps={
                                         { readOnly: true, }
                                     }
-                                    variant="filled"
                                     name="emailToSend"
                                     id="emailToSend"
                                     type="text"
+                                    variant="filled"
                                     value={formik.values.email}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -788,6 +767,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                 />
                             </FormControl>
                         </Grid>
+
                         <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                             <CustomLabel name="Confirme Correo Electrónico" required={false} />
                             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
@@ -799,7 +779,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     type="text"
                                     variant="outlined"
                                     value={formik.values.confirmEmail1}
-                                    onChange={handleConfirmEmail1Change}
+                                    onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.confirmEmail1 && Boolean(formik.errors.confirmEmail1)}
                                     helperText={formik.touched.confirmEmail1 && typeof formik.errors.confirmEmail1 === 'string' ? formik.errors.confirmEmail1 : undefined}
@@ -841,7 +821,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     type="text"
                                     variant="outlined"
                                     value={formik.values.confirmEmail2}
-                                    onChange={handleConfirmEmail2Change}
+                                    onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.confirmEmail2 && Boolean(formik.errors.confirmEmail2)}
                                     helperText={formik.touched.confirmEmail2 && typeof formik.errors.confirmEmail2 === 'string' ? formik.errors.confirmEmail2 : undefined}
@@ -849,16 +829,10 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                             </FormControl>
                         </Grid>
                     </Grid>
-
-                    <Grid item xs={12} lg={12} sx={{ paddingX: '1rem', marginY: '2rem !important' }}>
-                        < TermsandConditionsCheckBox checkStatus={termsandConditionsCheckBox} setCheckStatus={setTermsandConditionsCheckBox} />
-                    </Grid>
-
                 </Box>
 
             </>
             {/*----------FIN Enviar a:--------*/}
-
 
         </form >
     );

@@ -15,6 +15,8 @@ import { styled } from '@mui/system';
 import paper from "../../assets/images/icon-paper.png";
 import student from "../../assets/images/icon-student.png";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "@/hooks/useAuthStore";
+import { useEffect } from "react";
 
 const cardData = [
   {
@@ -31,7 +33,7 @@ const cardData = [
     goldenText: '',
     secondaryText: '  ',
     title: 'Transcripción de Créditos',
-    description: 'Transcripción de Créditos refleja el historial académico de un estudiante dentro del Sistema Escolar del Departamento de Educación de Puerto Rico. Este es un informe oficial que detalla las calificaciones obtenidas en cada uno de los cursos y créditos acumulados por el estudiante durante sus años de estudios. Incluye, si está disponible, la determinación del promedio general Grade Point Average (GPA). Contiene, además, el registro de las horas comunitarias y de exploración ocupacional realizadas por el estudiante.',
+    description: 'Transcripción de Créditos refleja el historial académico de un estudiante dentro del Sistema Escolar del Departamento de Educación de Puerto Rico. Este es un informe oficial que detalla las calificaciones obtenidas en cada uno de los cursos y créditos acumulados por el estudiante durante sus años de estudios. Incluye, si está disponible, la determinación del promedio general Grade Point Average (GPA). Contiene además, el registro de las horas comunitarias y de exploración ocupacional realizadas por el estudiante.',
     button: 'Crear Solicitud',
     buttonType: 'primary'
   },
@@ -40,7 +42,7 @@ const cardData = [
     goldenText: '',
     secondaryText: '  ',
     title: 'Certificado de Horas Taller',
-    description: 'La Certificación de Horas Taller valida que el estudiante solicitante ha completado los requisitos de un programa de formación ocupacional, vocacional o técnica. Esta certificación identifica la especialidad del taller, temas cubiertos durante el taller, fechas y horas acumuladas en las que el estudiante realizó su capacitación. (Los estudiantes de Educación Especial, Salón a Tiempo Completo, se rigen bajo otras especificaciones).',
+    description: 'La Certificación de Horas Taller valida que el estudiante solicitante ha completado los requisitos de un programa de formación ocupacional, vocacional o técnica. Esta certificación identifica la especialidad del taller, temas cubiertos durante el taller, fechas y horas acumuladas en las que el estudiante realizó su capacitación. (Los estudiantes de Educación Especial y Salón a Tiempo Completo, se rigen bajo otras especificaciones).',
     button: 'Crear Solicitud',
     buttonType: 'primary'
   },
@@ -56,8 +58,18 @@ const Landing = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
+  const token = useAuthStore((state: any) => state.token);
+
+
   const navigate = useNavigate();
   const background = "linear-gradient(to top, #8580b0, #7a75ad, #6f6aaa, #6460a7, #5855a4)";
+
+  useEffect(() => {
+    if (token !== '') {
+      navigate('/dashboard');
+    }
+    // console.log(token)
+  }, [token]);
 
   return (
     <>

@@ -1,10 +1,13 @@
-import { Alert, Stack, AlertTitle } from "@mui/material";
+import { Alert, Stack, AlertTitle, useTheme, useMediaQuery } from "@mui/material";
 import { useContext } from "react";
 import AlertContext from "@/hooks/useAlert";  // Asegúrate de que la importación sea correcta
 
 const AlertPopup = () => {
 
   const { text, type, isOpen, hideAlert } = AlertContext();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+
 
   const titles = {
     success: "éxito",
@@ -18,7 +21,7 @@ const AlertPopup = () => {
     return (
       <Stack
         sx={{
-          width: '25%',
+          width: isMobile ? '100%' : '25%',
           position: 'fixed',
           "z-index": 999,
           top: 0, right: 0,
