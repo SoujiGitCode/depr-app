@@ -93,7 +93,7 @@ const Landing = () => {
               El <BoldText>Portal de Certificaciones Académicas </BoldText>es un sistema que se encuentra disponible para estudiantes activos y egresados del Sistema Educativo del Departamento de Educación de Puerto Rico. Este portal permitirá solicitar en línea, obtener y validar de manera digital las <BoldText>Certificaciones Académicas</BoldText>.
 
               Entre las <BoldText>Certificaciones Académicas</BoldText> que pueden solicitar los estudiantes a través de este portal son:
-              <BoldText> La Certificación de Graduación, la Transcripción de Créditos y la Certificación de Horas Taller</BoldText> relacionada a horas contacto de cursos especializados en Educación Vocacional Ocupacional y Técnica.
+              <BoldText> La Certificación de Graduación, la Transcripción de Créditos y la Certificación de Horas Taller</BoldText> relacionada a horas contacto de cursos especializados en Educación Vocacional, Ocupacional y Técnica.
             </Typography>
 
             <Typography variant="h5" sx={{ marginTop: '2em !important', marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>

@@ -7,21 +7,41 @@ const filledInputBg = '#EAEAEA';
 
 const disabledColorPrimary = "#697FAA80";
 
+
+const HOVER_COLORS = {
+  primary: '#2B394A',
+  secondary: '#214F21',
+  warning: '#654010'
+};
+
+const BASIC_COLORS = {
+  primary: '#3F546E',
+  secondary: '#295D27',
+  warning: '#784C11'
+}
+
+const DISABLED_COLORS = {
+  primary: '#697FAA80',
+  secondary: '#214F21',
+  warning: '#654010'
+}
+
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#697FAA',
+      main: BASIC_COLORS.primary,
       contrastText: '#ffffff'
     },
     secondary: {
-      main: '#6ABB5E',
+      main: BASIC_COLORS.secondary,
       contrastText: '#ffffff'
     },
     error: {
       main: '#D81919',
     },
     warning: {
-      main: '#F6990D',
+      main: BASIC_COLORS.warning,
       contrastText: '#ffffff'
     },
     success: {
@@ -107,7 +127,31 @@ const theme = createTheme({
         },
         containedPrimary: {
           '&:disabled': {
-            backgroundColor: disabledColorPrimary, // Background Color when disabled for contained buttons
+            backgroundColor: DISABLED_COLORS.primary, // Background Color when disabled for contained buttons
+            color: '#ffffff'
+          },
+          '&:hover': {
+            backgroundColor: HOVER_COLORS.primary, // Background Color when disabled for contained buttons
+            color: '#ffffff'
+          },
+        },
+        containedSecondary: {
+          '&:disabled': {
+            backgroundColor: DISABLED_COLORS.secondary, // Background Color when disabled for contained buttons
+            color: '#ffffff'
+          },
+          '&:hover': {
+            backgroundColor: HOVER_COLORS.secondary, // Background Color when disabled for contained buttons
+            color: '#ffffff'
+          },
+        },
+        containedWarning: {
+          '&:disabled': {
+            backgroundColor: DISABLED_COLORS.warning, // Background Color when disabled for contained buttons
+            color: '#ffffff'
+          },
+          '&:hover': {
+            backgroundColor: HOVER_COLORS.warning, // Background Color when disabled for contained buttons
             color: '#ffffff'
           },
         },
