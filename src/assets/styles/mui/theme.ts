@@ -9,7 +9,7 @@ const disabledColorPrimary = "#697FAA80";
 
 
 const HOVER_COLORS = {
-  primary: '#2B394A',
+  primary: '#CDD6E480',
   secondary: '#214F21',
   warning: '#654010'
 };
@@ -128,7 +128,7 @@ const theme = createTheme({
         containedPrimary: {
           '&:disabled': {
             backgroundColor: DISABLED_COLORS.primary, // Background Color when disabled for contained buttons
-            color: '#ffffff'
+            color: '#3D3D3D'
           },
           '&:hover': {
             backgroundColor: HOVER_COLORS.primary, // Background Color when disabled for contained buttons
