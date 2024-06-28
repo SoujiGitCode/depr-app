@@ -197,7 +197,7 @@ const Home = () => {
         >
           <Grid container justifyContent="center" alignItems="center">
             <Grid item xs={10} sx={{ marginBottom: "4em !important", marginTop: "2em !important" }}>
-              <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
+              <Typography variant="h2" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }} className="Montserrat-Black">
                 Conoce los tipos de Certificaciones Académicas
               </Typography>
             </Grid>
@@ -219,10 +219,9 @@ const Home = () => {
                     <Grid item xs={2} container direction="column" justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
                       <Box sx={{ textAlign: 'center' }}>
                         <img src={card.icon} alt="Icono" style={{ maxWidth: '100%' }} />
-                        <Typography variant="subtitle1" sx={{ color: '#E99122', mt: 1 }}>
+                        <Typography variant="h3" sx={{ color: '#E99122', mt: 1, fontFamily: 'Montserrat-Black !important', fontSize: '1.2rem' }}>
                           {card.goldenText}
                         </Typography>
-                        {/* Posicionamos absolutamente el caption */}
                         <Typography
                           variant="caption"
                           sx={{
@@ -243,7 +242,7 @@ const Home = () => {
 
                     <Grid item xs={10} container alignItems="center" justifyContent="center">
                       <CardContent sx={{ paddingRight: '2.5em !important' }}>
-                        <Typography variant="h5" sx={{ color: '#333333' }} >{card.title}</Typography>
+                        <Typography variant="h3" sx={{ color: '#333333' }} >{card.title}</Typography>
                         <Typography variant="body1" sx={{ marginTop: '1.5em !important', marginBottom: '1.5em !important', textAlign: 'justify', color: '#333333' }}>
                           {card.description}
                         </Typography>
@@ -285,7 +284,8 @@ const Home = () => {
             ))}
 
             <Grid item xs={12} lg={10} sx={{ marginBottom: "4em !important", marginTop: "4em !important" }} id="solicitudes">
-              <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important', textAlign: isMobile ? 'center' : 'left' }}>
+              <Typography variant="h2" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important', textAlign: isMobile ? 'center' : 'left' }}
+                className="Montserrat-Black">
                 Consulta de Solicitudes
               </Typography>
             </Grid>

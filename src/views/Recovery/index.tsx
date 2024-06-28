@@ -116,7 +116,7 @@ const Recovery = () => {
 
           <Grid container gap={2} padding={2}>
             <Grid item xs={12} >
-              <Typography variant="body1" color="#807BB8" sx={{ fontSize: '2rem', fontWeight: 'bolder' }} >Solicitud de cambio de contraseña</Typography>
+              <Typography variant="h2" color="#807BB8" sx={{ fontSize: '2rem', fontWeight: 'bolder' }} >Solicitud de cambio de contraseña</Typography>
 
               <Typography className={styles["descriptions-recovery"]}>
                 Enviaremos un enlace a su correo electrónico donde podrá restablecer su contraseña

@@ -80,7 +80,7 @@ const Login = () => {
       >
         <form style={{ width: "70%" }}>
           <Typography
-            variant="body1"
+            variant="h2"
             gutterBottom
             sx={{
               color: "#807BB8",

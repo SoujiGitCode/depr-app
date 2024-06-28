@@ -209,7 +209,7 @@ const Register = () => {
         {!loading ?
 
           <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
-            <Typography variant="body1" gutterBottom sx={{ color: '#807BB8', fontSize: '2.2em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
+            <Typography variant="h2" gutterBottom sx={{ color: '#807BB8', fontSize: '2.2em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
               Registro
             </Typography>
 

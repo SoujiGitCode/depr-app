@@ -120,7 +120,7 @@ const Landing = () => {
                   <Grid item xs={2} container direction="column" justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
                     <Box sx={{ textAlign: 'center' }}>
                       <img src={card.icon} alt="Icono" style={{ maxWidth: '100%' }} />
-                      <Typography variant="subtitle1" sx={{ color: '#E99122', mt: 1 }}>
+                      <Typography variant="h3" sx={{ color: '#E99122', mt: 1, fontFamily: 'Montserrat-Black !important', fontSize: '1.2rem' }}>
                         {card.goldenText}
                       </Typography>
                       <Typography
