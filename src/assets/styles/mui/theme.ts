@@ -5,7 +5,7 @@ const borderColor = "#658A86";
 const placeholderColor = "rgba(51, 51, 51, 0.4)";
 const filledInputBg = '#EAEAEA';
 
-const disabledColorPrimary = "#697FAA80";
+const disabledColorPrimary = "#44567980";
 
 
 const HOVER_COLORS = {

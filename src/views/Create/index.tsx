@@ -161,16 +161,18 @@ const Create = () => {
         <PurpleHeader />
         <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'start', paddingLeft: isMobile ? '1rem ' : '5rem', paddingRight: isMobile ? '1rem' : '5rem' }}>
 
-          <Grid item xs={12} sx={{ marginBottom: "1em !important", marginTop: "4em !important", display: 'flex', width: '100%', justifyContent: isMobile ? 'center' : 'start' }}>
-            <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
+          <Grid item xs={12} sx={{ paddingX: '1rem', marginTop: "2.5rem !important", display: 'flex', width: '100%', justifyContent: isMobile ? 'center' : 'start' }}>
+            <Typography variant="h1" gutterBottom sx={{ color: '#445679', fontSize: '2em !important' }} className='Montserrat-Black'>
               Crear Solicitud {formTitle}
             </Typography>
           </Grid>
 
 
-          <Grid item xs={12} sx={{ marginY: '4rem !important' }}>
+          <Grid item xs={12} sx={{ paddingX: '1rem', marginY: '2.5rem !important' }}>
             <Typography variant="body1" gutterBottom sx={{ fontSize: '1.1em !important' }}>
               Solicite su certificado en formato digital.
+            </Typography>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.1em !important' }}>
               Puede tardar hasta 5 días en ser procesada y enviada.
             </Typography>
           </Grid>

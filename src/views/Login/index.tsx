@@ -62,7 +62,7 @@ const Login = () => {
         >
           <img
             src={loginImage}
-            alt="login"
+            alt="Imagen de Inicio de Sesión del"
             style={{ width: "auto", height: "auto0" }}
           />
         </div>
@@ -83,7 +83,7 @@ const Login = () => {
             variant="h2"
             gutterBottom
             sx={{
-              color: "#807BB8",
+              color: "#4B4B95",
               fontSize: "2.2em !important",
               fontWeight: "bolder",
               marginBottom: "1em !important",
@@ -132,7 +132,7 @@ const Login = () => {
               variant="caption"
               component="a"
               href="#"
-              sx={{ fontSize: "16px !important", color: "#807BB8" }}
+              sx={{ fontSize: "16px !important", color: "#4B4B95" }}
               onClick={() => navigate('/recovery')}
             >
               Olvidé mi contraseña

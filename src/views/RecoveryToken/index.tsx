@@ -160,7 +160,7 @@ const RecoveryToken = () => {
             >
               <Grid container gap={2} padding={2}>
                 <Grid item xs={12}>
-                  <Typography variant="body1" color="#807BB8" sx={{ fontSize: '2rem', fontWeight: 'bolder' }} >Nueva Contraseña</Typography>
+                  <Typography variant="h1" color="#4B4B95" sx={{ fontSize: '2rem', fontWeight: 'bolder' }} >Nueva Contraseña</Typography>
                 </Grid>
                 {/* -------------------------------------------------Password -----------------------------------------*/}
                 <Grid item xs={12}>
@@ -251,7 +251,7 @@ const RecoveryToken = () => {
                           height: 'auto',
                           padding: '12px 40px',
                           borderRadius: '4px',
-                          border: '2px #697FAA solid',
+                          border: '2px #445679 solid',
                           fontSize: '0.7rem'
                         }}
                         onClick={() => onSave()}

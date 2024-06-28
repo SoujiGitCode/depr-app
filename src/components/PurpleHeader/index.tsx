@@ -18,7 +18,7 @@ const PurpleHeader = () => {
                 >
                     <Grid item>
                         {/* Imagen de icono al lado izquierdo */}
-                        <img src={icon} alt="Icono" style={{ height: '1.5em' }} />
+                        <img src={icon} alt="Icono Departamento de Educación" style={{ height: '1.5em' }} />
                     </Grid>
                     <Grid item xs>
                         {/* Contenido del Header */}

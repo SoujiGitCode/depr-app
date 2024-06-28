@@ -22,7 +22,7 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
                         <Grid container item xs={10} justifyContent="space-around" gap={isMobile ? 4 : 1}>
                             <Grid item xs={12} lg={3} textAlign={isMobile ? 'center' : 'left'}>
                                 {/* Contenido de la primera columna */}
-                                <img src={logoWhite} alt="Logo" style={{ width: 'auto' }} />
+                                <img src={logoWhite} alt="Logo Departamento de Educación" style={{ width: 'auto' }} />
                             </Grid>
                             <Grid item xs={12} lg={2}  >
                                 {/* Contenido de la segunda columna */}
@@ -101,11 +101,11 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
                             <Grid item xs={12} lg={2} sx={{ justifyContent: isMobile ? 'center' : 'left' }} >
                                 {/* Contenido de la quinta columna */}
                                 <Box mb={4} textAlign={isMobile ? 'center' : 'left'}>
-                                    <img src={oigLogo} alt="Logo" style={{ width: '150px', height: '64px' }} />
+                                    <img src={oigLogo} alt="Logo OIG" style={{ width: '150px', height: '64px' }} />
 
                                 </Box>
                                 <Box textAlign={isMobile ? 'center' : 'left'}>
-                                    <img src={oigInfo} alt="Logo" style={{ width: '150px' }} />
+                                    <img src={oigInfo} alt="Logo OIG info" style={{ width: '150px' }} />
                                 </Box>
                             </Grid>
 

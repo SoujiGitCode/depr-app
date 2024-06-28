@@ -135,7 +135,7 @@ const MultiStepForm = ({
     }
 
     return (
-        <Box sx={{ padding: '1rem !important', width: '100%' }}>
+        <Box sx={{ padding: '0rem !important', width: '100%' }}>
             <Grid container >
                 <Grid item xs={12} style={{ marginBottom: '3rem !important' }}>
                     {currentStep === 0 && (

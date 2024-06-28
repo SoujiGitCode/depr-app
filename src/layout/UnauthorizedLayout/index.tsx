@@ -30,12 +30,18 @@ const UnautoziredLayout = () => {
           >
             <Grid item>
               {/* Imagen de icono al lado izquierdo */}
-              <img src={icon} alt="Icono" style={{ height: '1.5em' }} />
+              <img src={icon} alt="Icono Departamento de Educación" style={{ height: '1.5em' }} />
             </Grid>
-            <Grid item xs>
+            <Grid item xs sx={{ display: 'inline-flex' }}>
               {/* Contenido del Header */}
-              <Typography variant="body1" color={'white'}>
-                Portal Oficial del Gobierno de Puerto Rico
+              <Typography variant="body1" color={'white'} sx={{ paddingX: '0.5rem' }}>
+                Portal Oficial del Gobierno de Puerto Rico.
+              </Typography>
+              <Typography variant="body1" color={'white'} sx={{ paddingX: '0.5rem' }}>
+                <a href="#description" style={{ color: 'white' }}>Así es como usted puede verificarlo</a>
+              </Typography>
+              <Typography variant="body1" color={'white'} sx={{ paddingX: '0.5rem' }}>
+                Desarrollado bajo GUIDI
               </Typography>
             </Grid>
           </Grid>
@@ -53,7 +59,7 @@ const UnautoziredLayout = () => {
             </Grid>
 
             <Grid item xs={12} lg={3} sx={{ textAlign: isMobile ? 'center' : 'start', paddingLeft: !isMobile ? '2rem !important' : '0' }}>
-              <img src={logo} alt="Logo" style={{ height: 'auto', width: isMobile ? '50%' : '80%' }} />
+              <img src={logo} alt="Logo Departamento de Educación" style={{ height: 'auto', width: isMobile ? '50%' : '80%' }} />
             </Grid>
 
             <Grid item xs={12} lg={3}

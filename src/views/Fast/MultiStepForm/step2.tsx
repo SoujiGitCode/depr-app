@@ -171,7 +171,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
     return (
         <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
-            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
+            <Typography variant="h2" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
                 Datos de la Escuela
             </Typography>
 

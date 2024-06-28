@@ -151,7 +151,7 @@ const ProgressStatus: React.FC<ProgressStatusProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: "#697FAA",
+        backgroundColor: "#445679",
         width: '100%',
         ...(horizontal
           ? {

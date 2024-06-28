@@ -12,7 +12,7 @@ function TitleSection() {
         paddingBottom: "2rem"
       }}
     >
-      <Typography variant="h6" gutterBottom sx={{ color: '#697FAA', fontSize: '2em !important' }}>
+      <Typography variant="h1" gutterBottom sx={{ color: '#445679', fontSize: '2em !important' }} className="Montserrat-Black">
         Perfil
       </Typography>
     </Box>

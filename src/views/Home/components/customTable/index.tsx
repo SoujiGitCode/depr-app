@@ -24,6 +24,12 @@ interface CustomTableProps {
 
 const CustomTable = ({ tableData, isMobile }: CustomTableProps) => {
 
+    const subStyles = {
+        fontFamily: 'Montserrat-Black !important',
+        fontWeight: 'bolder',
+        fontSize: '1rem',
+    }
+
 
     console.log(isMobile)
     const statusList: { [key: number]: string } = {
@@ -51,13 +57,13 @@ const CustomTable = ({ tableData, isMobile }: CustomTableProps) => {
                     <div>
                         {tableData.map((rowData, index) => (
                             <Card key={index} sx={{ marginBottom: '1rem !important', padding: '20px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
-                                <Typography variant="h6">Certificado:</Typography>
+                                <Typography variant="h3" sx={{ subStyles }}>Certificado:</Typography>
                                 <Typography>{rowData.name}</Typography>
                                 <br />
-                                <Typography variant="h6">Escuela:</Typography>
+                                <Typography variant="h3" sx={{ subStyles }}>Escuela:</Typography>
                                 <Typography>{rowData.school_name}</Typography>
                                 <br />
-                                <Typography variant="h6">Estatus:</Typography>
+                                <Typography variant="h3" sx={{ subStyles }}>Estatus:</Typography>
                                 <br />
                                 <CustomStatusButton statusName={statusList[parseInt(rowData.status) ?? 3]} statusCode={parseInt(rowData.status)} />
                                 <br />
@@ -116,8 +122,9 @@ const CustomTable = ({ tableData, isMobile }: CustomTableProps) => {
                                     }}
                                 >
                                     <Typography
-                                        variant='h6'
+                                        variant='h3'
                                         sx={{
+                                            fontFamily: 'Montserrat-Black',
                                             justifyContent: "center",
                                             fontSize: "1.2em",
                                             color: "#666666 !important"
@@ -133,8 +140,9 @@ const CustomTable = ({ tableData, isMobile }: CustomTableProps) => {
                                     }}
                                 >
                                     <Typography
-                                        variant='h6'
+                                        variant='h3'
                                         sx={{
+                                            fontFamily: 'Montserrat-Black',
                                             justifyContent: "center",
                                             fontSize: "1.2em",
                                             color: "#666666 !important"
@@ -150,8 +158,9 @@ const CustomTable = ({ tableData, isMobile }: CustomTableProps) => {
                                     }}
                                 >
                                     <Typography
-                                        variant='h6'
+                                        variant='h3'
                                         sx={{
+                                            fontFamily: 'Montserrat-Black',
                                             justifyContent: "center",
                                             fontSize: "1.2em",
                                             color: "#666666 !important"
@@ -167,8 +176,9 @@ const CustomTable = ({ tableData, isMobile }: CustomTableProps) => {
                                     }}
                                 >
                                     <Typography
-                                        variant='h6'
+                                        variant='h3'
                                         sx={{
+                                            fontFamily: 'Montserrat-Black',
                                             fontSize: "1.2em",
                                             color: "#666666 !important"
                                         }}

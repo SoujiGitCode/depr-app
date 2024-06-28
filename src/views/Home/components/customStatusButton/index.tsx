@@ -8,13 +8,13 @@ interface StatusButtonProps {
 const CustomStatusButton = ({ statusName, statusCode }: StatusButtonProps) => {
     const progress = "#939393";
     const succes = "#6ABE53"
-    const error = "#697FAA";
+    const error = "#445679";
 
     const statusColorList: { [key: number]: string } = {
         0: "#939393",
         1: "#6ABE53",
         2: "red",
-        3: "#697FAA",
+        3: "#445679",
     };
 
     const buttonColor = statusColorList[statusCode ?? 3]

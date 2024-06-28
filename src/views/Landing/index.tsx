@@ -119,8 +119,8 @@ const Landing = () => {
                 <Grid container>
                   <Grid item xs={2} container direction="column" justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
                     <Box sx={{ textAlign: 'center' }}>
-                      <img src={card.icon} alt="Icono" style={{ maxWidth: '100%' }} />
-                      <Typography variant="h3" sx={{ color: '#E99122', mt: 1, fontFamily: 'Montserrat-Black !important', fontSize: '1.2rem' }}>
+                      <img src={card.icon} alt="Icono Departamento de Educación" style={{ maxWidth: '100%' }} />
+                      <Typography variant="h3" sx={{ color: '#7D4A0C', mt: 1, fontFamily: 'Montserrat-Black !important', fontSize: '1.2rem' }}>
                         {card.goldenText}
                       </Typography>
                       <Typography
@@ -144,7 +144,7 @@ const Landing = () => {
                   <Grid item xs={10} container alignItems="center" justifyContent="center">
                     <CardContent sx={{ paddingRight: '2.5em !important' }}>
                       <Typography variant="h4" sx={{ color: '#333333' }} >{card.title}</Typography>
-                      <Typography variant="body1" sx={{ marginTop: '1.5em !important', marginBottom: '1.5em !important', textAlign: 'justify', color: '#333333' }}>
+                      <Typography variant="body1" sx={{ marginTop: '1.5em !important', marginBottom: '1.5em !important', textAlign: 'start', color: '#333333' }}>
                         {card.description}
                       </Typography>
 

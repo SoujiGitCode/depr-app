@@ -290,7 +290,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
             <Box>
                 <Grid container spacing={0}>
                     <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
-                        <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "0.5em !important" }}>
+                        <Typography variant="h2" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "0.5em !important" }}>
                             Datos Personales
                         </Typography>
                     </Grid>
@@ -538,7 +538,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                     <Grid container spacing={0}>
 
                         <Grid item xs={12} sx={{ paddingX: '1rem' }}>
-                            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "0.5em !important" }}>
+                            <Typography variant="h2" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "0.5em !important" }}>
                                 Datos de la Escuela
                             </Typography>
                         </Grid>
@@ -694,7 +694,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                 <Box>
                     <Grid container spacing={0}>
                         <Grid item xs={12} sx={{ paddingX: '1rem' }}>
-                            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important", marginTop: "2em !important" }}>
+                            <Typography variant="h2" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important", marginTop: "2em !important" }}>
                                 Enviar a:
                             </Typography>
                         </Grid>

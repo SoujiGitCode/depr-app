@@ -200,7 +200,7 @@ const Register = () => {
     <Grid container style={{ width: '100%', margin: 0 }}>
       <Grid item xs={12} lg={6} style={{ overflow: 'hidden', height: 'auto' }}>
         <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src={registerImage} alt="login" style={{ width: '100%', height: '100%' }} />
+          <img src={registerImage} alt="Imagen de Registro del portal" style={{ width: '100%', height: '100%' }} />
         </div>
       </Grid>
       <Grid item xs={12} lg={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2em' }}>
@@ -209,7 +209,7 @@ const Register = () => {
         {!loading ?
 
           <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
-            <Typography variant="h2" gutterBottom sx={{ color: '#807BB8', fontSize: '2.2em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
+            <Typography variant="h2" gutterBottom sx={{ color: '#4B4B95', fontSize: '2.2em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
               Registro
             </Typography>
 
@@ -712,7 +712,7 @@ const Register = () => {
                           maxWidth: '241.5px',
                           height: 'auto',
                           padding: '12px 40px',
-                          border: '2px #697FAA solid',
+                          border: '2px #445679 solid',
                           fontSize: '0.7rem'
                         }}
                       // onClick={() => modalTriger('success')}

@@ -80,7 +80,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
     return (
         <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
-            <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
+            <Typography variant="h2" gutterBottom sx={{ fontSize: '1.5em !important', fontWeight: 'bolder', marginBottom: "1em !important" }}>
                 Correo Electrónico
             </Typography>
 

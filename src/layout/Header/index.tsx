@@ -49,7 +49,7 @@ export default function Header() {
       </Box>
       <Toolbar className={styles["auth-header"]}>
         <Box className={styles["brand"]} sx={{ gap: 3 }}>
-          <img src={Logo} alt="logo" className={styles["brand-img"]} />
+          <img src={Logo} alt="Logo Departamento de Educación" className={styles["brand-img"]} />
           <Typography variant="h6" className={styles["header-text"]}>
             Student Portal
           </Typography>

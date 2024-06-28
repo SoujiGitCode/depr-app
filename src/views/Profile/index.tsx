@@ -132,6 +132,9 @@ const Profile = () => {
     onSubmit: async (values: any) => {
 
       await UpdateChangesProfile(values)
+      setAlert('¡Datos Personales Actualizados!', "success");
+
+      console.log('IM HERE')
       getDetails();
     },
 
@@ -265,7 +268,7 @@ const Profile = () => {
             <Box sx={{ width: '100%', }}>
               <Grid container>
                 <Grid item xs={12} lg={6} sx={{ justifyContent: isMobile ? 'center' : 'start', display: 'flex', alignItems: 'center', }}>
-                  <img src={profileImage} alt="user-photo" className={styles["img-profile-style"]} />
+                  <img src={profileImage} alt="Foto del usuario" className={styles["img-profile-style"]} />
                 </Grid>
                 <Grid item xs={12} lg={6} sx={{ display: 'flex', justifyContent: isMobile ? 'center' : 'start', alignItems: 'center  !important', verticalAlign: 'center !important' }}>
                   <Button variant="contained" color="primary"
