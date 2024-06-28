@@ -62,11 +62,11 @@ const SlideContent = ({ title, paragraph, imgSrc, button = false, isMobile }: an
             <Grid container justifyContent="center" alignItems="center" gap={3}>
                 <Grid item xs={12} lg={3} >
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                        <Typography className={styles.carouselTitle} sx={{ textAlign: isMobile ? 'center' : 'left' }} >{title}</Typography>
+                        <Typography variant="h2" className={styles.carouselTitle} sx={{ textAlign: isMobile ? 'center' : 'left' }} >{title}</Typography>
                         <Typography className={styles.carouselText} sx={{ textAlign: isMobile ? 'center' : 'left' }}>{paragraph}</Typography>
 
                         {button && (
-                            <Button className={styles.carouselButton} onClick={() => navigate("/fast")} sx={{ width: isMobile ? '100%' : '240px' }} >
+                            <Button className={styles.carouselButton} variant="contained" color='warning' onClick={() => navigate("/fast")} sx={{ width: isMobile ? '100%' : '240px' }} >
                                 Crear Solicitud
                             </Button>
                         )}

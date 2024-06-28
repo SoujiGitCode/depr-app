@@ -9,7 +9,7 @@ const disabledColorPrimary = "#697FAA80";
 
 
 const HOVER_COLORS = {
-  primary: '#CDD6E480',
+  primary: '#2B394A',
   secondary: '#214F21',
   warning: '#654010'
 };
@@ -21,7 +21,7 @@ const BASIC_COLORS = {
 }
 
 const DISABLED_COLORS = {
-  primary: '#697FAA80',
+  primary: '#CDD6E480',
   secondary: '#214F21',
   warning: '#654010'
 }
@@ -65,34 +65,34 @@ const theme = createTheme({
     ].join(','),
     // Definir variantes de Typography
     h1: {
-      fontFamily: 'Montserrat-Black',
-      fontWeight: 'normal',
-      fontSize: '2rem',
+      fontFamily: 'Montserrat-Medium',
+      fontWeight: 'bolder',
+      fontSize: '1.6rem',
     },
     h2: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
-      fontSize: '1.5rem',
+      fontSize: '1.4rem',
     },
     h3: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
-      fontSize: '1.4rem',
+      fontSize: '1.3rem',
     },
     h4: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
-      fontSize: '1.3rem',
+      fontSize: '1.2rem',
     },
     h5: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
-      fontSize: '1.2rem',
+      fontSize: '1.1rem',
     },
     h6: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
-      fontSize: '1.1rem',
+      fontSize: '1rem',
     },
     body1: {
       fontFamily: 'Montserrat-Medium',
@@ -115,7 +115,6 @@ const theme = createTheme({
       fontWeight: 'normal',
       fontSize: '0.8rem',
     },
-    // ... (puedes añadir más variantes según tus necesidades)
   },
   components: {
     MuiButton: {

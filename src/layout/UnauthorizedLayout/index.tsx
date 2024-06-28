@@ -47,7 +47,7 @@ const UnautoziredLayout = () => {
           {/* Primer Grid */}
           <Grid container alignItems="center" spacing={0.5} sx={{ display: 'flex', justifyContent: 'space-around' }}>
             <Grid item xs={12} lg={5}>
-              <Typography variant="h2" sx={{ textAlign: isMobile ? 'center' : 'start', paddingLeft: !isMobile ? '2rem !important' : '0' }}>
+              <Typography variant="h1" sx={{ textAlign: isMobile ? 'center' : 'start', paddingLeft: !isMobile ? '2rem !important' : '0' }}>
                 PORTAL DE CERTIFICACIONES ACADÉMICAS
               </Typography>
             </Grid>

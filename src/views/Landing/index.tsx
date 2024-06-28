@@ -86,7 +86,7 @@ const Landing = () => {
       <Box sx={{ bgcolor: 'white', p: 0.5, margin: 0 }}>
         <Grid container justifyContent="center" alignItems="center" spacing={0} >
           <Grid item xs={10} lg={8} sx={{ position: 'relative', marginBottom: '3em !important', marginTop: '3em !important' }}>
-            <Typography variant="h5" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
+            <Typography variant="h3" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
               ¡Bienvenidos al Portal de Certificaciones Académicas del Departamento de Educación!
             </Typography>
             <Typography variant="body1" sx={{ mb: 2, textAlign: 'justify', marginBottom: '2em !important', fontSize: '1em !important', lineHeight: '25px !important' }}>
@@ -96,7 +96,7 @@ const Landing = () => {
               <BoldText> La Certificación de Graduación, la Transcripción de Créditos y la Certificación de Horas Taller</BoldText> relacionada a horas contacto de cursos especializados en Educación Vocacional, Ocupacional y Técnica.
             </Typography>
 
-            <Typography variant="h5" sx={{ marginTop: '2em !important', marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
+            <Typography variant="h3" sx={{ marginTop: '2em !important', marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
               Conoce los tipos de Certificaciones Académicas
             </Typography>
 
@@ -123,7 +123,6 @@ const Landing = () => {
                       <Typography variant="subtitle1" sx={{ color: '#E99122', mt: 1 }}>
                         {card.goldenText}
                       </Typography>
-                      {/* Posicionamos absolutamente el caption */}
                       <Typography
                         variant="caption"
                         sx={{
@@ -144,7 +143,7 @@ const Landing = () => {
 
                   <Grid item xs={10} container alignItems="center" justifyContent="center">
                     <CardContent sx={{ paddingRight: '2.5em !important' }}>
-                      <Typography variant="h5" sx={{ color: '#333333' }} >{card.title}</Typography>
+                      <Typography variant="h4" sx={{ color: '#333333' }} >{card.title}</Typography>
                       <Typography variant="body1" sx={{ marginTop: '1.5em !important', marginBottom: '1.5em !important', textAlign: 'justify', color: '#333333' }}>
                         {card.description}
                       </Typography>
