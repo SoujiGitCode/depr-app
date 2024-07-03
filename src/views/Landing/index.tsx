@@ -113,7 +113,8 @@ const Landing = () => {
                   paddingTop: '1em !important',
                   paddingBottom: '0.5em !important',
                   boxShadow: '0px 4px 19px 0px #00000017',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  marginBottom: "1.5em !important"
                 }}
               >
                 <Grid container>
