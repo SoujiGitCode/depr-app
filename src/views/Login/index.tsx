@@ -62,8 +62,8 @@ const Login = () => {
         >
           <img
             src={loginImage}
-            alt="Imagen de Inicio de Sesión del"
-            style={{ width: "auto", height: "auto0" }}
+            alt="Imagen de Inicio de Sesión del Portal de Certificaciones Académicas "
+            style={{ width: "auto", height: "auto" }}
           />
         </div>
       </Grid>

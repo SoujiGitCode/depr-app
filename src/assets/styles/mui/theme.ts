@@ -160,8 +160,8 @@ const theme = createTheme({
       styleOverrides: {
         primary: {
           fontFamily: 'Montserrat-Medium',
-          fontWeight: 'normal',
-          fontSize: '0.8rem',
+          fontWeight: 'lighter',
+          fontSize: '0.7rem',
         },
       },
     },

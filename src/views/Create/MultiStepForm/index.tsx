@@ -134,6 +134,11 @@ const MultiStepForm = ({
         }
     }
 
+    useEffect(() => {
+        console.log(termsandConditionsCheckBox)
+        console.log('hola')
+    }, [termsandConditionsCheckBox])
+
     return (
         <Box sx={{ padding: '0rem !important', width: '100%' }}>
             <Grid container >

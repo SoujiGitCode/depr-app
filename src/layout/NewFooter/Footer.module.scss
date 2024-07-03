@@ -1,0 +1,47 @@
+@import "../../assets/styles/base/variables";
+
+.footerContainer {
+    display: flex;
+    color: #fff;
+    font-family: 'Montserrat-Medium';
+    justify-content: center;
+    font-size: 15px;
+    transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
+}
+
+.footerTitle {
+    font-weight: 700;
+}
+
+.horizontalLine {
+    background-color: #686868 !important;
+    height: 1px;
+    border: none;
+    margin: 16px 0;
+    width: 100%;
+}
+
+.footerFirstContainer {
+    background-color: #495279;
+    padding-top: 4em;
+    width: 100%;
+
+}
+
+.footerSecondContainer {
+    background-color: #49527980;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.footerSecondContainerText {
+    font-size: 12px !important;
+    font-family: 'Montserrat-Medium' !important;
+    font-weight: light !important;
+}
+
+
+svg {
+
+    fill: #FFFFFF;
+}

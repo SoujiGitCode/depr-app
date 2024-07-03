@@ -54,9 +54,9 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
     <>
       <Box sx={{ display: "flex", paddingBottom: "1.3rem", paddingTop: "2rem" }}>
 
-        <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
           Primer Nombre: &nbsp;
-        </Typography>
+        </label>
         <Typography
           sx={{
             lineBreak: "anywhere",
@@ -68,9 +68,9 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
       </Box>
 
       <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-        <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
           Segundo Nombre: &nbsp;
-        </Typography>
+        </label>
         <Typography
           sx={{
             lineBreak: "anywhere",
@@ -82,9 +82,9 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
       </Box>
 
       <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-        <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
           Primer Apellido: &nbsp;
-        </Typography>
+        </label>
         <Typography
           sx={{
             lineBreak: "anywhere",
@@ -96,9 +96,9 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
       </Box>
 
       <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-        <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
           Segundo Apellido: &nbsp;
-        </Typography>
+        </label>
         <Typography
           sx={{
             lineBreak: "anywhere",
@@ -110,9 +110,9 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
       </Box>
 
       <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-        <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
           Seguro Social: &nbsp;
-        </Typography>
+        </label>
         <Typography
           sx={{
             lineBreak: "anywhere",
@@ -124,9 +124,9 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
       </Box>
 
       <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-        <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
           Fecha de nacimiento: &nbsp;
-        </Typography>
+        </label>
         <Typography sx={{ lineBreak: "anywhere", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
           {getFormattedDate(formik.values.depr_birthdate)}
         </Typography>
@@ -136,18 +136,18 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
       {isMobile &&
         <>
           <Box sx={{ display: "flex", paddingBottom: "1.3rem" }}>
-            <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+            <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
               Número de Teléfono: &nbsp;
-            </Typography>
+            </label>
             <Typography sx={{ lineBreak: "anywhere", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
               {formatPhoneNumber(formik.values.depr_phone)}
             </Typography>
           </Box>
 
           <Box sx={{ display: "flex", paddingBottom: "1rem" }}>
-            <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+            <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
               Género: &nbsp;
-            </Typography>
+            </label>
             <Typography sx={{ lineBreak: "anywhere", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
               {genderDictionary[formik.values.depr_gender.toString()] || "No indicado"}
             </Typography>
@@ -160,9 +160,9 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
               width: "140%",
             }}
           >
-            <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+            <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
               Documento de identidad: &nbsp;
-            </Typography>
+            </label>
             <Typography sx={{ lineBreak: "anywhere", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
               {formik.values.identification}
             </Typography>
@@ -175,9 +175,9 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
               width: "140%",
             }}
           >
-            <Typography sx={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
+            <label style={{ fontWeight: "bold", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
               Correo electrónico: &nbsp;
-            </Typography>
+            </label>
             <Typography sx={{ lineBreak: "anywhere", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
               {formik.values.email}
             </Typography>

@@ -152,46 +152,47 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
 
 
-    // useEffect(() => {
-    //     if (!formik.isValid) {
-    //         console.log(formik.errors);
-    //         setStepValid(false)
-    //     }
-    //     if (formik.isValid) {
-    //         setStepValid(true)
-    //         updateFormData({
-    //             identification_type: formik.values.identification_type,
-    //             identification: formik.values.identification,
-    //             first_name: formik.values.first_name,
-    //             second_name: formik.values.second_name,
-    //             last_name: formik.values.last_name,
-    //             second_last_name: formik.values.second_last_name,
+    useEffect(() => {
+        if (!formik.isValid) {
+            console.log(formik.errors);
+            setStepValid(false)
+        }
+        if (formik.isValid) {
+            console.log(formik.isValid)
+            setStepValid(true)
+            updateFormData({
+                identification_type: formik.values.identification_type,
+                identification: formik.values.identification,
+                first_name: formik.values.first_name,
+                second_name: formik.values.second_name,
+                last_name: formik.values.last_name,
+                second_last_name: formik.values.second_last_name,
 
-    //             gender: formik.values.gender,
+                gender: formik.values.gender,
 
-    //             depr_first_name: formik.values.depr_first_name,
-    //             depr_second_name: formik.values.depr_second_name,
-    //             depr_last_name: formik.values.depr_last_name,
-    //             depr_second_last_name: formik.values.depr_second_last_name,
+                depr_first_name: formik.values.depr_first_name,
+                depr_second_name: formik.values.depr_second_name,
+                depr_last_name: formik.values.depr_last_name,
+                depr_second_last_name: formik.values.depr_second_last_name,
 
-    //             birthdate: formik.values.birthdate,
-    //             phone: formik.values.phone,
-    //             social_security: formik.values.social_security,
+                birthdate: formik.values.birthdate,
+                phone: formik.values.phone,
+                social_security: formik.values.social_security,
 
-    //             email1: formik.values.email1,
-    //             email2: formik.values.email2,
+                email1: formik.values.email1,
+                email2: formik.values.email2,
 
-    //             schoolTown: formik.values.schoolTown,
-    //             school_code: formik.values.school_code,
-    //             grade: formik.values.grade,
-    //             grade_year: formik.values.grade_year,
+                schoolTown: formik.values.schoolTown,
+                school_code: formik.values.school_code,
+                grade: formik.values.grade,
+                grade_year: formik.values.grade_year,
 
-    //             certification_type_id: formik.values.certification_type_id,
-    //         }, false);
-    //     }
+                certification_type_id: formik.values.certification_type_id,
+            }, false);
+        }
 
-    //     console.log('isStepValid ' + isStepValid)
-    // }, [formik.values, formik.touched, formik.isValid]);
+        console.log('isStepValid ' + isStepValid)
+    }, [formik.values, formik.touched, formik.isValid]);
 
 
 
@@ -827,6 +828,16 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     helperText={formik.touched.confirmEmail2 && typeof formik.errors.confirmEmail2 === 'string' ? formik.errors.confirmEmail2 : undefined}
                                 />
                             </FormControl>
+                        </Grid>
+
+
+                    </Grid>
+                </Box>
+
+                <Box>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
+                            <TermsandConditionsCheckBox checkStatus={termsandConditionsCheckBox} setCheckStatus={setTermsandConditionsCheckBox} />
                         </Grid>
                     </Grid>
                 </Box>

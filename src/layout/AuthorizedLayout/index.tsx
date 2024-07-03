@@ -58,7 +58,7 @@ const AuthorizedLayout = () => {
         <Footer isMobile={isMobile} />
       </Grid>
 
-      <AccessibilityWidget />
+      {/* <AccessibilityWidget /> */}
     </Grid >
   );
 };

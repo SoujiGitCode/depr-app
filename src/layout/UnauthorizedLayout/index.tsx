@@ -1,4 +1,4 @@
-import { Grid, Typography, Box, Button, useTheme, useMediaQuery, Stack } from "@mui/material";
+import { Grid, Typography, Box, Button, useTheme, useMediaQuery, Stack, Collapse, IconButton } from "@mui/material";
 import { Header, Footer } from "@/layout";
 import { Outlet } from "react-router-dom";
 import AlertPopup from "@/components/AlertPopup";
@@ -7,10 +7,19 @@ import icon from "../../assets/images/icon.png"
 import logo from "../../assets/images/logo.png"
 import { PATH } from "@/routes/constants";
 import { AccessibilityWidget } from "@/components";
+import { useState } from 'react';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 const UnautoziredLayout = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+
+  const [showHeaderDescription, setShowHeaderDescription] = useState(false);
+
+  const onClickHeaderDescription = () => {
+    setShowHeaderDescription(!showHeaderDescription); // Cambia el estado de open
+  };
 
   return (
     <>
@@ -18,34 +27,82 @@ const UnautoziredLayout = () => {
         <AlertPopup />
 
         {/* Header */}
-        <Box sx={{ bgcolor: '#727caa' }}>
-          <Grid container
-            justifyContent="center"
-            alignItems="center"
-            sx={{
-              padding: '10px 20px', // padding: 0px, 110px, 0px, 110px
-              alignItems: 'center', // Alineación vertical
-              lineHeight: '1.9'
-            }}
-          >
+        <Box sx={{ bgcolor: '#495279' }}>
+          <Grid container justifyContent="center" alignItems="center" sx={{ padding: '10px 20px', alignItems: 'center', lineHeight: '1.9' }}>
             <Grid item>
-              {/* Imagen de icono al lado izquierdo */}
               <img src={icon} alt="Icono Departamento de Educación" style={{ height: '1.5em' }} />
             </Grid>
             <Grid item xs sx={{ display: 'inline-flex' }}>
-              {/* Contenido del Header */}
               <Typography variant="body1" color={'white'} sx={{ paddingX: '0.5rem' }}>
                 Portal Oficial del Gobierno de Puerto Rico.
               </Typography>
-              <Typography variant="body1" color={'white'} sx={{ paddingX: '0.5rem' }}>
-                <a href="#description" style={{ color: 'white' }}>Así es como usted puede verificarlo</a>
+
+              <Typography variant="body1" color={'white'}
+                sx={{
+                  // display: isMobile ? 'none' : 'inline-flex',
+                  display: 'none',
+                  paddingLeft: '0.5rem',
+                  textDecoration: 'underline',
+                }} onClick={onClickHeaderDescription} >
+                {/* Enlace con Icono y acción */}
+                Así es como usted puede verificarlo
               </Typography>
-              <Typography variant="body1" color={'white'} sx={{ paddingX: '0.5rem' }}>
-                Desarrollado bajo GUIDI
+              <IconButton onClick={onClickHeaderDescription}
+                aria-label="Información sobre sitios web oficiales del Gobierno de Puerto Rico"
+                sx={{
+                  color: "white",
+                  padding: '0px', // Reduce el padding si es necesario
+                  alignItems: 'center',
+                  display: 'flex'
+                }} size="small">
+
+                {!showHeaderDescription ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+              </IconButton>
+              <Typography variant="body1" color={'white'}
+                sx={{
+                  paddingLeft: '2.5rem',
+                  display: isMobile ? 'none' : 'inline-flex',
+                }}>
               </Typography>
             </Grid>
           </Grid>
         </Box>
+
+        {/* Div desplegable */}
+        <Collapse in={showHeaderDescription} timeout="auto" unmountOnExit>
+          <Box sx={{ padding: '20px', bgcolor: 'lightgray' }}>
+            <Grid container>
+              <Grid item xs={12} lg={3}
+                sx={{
+                  borderLeft: '6px solid #495279',
+                  paddingX: '0.5rem',
+                  marginBottom: isMobile ? '2rem !important' : '0.5rem',
+                }}>
+                <Typography variant="body1"
+                  sx={{ paddingX: '0.5rem' }}>
+                  <b> Un sitio web oficial .pr.gov</b>
+                  <br />
+                  pertenece a una organización
+                  oficial del Gobierno de Puerto Rico.
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} lg={3}
+                sx={{
+                  borderLeft: '6px solid #495279',
+                  paddingX: '0.5rem',
+                  marginBottom: isMobile ? '2rem !important' : '0.5rem',
+                }}>
+                <Typography variant="body1"
+                  sx={{ paddingX: '0.5rem' }}>
+                  <b>Los sitios web seguros .pr.gov usan https://</b>
+                  <br />
+                  lo que significa que usted se conectó de forma segura a un sitio web .pr.gov.
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
+        </Collapse>
 
         {/* Nav */}
         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
@@ -118,7 +175,8 @@ const UnautoziredLayout = () => {
         </Box>
 
         <Footer isMobile={isMobile} />
-        <AccessibilityWidget />
+
+        {/* <AccessibilityWidget /> */}
       </Box >
     </>
 

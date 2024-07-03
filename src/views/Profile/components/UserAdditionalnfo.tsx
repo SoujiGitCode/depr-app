@@ -32,18 +32,18 @@ const UserAdditionalInfo: React.FC<UserProfileInfoProps> = ({ formik, isMobile }
   return (
     <>
       <Box sx={{ display: "flex", marginTop: '6.22rem !important', paddingBottom: "1.3rem" }}>
-        <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
           Teléfono: &nbsp;
-        </Typography>
+        </label>
         <Typography sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}>
           {formatPhoneNumber(formik.values.depr_phone)}
         </Typography>
       </Box>
 
       <Box sx={{ display: "flex", paddingBottom: "1rem" }}>
-        <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
           Género: &nbsp;
-        </Typography>
+        </label>
         <Typography sx={{ lineBreak: "anywhere", fontSize: isMobile ? '0.7rem' : "1.2rem" }}>
           {genderDictionary[formik.values.depr_gender.toString()] || "No indicado"}
         </Typography>
@@ -56,9 +56,9 @@ const UserAdditionalInfo: React.FC<UserProfileInfoProps> = ({ formik, isMobile }
           width: "140%",
         }}
       >
-        <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
           Documento de identidad: &nbsp;
-        </Typography>
+        </label>
         <Typography sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}>
           {formik.values.identification}
         </Typography>
@@ -71,9 +71,9 @@ const UserAdditionalInfo: React.FC<UserProfileInfoProps> = ({ formik, isMobile }
           width: "140%",
         }}
       >
-        <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+        <label style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
           Correo electrónico: &nbsp;
-        </Typography>
+        </label>
         <Typography sx={{ lineBreak: "anywhere", fontSize: "1.2rem" }}>
           {formik.values.email}
         </Typography>
