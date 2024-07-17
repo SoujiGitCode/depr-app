@@ -10,6 +10,7 @@ import oigLogo from "../../assets/images/oig-logo-hd.webp"
 import FacebookIcon from '@mui/icons-material/Facebook'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import InstagramIcon from '@mui/icons-material/Instagram'
+import AccessibleForwardIcon from '@mui/icons-material/AccessibleForward';
 
 
 
@@ -133,24 +134,23 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
 
 
                             </Grid>
-                            <Grid item xs={12} lg={2} sx={{ justifyContent: isMobile ? 'center' : 'left' }} >
-                                {/* Contenido de la quinta columna */}
-                                <Box textAlign={isMobile ? 'center' : 'left'} sx={{ marginBottom: "-5px !important" }}>
-                                    <a href="https://www.oig.pr.gov/" target="_blank" rel="noopener noreferrer"
-                                        aria-label="Visitar el sitio web oficial de la Oficina del Inspector General"
-                                    >
-                                        <img src={oigLogo} alt="Logo Oficina del Inspector Genera" style={{ width: '180px' }} />
-                                    </a>
-                                </Box>
-                                <Box textAlign={isMobile ? 'center' : 'left'}>
-                                    <a href="https://www.oig.pr.gov/" target="_blank" rel="noopener noreferrer"
-                                        aria-label="Visitar el sitio web oficial de la Oficina del Inspector General"
-                                    >
-                                        <img src={oigInfo} alt="Logo de Oficina del Inspector General con fondo negro con texto en rojo que indica 'informanos'" style={{ width: '180px' }} />
-                                    </a>
-                                </Box>
-                            </Grid>
 
+                            <Grid item xs={12} lg={2}>
+                                {/* Contenido de la tercera columna */}
+                                <Typography variant="body1" sx={{ marginBottom: '0.8em !important', textAlign: isMobile ? 'center' : 'left' }}>
+                                    <a href="https://www.pr.gov/" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Visitar el sitio web oficial del Gobierno de Puerto Rico"
+                                        style={{ textDecoration: 'none', color: 'inherit' }}>PR.gov</a>
+                                </Typography>
+
+                                <Typography variant="body1" sx={FooterText}><AccessibleForwardIcon fontSize='small' /> Acessibilidade PRITS-043021-PRITS</Typography>
+                                <Typography variant="body1" sx={FooterText}>Conforme a la Ley 229 de 2003</Typography>
+                                <Typography variant="body1" sx={FooterText}>
+                                    <a href="https://www.oig.pr.gov/" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Visitar el sitio web oficial de la Oficina del Inspector General"
+                                        style={{ textDecoration: 'none', color: 'inherit' }}>Oficina de Inspector General (OIG)</a>
+                                </Typography>
+                            </Grid>
                         </Grid>
                     </Box>
 
