@@ -1,5 +1,6 @@
 import { Grid, Box, Typography, TextField, Button, useTheme, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
+import recoveryPassImg from "@/assets/recovery-pass.png"
 
 import { Dialog, DialogContent, DialogContentText, DialogTitle, DialogActions } from "@mui/material";
 
@@ -106,10 +107,10 @@ const Recovery = () => {
   return (
     <>
       <Grid container>
-        <Grid item xs={12} lg={6}>
-          <Box className={styles["recovery-container"]}>
-            <Box className={styles["background-image"]}></Box>
-          </Box>
+        <Grid item xs={12} lg={6} style={{ overflow: 'hidden', height: 'auto' }}>
+          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src={recoveryPassImg} alt="Mujer sonriendo sentada frente a un ordenador portatil" style={{ width: '80%', height: '100%', maxHeight: '80vh' }} />
+          </div>
         </Grid>
 
         <Grid item xs={12} lg={6}>

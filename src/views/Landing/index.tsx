@@ -89,7 +89,7 @@ const Landing = () => {
             <Typography variant="h3" sx={{ marginBottom: '2em !important', fontSize: '1.5em !important', textAlign: isMobile ? 'center' : 'left' }}>
               ¡Bienvenidos al Portal de Certificaciones Académicas del Departamento de Educación!
             </Typography>
-            <Typography variant="body1" sx={{ mb: 2, textAlign: 'justify', marginBottom: '2em !important', fontSize: '1em !important', lineHeight: '25px !important' }}>
+            <Typography variant="body1" sx={{ mb: 2, textAlign: 'left', marginBottom: '2em !important', fontSize: '1em !important', lineHeight: '25px !important' }}>
               El <BoldText>Portal de Certificaciones Académicas </BoldText>es un sistema que se encuentra disponible para estudiantes activos y egresados del Sistema Educativo del Departamento de Educación de Puerto Rico. Este portal permitirá solicitar en línea, obtener y validar de manera digital las <BoldText>Certificaciones Académicas</BoldText>.
 
               Entre las <BoldText>Certificaciones Académicas</BoldText> que pueden solicitar los estudiantes a través de este portal son:
@@ -120,7 +120,7 @@ const Landing = () => {
                 <Grid container>
                   <Grid item xs={2} container direction="column" justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
                     <Box sx={{ textAlign: 'center' }}>
-                      <img src={card.icon} alt="Icono Departamento de Educación" style={{ maxWidth: '100%' }} />
+                      <img src={card.icon} alt="" style={{ maxWidth: '100%' }} />
                       <Typography variant="h3" sx={{ color: '#7D4A0C', mt: 1, fontFamily: 'Montserrat-Black !important', fontSize: '1.2rem' }}>
                         {card.goldenText}
                       </Typography>

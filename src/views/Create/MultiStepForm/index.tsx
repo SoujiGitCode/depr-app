@@ -158,7 +158,7 @@ const MultiStepForm = ({
 
                     )}
 
-                    <Box mt={2} sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '3em !important', marginTop: '3em !important' }}>
+                    <Box mt={2} sx={{ width: '100%' }}>
                         {currentStep !== 1 &&
 
                             <>

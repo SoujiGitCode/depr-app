@@ -74,7 +74,7 @@ export default function TermsandConditions() {
 
     return (
         <>
-            <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'start', flexDirection: 'column', p: '3rem 3rem', textAlign: 'justify' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'start', flexDirection: 'column', p: '3rem 3rem', textAlign: 'left' }}>
                 <Typography variant="h1" component="h1" gutterBottom sx={{ ...h1Style, ...baseStyle }}>
                     Política de Privacidad
                 </Typography>

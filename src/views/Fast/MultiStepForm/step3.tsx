@@ -357,7 +357,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             >
                 <Grid container alignItems="center" justifyContent="center" spacing={0}>
                     <Grid item xs={2} lg={1} textAlign={"center"}>
-                        <IconButton color="warning">
+                        <IconButton color="warning" aria-label="Icono de Peligro en color naranja">
                             <WarningIcon fontSize="large" />
                         </IconButton>
                     </Grid>

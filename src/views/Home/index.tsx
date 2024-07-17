@@ -218,7 +218,7 @@ const Home = () => {
                   <Grid container>
                     <Grid item xs={2} container direction="column" justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
                       <Box sx={{ textAlign: 'center' }}>
-                        <img src={card.icon} alt="Icono Departamento de Educación" style={{ maxWidth: '100%' }} />
+                        <img src={card.icon} alt="" style={{ maxWidth: '100%' }} />
                         <Typography variant="h3" sx={{ color: '#7D4A0C', mt: 1, fontFamily: 'Montserrat-Black !important', fontSize: '1.2rem' }}>
                           {card.goldenText}
                         </Typography>

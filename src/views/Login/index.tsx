@@ -62,7 +62,7 @@ const Login = () => {
         >
           <img
             src={loginImage}
-            alt="Imagen de Inicio de Sesión del Portal de Certificaciones Académicas "
+            alt="Grupo de jóvenes graduados sonrientes lanzando birretes al aire en celebración"
             style={{ width: "auto", height: "auto" }}
           />
         </div>
@@ -132,7 +132,7 @@ const Login = () => {
               variant="caption"
               component="a"
               href="#"
-              sx={{ fontSize: "16px !important", color: "#4B4B95" }}
+              sx={{ fontSize: "16px !important", color: "#2E2EFF" }}
               onClick={() => navigate('/recovery')}
             >
               Olvidé mi contraseña

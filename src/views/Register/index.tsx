@@ -200,7 +200,7 @@ const Register = () => {
     <Grid container style={{ width: '100%', margin: 0 }}>
       <Grid item xs={12} lg={6} style={{ overflow: 'hidden', height: 'auto' }}>
         <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src={registerImage} alt="Imagen de Registro del portal" style={{ width: '100%', height: '100%' }} />
+          <img src={registerImage} alt="Estudiante Sonriendo con materiales de estudio sostenidos en brazo " style={{ width: '100%', height: '100%' }} />
         </div>
       </Grid>
       <Grid item xs={12} lg={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2em' }}>
@@ -358,7 +358,7 @@ const Register = () => {
             >
               <Grid container alignItems="center" sx={{ textAlign: 'center' }}>
                 <Grid item xs={12} lg={1}>
-                  <IconButton color="warning">
+                  <IconButton color="warning" aria-label="Icono de Peligro en color naranja">
                     <WarningIcon fontSize="large" />
                   </IconButton>
                 </Grid>

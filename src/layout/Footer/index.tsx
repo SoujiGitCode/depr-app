@@ -139,14 +139,14 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
                                     <a href="https://www.oig.pr.gov/" target="_blank" rel="noopener noreferrer"
                                         aria-label="Visitar el sitio web oficial de la Oficina del Inspector General"
                                     >
-                                        <img src={oigLogo} alt="Logo OIG" style={{ width: '180px' }} />
+                                        <img src={oigLogo} alt="Logo Oficina del Inspector Genera" style={{ width: '180px' }} />
                                     </a>
                                 </Box>
                                 <Box textAlign={isMobile ? 'center' : 'left'}>
                                     <a href="https://www.oig.pr.gov/" target="_blank" rel="noopener noreferrer"
                                         aria-label="Visitar el sitio web oficial de la Oficina del Inspector General"
                                     >
-                                        <img src={oigInfo} alt="Logo OIG info" style={{ width: '180px' }} />
+                                        <img src={oigInfo} alt="Logo de Oficina del Inspector General con fondo negro con texto en rojo que indica 'informanos'" style={{ width: '180px' }} />
                                     </a>
                                 </Box>
                             </Grid>

@@ -15,7 +15,7 @@ import ApiRequest from "@/utils/services/apiService";
 import { useEffect, useState } from "react";
 import useAlert from "@/hooks/useAlert";
 import ConfirmationModal from "@/components/ConfirmationModal";
-
+import recoveryPassImg from "@/assets/recovery-pass.png"
 
 const RecoveryToken = () => {
 
@@ -144,10 +144,10 @@ const RecoveryToken = () => {
   return (
     <>
       <Grid container>
-        <Grid item xs={12} lg={6}>
-          <Box className={styles["recovery-container"]}>
-            <Box className={styles["background-image"]}></Box>
-          </Box>
+        <Grid item xs={12} lg={6} style={{ overflow: 'hidden', height: 'auto' }}>
+          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src={recoveryPassImg} alt="Mujer sonriendo sentada frente a un ordenador portatil" style={{ width: '80%', height: '100%', maxHeight: '80vh' }} />
+          </div>
         </Grid>
 
         {/* Password Creation Section */}
