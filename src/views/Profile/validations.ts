@@ -7,22 +7,22 @@ export const validationSchema = yup.object().shape({
     .email("Debe ser una dirección de correo electrónico válida"),
   depr_first_name: yup
     .string()
-    .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
+    .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Nombre invalido")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
   depr_second_name: yup
     .string()
-    .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
+    .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo nombre invalido")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
   depr_last_name: yup
     .string()
-    .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
+    .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Apellido invalido")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
   depr_second_last_name: yup
     .string()
-    .matches(/^[a-zA-Z ]+$/, "Debe contener solo letras y espacios")
+    .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo Apellido invalido")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
   depr_birthdate: yup

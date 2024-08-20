@@ -7,41 +7,41 @@ export const registerValidation = Yup.object().shape({
         .max(20, "máximo 20 caracteres"),
 
     firstName: Yup.string()
-        .matches(/^[\p{L}]+( [\p{L}]+)*$/u, "El nombre solo debe contener letras y espacios simples entre palabras")
+        .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Nombre invalido")
         .required("Primer Nombre requerido")
         .max(20, "máximo 20 caracteres"),
 
     middleName: Yup.string()
-        .matches(/^[\p{L}]+( [\p{L}]+)*$/u, "El SEgundo nombre solo debe contener letras y espacios simples entre palabras")
+        .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo Nombre invalido")
         .max(20, "máximo 20 caracteres"),
 
     lastName: Yup.string()
-        .matches(/^[\p{L}]+$/u, "El Apellido solo debe contener letras")
+        .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Apellido invalido")
         .required("Apellido requerido")
         .max(20, "máximo 20 caracteres"),
 
     secondLastName: Yup.string()
-        .matches(/^[\p{L}]+$/u, "El Segundo Apellido solo debe contener letras")
+        .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo Apellido invalido")
         .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),
 
     firstNameDepr: Yup.string()
-        .matches(/^[\p{L}]+$/u, "El nombre solo debe contener letras")
+        .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Nombre invalido")
         .required("Primer nombre requerido")
         .max(20, "máximo 20 caracteres"),
 
     middleNameDepr: Yup.string()
-        .matches(/^[\p{L}]+$/u, "El Segundo Nombre solo debe contener letras")
+        .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo Nombre invalido")
         .max(20, "máximo 20 caracteres"),
 
     lastNameDepr: Yup.string()
-        .matches(/^[\p{L}]+$/u, "El Apellido solo debe contener letras")
+        .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Apellido invalido")
         .required("Apellido requerido")
         .max(20, "máximo 20 caracteres"),
 
     secondLastNameDepr: Yup.string()
-        .matches(/^[\p{L}]+$/u, "El Segundo Apellido solo debe contener letras")
+        .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo Apellido invalido")
         .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),

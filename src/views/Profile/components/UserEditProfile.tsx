@@ -92,8 +92,8 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
               <TextField
                 placeholder='Primer Apellido'
-                name="depr_last_name "
-                id="depr_last_name "
+                name="depr_last_name"
+                id="depr_last_name"
                 type="text"
                 variant="outlined"
                 value={formik.values.depr_last_name}
