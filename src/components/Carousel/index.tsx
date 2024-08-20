@@ -30,12 +30,15 @@ const MyCarousel = ({ isMobile }: { isMobile: boolean }) => {
 
     const titleOne = "Ingresar Datos"
     const paragraphOne = "Para crear una solicitud debe ingresar sus datos personales e información de la escuela donde cursó el grado a ser considerado para la emisión de sus certificados de graduación."
+    const labelOne = "Imagen femenina cabello negro recogido sosteniendo documento"
 
     const titleTwo = "Crear Solicitud"
     const paragraphTwo = "Para crear una solicitud solo debe oprimir el botón de Crear solicitud completar el formulario y enviar la solicitud."
+    const labelTwo = "Imagen femenina cuerpo completo camisa azul pantalón negro con birrete y libros"
 
     const titleThree = "¡Listo! reciba el certificado en su Correo Electrónico"
     const paragraphThree = "Enviaremos un correo electrónico de confirmación al correo provisto en el formulario."
+    const labelThree = "Sobres azules y expedientes junto a figura masculina color verde"
 
     return (
         <Box position="relative">
@@ -44,16 +47,16 @@ const MyCarousel = ({ isMobile }: { isMobile: boolean }) => {
                 arrows={true}
                 renderButtonGroupOutside={true}
             >
-                <SlideContent title={titleOne} paragraph={paragraphOne} imgSrc={slider1} isMobile={isMobile} />
-                <SlideContent title={titleTwo} paragraph={paragraphTwo} imgSrc={slider2} button={true} isMobile={isMobile} />
-                <SlideContent title={titleThree} paragraph={paragraphThree} imgSrc={slider3} isMobile={isMobile} />
+                <SlideContent title={titleOne} paragraph={paragraphOne} imgSrc={slider1} isMobile={isMobile} label={labelOne} />
+                <SlideContent title={titleTwo} paragraph={paragraphTwo} imgSrc={slider2} button={true} isMobile={isMobile} label={labelTwo} />
+                <SlideContent title={titleThree} paragraph={paragraphThree} imgSrc={slider3} isMobile={isMobile} label={labelThree} />
 
             </Carousel>
         </Box>
     );
 };
 
-const SlideContent = ({ title, paragraph, imgSrc, button = false, isMobile }: any) => {
+const SlideContent = ({ title, paragraph, imgSrc, button = false, isMobile, label }: any) => {
 
     const navigate = useNavigate();
 
@@ -73,7 +76,7 @@ const SlideContent = ({ title, paragraph, imgSrc, button = false, isMobile }: an
                     </Box>
                 </Grid>
                 <Grid item xs={12} lg={3} sx={{ textAlign: isMobile ? 'center' : 'left' }}>
-                    <img src={imgSrc} alt={title} />
+                    <img src={imgSrc} alt={label} />
                 </Grid>
             </Grid>
         </Box >

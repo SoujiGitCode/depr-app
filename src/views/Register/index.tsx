@@ -146,7 +146,8 @@ const Register = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      setAlert("El Registro no pudo ser completado, intente nuevamente", "error");
+      // setAlert("El Registro no pudo ser completado: " + error?.message, "error");
+      setAlert("El Registro no pudo ser completado: ", "error");
       modalTriger('error');
 
     }

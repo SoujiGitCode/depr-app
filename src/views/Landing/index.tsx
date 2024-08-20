@@ -26,7 +26,8 @@ const cardData = [
     title: 'Certificado de Graduación',
     description: 'Documento oficial expedido por el Departamento de Educación de Puerto Rico que certifica la fecha de graduación e identifica la escuela pública en la cual el estudiante completó los requisitos de graduación de un nivel académico y logró obtener una promoción de grado. Puede solicitar una Certificación de Graduación en caso de pérdida de su diploma, para solicitudes de empleo, apoyar tus conocimientos académicos o logros educativos, con fines de migración, admisión a un programa de educación superior e ingreso a una entidad universitaria.',
     button: 'Crear Solicitud',
-    buttonType: 'warning'
+    buttonType: 'warning',
+    label: "Figura de Estudiante con Birrete"
   },
   {
     icon: paper,
@@ -35,7 +36,8 @@ const cardData = [
     title: 'Transcripción de Créditos',
     description: 'Transcripción de Créditos refleja el historial académico de un estudiante dentro del Sistema Escolar del Departamento de Educación de Puerto Rico. Este es un informe oficial que detalla las calificaciones obtenidas en cada uno de los cursos y créditos acumulados por el estudiante durante sus años de estudios. Incluye, si está disponible, la determinación del promedio general Grade Point Average (GPA). Contiene además, el registro de las horas comunitarias y de exploración ocupacional realizadas por el estudiante.',
     button: 'Crear Solicitud',
-    buttonType: 'primary'
+    buttonType: 'primary',
+    label: "Figura de Documento Certificado color azul oscuro"
   },
   {
     icon: paper,
@@ -44,7 +46,8 @@ const cardData = [
     title: 'Certificado de Horas Taller',
     description: 'La Certificación de Horas Taller valida que el estudiante solicitante ha completado los requisitos de un programa de formación ocupacional, vocacional o técnica. Esta certificación identifica la especialidad del taller, temas cubiertos durante el taller, fechas y horas acumuladas en las que el estudiante realizó su capacitación. (Los estudiantes de Educación Especial y Salón a Tiempo Completo, se rigen bajo otras especificaciones).',
     button: 'Crear Solicitud',
-    buttonType: 'primary'
+    buttonType: 'primary',
+    label: "Figura de Documento Certificado color azul oscuro"
   },
 ];
 
@@ -120,7 +123,7 @@ const Landing = () => {
                 <Grid container>
                   <Grid item xs={2} container direction="column" justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
                     <Box sx={{ textAlign: 'center' }}>
-                      <img src={card.icon} alt="" style={{ maxWidth: '100%' }} />
+                      <img src={card.icon} alt={card.label} style={{ maxWidth: '100%' }} />
                       <Typography variant="h3" sx={{ color: '#7D4A0C', mt: 1, fontFamily: 'Montserrat-Black !important', fontSize: '1.2rem' }}>
                         {card.goldenText}
                       </Typography>
