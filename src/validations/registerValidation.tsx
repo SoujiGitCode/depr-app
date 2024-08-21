@@ -22,7 +22,6 @@ export const registerValidation = Yup.object().shape({
 
     secondLastName: Yup.string()
         .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo Apellido invalido")
-        .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),
 
@@ -42,7 +41,6 @@ export const registerValidation = Yup.object().shape({
 
     secondLastNameDepr: Yup.string()
         .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo Apellido invalido")
-        .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),
 
@@ -66,9 +64,30 @@ export const registerValidation = Yup.object().shape({
         .test('len', 'Deben ser 9 caracteres', val => val.length === 9),
 
 
-    birthdate: Yup.string()
-        .required("Fecha de nacimiento requerida"),
-
+    birthdate: Yup
+        .date()
+        .test(
+            "age",
+            "Debes ser mayor de 18 años y menor de 80 años",
+            function (value) {
+                if (value) {
+                    const birthDate = new Date(value);
+                    const currentDate = new Date();
+                    let age = currentDate.getFullYear() - birthDate.getFullYear();
+                    if (
+                        currentDate.getMonth() < birthDate.getMonth() ||
+                        (currentDate.getMonth() === birthDate.getMonth() &&
+                            currentDate.getDate() < birthDate.getDate())
+                    ) {
+                        age--;
+                    }
+                    return age >= 18 && age < 80;
+                }
+                return true;
+            }
+        )
+        .required("Fecha de nacimiento requerida")
+    ,
     password: Yup.string()
         .required("Contraseña no puede estar vacío")
         .matches(

@@ -521,7 +521,7 @@ const Register = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       error={formik.touched.birthdate && Boolean(formik.errors.birthdate)}
-                      helperText={formik.touched.birthdate && formik.errors.birthdate}
+                      helperText={formik.touched.birthdate && typeof formik.errors.birthdate === 'string' ? formik.errors.birthdate : undefined}
                       inputProps={{
                         max: new Date().toISOString().split("T")[0],  // Limita la fecha a hoy
                       }}

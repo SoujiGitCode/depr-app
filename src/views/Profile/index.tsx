@@ -137,7 +137,6 @@ const Profile = () => {
       console.log('IM HERE')
       getDetails();
     },
-
     validateOnChange: true,
     validateOnBlur: true,
     enableReinitialize: true
@@ -161,6 +160,8 @@ const Profile = () => {
     }
     console.log('isStepValid ' + formValid)
   }, [formik.values, formik.touched, formik.isValid]);
+
+
 
   //Cambiar password  necesitamos mejorarlo luego
 
@@ -243,6 +244,12 @@ const Profile = () => {
   useEffect(() => {
     isPasswordValidFunction()
   }, [password, confirmPassword, currentPassword]);
+
+  // Este useEffect se ejecutará después de que el formulario se haya montado
+  useEffect(() => {
+    formik.validateForm(); // Valida todos los campos inmediatamente después de que el formulario se haya montado
+  }, []);
+
 
   return (
     <>
@@ -357,7 +364,7 @@ const Profile = () => {
           }}
         >
           <Button
-            disabled={!isEditMode}
+            disabled={!isEditMode || !formik.isValid}
             variant="contained"
             type="submit"
             className={styles["buttons-save"]}

@@ -105,7 +105,7 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
             </FormControl>
           </Grid>
           <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
-            <CustomLabel name="Segundo Apellido" required={true} />
+            <CustomLabel name="Segundo Apellido" required={false} />
             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
               <TextField
                 placeholder='Segundo Apellido'
@@ -132,17 +132,19 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
             <CustomLabel name="Fecha de Nacimiento" required={true} />
             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
               <TextField
-                placeholder='Fecha de Nacimiento'
-                id="depr_birthdate "
-                name="depr_birthdate "
+                placeholder="Fecha de Nacimiento"
+                id="depr_birthdate"
+                name="depr_birthdate"
                 type="date"
                 value={formik.values.depr_birthdate}
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  formik.setFieldValue("depr_birthdate", e.target.value);
+                }}
                 onBlur={formik.handleBlur}
                 error={formik.touched.depr_birthdate && Boolean(formik.errors.depr_birthdate)}
-                helperText={formik.touched.depr_birthdate && formik.errors.depr_birthdate}
+                helperText={formik.touched.depr_birthdate && typeof formik.errors.depr_birthdate === 'string' ? formik.errors.depr_birthdate : undefined}
                 inputProps={{
-                  max: new Date().toISOString().split("T")[0],  // Limita la fecha a hoy
+                  max: new Date().toISOString().split("T")[0], // Limita la fecha a hoy
                 }}
               />
             </FormControl>

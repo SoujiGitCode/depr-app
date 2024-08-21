@@ -23,7 +23,6 @@ export const step3Validations = Yup.object().shape({
 
     second_last_name: Yup.string()
         .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo Apellido invalido")
-        .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),
 
@@ -43,12 +42,34 @@ export const step3Validations = Yup.object().shape({
 
     depr_second_last_name: Yup.string()
         .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Segundo Apellido invalido")
-        .required("Segund Apellido requerido")
         .max(20, "máximo 20 caracteres"
         ),
 
 
-    birthdate: Yup.string().required("Fecha de nacimiento requerida"),
+    birthdate: Yup
+        .date()
+        .test(
+            "age",
+            "Debes ser mayor de 18 años y menor de 80 años",
+            function (value) {
+                if (value) {
+                    const birthDate = new Date(value);
+                    const currentDate = new Date();
+                    let age = currentDate.getFullYear() - birthDate.getFullYear();
+                    if (
+                        currentDate.getMonth() < birthDate.getMonth() ||
+                        (currentDate.getMonth() === birthDate.getMonth() &&
+                            currentDate.getDate() < birthDate.getDate())
+                    ) {
+                        age--;
+                    }
+                    return age >= 18 && age < 80;
+                }
+                return true;
+            }
+        )
+        .required("Fecha de nacimiento requerida")
+    ,
 
     gender: Yup.string()
         .notOneOf(['notAValidGender'], 'Debe seleccionar una opción valida')
