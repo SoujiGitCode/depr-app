@@ -319,7 +319,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                         </FormControl>
                     </Grid>
                     <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
-                        <CustomLabel name="Segundo Apellido" required={true} />
+                        <CustomLabel name="Segundo Apellido" required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
                                 placeholder='Segundo Apellido'
@@ -483,7 +483,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
-                                <CustomLabel name="Segundo Apellido" required={true} />
+                                <CustomLabel name="Segundo Apellido" required={false} />
                                 <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                                     <TextField
                                         placeholder='Segundo Apellido'

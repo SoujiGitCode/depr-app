@@ -20,6 +20,7 @@ export const validationSchema = Yup.object().shape({
     .max(50, "Máximo 50 caracteres"),
   depr_last_name: Yup
     .string()
+    .required("El Apellido es obligatorio")
     .matches(/^[^\d_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]+$/u, "Apellido invalido")
     .min(2, "Mínimo 2 caracteres")
     .max(50, "Máximo 50 caracteres"),
@@ -53,7 +54,10 @@ export const validationSchema = Yup.object().shape({
     .required("Fecha de nacimiento requerida")
   ,
   depr_gender: Yup.string(),
-  depr_phone: Yup.string().matches(/^[0-9]+$/, "Debe contener solo números"),
+  depr_phone: Yup
+    .string()
+    .matches(/^[0-9]+$/, "Debe contener solo números")
+    .required("Este campo es obligatorio"),
   social_security: Yup
     .string()
     .required("Seguro Social requerido")

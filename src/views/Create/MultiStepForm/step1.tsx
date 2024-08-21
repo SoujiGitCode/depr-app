@@ -422,7 +422,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                         </FormControl>
                     </Grid>
                     <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
-                        <CustomLabel name="Segundo Apellido" required={true} />
+                        <CustomLabel name="Segundo Apellido" required={false} />
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
                             <TextField
                                 inputProps={
