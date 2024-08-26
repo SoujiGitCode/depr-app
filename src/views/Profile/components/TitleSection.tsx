@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import styles from "../profile.module.scss"; // Asegúrate de importar tus estilos correctamente
+import styles from "../profile.module.scss";
 
 function TitleSection() {
   return (

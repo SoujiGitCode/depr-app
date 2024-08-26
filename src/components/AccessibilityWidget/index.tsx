@@ -26,9 +26,6 @@ const AccessibilityWidget = () => {
                             boxShadow: 'none'
                         }
                     }}
-                    onClick={() => {
-                        // Acción cuando se haga clic en el botón (puede abrir el iframe de UserWay o cualquier otra acción)
-                    }}
                 >
                     <img
                         src="https://cdn.userway.org/widgetapp/images/body_wh.svg"

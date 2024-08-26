@@ -60,8 +60,6 @@ const theme = createTheme({
     fontFamily: [
       'Montserrat-Medium',
       'Montserrat-Black',
-      // Si Montserrat-Medium y Montserrat-Black no están disponibles,
-      // el navegador usará la siguiente fuente disponible en la lista.
     ].join(','),
     // Definir variantes de Typography
     h1: {
@@ -126,31 +124,31 @@ const theme = createTheme({
         },
         containedPrimary: {
           '&:disabled': {
-            backgroundColor: DISABLED_COLORS.primary, // Background Color when disabled for contained buttons
+            backgroundColor: DISABLED_COLORS.primary,
             color: '#3D3D3D'
           },
           '&:hover': {
-            backgroundColor: HOVER_COLORS.primary, // Background Color when disabled for contained buttons
+            backgroundColor: HOVER_COLORS.primary,
             color: '#ffffff'
           },
         },
         containedSecondary: {
           '&:disabled': {
-            backgroundColor: DISABLED_COLORS.secondary, // Background Color when disabled for contained buttons
+            backgroundColor: DISABLED_COLORS.secondary,
             color: '#ffffff'
           },
           '&:hover': {
-            backgroundColor: HOVER_COLORS.secondary, // Background Color when disabled for contained buttons
+            backgroundColor: HOVER_COLORS.secondary,
             color: '#ffffff'
           },
         },
         containedWarning: {
           '&:disabled': {
-            backgroundColor: DISABLED_COLORS.warning, // Background Color when disabled for contained buttons
+            backgroundColor: DISABLED_COLORS.warning,
             color: '#ffffff'
           },
           '&:hover': {
-            backgroundColor: HOVER_COLORS.warning, // Background Color when disabled for contained buttons
+            backgroundColor: HOVER_COLORS.warning,
             color: '#ffffff'
           },
         },
@@ -197,22 +195,21 @@ const theme = createTheme({
 
           // Estilos para variant="filled"
           '& .MuiFilledInput-root': {
-            backgroundColor: filledInputBg, // Fondo gris para el input 'filled'
+            backgroundColor: filledInputBg,
             borderRadius: '4px 4px 0px 0px',
             border: `2px solid ${borderColor}`,
             '&:before': {
-              borderBottomColor: borderColor, // Línea inferior cuando no está enfocado
+              borderBottomColor: borderColor,
             },
             '&:hover:before': {
-              borderBottomColor: borderColor, // Línea inferior al pasar el ratón por encima
+              borderBottomColor: borderColor,
             },
             '&.Mui-focused': {
-              backgroundColor: filledInputBg, // Fondo gris cuando está enfocado
+              backgroundColor: filledInputBg,
               '&:after': {
-                borderBottomColor: borderColor, // Línea inferior cuando está enfocado
+                borderBottomColor: borderColor,
               },
             },
-            // Ajuste del padding si es necesario
             '& .MuiInputBase-input': {
               padding: "0.7rem",
             },
