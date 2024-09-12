@@ -69,8 +69,8 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
             <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1.5em !important" }}>
               <TextField
                 placeholder='Segundo Nombre'
-                name="middleName"
-                id="middleName"
+                name="depr_second_name"
+                id="depr_second_name"
                 type="text"
                 variant="outlined"
                 value={formik.values.depr_second_name}

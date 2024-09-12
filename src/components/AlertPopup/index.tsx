@@ -1,6 +1,6 @@
 import { Alert, Stack, AlertTitle, useTheme, useMediaQuery } from "@mui/material";
 import { useContext } from "react";
-import AlertContext from "@/hooks/useAlert"; 
+import AlertContext from "@/hooks/useAlert";
 
 const AlertPopup = () => {
 
