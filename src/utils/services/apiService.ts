@@ -40,7 +40,7 @@ function responseParser<SuccessType>(response: AxiosResponse): SuccessType {
 const errorParser = (err: any): { message: string, statusCode: number } => {
   let error = err;
   if (err.response && err.response.data) {
-    // eslint-disable-next-line prefer-destructuring
+
 
     error = err.response.data || {};
     console.log(typeof (err.response.status))
@@ -50,7 +50,7 @@ const errorParser = (err: any): { message: string, statusCode: number } => {
 
     let message = error.message;
 
-    // throw makeError(error, message);
+
   }
   throw error;
 };

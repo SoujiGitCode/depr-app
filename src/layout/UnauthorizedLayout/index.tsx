@@ -18,7 +18,7 @@ const UnautoziredLayout = () => {
   const [showHeaderDescription, setShowHeaderDescription] = useState(false);
 
   const onClickHeaderDescription = () => {
-    setShowHeaderDescription(!showHeaderDescription); // Cambia el estado de open
+    setShowHeaderDescription(!showHeaderDescription);
   };
 
   return (
@@ -39,7 +39,7 @@ const UnautoziredLayout = () => {
 
               <Typography variant="body1" color={'white'}
                 sx={{
-                  // display: isMobile ? 'none' : 'inline-flex',
+
                   display: 'none',
                   paddingLeft: '0.5rem',
                   textDecoration: 'underline',
@@ -51,7 +51,7 @@ const UnautoziredLayout = () => {
                 aria-label="Información sobre sitios web oficiales del Gobierno de Puerto Rico"
                 sx={{
                   color: "white",
-                  padding: '0px', // Reduce el padding si es necesario
+                  padding: '0px',
                   alignItems: 'center',
                   display: 'flex'
                 }} size="small">
@@ -121,10 +121,10 @@ const UnautoziredLayout = () => {
 
             <Grid item xs={12} lg={3}
               sx={{
-                display: 'flex', // Habilita flexbox
-                flexDirection: 'row', // Alinea los elementos en columna
-                alignItems: 'center', // Centra horizontalmente
-                justifyContent: isMobile ? 'center' : 'right', // Centra verticalmente
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: isMobile ? 'center' : 'right',
                 paddingRight: !isMobile ? '2rem !important' : '0',
                 padding: '0.5rem'
 
@@ -134,8 +134,8 @@ const UnautoziredLayout = () => {
                 spacing={{ xs: 1, sm: 1 }}
                 direction="column"
                 sx={{
-                  display: 'flex', // Aunque Stack ya usa flexbox, lo especificamos por claridad
-                  alignItems: 'center', // Alineación horizontal de los elementos del Stack
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
                 useFlexGap
 

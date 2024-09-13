@@ -14,7 +14,7 @@ import { useState } from "react";
 import ConfirmationModal from "@/components/ConfirmationModal";
 
 const Recovery = () => {
-  // Estados para manejar el modal
+
   const [openModal, setOpenModal] = useState(false);
   const [message, setMessage] = useState('');
   const [modalType, setModalType] = useState<'error' | 'success'>('error');
@@ -69,9 +69,9 @@ const Recovery = () => {
           body: recoveryRequest,
         });
 
-        // Verificamos el código de respuesta
+
         if (response.code === 200) {
-          // Abrimos el modal
+
           setOpenModal(true);
           setModalType('success');
         }
@@ -86,7 +86,7 @@ const Recovery = () => {
 
   });
 
-  // Button Cancel
+
   const handleCancelClick = () => {
     navigate("/");
   };

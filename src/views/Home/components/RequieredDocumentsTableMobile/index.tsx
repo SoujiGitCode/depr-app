@@ -35,7 +35,7 @@ const RequiredDocumentsTableMobile: React.FC<RequiredDocumentsTableProps> = ({
     return formattedDate;
   }
 
-  // <----------------------------- View Mobile ------------------------------------>
+
 
   const displayModal = (message: string) => {
     setOpenModal(true);

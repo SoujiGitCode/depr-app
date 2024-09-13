@@ -63,7 +63,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         },
         validationSchema: step2Validations,
         onSubmit: async () => {
-            // await sendUserForRegister();
+
         },
         validateOnChange: true,
         validateOnBlur: true,
@@ -95,7 +95,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
     useEffect(() => {
 
-        // Función que trae la data de las ciudades.
+
         const fetchTowns = async () => {
             try {
                 const responseTowns = await requestTowns();
@@ -105,40 +105,40 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             }
         };
 
-        // Función que trae la data de las escuelas basada en el townId.
-        // const fetchSchools = async (townId: string) => {
 
-        //     if (townId == '0') {
-        //         setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }])
-        //         return
-        //     }
-        //     console.log('school code antes de fetch schools: ', formData.school_code)
-        //     try {
-        //         const responseSchools = await requestSchools(townId);
-        //         setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
-        //         formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
-        //         // Actualizamos el valor de school_code en el estado de Formik.
-        //         if (formData.school_code === '0') {
-        //             formik.setFieldValue('school_code', responseSchools[0].id || '0');
-        //         }
 
-        //     } catch (error) {
-        //         console.error("Error fetching schools:", error);
-        //     }
-        // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         fetchTowns();
-        // Llamamos a fetchSchools con el town id 1 al iniciar el componente.
-        // fetchSchools(formData.schoolTown);
+
+
     }, []);
 
 
-    // Cada vez que cambia el valor de schoolTown en Formik, actualizamos las escuelas.
+
     useEffect(() => {
         const fetchSchools = async () => {
             try {
                 const responseSchools = await requestSchools(formik.values.schoolTown);
-                // setSchoolsData(responseSchools);
+
                 setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
                 formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
             } catch (error) {
@@ -152,7 +152,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
     useEffect(() => {
         console.log(schoolsData)
-        // Asegurarse de que schoolsData esté actualizado antes de asignar el valor a school_code
+
         if (schoolsData.length > 0 && formData.school_code !== '0') {
             formik.setFieldValue('school_code', formData.school_code);
         } else if (schoolsData.length > 0) {
@@ -162,7 +162,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
     const handleNumericChange = (event) => {
         const { value, name } = event.target;
-        // Permite solo números
+
         if (value === '' || /^[0-9]+$/.test(value)) {
             formik.setFieldValue(name, value);
         }
@@ -188,8 +188,8 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 variant="outlined"
                                 value={formik.values.schoolTown}
                                 onChange={(e) => {
-                                    formik.handleChange(e);  // handle formik's change
-                                    // formik.setFieldValue('school_code', '');  // reset school value
+                                    formik.handleChange(e);
+
                                 }}
                                 onBlur={formik.handleBlur}
                                 error={formik.touched.schoolTown && Boolean(formik.errors.schoolTown)}
@@ -217,7 +217,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                         variant="outlined"
                                         value={formik.values.school_code}
                                         onChange={(e) => {
-                                            formik.handleChange(e);  // handle formik's change
+                                            formik.handleChange(e);
                                         }}
                                         onBlur={formik.handleBlur}
                                         error={formik.touched.school_code && Boolean(formik.errors.school_code)}

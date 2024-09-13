@@ -11,8 +11,8 @@ const PurpleHeader = () => {
                     justifyContent="center"
                     alignItems="center"
                     sx={{
-                        padding: '10px 20px', // padding: 0px, 110px, 0px, 110px
-                        alignItems: 'center', // Alineación vertical
+                        padding: '10px 20px',
+                        alignItems: 'center',
                         lineHeight: '1.9'
                     }}
                 >

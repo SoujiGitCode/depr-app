@@ -127,7 +127,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         },
         validationSchema: step1Validations,
         onSubmit: async () => {
-            // await sendUserForRegister();
+
         },
         validateOnChange: true,
         validateOnBlur: true,
@@ -197,9 +197,9 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
 
 
-    //----------------------School Form Functions------------------------
+
     useEffect(() => {
-        // Función que trae la data de las ciudades.
+
         const fetchTowns = async () => {
             try {
                 const responseTowns = await requestTowns();
@@ -210,7 +210,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
             }
         };
 
-        // Función que trae la data de las escuelas basada en el townId.
+
         const fetchSchools = async (townId: string) => {
 
             if (townId == '0') {
@@ -222,7 +222,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                 const responseSchools = await requestSchools(townId);
                 setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
                 formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
-                // Actualizamos el valor de school_code en el estado de Formik.
+
                 if (formData.school_code === '0') {
                     formik.setFieldValue('school_code', responseSchools[0].id || '0');
                 }
@@ -233,17 +233,17 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         };
 
         fetchTowns();
-        // Llamamos a fetchSchools con el town id 1 al iniciar el componente.
-        // fetchSchools(formData.schoolTown);
+
+
     }, []);
 
 
-    // Cada vez que cambia el valor de schoolTown en Formik, actualizamos las escuelas.
+
     useEffect(() => {
         const fetchSchools = async () => {
             try {
                 const responseSchools = await requestSchools(formik.values.schoolTown);
-                // setSchoolsData(responseSchools);
+
                 setSchoolsData([{ id: '0', name: 'Seleccione Escuela' }, ...responseSchools])
                 formik.setFieldValue('school_code', schoolsData[0]?.id || '0');
             } catch (error) {
@@ -255,17 +255,17 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
     }, [formik.values.schoolTown, formData.school_town]);
 
 
-    // useEffect(() => {
-    //     // Asegurarse de que schoolsData esté actualizado antes de asignar el valor a school_code
-    //     if (schoolsData.length > 1 && formData.school_code != '0') {
-    //         formik.setFieldValue('school_code', formData.school_code);
-    //     } else if (schoolsData.length == 1) {
-    //         formik.setFieldValue('school_code', schoolsData[0].id);
-    //     }
-    // }, [schoolsData]);
-    //------------End school form functions------------------------------//
 
-    // Manejar los cambios de confirmEmail1 y confirmEmail2
+
+
+
+
+
+
+
+
+
+
     const handleConfirmEmail1Change = (e) => {
         const value = e.target.value;
         setConfirmEmail1(value);
@@ -280,7 +280,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
     const handleNumericChange = (event) => {
         const { value, name } = event.target;
-        // Permite solo números
+
         if (value === '' || /^[0-9]+$/.test(value)) {
             formik.setFieldValue(name, value);
         }
@@ -466,7 +466,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                 helperText={formik.touched.birthdate && typeof formik.errors.birthdate === 'string' ? formik.errors.birthdate : undefined}
                                 inputProps={{
                                     readOnly: true,
-                                    max: new Date().toISOString().split("T")[0],  // Limita la fecha a hoy
+                                    max: new Date().toISOString().split("T")[0],
                                 }}
                             />
 
@@ -555,8 +555,8 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     variant="outlined"
                                     value={formik.values.schoolTown}
                                     onChange={(e) => {
-                                        formik.handleChange(e);  // handle formik's change
-                                        // formik.setFieldValue('school_code', '');  // reset school value
+                                        formik.handleChange(e);
+
                                     }}
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.schoolTown && Boolean(formik.errors.schoolTown)}
@@ -586,7 +586,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                             variant="outlined"
                                             value={formik.values.school_code}
                                             onChange={(e) => {
-                                                formik.handleChange(e);  // handle formik's change
+                                                formik.handleChange(e);
                                             }}
                                             onBlur={formik.handleBlur}
                                             error={formik.touched.school_code && Boolean(formik.errors.school_code)}
@@ -673,7 +673,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.certification_type_id && Boolean(formik.errors.certification_type_id)}
-                                    // helperText={formik.touched.certification_type_id && formik.errors.certification_type_id?.toString()}
+
                                     helperText={formik.touched.certification_type_id && typeof formik.errors.certification_type_id === 'string' ? formik.errors.certification_type_id : undefined}
                                 >
                                     {certificatesList.map((option, index) => (

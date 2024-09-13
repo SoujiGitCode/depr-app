@@ -163,7 +163,7 @@ export const CreateRequest = async ({
         email1,
         email2,
 
-        //unnecesary fields
+
         depr_birthdate: birthdate,
         depr_gender: gender,
         depr_phone: phone,

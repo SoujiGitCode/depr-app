@@ -84,9 +84,9 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             email2: formData.email2 || '',
             confirmEmail2: '',
         },
-        validationSchema: step3Validations, // Aquí asegúrate de pasar el objeto globalValidations
+        validationSchema: step3Validations,
         onSubmit: async () => {
-            // await sendUserForRegister();
+
         },
         validateOnChange: true,
         validateOnBlur: true,
@@ -189,9 +189,9 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
     }, [formik.values.phone])
 
 
-    // useEffect(() => {
-    //     setSocialSecurityArray(formData.social_security ? formData.social_security.split('') : new Array(9).fill(""));
-    // }, [formData.social_security]);
+
+
+
 
     return (
         <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
@@ -348,7 +348,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     background: '#FFF4E5',
                     marginTop: '2em !important',
                     marginBottom: '2em !important',
-                    // width: '100%',
+
                     marginX: '1rem !important',
                     boxSizing: 'border-box',
                     padding: '1rem !important'
@@ -526,7 +526,7 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                                 error={formik.touched.birthdate && Boolean(formik.errors.birthdate)}
                                 helperText={formik.touched.birthdate && typeof formik.errors.birthdate === 'string' ? formik.errors.birthdate : undefined}
                                 inputProps={{
-                                    max: new Date().toISOString().split("T")[0],  // Limita la fecha a hoy
+                                    max: new Date().toISOString().split("T")[0],
                                 }}
                             />
 

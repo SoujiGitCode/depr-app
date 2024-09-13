@@ -11,7 +11,7 @@ interface UserProfileInfoProps {
 const UserAdditionalInfo: React.FC<UserProfileInfoProps> = ({ formik, isMobile }) => {
 
   const formatPhoneNumber = (phoneNumber: string) => {
-    const cleanPhoneNumber = phoneNumber.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
+    const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
     const match = cleanPhoneNumber.match(/^(\d{1,3})(\d{0,3})(\d{0,4})$/);
     if (match) {
       const part1 = match[1] ? `(${match[1]}` : '';
@@ -19,7 +19,7 @@ const UserAdditionalInfo: React.FC<UserProfileInfoProps> = ({ formik, isMobile }
       const part3 = match[3] ? `-${match[3]}` : '';
       return `${part1}${part2}${part3}`.trim();
     }
-    return phoneNumber; // Retorna el original si no hay dígitos
+    return phoneNumber;
   };
 
   const genderDictionary = {

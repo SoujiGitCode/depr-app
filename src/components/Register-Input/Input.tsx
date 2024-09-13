@@ -6,9 +6,9 @@ interface Props {
   id: string;
   htmlFor: string;
   placeholder: string;
-  size?: string; 
+  size?: string;
   type?: string;
-  icon?: React.ReactNode; // Prop para el icono
+  icon?: React.ReactNode;
 }
 
 const Input: React.FC<Props> = ({ id, htmlFor, placeholder, size, type, icon }) => {

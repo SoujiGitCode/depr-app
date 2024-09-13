@@ -12,5 +12,5 @@ export const step1Validations = Yup.object().shape({
         .max(100, "máximo 100 caracteres"),
 
     captcha: Yup.string()
-    // .required("Captcha es requerido")
+
 });

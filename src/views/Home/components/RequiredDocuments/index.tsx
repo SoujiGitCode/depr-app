@@ -38,7 +38,7 @@ const RequiredDocuments = ({
     setValue(newValue);
   };
 
-  //
+
   function truncateText(texto: string): string {
     if (texto.length <= 28) {
       return texto;

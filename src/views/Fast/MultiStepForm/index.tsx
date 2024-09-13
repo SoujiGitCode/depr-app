@@ -90,15 +90,15 @@ const MultiStepForm = ({
         }
     };
 
-    // Función para retroceder al paso anterior
+
     const handlePrevStep = () => {
         console.log(currentStep)
-        if (currentStep > 0) { // Aquí comprobamos que el paso actual no sea menor que 1
+        if (currentStep > 0) {
             changeStep(currentStep - 1)
         }
     };
 
-    // Función para avanzar al siguiente paso
+
     const handleNextStep = async () => {
         if (currentStep < 3) {
             if (currentStep === 2 && isStepValid) {
@@ -107,7 +107,7 @@ const MultiStepForm = ({
                     setOnSendingData(true);
                     changeStep(3);
                     await fastRequest(formData);
-                    updateFormData({}, true);  // o cualquier otro valor inicial
+                    updateFormData({}, true);
                     setAlert("¡Solicitud completada!", "success");
                     modalTriger('success');
                 } catch (error) {
@@ -127,7 +127,7 @@ const MultiStepForm = ({
     }
 
 
-    // Función para manejar los datos recopilados en un paso
+
     const handleStepData = (data: Partial<FormData>) => {
         updateFormData(data, false);
     };
@@ -188,7 +188,7 @@ const MultiStepForm = ({
 
                             <>
                                 <Button
-                                    // disabled={currentStep === 0}
+
                                     variant="outlined"
                                     color="primary"
                                     style={{

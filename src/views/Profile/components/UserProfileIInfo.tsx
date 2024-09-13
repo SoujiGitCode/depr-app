@@ -12,7 +12,7 @@ interface UserProfileInfoProps {
 const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
 
   const formatPhoneNumber = (phoneNumber: string) => {
-    const cleanPhoneNumber = phoneNumber.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
+    const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
     const match = cleanPhoneNumber.match(/^(\d{1,3})(\d{0,3})(\d{0,4})$/);
     if (match) {
       const part1 = match[1] ? `(${match[1]}` : '';
@@ -20,15 +20,15 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
       const part3 = match[3] ? `-${match[3]}` : '';
       return `${part1}${part2}${part3}`.trim();
     }
-    return phoneNumber; // Retorna el original si no hay dígitos
+    return phoneNumber;
   };
 
 
 
   const maskAndFormatSSN = (ssn: string) => {
-    // Enmascara los primeros 5 números y mantiene los últimos 4 dígitos visibles
+
     let masked = ssn.slice(0, 5).replace(/\d/g, 'X') + ssn.slice(5);
-    // Añade guiones para el formato
+
     if (masked.length > 3) masked = masked.slice(0, 3) + '-' + masked.slice(3);
     if (masked.length > 6) masked = masked.slice(0, 6) + '-' + masked.slice(6);
     return masked;

@@ -56,7 +56,7 @@ const Sidebar = () => {
       <Options
         children={<PersonIcon sx={{ color: "white", fontSize: "1.5rem" }} />}
         text="Perfil"
-        //redirect={PATH.PROFILE}
+
         redirect={PATH.PROFILE}
       />
 

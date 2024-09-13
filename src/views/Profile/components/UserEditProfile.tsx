@@ -22,12 +22,12 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
   const [showSocialSecurity, setShowSocialSecurity] = useState(false);
 
   const customText = {
-    // "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-    //   borderColor: "pink",
-    //   borderRadius: 0,
-    //   border: "2px solid " + "#a09c9c92",
-    // },
-    // width: "100%",
+
+
+
+
+
+
   };
 
   const genderList = [
@@ -144,7 +144,7 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
                 error={formik.touched.depr_birthdate && Boolean(formik.errors.depr_birthdate)}
                 helperText={formik.touched.depr_birthdate && typeof formik.errors.depr_birthdate === 'string' ? formik.errors.depr_birthdate : undefined}
                 inputProps={{
-                  max: new Date().toISOString().split("T")[0], // Limita la fecha a hoy
+                  max: new Date().toISOString().split("T")[0],
                 }}
               />
             </FormControl>

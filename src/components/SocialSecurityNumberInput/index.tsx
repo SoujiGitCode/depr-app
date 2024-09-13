@@ -15,24 +15,24 @@ const CustomBox = styled(Box)(() => ({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
-    gap: '0px', // Ajusta el espacio entre los campos si es necesario
-    border: `2px solid #658A86`, // Utiliza el color de tu tema
+    gap: '0px',
+    border: `2px solid #658A86`,
     borderRadius: '4px 4px 0px 0px',
     '&:hover': {
-        borderColor: '#658A86', // Cambia según tu tema
+        borderColor: '#658A86',
     },
     '& .MuiTextField-root': {
         '& .MuiInputBase-input': {
-            textAlign: 'center !important', // Centra el texto
+            textAlign: 'center !important',
         },
         '& fieldset': {
-            border: 'none !important', // Elimina los bordes
+            border: 'none !important',
         },
         '&:hover fieldset': {
-            border: 'none !important', // Mantiene los bordes eliminados en :hover
+            border: 'none !important',
         },
         '&.Mui-focused fieldset': {
-            border: 'none !important', // Mantiene los bordes eliminados en :focus
+            border: 'none !important',
         },
     },
 }));
@@ -46,12 +46,12 @@ interface SocialSecurityInputProps {
     name: string;
     type?: string;
     placeholder?: string;
-    id: string; // The id is required
+    id: string;
     sx?: CSSProperties;
-    formik: any; // The formik object is required
-    setSocialSecurityArray: (value: any[]) => void; // The function to update the social security array is required
-    visibilityPassword: boolean; // The visibility state of the password is required
-    setVisibilityPassword: React.Dispatch<React.SetStateAction<boolean>>; // The function to update the visibility state of the password is required
+    formik: any;
+    setSocialSecurityArray: (value: any[]) => void;
+    visibilityPassword: boolean;
+    setVisibilityPassword: React.Dispatch<React.SetStateAction<boolean>>;
     form_social_security: string;
     disableToggleVisibility?: boolean;
 }
@@ -78,13 +78,13 @@ const SocialSecurityNumberInput = ({
 
     const theme = useTheme();
 
-    // Estilos personalizados para TextField que ajustan el ancho dinámicamente
+
     const getTextFieldWidth = (chars: number) => 20 * chars;
 
     const getHiddenFieldWidth = (maxLength: number) => {
-        // Base width per character + padding + border
-        const baseWidthPerCharacter = 12; // Estima cuánto espacio ocupa cada carácter
-        const totalPaddingAndBorder = 14; // Estimación del padding y border total
+
+        const baseWidthPerCharacter = 12;
+        const totalPaddingAndBorder = 14;
         return maxLength * baseWidthPerCharacter + totalPaddingAndBorder;
     };
 
@@ -108,7 +108,7 @@ const SocialSecurityNumberInput = ({
                         sx={{
                             letterSpacing: '0.1rem',
                             textAlign: 'right',
-                            width: `${getTextFieldWidth(3)}px`, // Ajusta el ancho
+                            width: `${getTextFieldWidth(3)}px`,
                         }}
                     />
                 )}
@@ -129,7 +129,7 @@ const SocialSecurityNumberInput = ({
                         sx={{
                             letterSpacing: '0.1rem',
                             textAlign: 'center',
-                            width: `${getTextFieldWidth(2)}px`, // Ajusta el ancho
+                            width: `${getTextFieldWidth(2)}px`,
                         }}
                     />
                 )}
@@ -150,7 +150,7 @@ const SocialSecurityNumberInput = ({
                         sx={{
                             letterSpacing: '0.1rem',
                             textAlign: 'left',
-                            width: `${getTextFieldWidth(4)}px`, // Ajusta el ancho
+                            width: `${getTextFieldWidth(4)}px`,
                         }}
                     />
                 )}

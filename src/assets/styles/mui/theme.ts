@@ -51,7 +51,7 @@ const theme = createTheme({
       primary: '#333333',
     },
     background: {
-      // default: '#f2f2f2',
+
       default: '#ffffff',
       paper: '#ffffff',
     },
@@ -61,7 +61,7 @@ const theme = createTheme({
       'Montserrat-Medium',
       'Montserrat-Black',
     ].join(','),
-    // Definir variantes de Typography
+
     h1: {
       fontFamily: 'Montserrat-Medium',
       fontWeight: 'bolder',
@@ -118,7 +118,7 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          //font-weight para todos los botones a pedido de Pier
+
           fontFamily: 'Montserrat-Medium',
           fontWeight: 'bold'
         },
@@ -173,7 +173,7 @@ const theme = createTheme({
               borderColor: borderColor,
               borderRadius: '4px 4px 0px 0px',
               border: `2px solid ${borderColor}`,
-              padding: '8px 16px', // Padding personalizado
+              padding: '8px 16px',
             },
             '&:hover fieldset': {
               borderColor: borderColor,
@@ -193,7 +193,7 @@ const theme = createTheme({
             padding: "0.7rem",
           },
 
-          // Estilos para variant="filled"
+
           '& .MuiFilledInput-root': {
             backgroundColor: filledInputBg,
             borderRadius: '4px 4px 0px 0px',
@@ -215,7 +215,7 @@ const theme = createTheme({
             },
           },
 
-          // Estilos para la etiqueta (label) de variant="filled"
+
           '& .MuiInputLabel-filled': {
             color: placeholderColor,
             '&.Mui-focused': {

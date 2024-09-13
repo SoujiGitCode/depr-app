@@ -7,7 +7,7 @@ const AccessibilityWidget = () => {
     return (
         <div style={{
             position: 'fixed',
-            left: 'calc(100vw - 70px)', // 20px (margen) + 45px (tamaño del botón)
+            left: 'calc(100vw - 70px)',
             bottom: '21px',
             zIndex: 2147483647,
         }}>

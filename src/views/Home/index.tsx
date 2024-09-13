@@ -45,7 +45,7 @@ const Home = () => {
   };
 
   setTimeout(() => {
-    //LogOut after 60min - 3600000ms
+
     setAlert("Session expired", "warning")
     handleLogout()
   }, 3600000);
@@ -124,18 +124,18 @@ const Home = () => {
   }, []);
 
 
-  const location = useLocation(); // Obtener el objeto de ubicación
+  const location = useLocation();
 
   useEffect(() => {
-    // Verificar si el estado 'fromRequests' fue pasado y es verdadero
+
     if (location.state?.fromRequests) {
       const section = document.getElementById('solicitudes');
       if (section) {
-        // Hacer scroll suave hasta el elemento
+
         section.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  }, [location]); // Incluir location en las dependencias del useEffect
+  }, [location]);
 
   return (
 

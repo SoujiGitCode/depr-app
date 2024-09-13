@@ -117,7 +117,7 @@ const Register = () => {
   }
 
 
-  // Send data user
+
   const sendUserForRegister = async () => {
     try {
       setLoading(true);
@@ -137,7 +137,7 @@ const Register = () => {
         depr_second_last_name: formik.values.secondLastNameDepr,
         phone: formik.values.phone,
         social_security: formik.values.social_security,
-        // social_security: socialSecurityArray.join(""),
+
         password: formik.values.password,
       });
       setAlert("¡Registro Completado!", "success");
@@ -146,7 +146,7 @@ const Register = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      // setAlert("El Registro no pudo ser completado: " + error?.message, "error");
+
       setAlert("El Registro no pudo ser completado: ", "error");
       modalTriger('error');
 
@@ -523,7 +523,7 @@ const Register = () => {
                       error={formik.touched.birthdate && Boolean(formik.errors.birthdate)}
                       helperText={formik.touched.birthdate && typeof formik.errors.birthdate === 'string' ? formik.errors.birthdate : undefined}
                       inputProps={{
-                        max: new Date().toISOString().split("T")[0],  // Limita la fecha a hoy
+                        max: new Date().toISOString().split("T")[0],
                       }}
                     />
 
@@ -686,7 +686,7 @@ const Register = () => {
                         variant="outlined"
                         color="primary"
                         style={{
-                          // width: '241.5px',
+
                           width: '97%',
                           maxWidth: '241.5px',
                           height: 'auto',
@@ -708,7 +708,7 @@ const Register = () => {
                         color="primary"
                         disabled={!formik.isValid || !checkStatus}
                         style={{
-                          // width: '241.5px',
+
                           width: '97%',
                           maxWidth: '241.5px',
                           height: 'auto',
@@ -716,7 +716,7 @@ const Register = () => {
                           border: '2px #445679 solid',
                           fontSize: '0.7rem'
                         }}
-                      // onClick={() => modalTriger('success')}
+
                       >
                         Registrarme
                       </Button>

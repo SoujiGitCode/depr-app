@@ -71,7 +71,7 @@ const Landing = () => {
     if (token !== '') {
       navigate('/dashboard');
     }
-    // console.log(token)
+
   }, [token]);
 
   return (

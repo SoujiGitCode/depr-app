@@ -97,13 +97,13 @@ const MultiStepForm = ({
     };
 
     const navigate = useNavigate();
-    // Función para avanzar al siguiente paso
+
     const onSendRequest = async () => {
         try {
             setOnSendingData(true);
             changeStep(1);
             await CreateRequest(formData);
-            updateFormData({}, true);  // o cualquier otro valor inicial
+            updateFormData({}, true);
             setAlert("¡Solicitud completada!", "success");
             modalTriger('success');
         } catch (error) {
@@ -119,7 +119,7 @@ const MultiStepForm = ({
     }
 
 
-    // Función para manejar los datos recopilados en un paso
+
     const handleStepData = (data: Partial<FormData>) => {
         updateFormData(data, false);
     };

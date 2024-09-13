@@ -137,7 +137,7 @@ const Fast = () => {
       if (isAuthenticated) {
         try {
           const userInfo = await requestUserInfo(token);
-          setFormData(userInfo); // Actualiza directamente formData
+          setFormData(userInfo);
           updateFormData({
             token: token,
           }, false);
@@ -145,7 +145,7 @@ const Fast = () => {
           console.error("Error fetching user data:", error);
         }
       } else {
-        setFormData(initialFormData); // Si no está autenticado, establece los valores iniciales
+        setFormData(initialFormData);
       }
     };
 
@@ -182,7 +182,7 @@ const Fast = () => {
           <Grid container>
             {/* <Grid item xs={12} sx={{}}>
               <Button
-                sx={{ background: 'none', marginY: '5rem !important', color: '#000', textTransform: 'none', fontSize: '1.2rem' }} // Estilos para posicionar el botón a la izquierda
+                sx={{ background: 'none', marginY: '5rem !important', color: '#000', textTransform: 'none', fontSize: '1.2rem' }}
                 onClick={() => onBack()}
               >
                 &lt; Volver

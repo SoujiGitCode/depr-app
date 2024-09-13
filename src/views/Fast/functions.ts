@@ -160,13 +160,13 @@ export const fastRequest = async ({
         email1,
         email2,
 
-        //unnecesary fields
+
         depr_birthdate: birthdate,
         depr_gender: gender,
         depr_phone: phone,
         depr_social_security: social_security,
 
-        certification_type_id: '1', //1 para certificado de graduación
+        certification_type_id: '1',
       },
     })
 

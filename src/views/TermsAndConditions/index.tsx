@@ -6,7 +6,7 @@ export default function TermsandConditions() {
     const boldStyle = {
         fontWeight: 'bold',
         fontSize: '1rem'
-        // color: '#000000 !important', // Reemplaza con tu color hexadecimal específico
+
     };
 
     const boldBlackStyle = {
@@ -17,44 +17,44 @@ export default function TermsandConditions() {
 
     const linkStyle = {
         textDecoration: 'underline',
-        color: '#0000FF !important', // Color azul para el texto y el subrayado
+        color: '#0000FF !important',
         cursor: 'pointer',
     };
 
     const h1Style = {
-        color: '#000000 !important', // Tu color específico
-        fontSize: '1.5rem', // Tu tamaño específico
-        marginBottom: '1rem', // Margin bottom como ejemplo
+        color: '#000000 !important',
+        fontSize: '1.5rem',
+        marginBottom: '1rem',
     };
 
     const pStyle = {
-        // fontFamily: "Montserrat-Medium",
+
         fontWeight: 'light',
-        color: '#525252', // Otro color específico
-        fontSize: '0.9rem', // Otro tamaño específico
+        color: '#525252',
+        fontSize: '0.9rem',
     };
 
 
     const h3Style = {
-        color: '#654321', // Otro color específico
-        fontSize: '1.5rem', // Otro tamaño específico
-        marginBottom: '0.5rem', // Margin bottom como ejemplo
+        color: '#654321',
+        fontSize: '1.5rem',
+        marginBottom: '0.5rem',
     };
 
 
     const baseStyle = {
         marginTop: '1rem !important',
         marginBottom: '1rem !important',
-        // Aquí puedes agregar otros estilos base comunes
+
     };
 
 
     const liStyle = {
-        // color: 'black',
-        // lineHeight: '1.5rem',
-        // marginTop: '1rem !important',
-        // marginBottom: '1rem !important',
-        // Aquí puedes agregar otros estilos base comunes
+
+
+
+
+
     };
 
 

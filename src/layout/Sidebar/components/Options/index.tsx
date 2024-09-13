@@ -15,11 +15,11 @@ const Options = ({
 
   const handleRedirect = () => {
     if (typeof redirect === 'string') {
-      navigate(redirect); // Navegar a la URL si redirect es un string
+      navigate(redirect);
     } else if (typeof redirect === 'function') {
-      redirect(); // Ejecutar la función si redirect es una función
+      redirect();
     } else {
-      navigate("/"); // Navegar al inicio como fallback
+      navigate("/");
     }
   };
 
@@ -32,7 +32,7 @@ const Options = ({
         alignItems: "center",
         cursor: "pointer",
       }}
-      onClick={handleRedirect} // Usar handleRedirect para manejar el evento click
+      onClick={handleRedirect}
     >
       {children}
       <Typography variant="body1" sx={{ color: "white", textAlign: "center" }}>

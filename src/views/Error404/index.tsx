@@ -27,7 +27,7 @@ const Error404 = () => {
           flexDirection: "row",
           justifyContent: "center",
           paddingBottom: "20%",
-          width: "100%", // Añadido para ocupar todo el ancho del padre
+          width: "100%",
         }}
       >
         <Grid

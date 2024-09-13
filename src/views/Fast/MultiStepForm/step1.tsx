@@ -48,7 +48,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         },
         validationSchema: step1Validations,
         onSubmit: async () => {
-            // await sendUserForRegister();
+
         },
         validateOnChange: true,
         validateOnBlur: true,
@@ -71,7 +71,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
     }, [formik.values, formik.touched, formik.isValid]);
 
     useEffect(() => {
-        // Actualiza los valores iniciales de Formik cuando formData cambie
+
         formik.setValues({
             email: formData.email || '',
             confirmEmail: formData.email || ''

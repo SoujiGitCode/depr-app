@@ -144,7 +144,7 @@ const Profile = () => {
 
   useEffect(() => {
     getDetails();
-    // console.log('consulting info')
+
   }, [isEditMode]);
 
 
@@ -163,7 +163,7 @@ const Profile = () => {
 
 
 
-  //Cambiar password  necesitamos mejorarlo luego
+
 
   const { setAlert } = useAlert();
 
@@ -222,7 +222,7 @@ const Profile = () => {
   }
 
   function isPasswordValidFunction() {
-    // Regular expression to match password requirements
+
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*();])[a-zA-Z\d!@#$%^&*();]{8,}$/;
 
     if (!passwordRegex.test(password)) {
@@ -235,7 +235,7 @@ const Profile = () => {
       return false;
     }
 
-    // If both checks pass, reset any previous error message and return true
+
     setPasswordError('');
     return true;
   }
@@ -245,9 +245,9 @@ const Profile = () => {
     isPasswordValidFunction()
   }, [password, confirmPassword, currentPassword]);
 
-  // Este useEffect se ejecutará después de que el formulario se haya montado
+
   useEffect(() => {
-    formik.validateForm(); // Valida todos los campos inmediatamente después de que el formulario se haya montado
+    formik.validateForm();
   }, []);
 
 
@@ -354,7 +354,7 @@ const Profile = () => {
         {/*Botones */}
         <Box
           sx={{
-            // background: 'red',
+
             flexDirection: "row",
             display: "flex",
             width: "100%",
@@ -371,9 +371,9 @@ const Profile = () => {
             sx={{ marginRight: "5% !important" }}
             onClick={() => {
               if (isEditMode) {
-                // Valida los campos antes de guardar
+
                 if (formik.isValid) {
-                  // Si está en modo edición y los campos son válidos, guarda los valores
+
                   setFormValues({
                     identification: formik.values.identification || '',
                     email: formik.values.email || '',
@@ -387,15 +387,15 @@ const Profile = () => {
                     social_security: formik.values.social_security || '',
                   });
 
-                  // Llama a la función onSubmit de formik para manejar la lógica del envío del formulario
+
                   formik.handleSubmit();
                   setIsEditMode(false);
                 } else {
-                  // Si los campos no son válidos, puedes mostrar un mensaje de error o tomar otras medidas
+
                   console.log("Los campos contienen errores");
                 }
               } else {
-                // No estás en modo edición
+
                 setIsEditMode(false);
               }
             }}

@@ -85,10 +85,10 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
                                                 backgroundColor: 'white',
                                                 borderRadius: '50%',
                                                 display: 'flex',
-                                                justifyContent: 'center', // Centra el ícono horizontalmente
-                                                alignItems: 'center', // Centra el ícono verticalmente
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
                                                 '&:hover': {
-                                                    backgroundColor: '#ebebeb', // Color de fondo al pasar el mouse (opcional)
+                                                    backgroundColor: '#ebebeb',
                                                 }
                                             }}
                                         >

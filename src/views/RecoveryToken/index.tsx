@@ -23,7 +23,7 @@ const RecoveryToken = () => {
   const [message, setMessage] = useState('');
   const [modalType, setModalType] = useState<'error' | 'success'>('error');
 
-  // 1. Rearrange useState Hooks:
+
   const { t } = useParams();
   const cleanT = cleanToken(t);
   console.log(cleanT);
@@ -37,12 +37,12 @@ const RecoveryToken = () => {
   const navigate = useNavigate();
 
 
-  // Helper function
+
   function cleanToken(token: string) {
     return token.startsWith("t=") ? token.slice(2) : token;
   }
 
-  // 2. Rearrange useEffects:
+
   useEffect(() => {
     if (token) {
       checkToken();
@@ -92,7 +92,7 @@ const RecoveryToken = () => {
         setAlert('¡Contraseña actualizada!', "success");
         setOpenModal(true);
         setModalType('success');
-        // espera de 3 segundos antes de redireccionar al suuario al landing
+
         setTimeout(() => {
           navigate('/login');
         }, 4000);
@@ -101,7 +101,7 @@ const RecoveryToken = () => {
     } catch (error) {
       setOpenModal(true);
       setModalType('error');
-      // espera de 3 segundos antes de redireccionar al suuario al landing
+
       setToken('');
       console.log(error);
       throw error;
@@ -115,7 +115,7 @@ const RecoveryToken = () => {
   }
 
   function isPasswordValidFunction() {
-    // Regular expression to match password requirements
+
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*();])[a-zA-Z\d!@#$%^&*();]{8,}$/;
 
     if (!passwordRegex.test(password)) {
@@ -128,7 +128,7 @@ const RecoveryToken = () => {
       return false;
     }
 
-    // If both checks pass, reset any previous error message and return true
+
     setPasswordError('');
     return true;
   }

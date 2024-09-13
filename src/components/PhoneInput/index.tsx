@@ -9,23 +9,23 @@ interface PhoneInputProps {
     id?: string;
     variant?: 'outlined' | 'standard' | 'filled';
     placeholder?: string;
-    formik: any; // Asume que formik es pasado como prop para acceso directo
+    formik: any;
 }
 
 const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik }: PhoneInputProps) => {
     const [displayValue, setDisplayValue] = useState("");
-    // Inicializa el input con el formato deseado
+
     useEffect(() => {
         setDisplayValue(formik.values.phone || "(___) ___-____");
     }, [formik.values.phone]);
 
-    // const handleChange = (event) => {
-    //     console.log(event.target.value); // Ver el valor actual del input
-    //     formik.setFieldValue(name, event.target.value);
-    // };
+
+
+
+
 
     function cleanPhoneNumber(phoneNumber) {
-        // Elimina todo lo que no sea dígitos
+
         const onlyNumbers = phoneNumber.replace(/\D/g, '');
         return onlyNumbers;
     }
@@ -33,7 +33,7 @@ const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const formattedValue = event.target.value; // Mantiene el formato (XXX) XXX-XXXX
+        const formattedValue = event.target.value;
         setDisplayValue(formattedValue)
         formik.setFieldValue(name, cleanPhoneNumber(formattedValue));
     };
@@ -45,7 +45,7 @@ const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik
             mask="(999) 999-9999"
             value={displayValue}
             onChange={handleChange}
-            onBlur={formik.onBlur} // Correcto manejo de onBlur
+            onBlur={formik.onBlur}
             maskChar="_"
         >
             {() => (
