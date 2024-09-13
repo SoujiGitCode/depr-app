@@ -34,7 +34,6 @@ import ProgressStatus from '@/components/ProgressStatus/ProgressStatus';
 import MultiStepForm from './MultiStepForm';
 import PurpleHeader from '@/components/PurpleHeader';
 
-
 interface FormData {
   email: string;
   schoolTown: string,
@@ -60,12 +59,10 @@ interface FormData {
   token: string;
 }
 
-
 const Fast = () => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
 
   const initialFormData: FormData = {
     email: '',
@@ -92,11 +89,9 @@ const Fast = () => {
     token: '',
   };
 
-
   const [activeStep, setActiveStep] = useState(0);
   const [isStepValid, setStepValid] = useState(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
-
 
   const steps = [
     {
@@ -131,7 +126,6 @@ const Fast = () => {
     if (!isAuthenticated) navigate("/");
   }
 
-
   useEffect(() => {
     const fetchUserData = async () => {
       if (isAuthenticated) {
@@ -149,10 +143,8 @@ const Fast = () => {
       }
     };
 
-
     fetchUserData();
   }, [isAuthenticated, token]);
-
 
   return (
 
@@ -161,7 +153,6 @@ const Fast = () => {
       {token !== "" && isAuthenticated && (
         <PurpleHeader />)
       }
-
 
       {/* <Grid item xs={12}
         sx={{
@@ -196,7 +187,6 @@ const Fast = () => {
             </Grid>
 
           </Grid>
-
 
         </Box>
       </Grid>

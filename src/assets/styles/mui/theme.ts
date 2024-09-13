@@ -7,7 +7,6 @@ const filledInputBg = '#EAEAEA';
 
 const disabledColorPrimary = "#44567980";
 
-
 const HOVER_COLORS = {
   primary: '#2B394A',
   secondary: '#214F21',
@@ -25,7 +24,6 @@ const DISABLED_COLORS = {
   secondary: '#214F21',
   warning: '#654010'
 }
-
 
 const theme = createTheme({
   palette: {

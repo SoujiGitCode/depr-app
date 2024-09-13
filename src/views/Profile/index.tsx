@@ -114,7 +114,6 @@ const Profile = () => {
     }
   };
 
-
   const formik = useFormik({
     initialValues: {
       identification: "",
@@ -147,8 +146,6 @@ const Profile = () => {
     // console.log('consulting info')
   }, [isEditMode]);
 
-
-
   useEffect(() => {
     if (!formik.isValid) {
       console.log(formik.errors);
@@ -160,8 +157,6 @@ const Profile = () => {
     }
     console.log('isStepValid ' + formValid)
   }, [formik.values, formik.touched, formik.isValid]);
-
-
 
   //Cambiar password  necesitamos mejorarlo luego
 
@@ -175,7 +170,6 @@ const Profile = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-
   const handleOpenModal = () => {
     setPasswordError('');
     setOpenModal(true);
@@ -185,7 +179,6 @@ const Profile = () => {
     setPasswordError('');
     setOpenModal(false);
   };
-
 
   const onSave = async () => {
     try {
@@ -240,7 +233,6 @@ const Profile = () => {
     return true;
   }
 
-
   useEffect(() => {
     isPasswordValidFunction()
   }, [password, confirmPassword, currentPassword]);
@@ -249,7 +241,6 @@ const Profile = () => {
   useEffect(() => {
     formik.validateForm(); // Valida todos los campos inmediatamente después de que el formulario se haya montado
   }, []);
-
 
   return (
     <>
@@ -295,7 +286,6 @@ const Profile = () => {
                   </Button>
                 </Grid>
               </Grid>
-
 
               <Grid item xs={12} >
                 {!isEditMode && userInfo ? (

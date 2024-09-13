@@ -6,7 +6,6 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { useLocation, useParams } from "react-router-dom";
 
-
 import CustomLabel from "@/components/CustomLabel";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -36,7 +35,6 @@ const RecoveryToken = () => {
   const { setAlert } = useAlert();
   const navigate = useNavigate();
 
-
   // Helper function
   function cleanToken(token: string) {
     return token.startsWith("t=") ? token.slice(2) : token;
@@ -48,7 +46,6 @@ const RecoveryToken = () => {
       checkToken();
     }
   }, [token]);
-
 
   const goBack = () => {
     navigate('/');
@@ -108,7 +105,6 @@ const RecoveryToken = () => {
     }
   };
 
-
   const isPasswordValid = () => {
     if (password !== '' && password === confirmPassword && passwordError === '') return true;
     return false;
@@ -152,7 +148,6 @@ const RecoveryToken = () => {
 
         {/* Password Creation Section */}
         <Grid item xs={12} md={5} sx={{ py: 1 }}>
-
 
           {token !== '' ? (
             <Box

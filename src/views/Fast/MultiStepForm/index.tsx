@@ -11,8 +11,6 @@ import { PATH } from '@/routes/constants';
 import { ConfirmationModal } from '@/components';
 import { useNavigate } from 'react-router-dom';
 
-
-
 interface FormData {
     email: string;
     schoolTown: string;
@@ -38,7 +36,6 @@ interface FormData {
     token: string;
 }
 
-
 interface MultiStepFormProps {
     onBack: () => void;
     currentStep: number;
@@ -49,8 +46,6 @@ interface MultiStepFormProps {
     updateFormData: (data: Partial<FormData>, reset: boolean) => void;
     isAuthenticated: boolean;
 }
-
-
 
 const MultiStepForm = ({
     onBack,
@@ -126,7 +121,6 @@ const MultiStepForm = ({
         setModalType(type)
     }
 
-
     // Función para manejar los datos recopilados en un paso
     const handleStepData = (data: Partial<FormData>) => {
         updateFormData(data, false);
@@ -176,7 +170,6 @@ const MultiStepForm = ({
                             formData={formData} />
 
                     )}
-
 
                     {currentStep === 3 && (
                         <Step4 />

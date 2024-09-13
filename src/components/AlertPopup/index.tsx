@@ -8,14 +8,12 @@ const AlertPopup = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
-
   const titles = {
     success: "éxito",
     warning: "advertencia",
     error: "error",
     info: "Información"
   }
-
 
   if (isOpen && text) {
     return (

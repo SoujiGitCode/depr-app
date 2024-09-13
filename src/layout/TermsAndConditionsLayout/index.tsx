@@ -4,7 +4,6 @@ import styles from "./styles.module.scss";
 import Footer from "../Footer";
 import PurpleHeader from "@/components/PurpleHeader";
 
-
 const TermsandConditionsLayout = () => {
 
     const theme = useTheme();
@@ -28,7 +27,5 @@ const TermsandConditionsLayout = () => {
 
     );
 };
-
-
 
 export default TermsandConditionsLayout;

@@ -31,7 +31,6 @@ import { ConfirmationModal, SocialSecurityInput, SocialSecurityNumberInput, Term
 import { registerValidation } from '@/validations/registerValidation';
 import PhoneInput from '@/components/PhoneInput';
 
-
 const Register = () => {
   const { setAlert } = useAlert();
   const setLogin = useAuthStore((state: any) => state.setLogin);
@@ -56,8 +55,6 @@ const Register = () => {
     { value: 'N', label: 'No Indica' }
   ];
 
-
-
   const [isFormValid, setIsFormValid] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -65,8 +62,6 @@ const Register = () => {
   const [selectedValue, setSelectedValue] = useState<string | null>('No');
   const [loading, setLoading] = useState(false);
   const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill(""));
-
-
 
   const formik = useFormik({
     validateOnMount: true,
@@ -100,7 +95,6 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-
   const OnChangeSelectedValue = (value: string) => {
     setSelectedValue(value);
 
@@ -110,12 +104,10 @@ const Register = () => {
     formik.setFieldValue("secondLastNameDepr", value === 'No' ? "" : formik.values.secondLastName);
   };
 
-
   const modalTriger = (type: 'error' | 'success') => {
     setOpenModal(true);
     setModalType(type)
   }
-
 
   // Send data user
   const sendUserForRegister = async () => {
@@ -205,7 +197,6 @@ const Register = () => {
         </div>
       </Grid>
       <Grid item xs={12} lg={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2em' }}>
-
 
         {!loading ?
 
@@ -347,7 +338,6 @@ const Register = () => {
               </Grid>
             </Box>
 
-
             {/*--------------------WARNING Card------------------*/}
             <Box mt={2} mb={2} justifyContent="center"
               sx={{
@@ -412,7 +402,6 @@ const Register = () => {
                 </Grid>
               </Grid>
             </Box>
-
 
             {/*--------------------DEPR personal data------------------*/}
             {selectedValue === "Si" &&
@@ -586,7 +575,6 @@ const Register = () => {
               </Grid>
             </Box>
 
-
             <Box>
               <Grid container spacing={0}>
                 <Grid item xs={12} sx={{ paddingX: '1rem' }}>
@@ -671,7 +659,6 @@ const Register = () => {
               </Grid>
             </Box>
 
-
             <Box>
               <Grid container spacing={0}>
                 <Grid item xs={12} sx={{ paddingX: '1rem', marginY: '2rem !important' }}>
@@ -754,7 +741,6 @@ const Register = () => {
             </Grid>
           </Box>
         }
-
 
       </Grid>
       <ConfirmationModal

@@ -34,7 +34,6 @@ interface StepProps {
     updateFormData: (data: any, reset: boolean) => void;
 }
 
-
 const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
     const [validate, setValidate] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
@@ -145,9 +144,7 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
             </Box>
 
-
         </form>
-
 
     );
 };

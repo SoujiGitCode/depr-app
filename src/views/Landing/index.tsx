@@ -11,7 +11,6 @@ import {
 import MyCarousel from '../../components/Carousel';
 import { styled } from '@mui/system';
 
-
 import paper from "../../assets/images/icon-paper.png";
 import student from "../../assets/images/icon-student.png";
 import { useNavigate } from "react-router-dom";
@@ -56,13 +55,11 @@ const BoldText = styled('span')({
   fontFamily: 'Montserrat-Medium',
 });
 
-
 const Landing = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   const token = useAuthStore((state: any) => state.token);
-
 
   const navigate = useNavigate();
   const background = "linear-gradient(to top, #8580b0, #7a75ad, #6f6aaa, #6460a7, #5855a4)";
@@ -144,14 +141,12 @@ const Landing = () => {
                     </Box>
                   </Grid>
 
-
                   <Grid item xs={10} container alignItems="center" justifyContent="center">
                     <CardContent sx={{ paddingRight: '2.5em !important' }}>
                       <Typography variant="h4" sx={{ color: '#333333' }} >{card.title}</Typography>
                       <Typography variant="body1" sx={{ marginTop: '1.5em !important', marginBottom: '1.5em !important', textAlign: 'start', color: '#333333' }}>
                         {card.description}
                       </Typography>
-
 
                       {card.buttonType === 'warning' &&
                         <Button variant="contained" color='warning'

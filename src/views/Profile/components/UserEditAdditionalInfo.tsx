@@ -34,7 +34,6 @@ const UserEditAdditionalInfo = ({
     { value: 'N', label: 'No Indica' }
   ];
 
-
   return (
     <>
       <Box>

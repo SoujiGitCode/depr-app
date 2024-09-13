@@ -164,8 +164,6 @@ const UnautoziredLayout = () => {
               </Stack>
             </Grid>
 
-
-
           </Grid>
 
         </Box>
@@ -182,7 +180,5 @@ const UnautoziredLayout = () => {
 
   );
 };
-
-
 
 export default UnautoziredLayout;

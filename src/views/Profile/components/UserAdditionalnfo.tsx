@@ -28,7 +28,6 @@ const UserAdditionalInfo: React.FC<UserProfileInfoProps> = ({ formik, isMobile }
     'N': 'No indicado'
   };
 
-
   return (
     <>
       <Box sx={{ display: "flex", marginTop: '6.22rem !important', paddingBottom: "1.3rem" }}>

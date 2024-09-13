@@ -17,7 +17,6 @@ interface UserProfileInfoProps {
 
 const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
 
-
   const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill("") ?? null);
   const [showSocialSecurity, setShowSocialSecurity] = useState(false);
 
@@ -125,7 +124,6 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
         </Grid>
       </Box>
 
-
       <Box>
         <Grid container spacing={0}>
           <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
@@ -162,7 +160,6 @@ const UserEditProfile = ({ formik, isMobile }: UserProfileInfoProps) => {
 
         </Grid>
       </Box>
-
 
       {isMobile &&
         <>

@@ -23,7 +23,6 @@ import { step3Validations } from './validations/step3Validations';
 import SocialSecurityInput from '@/components/SocialSecurityInput';
 import PhoneInput from '@/components/PhoneInput';
 
-
 interface StepProps {
     isStepValid: boolean;
     setStepValid: (valid: boolean) => void;
@@ -32,12 +31,10 @@ interface StepProps {
     updateFormData: (data: any, reset: boolean) => void;
 }
 
-
 const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
 
     const [validate, setValidate] = useState(false);
 
@@ -54,7 +51,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         { value: 'M', label: 'Masculino' },
         { value: 'N', label: 'No Indica' }
     ];
-
 
     const [showSocialSecurity, setShowSocialSecurity] = useState(false);
     const [socialSecurityArray, setSocialSecurityArray] = useState(new Array(9).fill(""));
@@ -92,7 +88,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         validateOnBlur: true,
     });
 
-
     const OnChangeSelectedValue = (value: string) => {
         setSelectedValue(value);
 
@@ -101,7 +96,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         formik.setFieldValue("depr_last_name", value === 'No' ? "" : formik.values.last_name);
         formik.setFieldValue("depr_second_last_name", value === 'No' ? "" : formik.values.second_last_name);
     };
-
 
     if (validate) {
         setValidate(false);
@@ -122,8 +116,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             formik.setFieldValue("depr_second_last_name", "");
         }
     }, [selectedValue, formik.values.first_name, formik.values.second_name, formik.values.last_name, formik.values.second_last_name]);
-
-
 
     useEffect(() => {
         if (!formik.isValid) {
@@ -159,8 +151,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         console.log('isStepValid ' + isStepValid)
     }, [formik.values, formik.touched, formik.isValid]);
 
-
-
     const [phone, setPhone] = useState('');
 
     const formatPhoneNumber = (value: any) => {
@@ -181,13 +171,11 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         return formattedNumber.replace(/[^\d]/g, '');
     };
 
-
     useEffect(() => {
         console.log('phone')
         console.log(parsePhoneNumber(formik.values.phone))
         setPhone(parsePhoneNumber(formik.values.phone))
     }, [formik.values.phone])
-
 
     // useEffect(() => {
     //     setSocialSecurityArray(formData.social_security ? formData.social_security.split('') : new Array(9).fill(""));
@@ -205,13 +193,11 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                 </Grid>
             </Box>
 
-
             <Box>
                 <Grid container spacing={0}>
                     <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
                         <CustomLabel name="Documento de Identidad" required={true} />
                     </Grid>
-
 
                     <Grid item xs={12} lg={6} sx={{ paddingX: '1rem' }}>
                         <FormControl fullWidth margin="normal" required sx={{ marginBottom: "1em !important" }}>
@@ -338,7 +324,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
                 </Grid>
             </Box>
-
 
             {/*--------------------WARNING Card------------------*/}
             <Box mt={2} mb={2} justifyContent="center"
@@ -598,7 +583,6 @@ const Step3 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                     </Grid>
                 </Grid>
             </Box>
-
 
             <Box>
                 <Grid container spacing={0}>

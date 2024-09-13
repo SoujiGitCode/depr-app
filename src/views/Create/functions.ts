@@ -3,14 +3,11 @@ import api from "@/utils/services/api";
 import { schools, towns, userInfo, documentCreate } from "@/utils";
 import useAuthStore from "@/hooks/useAuthStore";
 
-
-
 interface IGeneralResponse {
   code: number;
   message: string;
   data: any;
 }
-
 
 export const requestSchools = async (townId: string) => {
   try {
@@ -27,8 +24,6 @@ export const requestSchools = async (townId: string) => {
     throw error;
   }
 };
-
-
 
 export const requestTowns = async () => {
   try {
@@ -52,7 +47,6 @@ export const requestUserInfo = async (token: string) => {
     throw error;
   }
 };
-
 
 interface ICreateRequestParams {
   email: string;

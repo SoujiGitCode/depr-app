@@ -21,7 +21,6 @@ export const changePassword = "/user/changepwd";
 export const recoveryPassword = "/user/recoverypwd";
 export const logout = "/logout";
 
-
 // Referencias usadas en PHSU puede que las usemos aca o puede que no.
 export const campuses = "/campus";
 export const academicYears = "/academic_years";

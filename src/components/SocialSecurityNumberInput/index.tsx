@@ -8,7 +8,6 @@ import { styled } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
 import InputMask from 'react-input-mask';
 
-
 const CustomBox = styled(Box)(() => ({
     verticalAlign: 'top',
     padding: '0.05rem',
@@ -36,8 +35,6 @@ const CustomBox = styled(Box)(() => ({
         },
     },
 }));
-
-
 
 // Define the props for the SocialSecurityInput component
 interface SocialSecurityInputProps {
@@ -88,9 +85,6 @@ const SocialSecurityNumberInput = ({
         return maxLength * baseWidthPerCharacter + totalPaddingAndBorder;
     };
 
-
-
-
     return (
         <CustomBox>
 
@@ -113,7 +107,6 @@ const SocialSecurityNumberInput = ({
                     />
                 )}
             </InputMask>
-
 
             <InputMask
                 mask="**"

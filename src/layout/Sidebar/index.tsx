@@ -29,11 +29,9 @@ const Sidebar = () => {
 
   const navigate = useNavigate();
 
-
   const handleClick = () => {
     navigate(PATH.DASHBOARD, { state: { fromRequests: true } });
   }
-
 
   return (
     <Grid

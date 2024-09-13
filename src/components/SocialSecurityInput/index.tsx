@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 
-
 const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecurityArray, socialSecurityArray, id = 'social_security' }) => {
   // Estado para almacenar el valor real (numérico) del SSN
   const [realSSN, setRealSSN] = useState('');
@@ -22,7 +21,6 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
     formik.setFieldValue(name, realSSN, true);
   }, [realSSN]);
 
-
   // Función para enmascarar y formatear el SSN para la visualización
   const maskAndFormatSSN = (ssn) => {
     // Enmascara los primeros 5 números y mantiene los últimos 4 dígitos visibles
@@ -39,21 +37,17 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
     // Elimina guiones para simplificar la detección de cambios
     let inputWithoutHyphens = currentValue.replace(/-/g, '');
 
-
     if (displaySSN.length > 10 && inputWithoutHyphens.length > realSSN.length) {
       console.log("Límite alcanzado. Solo se permite borrar.");
       // Permite solo la acción de borrado ajustando `inputWithoutHyphensAndX` para reflejar el estado anterior
       inputWithoutHyphens = realSSN;
     }
 
-
-
     // Detecta si se ha añadido un nuevo dígito o si se está borrando
     if (inputWithoutHyphens.length > realSSN.length) {
       // Se ha añadido un dígito
       const newDigit = inputWithoutHyphens.charAt(inputWithoutHyphens.length - 1);
       console.log("Nuevo dígito ingresado:", newDigit);
-
 
       if (newDigit.match(/\d/)) {
         if (realSSN.length < 9) setRealSSN(realSSN + newDigit);
@@ -70,7 +64,6 @@ const SocialSecurityInput = ({ formik, name = 'social_security', setSocialSecuri
     if (realSSN.length < 9) setDisplaySSN(maskedValue);
     setDisplaySSN(maskedValue);
   };
-
 
   // Detecta específicamente la acción de borrar
   const handleKeyDown = (e) => {

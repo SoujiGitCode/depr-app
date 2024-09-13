@@ -16,7 +16,6 @@ const AuthorizedLayout = () => {
     setDrawerOpen(!drawerOpen);
   };
 
-
   useEffect(() => {
     if (!isMobile) setDrawerOpen(true)
       , []

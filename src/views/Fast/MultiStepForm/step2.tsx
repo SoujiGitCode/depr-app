@@ -33,7 +33,6 @@ interface StepProps {
     updateFormData: (data: any, reset: boolean) => void;
 }
 
-
 const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
     const [townsData, setTownsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Pueblo' }]);
     const [schoolsData, setSchoolsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Escuela' }]);
@@ -69,8 +68,6 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         validateOnBlur: true,
     });
 
-
-
     useEffect(() => {
         if (!formik.isValid) {
             console.log(formik.errors);
@@ -87,11 +84,8 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             }, false);
         }
 
-
         console.log('isStepValid ' + isStepValid)
     }, [formik.values, formik.touched, formik.isValid]);
-
-
 
     useEffect(() => {
 
@@ -132,7 +126,6 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
         // fetchSchools(formData.schoolTown);
     }, []);
 
-
     // Cada vez que cambia el valor de schoolTown en Formik, actualizamos las escuelas.
     useEffect(() => {
         const fetchSchools = async () => {
@@ -148,7 +141,6 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
 
         fetchSchools();
     }, [formik.values.schoolTown, formData.school_town]);
-
 
     useEffect(() => {
         console.log(schoolsData)
@@ -167,7 +159,6 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
             formik.setFieldValue(name, value);
         }
     };
-
 
     return (
         <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
@@ -287,7 +278,6 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                 </Grid>
             </Box>
 
-
             <Box>
                 <Grid container spacing={0}>
                     <Grid item xs={12} lg={12} sx={{ paddingX: '1rem' }}>
@@ -322,9 +312,7 @@ const Step2 = ({ isStepValid, setStepValid, onStepCompleted, formData, updateFor
                 </Grid>
             </Box>
 
-
         </form >
-
 
     );
 };

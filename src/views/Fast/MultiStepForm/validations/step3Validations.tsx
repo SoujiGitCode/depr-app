@@ -45,7 +45,6 @@ export const step3Validations = Yup.object().shape({
         .max(20, "máximo 20 caracteres"
         ),
 
-
     birthdate: Yup
         .date()
         .test(
@@ -74,7 +73,6 @@ export const step3Validations = Yup.object().shape({
     gender: Yup.string()
         .notOneOf(['notAValidGender'], 'Debe seleccionar una opción valida')
         .required('Debe seleccionar una opción valida'),
-
 
     phone: Yup.string()
         .required("Teléfono requerido")
@@ -147,7 +145,5 @@ export const step3Validations = Yup.object().shape({
         })
         .oneOf([Yup.ref('email2')], 'Los correos electrónicos deben coincidir')
         .max(100, "Máximo 100 caracteres"),
-
-
 
 });

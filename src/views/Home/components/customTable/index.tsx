@@ -30,7 +30,6 @@ const CustomTable = ({ tableData, isMobile }: CustomTableProps) => {
         fontSize: '1rem',
     }
 
-
     console.log(isMobile)
     const statusList: { [key: number]: string } = {
         0: "En Progreso",
@@ -47,7 +46,6 @@ const CustomTable = ({ tableData, isMobile }: CustomTableProps) => {
         const formattedDate = `${month}/${day}/${year}`;
         return formattedDate;
     }
-
 
     const MobileTable = ({ tableData }: CustomTableProps) => {
 
@@ -91,7 +89,6 @@ const CustomTable = ({ tableData, isMobile }: CustomTableProps) => {
             </Box>
         );
     };
-
 
     return (
         <>

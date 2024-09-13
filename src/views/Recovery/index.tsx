@@ -4,7 +4,6 @@ import recoveryPassImg from "@/assets/recovery-pass.png"
 
 import { Dialog, DialogContent, DialogContentText, DialogTitle, DialogActions } from "@mui/material";
 
-
 import CustomLabel from "@/components/CustomLabel";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -21,7 +20,6 @@ const Recovery = () => {
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-
 
   const customContent = {
     success: {
@@ -43,7 +41,6 @@ const Recovery = () => {
       )
     }
   };
-
 
   const navigate = useNavigate();
   const formik = useFormik({
@@ -75,7 +72,6 @@ const Recovery = () => {
           setOpenModal(true);
           setModalType('success');
         }
-
 
       } catch (error) {
         setOpenModal(true);
@@ -126,7 +122,6 @@ const Recovery = () => {
 
             <Grid item xs={12} >
 
-
               <form onSubmit={formik.handleSubmit}>
                 <Grid container>
                   <CustomLabel name="Correo electrónico" required={true} />
@@ -146,7 +141,6 @@ const Recovery = () => {
                       helperText={formik.touched.email && formik.errors.email}
                     />
                   </Grid>
-
 
                   <Grid item xs={12} lg={5} textAlign={'center'} sx={{ marginBottom: '1.5rem !important' }}>
                     <Button
@@ -186,7 +180,6 @@ const Recovery = () => {
 
           </Grid>
         </Grid>
-
 
         <ConfirmationModal
           open={openModal}

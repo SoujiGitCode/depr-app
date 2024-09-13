@@ -1,8 +1,6 @@
 # DEPR Web System
 
-
 ## Description
-
 
 ## Getting Started
 

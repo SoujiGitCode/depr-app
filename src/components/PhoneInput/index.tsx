@@ -30,15 +30,11 @@ const PhoneInput = ({ name, label, id, variant = 'outlined', placeholder, formik
         return onlyNumbers;
     }
 
-
-
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const formattedValue = event.target.value; // Mantiene el formato (XXX) XXX-XXXX
         setDisplayValue(formattedValue)
         formik.setFieldValue(name, cleanPhoneNumber(formattedValue));
     };
-
-
 
     return (
         <InputMask

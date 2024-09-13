@@ -61,12 +61,10 @@ interface FormData {
   certification_type_id: string;
 }
 
-
 const Create = () => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
 
   const { certification_type_id } = useParams();
 
@@ -108,7 +106,6 @@ const Create = () => {
     setFormTitle(certification_type_id == '3' ? 'Certificado de Horas Taller' : 'Transcripción de Créditos')
   }, []);
 
-
   const navigate = useNavigate();
 
   const updateFormData = (data: Partial<FormData>, reset = false) => {
@@ -126,7 +123,6 @@ const Create = () => {
     if (isAuthenticated) navigate("/dashboard");
     if (!isAuthenticated) navigate("/");
   }
-
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -167,7 +163,6 @@ const Create = () => {
             </Typography>
           </Grid>
 
-
           <Grid item xs={12} sx={{ paddingX: '1rem', marginY: '2.5rem !important' }}>
             <Typography variant="body1" gutterBottom sx={{ fontSize: '1.1em !important' }}>
               Solicite su certificado en formato digital.
@@ -192,7 +187,6 @@ const Create = () => {
 
       </Grid >
     </>
-
 
   );
 };

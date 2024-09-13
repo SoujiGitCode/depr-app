@@ -63,7 +63,6 @@ export const registerValidation = Yup.object().shape({
         .matches(/^[0-9*]+$/, "Solo debe contener números")
         .test('len', 'Deben ser 9 caracteres', val => val.length === 9),
 
-
     birthdate: Yup
         .date()
         .test(

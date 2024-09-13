@@ -7,7 +7,6 @@ export { default as NotFound } from "./NotFound";
 export { default as Create } from "./Create";
 export { default as Fast } from "./Fast";
 
-
 export { default as Recovery } from "./Recovery";
 export { default as RecoveryToken } from "./RecoveryToken";
 

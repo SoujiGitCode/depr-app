@@ -23,8 +23,6 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
     return phoneNumber; // Retorna el original si no hay dígitos
   };
 
-
-
   const maskAndFormatSSN = (ssn: string) => {
     // Enmascara los primeros 5 números y mantiene los últimos 4 dígitos visibles
     let masked = ssn.slice(0, 5).replace(/\d/g, 'X') + ssn.slice(5);
@@ -41,14 +39,11 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
     { value: 'N', label: 'No Indica' }
   ];
 
-
   const genderDictionary = {
     'F': 'Femenino',
     'M': 'Masculino',
     'N': 'No indicado'
   };
-
-
 
   return (
     <>
@@ -131,7 +126,6 @@ const UserProfileInfo = ({ formik, isMobile }: UserProfileInfoProps) => {
           {getFormattedDate(formik.values.depr_birthdate)}
         </Typography>
       </Box>
-
 
       {isMobile &&
         <>

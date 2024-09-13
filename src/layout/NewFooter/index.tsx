@@ -169,10 +169,7 @@ export default function Footer({ isMobile }: { isMobile: boolean }) {
                                         doloremque maxime? Quisquam!</Typography>
                                 </Box>
 
-
                             </Grid>
-
-
 
                         </Grid>
                     </Box>

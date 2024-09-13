@@ -20,15 +20,12 @@ import CustomTable from "./components/customTable";
 import { table } from "console";
 import Paper from "@mui/material/Paper";
 
-
 const Home = () => {
   const { setAlert } = useAlert();
   const logout = useAuthStore((state: any) => state.setLogout);
   const token = useAuthStore((state: any) => state.token);
   const navigate = useNavigate();
   const [tableData, setTableData] = useState<IGetUsersDocumentsData[]>([]);
-
-
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -49,7 +46,6 @@ const Home = () => {
     setAlert("Session expired", "warning")
     handleLogout()
   }, 3600000);
-
 
   const cardData = [
     {
@@ -86,7 +82,6 @@ const Home = () => {
     },
   ];
 
-
   const CustomTextField = styled(TextField)({
     '& .MuiInputBase-root': {
       width: '194px',
@@ -108,7 +103,6 @@ const Home = () => {
     },
   });
 
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -122,7 +116,6 @@ const Home = () => {
     }
     fetchUserData();
   }, []);
-
 
   const location = useLocation(); // Obtener el objeto de ubicación
 
@@ -190,7 +183,6 @@ const Home = () => {
           </Grid>
         </Grid>
 
-
         <Grid
           item
           xs={12}
@@ -241,7 +233,6 @@ const Home = () => {
 
                       </Box>
                     </Grid>
-
 
                     <Grid item xs={10} container alignItems="center" justifyContent="center">
                       <CardContent sx={{ paddingRight: '2.5em !important' }}>
@@ -318,10 +309,7 @@ const Home = () => {
 
         </Grid>
 
-
-
       </Grid >
-
 
     </>
 

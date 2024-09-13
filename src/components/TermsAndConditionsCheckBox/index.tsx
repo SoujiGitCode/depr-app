@@ -8,10 +8,7 @@ interface TermsandConditionsProps {
     setCheckStatus: (status: boolean) => void;
 }
 
-
-
 const TermsandConditionsCheckBox = ({ checkStatus, setCheckStatus }: TermsandConditionsProps) => {
-
 
     return (
         <>
@@ -47,8 +44,6 @@ const TermsandConditionsCheckBox = ({ checkStatus, setCheckStatus }: TermsandCon
         </>
     )
 
-
 }
-
 
 export default TermsandConditionsCheckBox;

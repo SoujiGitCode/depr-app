@@ -26,7 +26,6 @@ const Root = () => {
         <Route path={PATH.TERMS_AND_CONDITIONS} element={<TermsandConditions />} />
       </Route>
 
-
       {/* Rutas solo para usuarios no autorizados */}
       {!isAuthenticated && (
         <>
@@ -37,7 +36,6 @@ const Root = () => {
           <Route path={PATH.FAST} element={<UnauthorizedLayout />}>
             <Route index element={<Fast />} />
           </Route>
-
 
           <Route path={PATH.RECOVERY} element={<UnauthorizedLayout />}>
             <Route index element={<Recovery />} />
@@ -69,7 +67,6 @@ const Root = () => {
           >
             <Route index element={<Create />} />
           </Route>
-
 
           <Route path={PATH.RECOVERY} element={<UnauthorizedLayout />}>
             <Route index element={<Recovery />} />

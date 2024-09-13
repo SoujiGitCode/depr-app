@@ -59,7 +59,6 @@ export const step1Validations = Yup.object().shape({
         .max(20, "máximo 20 caracteres"
         ),
 
-
     birthdate: Yup
         .date()
         .test(

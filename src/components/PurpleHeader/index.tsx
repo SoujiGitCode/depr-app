@@ -34,4 +34,3 @@ const PurpleHeader = () => {
 
 export default PurpleHeader;
 
-

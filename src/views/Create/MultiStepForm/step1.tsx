@@ -25,7 +25,6 @@ import SocialSecurityInput from '@/components/SocialSecurityInput';
 import PhoneInput from '@/components/PhoneInput';
 import { TermsandConditionsCheckBox } from '@/components';
 
-
 interface StepProps {
     termsandConditionsCheckBox: boolean;
     setTermsandConditionsCheckBox: (status: boolean) => void;
@@ -41,9 +40,7 @@ interface ItemData {
     name: string;
 }
 
-
 const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isStepValid, setStepValid, onStepCompleted, formData, updateFormData }: StepProps) => {
-
 
     const [townsData, setTownsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Pueblo' }]);
     const [schoolsData, setSchoolsData] = useState<ItemData[]>([{ id: '0', name: 'Seleccione Escuela' }]);
@@ -92,7 +89,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
             label: 'Licencia / Real ID',
         },
     ];
-
 
     const formik = useFormik({
         validateOnMount: true,
@@ -150,8 +146,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         }
     }, [selectedValue, formik.values.first_name, formik.values.second_name, formik.values.last_name, formik.values.second_last_name]);
 
-
-
     useEffect(() => {
         if (!formik.isValid) {
             console.log(formik.errors);
@@ -194,9 +188,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         console.log('isStepValid ' + isStepValid)
     }, [formik.values, formik.touched, formik.isValid]);
 
-
-
-
     //----------------------School Form Functions------------------------
     useEffect(() => {
         // Función que trae la data de las ciudades.
@@ -237,7 +228,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
         // fetchSchools(formData.schoolTown);
     }, []);
 
-
     // Cada vez que cambia el valor de schoolTown en Formik, actualizamos las escuelas.
     useEffect(() => {
         const fetchSchools = async () => {
@@ -253,7 +243,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
 
         fetchSchools();
     }, [formik.values.schoolTown, formData.school_town]);
-
 
     // useEffect(() => {
     //     // Asegurarse de que schoolsData esté actualizado antes de asignar el valor a school_code
@@ -297,7 +286,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                     </Grid>
                 </Grid>
             </Box>
-
 
             <Box>
                 <Grid container spacing={0}>
@@ -562,7 +550,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                     error={formik.touched.schoolTown && Boolean(formik.errors.schoolTown)}
                                     helperText={formik.touched.schoolTown && typeof formik.errors.schoolTown === 'string' ? formik.errors.schoolTown : undefined}
 
-
                                 >
                                     {townsData.map((option: ItemData) => (
                                         <MenuItem key={option.id} value={option.id}>
@@ -653,7 +640,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                     </Grid>
                 </Box>
 
-
                 <Box>
                     <Grid container spacing={0}>
                         <Grid item xs={12} sx={{ paddingX: '1rem' }}>
@@ -701,7 +687,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                         </Grid>
                     </Grid>
                 </Box>
-
 
                 <Box>
                     <Grid container spacing={0}>
@@ -829,7 +814,6 @@ const Step1 = ({ termsandConditionsCheckBox, setTermsandConditionsCheckBox, isSt
                                 />
                             </FormControl>
                         </Grid>
-
 
                     </Grid>
                 </Box>

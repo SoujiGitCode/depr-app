@@ -27,7 +27,6 @@ const responsive = {
 
 const MyCarousel = ({ isMobile }: { isMobile: boolean }) => {
 
-
     const titleOne = "Ingresar Datos"
     const paragraphOne = "Para crear una solicitud debe ingresar sus datos personales e información de la escuela donde cursó el grado a ser considerado para la emisión de sus certificados de graduación."
     const labelOne = "Imagen femenina cabello negro recogido sosteniendo documento"

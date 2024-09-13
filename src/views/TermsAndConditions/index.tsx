@@ -34,20 +34,17 @@ export default function TermsandConditions() {
         fontSize: '0.9rem', // Otro tamaño específico
     };
 
-
     const h3Style = {
         color: '#654321', // Otro color específico
         fontSize: '1.5rem', // Otro tamaño específico
         marginBottom: '0.5rem', // Margin bottom como ejemplo
     };
 
-
     const baseStyle = {
         marginTop: '1rem !important',
         marginBottom: '1rem !important',
         // Aquí puedes agregar otros estilos base comunes
     };
-
 
     const liStyle = {
         // color: 'black',
@@ -56,7 +53,6 @@ export default function TermsandConditions() {
         // marginBottom: '1rem !important',
         // Aquí puedes agregar otros estilos base comunes
     };
-
 
     const urlDictionary = {
         FERPA: "https://www.ed.gov/FERPA",
@@ -70,7 +66,6 @@ export default function TermsandConditions() {
         StudentRegulationAndCompulsoryAssistance: "https://www.de.pr.gov/",
         OfficialCircularsAndMemos: "https://www.de.pr.gov/",
     };
-
 
     return (
         <>
@@ -286,7 +281,6 @@ export default function TermsandConditions() {
                     el orden público, con fines ilícitos o para lesionar derechos de terceros. El Departamento de Educación podrá denegar,
                     retirar o suspender el acceso, sin necesidad de previo aviso, a todo USUARIO que incumpla con los términos de uso aquí dispuestos.
                 </Typography>
-
 
                 <Typography variant="body1" component="p" sx={{ ...pStyle, ...baseStyle }}>
                     El <span style={boldStyle}>Departamento de Educación de Puerto Rico</span> es el titular de todos los derechos de propiedad intelectual

@@ -16,7 +16,6 @@
   height: 100%;
 }
 
-
 html,
 body {
   height: 100%;
@@ -31,7 +30,6 @@ body {
 /* h6 {
   font-family: "Montserrat-Black" !important;
 } */
-
 
 .Montserrat-Black {
   font-family: "Montserrat-Black" !important;
@@ -95,13 +93,11 @@ div {
   margin-right: 1rem !important;
 }
 
-
 .flex-center {
   display: flex;
   justify-content: center;
   text-align: center;
 }
-
 
 .react-multiple-carousel__arrow {
   width: 40px !important;
@@ -110,7 +106,6 @@ div {
   border-radius: 50px !important;
   background-color: #FFFFFF !important;
 }
-
 
 .react-multiple-carousel__arrow::before {
   font-size: 20px;
