@@ -16,6 +16,7 @@ import ApiRequest from "@/utils/services/apiService";
 import useAlert from "@/hooks/useAlert";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import PurpleHeader from "@/components/PurpleHeader";
+import { LoadingDialog } from "@/components";
 
 const listId = [
   { value: "licencia", label: "Lic" },
@@ -129,12 +130,17 @@ const Profile = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values: any) => {
-
-      await UpdateChangesProfile(values)
-      setAlert('¡Datos Personales Actualizados!', "success");
-
-      console.log('IM HERE')
-      getDetails();
+      setLoading(true);
+      try {
+        await UpdateChangesProfile(values);
+        setAlert('¡Datos Personales Actualizados!', "success");
+        getDetails();
+      } catch (error) {
+        console.error("Error al actualizar el perfil", error);
+        setAlert('Hubo un error al actualizar los datos. Por favor, inténtelo de nuevo.', "error");
+      } finally {
+        setLoading(false); // Asegurarse de que el loading se desactive siempre, incluso en caso de error
+      }
     },
     validateOnChange: true,
     validateOnBlur: true,
@@ -161,14 +167,13 @@ const Profile = () => {
   //Cambiar password  necesitamos mejorarlo luego
 
   const { setAlert } = useAlert();
-
   const [openModal, setOpenModal] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleOpenModal = () => {
     setPasswordError('');
@@ -200,6 +205,7 @@ const Profile = () => {
       }
 
       handleCloseModal();
+      setLoading(false);
 
     } catch (error) {
       handleCloseModal();
@@ -247,6 +253,8 @@ const Profile = () => {
       <Grid container sx={{ width: '100%', margin: 0 }}>
 
         <PurpleHeader />
+
+
         <Grid item xs={12} lg={6} sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", paddingLeft: isMobile ? '1rem ' : '5rem', paddingRight: isMobile ? '1rem' : '5rem' }} >
           {/* title*/}
           <TitleSection />
@@ -402,6 +410,9 @@ const Profile = () => {
             {isEditMode ? "Cancelar" : "Editar"}
           </Button>
         </Box>
+
+
+        <LoadingDialog loading={loading} setLoading={setLoading} />
 
         <Modal
           open={openModal}
