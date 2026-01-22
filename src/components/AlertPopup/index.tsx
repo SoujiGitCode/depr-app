@@ -19,8 +19,8 @@ const AlertPopup = () => {
     return (
       <Stack
         sx={{
-          width: isMobile ? '100%' : '25%',
-          position: 'fixed',
+            width: isMobile ? '100%' : '25%',
+            position: 'fixed',
           "z-index": 999,
           top: 0, right: 0,
         }}

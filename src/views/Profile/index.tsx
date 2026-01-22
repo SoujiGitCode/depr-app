@@ -107,13 +107,14 @@ const Profile = () => {
           last_name: values.depr_last_name,
           second_last_name: values.depr_second_last_name,
         },
-      })
-
-      console.log(res);
+      });
+      return res;
     } catch (error) {
       console.log(error);
+      throw error;
     }
   };
+
 
   const formik = useFormik({
     initialValues: {
@@ -139,7 +140,7 @@ const Profile = () => {
         console.error("Error al actualizar el perfil", error);
         setAlert('Hubo un error al actualizar los datos. Por favor, inténtelo de nuevo.', "error");
       } finally {
-        setLoading(false); // Asegurarse de que el loading se desactive siempre, incluso en caso de error
+        setLoading(false);
       }
     },
     validateOnChange: true,
@@ -309,7 +310,7 @@ const Profile = () => {
         </Grid>
 
         {/*Second section */}
-        <Grid item sx={{ display: isMobile ? 'none' : 'flex', justifyContent: "center", }} sm={5}>
+        <Grid item sx={{ display: isMobile ? 'none' : 'flex', justifyContent: "center", }}>
           <div style={{ alignItems: "center", display: "flex" }}>
             <Divider
               orientation="vertical"
